@@ -1,0 +1,2134 @@
+
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <title>はじめに &#8212; Documentation  ドキュメント</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/option.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/translations.js"></script>
+  
+    <script type="text/javascript" src="../../../_static/exastro_documents.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="検索" href="../../../search.html" /> 
+  </head>
+<body id="page" class="ja">
+
+
+<div id="container">
+
+<div id="header">
+  <header class="divInner">
+    <!-- Exastro logo -->
+    <div id="logo"><img src="../../../_static/img/exastro.svg" alt="Exastro"></div>
+    <!-- Project name -->
+    <div id="projectName"><a href="../../../index.html">Documentation</a></div>
+    <!-- Heaedr navigation -->
+    <div id="headerSearch">
+      <form class="search" action="../../../search.html" method="get">
+        <input type="text" name="q" aria-labelledby="searchlabel">
+        <button type="submit" value="検索"><img src="../../../_static/img/search.png" alt="検索"></button>
+      </form>
+    </div>
+  </header>
+</div><!-- End #header -->
+
+
+<div id="toolbar">
+  <div class="divInner">
+    
+    <div id="documentVersion">
+      <dl>
+        <dt>Document version</dt>
+        <dd>
+          <div>
+            <select name="version" onchange="location.href=value;">
+                file_path: v2.0/ja/it_automation_base/rbac
+                  <option value="#"
+                  selected
+                  >current</option>
+                file_path: v2.0/ja/it_automation_base/rbac
+                  <option value="#"
+                  selected
+                  >v2.0 (current)</option>
+            </select>
+          </div>
+        </dd>
+      </dl>
+    </div>
+
+    <div id="documentLanguage">
+      <dl>
+        <dt>Language</dt>
+        <dd>
+          <div>
+            <select name="lang" onchange="location.href=value;">
+                file_path: v2.0/ja/it_automation_base/rbac
+                hasdoc: True
+                  <option value="#"
+                  selected
+                  >日本語</option>
+                file_path: v2.0/en/it_automation_base/rbac
+                hasdoc: False
+            </select>
+          </div>
+        </dd>
+      </dl>
+    </div>
+    <div id="toolbarNavigation">
+      <ul>
+      </ul>
+    </div>
+  </div>
+</div><!-- End #toolbar -->
+
+<div id="sideMenu">
+
+  <div id="menuButton"></div>
+  
+  <aside class="divInner">
+    <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Exastro IT Automation Documentation</a></li>
+</ul>
+
+    <!-- <ul>
+      <li class="toctree-l1"><a class="reference internal" href="../../../../genindex.html">索引</a></li>
+    </ul> -->
+    
+  </aside>
+</div><!-- End #sideMenu -->
+
+<div id="contents">
+<main class="divInner">
+
+
+<div id="breadcrumbs">
+  <ul>
+    <li><a href="../../../index.html">HOME</a></li>
+    
+    <li>はじめに</li>
+  </ul>
+</div>
+
+
+<div id="article">
+<article class="divInner">
+<div class="body" role="main">
+
+  <a class="reference internal image-reference" href="v2.0/ja/it_automation_base/rbac/image1.pngmedia"><img alt="v2.0/ja/it_automation_base/rbac/image1.pngmedia" src="v2.0/ja/it_automation_base/rbac/image1.pngmedia" style="width: 3.35069in; height: 0.79236in;" /></a>
+<p>ITA_利用手順マニュアル</p>
+<p>データレコード毎のロールベースアクセス制御</p>
+<p><em>－</em>第1.9版<em>－</em></p>
+<p>Copyright © NEC Corporation 2021. All rights reserved.</p>
+<p>免責事項</p>
+<p>本書の内容はすべて日本電気株式会社が所有する著作権に保護されています。</p>
+<p>本書の内容の一部または全部を無断で転載および複写することは禁止されています。</p>
+<p>本書の内容は将来予告なしに変更することがあります。</p>
+<p>日本電気株式会社は、本書の技術的もしくは編集上の間違い、欠落について、一切責任を負いません。</p>
+<p>日本電気株式会社は、本書の内容に関し、その正確性、有用性、確実性その他いかなる保証もいたしません。</p>
+<p>商標</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>LinuxはLinus</dt><dd><p>Torvalds氏の米国およびその他の国における登録商標または商標です。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Red Hatは、Red Hat,</dt><dd><p>Inc.の米国およびその他の国における登録商標または商標です。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Apache、Apache Tomcat、Tomcatは、Apache Software</dt><dd><p>Foundationの登録商標または商標です。</p>
+</dd>
+</dl>
+</li>
+<li><p>Ansibleは、Red Hat, Inc.の登録商標または商標です。</p></li>
+</ul>
+<p>その他、本書に記載のシステム名、会社名、製品名は、各社の登録商標もしくは商標です。</p>
+<p>なお、® マーク、TMマークは本書に明記しておりません。</p>
+<p>※本書では「Exastro IT Automation」を「ITA」として記載します。</p>
+<p><strong>目次­­</strong></p>
+<p><a class="reference external" href="#はじめに">はじめに</a> <a class="reference external" href="#はじめに">3</a></p>
+<p><a class="reference external" href="#データレコード毎のロールベースアクセス制御rbacの概要">1
+データレコード毎のロールベースアクセス制御（RBAC）の概要</a>
+<a class="reference external" href="#データレコード毎のロールベースアクセス制御rbacの概要">4</a></p>
+<p><a class="reference external" href="#ロールベースアクセス制御-rbacの主要機能">2 ロールベースアクセス制御
+(RBAC)の主要機能</a>
+<a class="reference external" href="#ロールベースアクセス制御-rbacの主要機能">5</a></p>
+<p><a class="reference external" href="#ユーザ毎のロール紐付">3 ユーザ毎のロール紐付</a>
+<a class="reference external" href="#ユーザ毎のロール紐付">6</a></p>
+<p><a class="reference external" href="#アクセスを制御するロールを設計しロール管理に登録">3.1
+アクセスを制御するロールを設計しロール管理に登録</a>
+<a class="reference external" href="#アクセスを制御するロールを設計しロール管理に登録">8</a></p>
+<p><a class="reference external" href="#ロールとメニューの紐付をロールメニュー紐付管理に登録">3.2
+ロールとメニューの紐付をロール・メニュー紐付管理に登録</a>
+<a class="reference external" href="#ロールとメニューの紐付をロールメニュー紐付管理に登録">10</a></p>
+<p><a class="reference external" href="#ユーザアカウントをユーザ管理に登録">3.3
+ユーザ（アカウント）をユーザ管理に登録</a>
+<a class="reference external" href="#ユーザアカウントをユーザ管理に登録">11</a></p>
+<p><a class="reference external" href="#ユーザとロールの紐付をロールユーザ管理に登録">3.4
+ユーザとロールの紐付をロール・ユーザ管理に登録</a>
+<a class="reference external" href="#ユーザとロールの紐付をロールユーザ管理に登録">12</a></p>
+<p><a class="reference external" href="#データ毎のロール紐付">4 データ毎のロール紐付</a>
+<a class="reference external" href="#データ毎のロール紐付">13</a></p>
+<p><a class="reference external" href="#新規データ">4.1 新規データ</a> <a class="reference external" href="#新規データ">17</a></p>
+<p><a class="reference external" href="#データ更新">4.2 データ更新</a> <a class="reference external" href="#データ更新">20</a></p>
+<p><a class="reference external" href="#_Toc65672892">4.2.1 廃止したロールの扱い</a> <a class="reference external" href="#_Toc65672892">20</a></p>
+<p><a class="reference external" href="#ユーザとロールの紐付を廃止したロールの扱い">4.2.2
+ユーザとロールの紐付を廃止したロールの扱い</a>
+<a class="reference external" href="#ユーザとロールの紐付を廃止したロールの扱い">22</a></p>
+<p><a class="reference external" href="#特定のデータを複数のロールで共有した場合の扱い">4.2.3
+特定のデータを複数のロールで共有した場合の扱い</a>
+<a class="reference external" href="#特定のデータを複数のロールで共有した場合の扱い">23</a></p>
+<p><a class="reference external" href="#データ廃止">4.3 データ廃止</a> <a class="reference external" href="#データ廃止">25</a></p>
+<p><a class="reference external" href="#データ復活">4.4 データ復活</a> <a class="reference external" href="#データ復活">25</a></p>
+<p><a class="reference external" href="#excelからのアップロード">4.5 Excelからのアップロード</a>
+<a class="reference external" href="#excelからのアップロード">25</a></p>
+<p><a class="reference external" href="#restapiからのアップロード">4.6 RestAPIからのアップロード</a>
+<a class="reference external" href="#restapiからのアップロード">29</a></p>
+<p><a class="reference external" href="#_Toc65672903">4.6.1 EDIT（X-Command）</a> <a class="reference external" href="#_Toc65672903">29</a></p>
+<p><a class="reference external" href="#紐付けロールによる表示制御">5 紐付けロールによる表示制御</a>
+<a class="reference external" href="#紐付けロールによる表示制御">30</a></p>
+<p><a class="reference external" href="#一覧表示">5.1 一覧表示</a> <a class="reference external" href="#一覧表示">31</a></p>
+<p><a class="reference external" href="#各ユーザでのログイン結果">5.1.1 各ユーザでのログイン結果</a>
+<a class="reference external" href="#各ユーザでのログイン結果">32</a></p>
+<p><a class="reference external" href="#変更履歴">5.2 変更履歴</a> <a class="reference external" href="#変更履歴">41</a></p>
+<p><a class="reference external" href="#表示フィルタ">5.3 表示フィルタ</a> <a class="reference external" href="#表示フィルタ">46</a></p>
+<p><a class="reference external" href="#_Toc65672915">5.4 RestAPI表示フィルタ</a> <a class="reference external" href="#_Toc65672915">52</a></p>
+<section id="id1">
+<h1>はじめに<a class="headerlink" href="#id1" title="この見出しへのパーマリンク">¶</a></h1>
+<p>本書では、データレコード毎のロールベースアクセス制御（RBAC）の機能および操作方法について説明します。</p>
+</section>
+<section id="rbac">
+<h1>データレコード毎のロールベースアクセス制御（RBAC）の概要<a class="headerlink" href="#rbac" title="この見出しへのパーマリンク">¶</a></h1>
+<p>ユーザ毎にアクセスを許可するロールを付与し、データレコード毎にロールを付与することでデータレコード毎のアクセスを制御できます。</p>
+<p>上記機能を利用しない場合、デフォルトアクセス権およびアクセス許可ロールは空白のままとして下さい。</p>
+<p>本書では、「データレコード毎のロールベースアクセス制御（RBAC）」を以降「ロールベースアクセス制御（RBAC）」と表記します。</p>
+</section>
+<section id="id2">
+<h1>ロールベースアクセス制御 (RBAC)の主要機能<a class="headerlink" href="#id2" title="この見出しへのパーマリンク">¶</a></h1>
+<p>ロールベースアクセス制御
+(RBAC)の主要機能は次のカテゴリーに分類されます。</p>
+<ul>
+<li><div class="line-block">
+<div class="line">Web</div>
+<div class="line">Webコンテンツ。ブラウザで提供されるメニュー作成機能を使用できる画面。</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line">BackYard</div>
+<div class="line">Webコンテンツとは独立してサーバ上で動作する常駐プロセス。</div>
+</div>
+</li>
+</ul>
+</section>
+<section id="id3">
+<h1>ユーザ毎のロール紐付<a class="headerlink" href="#id3" title="この見出しへのパーマリンク">¶</a></h1>
+<p>ロールベースアクセス制御
+(RBAC)を行うには、ユーザ毎にアクセスを許可するロールを設定します。</p>
+<p>例として「表3-1」の登録例をもとに以降（章立て3.1～3.4）の手順にて説明します。</p>
+<p>表　3- 1 章立てと登録例</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>**
+章
+・
+節
+**</p></th>
+<th class="head"><p><strong>「管理コンソ
+ール」メニューグループ</strong></p></th>
+<th class="head"><p><strong>登録例</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>3
+.1</p></td>
+<td><p>「ロール管理」メニュー</p></td>
+<td><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>ロール</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Role_A</p></td>
+</tr>
+<tr class="row-odd"><td><p>Role_B</p></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-odd"><td><p>3
+.2</p></td>
+<td><p>「ロール・メ
+ニュー紐付管理」メニュー</p></td>
+<td><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>**
+ロール**</p></th>
+<th class="head"><p><strong>メ
+ニュー</strong></p></th>
+<th class="head"><p><strong>紐付</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Role_A</p></td>
+<td><p>Menu_A</p></td>
+<td><p>メン
+テナンス</p></td>
+</tr>
+<tr class="row-odd"><td><p>Role_B</p></td>
+<td><p>Menu_A</p></td>
+<td><p>メン
+テナンス</p></td>
+</tr>
+<tr class="row-even"><td><p>Role_B</p></td>
+<td><p>Menu_B</p></td>
+<td><p>メン
+テナンス</p></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-even"><td><p>3
+.3</p></td>
+<td><p>「ユーザ管理」メニュー</p></td>
+<td><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>ユーザ</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>User_A</p></td>
+</tr>
+<tr class="row-odd"><td><p>User_B</p></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-odd"><td><p>3
+.4</p></td>
+<td><p>「ロール・
+ユーザ紐付管理」メニュー</p></td>
+<td><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>ロ
+ール</strong></p></th>
+<th class="head"><p><strong>ユ
+ーザ</strong></p></th>
+<th class="head"><p><strong>デ
+フォルトア
+クセス権</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Role_A</p></td>
+<td><p>User_A</p></td>
+<td><p>●</p></td>
+</tr>
+<tr class="row-odd"><td><p>Role_B</p></td>
+<td><p>User_B</p></td>
+<td><p>●</p></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="simple">
+<li></li>
+</ul>
+<p>※</p>
+</td>
+<td><p>「メニュー管理」メニュー</p></td>
+<td><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>メニュー</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Menu_A</p></td>
+</tr>
+<tr class="row-odd"><td><p>Menu_B</p></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p>※メニューの作成について、詳細は「利用手順マニュアル
+メニュー作成機能」を参照ください。</p>
+<p>上記の「表 3-1」を図化すると以下のような関係になります。</p>
+<a class="reference internal image-reference" href="../../../_images/image218.png"><img alt="../../../_images/image218.png" src="../../../_images/image218.png" style="width: 6.69236in; height: 3.96528in;" /></a>
+<p>図　3- 1　全体図</p>
+<p>上記における「パターン：d」の場合、以下のダイアログが表示されます。</p>
+<a class="reference internal image-reference" href="../../../_images/image315.png"><img alt="../../../_images/image315.png" src="../../../_images/image315.png" style="width: 4.89652in; height: 1.97944in;" /></a>
+<p><strong>図 3-2 表示権限が無い場合に表示されるダイアログ</strong></p>
+<p>例えば、ユーザ「User_A」が紐付けの設定がされていないメニュー「Menu_B」にアクセスを試みた場合、メニューに対し権限がないためトップページに遷移します。</p>
+<section id="id4">
+<h2>アクセスを制御するロールを設計しロール管理に登録<a class="headerlink" href="#id4" title="この見出しへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><p>アクセスを制御するロールを設計し
+「管理コンソール」メニューグループ&gt;「ロール管理」メニュー
+より登録します。</p>
+<a class="reference internal image-reference" href="../../../_images/image415.png"><img alt="../../../_images/image415.png" src="../../../_images/image415.png" style="width: 6.5739in; height: 1.66014in;" /></a>
+</div></blockquote>
+<p><strong>図 3.1-1 「管理コンソール」メニューグループ&gt;「ロール管理」メニュー</strong></p>
+<p>ロールには2つの役割があります。</p>
+<ol class="arabic simple">
+<li><p>メニューへのアクセス権</p></li>
+</ol>
+<blockquote>
+<div><p>各メニューへのアクセス権は
+「管理コンソール」メニューグループ&gt;「ロール・メニュー紐付管理」メニュー
+より登録します。</p>
+<a class="reference internal image-reference" href="../../../_images/image516.png"><img alt="../../../_images/image516.png" src="../../../_images/image516.png" style="width: 5.70866in; height: 1.33646in;" /></a>
+</div></blockquote>
+<p><strong>図 3.1-1
+「管理コンソール」メニューグループ&gt;「ロール・メニュー紐付管理」メニュー</strong></p>
+<ol class="arabic simple" start="2">
+<li><p>データレコード毎に付与するロール</p></li>
+</ol>
+<blockquote>
+<div><p>ユーザ毎に各データに付与するロールは
+「管理コンソール」メニューグループ&gt;「ロール・ユーザ紐付管理」メニュー
+より登録します。</p>
+<a class="reference internal image-reference" href="../../../_images/image614.png"><img alt="../../../_images/image614.png" src="../../../_images/image614.png" style="width: 5.70866in; height: 1.3565in;" /></a>
+</div></blockquote>
+<p><strong>図 3.1-2
+「管理コンソール」メニューグループ&gt;「ロール・ユーザ紐付管理」メニュー</strong></p>
+<blockquote>
+<div><p>ITAをインストールすると、デフォルトの設定として以下のロールが登録されますが、更新等の操作は行わないでください。</p>
+</div></blockquote>
+<a class="reference internal image-reference" href="../../../_images/image714.png"><img alt="../../../_images/image714.png" src="../../../_images/image714.png" style="width: 6.33772in; height: 0.7189in;" /></a>
+<p><strong>図　3.1-3　「管理コンソール」メニューグループ&gt;「ロール管理」メニュー</strong></p>
+<blockquote>
+<div><p>また、本書ではロールの2つの役割のうち、「②データレコード毎に付与するロール」について説明していきます。（
+「図　3- 1　全体図」における、「パターン：a、b、c」が該当します。）</p>
+<p>「①メニューへのアクセス権」については「利用手順マニュアル_管理コンソール.」を参照してください。（
+「図　3- 1　全体図」における、「パターン：d」が該当します。）</p>
+</div></blockquote>
+</section>
+<section id="id5">
+<h2>ロールとメニューの紐付をロール・メニュー紐付管理に登録<a class="headerlink" href="#id5" title="この見出しへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><p>各ロールとメニューの紐付を
+「管理コンソール」メニューグループ&gt;「ロール・メニュー紐付管理」メニュー
+より登録します。</p>
+<p>ロールを新規に登録した場合、「ロール・メニュー紐付管理」メニューで、ロールと各メニューへの紐付けを行う必要があります。</p>
+<a class="reference internal image-reference" href="../../../_images/image813.png"><img alt="../../../_images/image813.png" src="../../../_images/image813.png" style="width: 6.10236in; height: 1.49299in;" /></a>
+</div></blockquote>
+<p><strong>図　3.1-4　「管理コンソール」メニューグループ&gt;「ロール・メニュー紐付管理」メニュー</strong></p>
+<blockquote>
+<div><p>ITAをインストールすると、デフォルトの設定として「システム管理者（ロール）」で各メニューへの紐付が登録されますが、更新等の操作はしないでください。</p>
+</div></blockquote>
+<a class="reference internal image-reference" href="../../../_images/image94.png"><img alt="../../../_images/image94.png" src="../../../_images/image94.png" style="width: 6.09107in; height: 1.07787in;" /></a>
+<p><strong>図 3.2-5
+「管理コンソール」メニューグループ&gt;「ロール・メニュー紐付管理」メニュー</strong></p>
+<blockquote>
+<div><p>「Menu_A」「Menu_B」が作成済みであることを前提とします。</p>
+<p>メニューの作成方法については「利用手順マニュアル
+メニュー作成機能」を参照してください。</p>
+<a class="reference internal image-reference" href="../../../_images/image104.png"><img alt="../../../_images/image104.png" src="../../../_images/image104.png" style="width: 6.1072in; height: 2.54022in;" /></a>
+</div></blockquote>
+<p><strong>図 3.2-6 「入力用」メニューグループ&gt;「Menu_A」メニュー</strong></p>
+</section>
+<section id="id6">
+<h2>ユーザ（アカウント）をユーザ管理に登録<a class="headerlink" href="#id6" title="この見出しへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><p>ユーザ（アカウント）を　「管理コンソール」メニューグループ&gt;「ユーザ管理」メニュー
+より登録します。</p>
+<a class="reference internal image-reference" href="../../../_images/image1111.png"><img alt="../../../_images/image1111.png" src="../../../_images/image1111.png" style="width: 5.89263in; height: 1.45831in;" /></a>
+</div></blockquote>
+<p><strong>図 3.3-1 「管理コンソール」メニューグループ&gt;「ユーザ管理」メニュー</strong></p>
+<blockquote>
+<div><p>ITAをインストールすると、デフォルトの設定として以下のユーザ（アカウント）が登録されますが、更新等の操作はしないでください。</p>
+<a class="reference internal image-reference" href="../../../_images/image125.png"><img alt="../../../_images/image125.png" src="../../../_images/image125.png" style="width: 6.17112in; height: 0.58436in;" /></a>
+</div></blockquote>
+<p><strong>図 3.3-2 「管理コンソール」メニューグループ&gt;「ユーザ管理」メニュー</strong></p>
+</section>
+<section id="id7">
+<h2>ユーザとロールの紐付をロール・ユーザ管理に登録<a class="headerlink" href="#id7" title="この見出しへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><p>ユーザとロールの紐付を　「管理コンソール」メニューグループ&gt;「ロール・ユーザ紐付管理」メニュー
+より登録します。</p>
+<p>新規データ登録時、データに付与するデフォルトのロールとして指定する場合、「デフォルトアクセス権」欄で設定を実施します。</p>
+<p>「デフォルトアクセス権」欄で「●」を設定することにより、新規データを登録する時のデフォルトに設定されるロール(アクセス許可ロール）となります。</p>
+<a class="reference internal image-reference" href="../../../_images/image134.png"><img alt="../../../_images/image134.png" src="../../../_images/image134.png" style="width: 6.10236in; height: 1.30487in;" /></a>
+</div></blockquote>
+<p><strong>図 3.4-1
+「管理コンソール」メニューグループ&gt;「ロール・ユーザ紐付管理」メニュー</strong></p>
+<blockquote>
+<div><p>ロールベースアクセス制御（RBAC）を導入しない場合、「デフォルトアクセス権」欄は空白のままとしてください。</p>
+<p>ITAをインストールすると、デフォルトで以下のユーザ・ロール紐付が登録されますが、更新等の操作はしないでください。</p>
+<a class="reference internal image-reference" href="../../../_images/image145.png"><img alt="../../../_images/image145.png" src="../../../_images/image145.png" style="width: 6.36628in; height: 0.61156in;" /></a>
+</div></blockquote>
+<p><strong>図 3.4-2
+「管理コンソール」メニューグループ&gt;「ロール・ユーザ紐付管理」メニュー</strong></p>
+</section>
+</section>
+<section id="id8">
+<h1>データ毎のロール紐付<a class="headerlink" href="#id8" title="この見出しへのパーマリンク">¶</a></h1>
+<p>以降の説明では、以下の「表 4-1」が設定されていることを前提とします。</p>
+<p>表　4- 1 メニューと登録例</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><ul class="simple">
+<li></li>
+<li></li>
+</ul>
+<p>N
+o
+.
+*
+*</p>
+</th>
+<th class="head"><p><strong>メニュー</strong></p></th>
+<th class="head"><p><strong>登録例</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><ul class="simple">
+<li></li>
+<li></li>
+</ul>
+<ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>「管理コンソ
+ール」メニューグループ&gt;</p>
+<p>「ロール管理」メニュー</p>
+</td>
+<td><p>システム管理者、A社_管理、A社_関東、A
+社_関西、B社_管理、B社_関東、B社_関西</p></td>
+</tr>
+<tr class="row-odd"><td><ul class="simple">
+<li></li>
+<li></li>
+</ul>
+<ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>「管理コンソ
+ール」メニューグループ&gt;</p>
+<p>「ユーザ管理」メニュー</p>
+</td>
+<td><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>ログインID</strong></p></th>
+<th class="head"><p><strong>ユーザ名</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>administrator</p></td>
+<td><p>システム管理者</p></td>
+</tr>
+<tr class="row-odd"><td><p>A_admin</p></td>
+<td><p>A社_admin</p></td>
+</tr>
+<tr class="row-even"><td><p>A_user01</p></td>
+<td><p>A社_user01</p></td>
+</tr>
+<tr class="row-odd"><td><p>A_user02</p></td>
+<td><p>A社_user02</p></td>
+</tr>
+<tr class="row-even"><td><p>A_user03</p></td>
+<td><p>A社_user03</p></td>
+</tr>
+<tr class="row-odd"><td><p>B_admin</p></td>
+<td><p>B社_admin</p></td>
+</tr>
+<tr class="row-even"><td><p>B_user01</p></td>
+<td><p>B社_user01</p></td>
+</tr>
+<tr class="row-odd"><td><p>B_user02</p></td>
+<td><p>B社_user02</p></td>
+</tr>
+<tr class="row-even"><td><p>B_user03</p></td>
+<td><p>B社_user03</p></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="simple">
+<li></li>
+<li></li>
+</ul>
+<ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>「管理コンソ
+ール」メニューグループ&gt;</p>
+<p>「ロール・
+ユーザ紐付管理」メニュー</p>
+</td>
+<td><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>**
+ロール**</p></th>
+<th class="head"><p><strong>ユーザ名</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>システ
+ム管理者</p></td>
+<td><p>システム管理者</p></td>
+</tr>
+<tr class="row-odd"><td><p>A社_管理</p></td>
+<td><p>システム
+管理者、A社_admin(●)</p></td>
+</tr>
+<tr class="row-even"><td><p>A社_関東</p></td>
+<td><p>システム
+管理者、A社_admin、</p>
+<p>A社_u
+ser01(●)、A社_user03</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>A社_関西</p></td>
+<td><p>システム
+管理者、A社_admin、</p>
+<p>A社_u
+ser02(●)、A社_user03</p>
+</td>
+</tr>
+<tr class="row-even"><td><p>B社_管理</p></td>
+<td><p>システム
+管理者、B社_admin(●)</p></td>
+</tr>
+<tr class="row-odd"><td><p>B社_関東</p></td>
+<td><p>システム
+管理者、B社_admin、</p>
+<p>B社_user
+01(●)、B社_user03(●)</p>
+</td>
+</tr>
+<tr class="row-even"><td><p>B社_関西</p></td>
+<td><p>システム
+管理者、B社_admin、</p>
+<p>B社_user
+02(●)、B社_user03(●)</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>●…デフォルトアクセス権</p>
+</td>
+</tr>
+<tr class="row-odd"><td><ul class="simple">
+<li></li>
+<li></li>
+</ul>
+<ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>「管理コンソ
+ール」メニューグループ&gt;</p>
+<p>「メニュー管理」メニュー</p>
+</td>
+<td><p>「基本コンソール」メニューグループ&gt;</p>
+<p>「オペレーション一覧」メニュー</p>
+</td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>「管理コンソ
+ール」メニューグループ&gt;</p>
+<p>「ロール・メ
+ニュー紐付管理」メニュー</p>
+</td>
+<td><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>ロール</strong></p></th>
+<th class="head"><p><strong>メニュー</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>システ
+ム管理者、A社
+_管理、A社_関
+東、A社_関西、
+B社_管理、<a href="#id108"><span class="problematic" id="id109">B社_</span></a>
+関東、B社_関西</p></td>
+<td><p>「基本コン
+ソール」メニュ
+ーグループ&gt;「
+オペレーション
+一覧」メニュー</p></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple">
+<li><p>「表　4- 1」の登録例を反映した「ロール管理」メニュー</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/image154.png"><img alt="../../../_images/image154.png" src="../../../_images/image154.png" style="width: 6.10236in; height: 2.72084in;" /></a>
+<p><strong>図 4-1 「管理コンソール」メニューグループ&gt;「ロール管理」メニュー</strong></p>
+<ol class="arabic simple">
+<li></li>
+<li><p>「表　4- 1」の登録例を反映した「ユーザ管理」メニュー</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/image164.png"><img alt="../../../_images/image164.png" src="../../../_images/image164.png" style="width: 6.10236in; height: 2.66595in;" /></a>
+<p><strong>図 4-2 「管理コンソール」メニューグループ&gt;「ユーザ管理」メニュー</strong></p>
+<ol class="arabic simple">
+<li></li>
+<li></li>
+<li><p>「表　4- 1」の登録例を反映した「ロール・ユーザ紐付管理」メニュー</p></li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/image175.png"><img alt="../../../_images/image175.png" src="../../../_images/image175.png" style="width: 5.70823in; height: 4.01711in;" /></a>
+</div></blockquote>
+<p><strong>図 4-3
+「管理コンソール」メニューグループ&gt;「ロール・ユーザ紐付管理」メニュー</strong></p>
+<p>表　4- 2　「ロール・ユーザ紐付管理」の設定値一覧</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a href="#id9"><span class="problematic" id="id10">**</span></a>ロール名称　**</p></td>
+<td><p>**
+シス
+テム
+管理
+者**</p></td>
+<td><p><strong>A
+社_
+管
+理</strong></p></td>
+<td><p><strong>A
+社_
+関
+東</strong></p></td>
+<td><p><strong>A
+社_
+関
+西</strong></p></td>
+<td><p><strong>B
+社_
+管
+理</strong></p></td>
+<td><p><strong>B
+社_
+関
+東</strong></p></td>
+<td><p><strong>B
+社_
+関
+西</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>**
+システム管理者**</p>
+<p>（
+administrator）</p>
+</td>
+<td><p>〇</p></td>
+<td><p>〇</p></td>
+<td><p>〇</p></td>
+<td><p>〇</p></td>
+<td><p>〇</p></td>
+<td><p>〇</p></td>
+<td><p>〇</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>A社_admi
+n</strong>（A_admin）</p></td>
+<td></td>
+<td><p>●</p></td>
+<td><p>〇</p></td>
+<td><p>〇</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a href="#id11"><span class="problematic" id="id12">**</span></a>A社_user01
+<a href="#id13"><span class="problematic" id="id14">**</span></a>（A_user01）</p></td>
+<td></td>
+<td></td>
+<td><p>●</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a href="#id15"><span class="problematic" id="id16">**</span></a>A社_user02
+<a href="#id17"><span class="problematic" id="id18">**</span></a>（A_user02）</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>●</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a href="#id19"><span class="problematic" id="id20">**</span></a>A社_user03
+<a href="#id21"><span class="problematic" id="id22">**</span></a>（A_user03）</p></td>
+<td></td>
+<td></td>
+<td><p>〇</p></td>
+<td><p>〇</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>B社_admi
+n</strong>（B_admin）</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>●</p></td>
+<td><p>〇</p></td>
+<td><p>〇</p></td>
+</tr>
+<tr class="row-even"><td><p><a href="#id23"><span class="problematic" id="id24">**</span></a>B社_user01
+<a href="#id25"><span class="problematic" id="id26">**</span></a>（B_user01）</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>●</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a href="#id27"><span class="problematic" id="id28">**</span></a>B社_user02
+<a href="#id29"><span class="problematic" id="id30">**</span></a>（B_user02）</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>●</p></td>
+</tr>
+<tr class="row-even"><td><p><a href="#id31"><span class="problematic" id="id32">**</span></a>B社_user03
+<a href="#id33"><span class="problematic" id="id34">**</span></a>（B_user03）</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>●</p></td>
+<td><p>●</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p>●:　ロール・ユーザ紐付管理で紐付あり。デアォルトアクセス権で「●」を設定</p>
+<p>〇:　ロール・ユーザ紐付管理で紐付あり。デアォルトアクセス権で「空白」を設定</p>
+</div></blockquote>
+<ol class="arabic simple">
+<li></li>
+<li></li>
+<li></li>
+<li><p>「表　4- 1」の登録例を反映した「ロール・メニュー紐付管理」メニュー</p></li>
+</ol>
+<p>新規ロールに対して「ロール・メニュー紐付管理」メニューで、ロールとメニューの紐付けを行う必要があります。</p>
+<p>ここでは前提として、各ロールに
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー
+への紐付けを行います。</p>
+<a class="reference internal image-reference" href="../../../_images/image184.png"><img alt="../../../_images/image184.png" src="../../../_images/image184.png" style="width: 6.55138in; height: 2.16564in;" /></a>
+<p><strong>図 4-4
+「管理コンソール」メニューグループ&gt;「ロール・メニュー紐付管理」メニュー</strong></p>
+<p>例）ユーザ「B_admin」でログインした場合</p>
+<blockquote>
+<div><p>紐付を実施したことで
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー
+にユーザ「B_admin」がアクセス可能となります。</p>
+<a class="reference internal image-reference" href="../../../_images/image194.png"><img alt="../../../_images/image194.png" src="../../../_images/image194.png" style="width: 5.7605in; height: 2.76691in;" /></a>
+</div></blockquote>
+<p><strong>図 4-5 「基本コンソール」メニューグループ&gt;「オペレーション」メニュー</strong></p>
+<section id="id35">
+<h2>新規データ<a class="headerlink" href="#id35" title="この見出しへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><p>データ登録時、登録するデータに対し「アクセス権」を設定することが可能です。</p>
+<p>以下「図 4.1-1」は、
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー
+にて、データ（オペレーション）を登録する「登録」サブメニューです。</p>
+<a class="reference internal image-reference" href="../../../_images/image205.png"><img alt="../../../_images/image205.png" src="../../../_images/image205.png" style="width: 6.42722in; height: 3.0736in;" /></a>
+<p><strong>図 4.1-1
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+</div></blockquote>
+<ol class="upperalpha">
+<li><div class="line-block">
+<div class="line">「アクセス許可ロール」欄</div>
+<div class="line">データレコードへのアクセスを許可するロールが表示されます。</div>
+<div class="line">「アクセス許可ロール」欄には、デフォルトのアクセス許可ロール<sup>※1</sup>が表示されます。</div>
+</div>
+</li>
+</ol>
+<blockquote>
+<div><p>デフォルトのアクセス許可ロールが設定されて無いユーザの場合、空白となります。</p>
+<div class="line-block">
+<div class="line">アクセス許可ロールが紐づいているユーザのみが、データの閲覧・変更が可能になります。</div>
+<div class="line">アクセス許可ロールが空白の場合、全てのユーザにデータの閲覧・変更が可能になります。</div>
+</div>
+<p>ロールベースアクセス制御（RBAC）を導入していない場合、アクセス許可ロールは設定しないでください。</p>
+<p>※1　「デフォルトのアクセス許可ロール」について</p>
+<p>「ロール・ユーザ紐付管理」メニューの「デフォルトアクセス権」欄に「●」が選択されているロールは、登録時「アクセス許可ロール」欄にデフォルトでロール名が表示されます。</p>
+<a class="reference internal image-reference" href="../../../_images/image219.png"><img alt="../../../_images/image219.png" src="../../../_images/image219.png" style="width: 5.28221in; height: 2.81824in;" /></a>
+<p><strong>図 4.1-2
+「管理コンソール」メニューグループ&gt;「ロール・ユーザ紐付管理」メニュー</strong></p>
+<p>例）ユーザ「A_user03」でログインした場合</p>
+<p>ユーザ「A_user03」には「デフォルトアクセス権」を設定していないため、登録時「アクセス許可ロール」欄にはデフォルトで何も表示されません。</p>
+<a class="reference internal image-reference" href="../../../_images/image224.png"><img alt="../../../_images/image224.png" src="../../../_images/image224.png" style="width: 5.30694in; height: 1.41944in;" /></a>
+<p><strong>図 4.1-3
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+<p>例）ユーザ「B_user03」でログインした場合</p>
+<p>ユーザ「B_user03」に「デフォルトアクセス権」を設定しているため、登録時「アクセス許可ロール」欄には設定したロールがデフォルトで表示されます。</p>
+<a class="reference internal image-reference" href="../../../_images/image233.png"><img alt="../../../_images/image233.png" src="../../../_images/image233.png" style="width: 5.32014in; height: 1.45972in;" /></a>
+<p><strong>図 4.1-4
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+</div></blockquote>
+<ol class="upperalpha" start="2">
+<li><div class="line-block">
+<div class="line">「設定」欄</div>
+<div class="line">アクセス許可ロールを変更したい場合、「設定」ボタンを押下します。</div>
+<div class="line">アクセス許可ロールを変更するダイアログが表示されます。</div>
+</div>
+</li>
+</ol>
+<blockquote>
+<div><div class="line-block">
+<div class="line">ダイアログには「ロール・ユーザ紐付管理」メニューでユーザに紐づけたロールの一覧が表示されます。</div>
+<div class="line">アクセスを許可するロールを選択し、「決定」ボタンを押下します。</div>
+</div>
+<div class="line-block">
+<div class="line">選択したロールが「アクセス許可ロール」欄に反映されます。</div>
+<div class="line">ロール未選択で「決定」ボタンを押下した場合、「アクセス許可ロール」欄は空白となります。</div>
+</div>
+<p>アクセス許可ロールが空白の場合、全てのユーザでデータの閲覧・変更が可能になります。</p>
+<p>「登録」ボタンを押下すると「アクセス許可ロール」欄に表示されている内容が登録されます。</p>
+<p>例）ユーザ「A_user03」でログインした場合</p>
+<p>ユーザ「A_user03」に紐付くロール「A社_関東」と「A社_関西」がダイアログに表示されます。</p>
+<a class="reference internal image-reference" href="../../../_images/image243.png"><img alt="../../../_images/image243.png" src="../../../_images/image243.png" style="width: 5.70866in; height: 3.70914in;" /></a>
+</div></blockquote>
+<p><strong>図 4.1-5 アクセス許可ロールを変更するダイアログ</strong></p>
+<section id="id38">
+<h3><a href="#id36"><span class="problematic" id="id37">**</span></a><a class="headerlink" href="#id38" title="この見出しへのパーマリンク">¶</a></h3>
+</section>
+</section>
+<section id="id39">
+<h2>データ更新<a class="headerlink" href="#id39" title="この見出しへのパーマリンク">¶</a></h2>
+<blockquote>
+<div><div class="line-block">
+<div class="line">「アクセス許可ロール」欄には、データレコードへのアクセスを許可するロールが表示されます。</div>
+<div class="line">必要に応じてアクセス許可ロールを変更します。</div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/image254.png"><img alt="../../../_images/image254.png" src="../../../_images/image254.png" style="width: 6.10236in; height: 1.88455in;" /></a>
+<p><strong>図 4.2-1
+「基本コンソール」メニューグループ&gt;「オペレーション」メニュー</strong></p>
+</div></blockquote>
+<ol class="arabic simple">
+<li></li>
+<li></li>
+<li></li>
+<li><p>1.
+2.</p></li>
+</ol>
+<p>「管理コンソール」メニューグループ&gt;「ロール管理」メニュー
+でロールを廃止した場合、廃止したロールは「アクセス許可ロール」欄の表示が「ID変換失敗」となります。</p>
+<p>例）ロール「A社_関西」を廃止した場合</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/image264.png"><img alt="../../../_images/image264.png" src="../../../_images/image264.png" style="width: 5.90551in; height: 2.17646in;" /></a>
+<p><strong>図 4.2-2
+「基本コンソール」メニューグループ&gt;「オペレーション」メニュー</strong></p>
+</div></blockquote>
+<section id="id42">
+<h3><a href="#id40"><span class="problematic" id="id41">**</span></a><a class="headerlink" href="#id42" title="この見出しへのパーマリンク">¶</a></h3>
+<blockquote>
+<div><p>「図
+4.2-2」の状態で「更新」ボタンを押下すると、「アクセス許可ロール」欄から廃止されたロールが削除されます（この場合、「ID変換失敗」が消え「A社_関東」のみが表示されます）。</p>
+<a class="reference internal image-reference" href="../../../_images/image274.png"><img alt="../../../_images/image274.png" src="../../../_images/image274.png" style="width: 5.90551in; height: 2.36082in;" /></a>
+<p><strong>図 4.2-3
+「基本コンソール」メニューグループ&gt;「オペレーション」メニュー</strong></p>
+</div></blockquote>
+<p>「一覧/更新」サブメニューの「更新」ボタンを押下しない限り、「アクセス許可ロール」欄には廃止されたロールが「ID変換失敗」という表示で残ります。</p>
+<section id="id43">
+<h4>ユーザとロールの紐付を廃止したロールの扱い<a class="headerlink" href="#id43" title="この見出しへのパーマリンク">¶</a></h4>
+<p>「管理コンソール」メニューグループ&gt;「ロール・ユーザ管理」メニュー
+でロールの紐付を廃止した場合、紐付を廃止したロールは「アクセス許可ロール」欄の表示が「<strong>****</strong>」となります。</p>
+<p>例）ユーザ「B_user03」からロール「B社_関西」の紐付けを廃止、ユーザ「B_user03」でログイン</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/image284.png"><img alt="../../../_images/image284.png" src="../../../_images/image284.png" style="width: 6.1872in; height: 2.96692in;" /></a>
+<p><strong>図 4.2-3
+「基本コンソール」メニューグループ&gt;「オペレーション」メニュー</strong></p>
+<p>「図
+4.2-3」の状態で「更新」ボタンを押下しても、「アクセス許可ロール」欄は変更されません。</p>
+<p>「アクセス許可ロール」欄から「<strong>****</strong>」表示を排除したい場合、「一覧/更新」サブメニューの「設定」ボタンを押下してダイアログを表示し、「決定」ボタンを押下します。</p>
+<a class="reference internal image-reference" href="../../../_images/image294.png"><img alt="../../../_images/image294.png" src="../../../_images/image294.png" style="width: 5.90551in; height: 1.26358in;" /></a>
+<p><strong>図 4.2-4 「Role select」画面</strong></p>
+<a class="reference internal image-reference" href="../../../_images/image304.png"><img alt="../../../_images/image304.png" src="../../../_images/image304.png" style="width: 5.85384in; height: 2.80691in;" /></a>
+<p><strong>図 4.2-5
+「基本コンソール」メニューグループ&gt;「オペレーション」メニュー</strong></p>
+<p>ダイアログの「決定」ボタンを押下しない限り、「アクセス許可ロール」欄には紐付を廃止されたロールが「<strong>****</strong>」という表示で残ります。</p>
+</div></blockquote>
+</section>
+<section id="id44">
+<h4>特定のデータを複数のロールで共有した場合の扱い<a class="headerlink" href="#id44" title="この見出しへのパーマリンク">¶</a></h4>
+<blockquote>
+<div><p>データに対し複数のアクセス許可ロールが登録されている場合、「ロール・ユーザ紐付管理」メニューで紐付が無いロールは「アクセス許可ロール」欄にて「<strong>***</strong>」と表示されます。</p>
+</div></blockquote>
+<p>例）ユーザ「B_user03」でログインし、「アクセス許可ロール」欄をデフォルトの状態でデータ登録します。</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/image316.png"><img alt="../../../_images/image316.png" src="../../../_images/image316.png" style="width: 5.90718in; height: 2.83358in;" /></a>
+<p><strong>図 4.2-6
+「基本コンソール」メニューグループ&gt;「オペレーション」メニュー</strong></p>
+<p>ユーザ「B_user01」でログインします。ユーザ「B_user01」にはロール「B社_関西」との紐付がありません。紐付がないロールはアクセス許可ロールの表示が「<strong>****</strong>」となります。</p>
+<a class="reference internal image-reference" href="../../../_images/image323.png"><img alt="../../../_images/image323.png" src="../../../_images/image323.png" style="width: 5.97385in; height: 2.86025in;" /></a>
+<p><strong>図 4.2-7
+「基本コンソール」メニューグループ&gt;「オペレーション」メニュー</strong></p>
+<p>「図
+4.2-7」の状態で「更新」ボタンを押下しても、「アクセス許可ロール」欄は変更されません。</p>
+<p>「アクセス許可ロール」欄から「<strong>****</strong>」表示を排除したい場合、「設定」ボタンを押下してダイアログを表示し、「決定」ボタンを押下します。</p>
+<a class="reference internal image-reference" href="../../../_images/image333.png"><img alt="../../../_images/image333.png" src="../../../_images/image333.png" style="width: 5.90551in; height: 1.24091in;" /></a>
+<p><strong>図 4.2-8 「Role select」画面</strong></p>
+<a class="reference internal image-reference" href="../../../_images/image343.png"><img alt="../../../_images/image343.png" src="../../../_images/image343.png" style="width: 5.90718in; height: 2.24686in;" /></a>
+<p><strong>図 4.2-9
+「基本コンソール」メニューグループ&gt;「オペレーション」メニュー</strong></p>
+<p>ダイアログの「決定」ボタンを押下しない限り、「アクセス許可ロール」欄には紐付を廃止されたロールが「<strong>****</strong>」という表示で残ります。</p>
+</div></blockquote>
+</section>
+</section>
+</section>
+<section id="id45">
+<h2>データ廃止<a class="headerlink" href="#id45" title="この見出しへのパーマリンク">¶</a></h2>
+<p>データを廃止してもアクセス許可ロールは変更されることはありません。</p>
+</section>
+<section id="id46">
+<h2>データ復活<a class="headerlink" href="#id46" title="この見出しへのパーマリンク">¶</a></h2>
+<p>データを復活してもアクセス許可ロールは変更されることはありません。</p>
+</section>
+<section id="excel">
+<h2>Excelからのアップロード<a class="headerlink" href="#excel" title="この見出しへのパーマリンク">¶</a></h2>
+<p>「表　4- 1」を基に登録した以下の情報を用いて説明します。</p>
+<a class="reference internal image-reference" href="../../../_images/image353.png"><img alt="../../../_images/image353.png" src="../../../_images/image353.png" style="width: 5.90551in; height: 2.06256in;" /></a>
+<p><strong>図　4.5-1
+「管理コンソール」メニューグループ&gt;「ロール・ユーザ紐付管理」メニュー</strong></p>
+<p>以下のボタンからExcelをダウンロードした場合、ダウンロードしたExcelの空白行にある「アクセス許可ロール」列に、ユーザのデフォルトアクセス許可ロールが表示されます。</p>
+<p><a class="reference internal" href="../../../_images/image363.png"><img alt="image1" src="../../../_images/image363.png" style="width: 2.439in; height: 1.37107in;" /></a><a class="reference internal" href="../../../_images/image373.png"><img alt="image2" src="../../../_images/image373.png" style="width: 3.07547in; height: 1.17799in;" /></a></p>
+<p><strong>図 4.5-2
+「基本コンソール」メニューグループ&gt;「オペレーション」メニュー</strong></p>
+<p>例）ユーザ「A_admin」でログインしExcelをダウンロードした場合</p>
+<blockquote>
+<div><p><a class="reference internal" href="../../../_images/image383.png"><img alt="image3" src="../../../_images/image383.png" style="width: 5.90551in; height: 2.69508in;" /></a><strong>図 4.5-3 「一覧/更新」サブメニュー&gt;「Excel出力」ボタン
+からダウンロード</strong></p>
+</div></blockquote>
+<p>Excelからアップロードを行う場合、「アクセス許可ロール」列には
+「管理コンソール」メニューグループ&gt;「ロール・ユーザ紐付管理」メニュー
+にて、ユーザに紐付いているロールの範囲内でロールを設定します。</p>
+<p>ロールを複数設定する場合はカンマで区切る必要があります。</p>
+<p>例）ユーザに紐付いているロールの範囲内での設定</p>
+<blockquote>
+<div><p><strong>表4.5-1 「図　4.5-1」の一覧化</strong></p>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>ログインユーザ</strong></p></th>
+<th class="head"><p><strong>アクセス許可ロールの設定値</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A_admin</p></td>
+<td><p>A社_管理, A社_関東, A社_関西</p></td>
+</tr>
+<tr class="row-odd"><td><p>A_user01</p></td>
+<td><p>A社_関東</p></td>
+</tr>
+<tr class="row-even"><td><p>A_user02</p></td>
+<td><p>A社_関西</p></td>
+</tr>
+<tr class="row-odd"><td><p>A_user03</p></td>
+<td><p>A社_関東, A社_関西</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple">
+<li><p>登録</p></li>
+</ol>
+<blockquote>
+<div><p>例）ユーザ「A_admin」でログインしExcelをダウンロードした場合</p>
+<p>下図の赤枠のように必要情報を記入します。</p>
+<a class="reference internal image-reference" href="../../../_images/image394.png"><img alt="../../../_images/image394.png" src="../../../_images/image394.png" style="width: 5.70866in; height: 3.35093in;" /></a>
+<p><strong>図 4.5-4 出力したExcelの更新</strong></p>
+<p>「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー&gt;「全件ダウンロードとファイルアップロード編集」サブメニュー
+の「ファイルアップロード」ボタンより、上記で更新したExcel （<strong>図
+4.5-4</strong>）
+をアップロードすると、データが登録され「一覧/更新」サブメニューに追加されます。</p>
+<a class="reference internal image-reference" href="../../../_images/image404.png"><img alt="../../../_images/image404.png" src="../../../_images/image404.png" style="width: 5.77383in; height: 2.18019in;" /></a>
+<p><strong>図 4.5-5 更新したExcelをアップロードした結果</strong></p>
+</div></blockquote>
+<ol class="arabic simple">
+<li></li>
+<li><p>更新</p></li>
+</ol>
+<blockquote>
+<div><p>更新レコードに設定されているアクセス許可ロールの範囲内でロールを設定しますが、複数のユーザでデータを共有したい場合等でログインユーザに紐付がないロールを残したい場合、ロール名は「<a href="#id47"><span class="problematic" id="id48">**</span></a><a href="#id49"><span class="problematic" id="id50">**</span></a><a href="#id51"><span class="problematic" id="id52">**</span></a><a href="#id53"><span class="problematic" id="id54">**</span></a>(ロールID)」を設定してください</p>
+<p>例）ログインユーザに紐付がないロールを残したい場合</p>
+<p><strong>表4.5-2 更新レコードのアクセス許可ロールの設定</strong></p>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>ログインユーザ</strong></p></th>
+<th class="head"><p><strong>アクセス許可ロールの設定値</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A_admin</p></td>
+<td><p>A社_管理, A社_関東, A社_関西</p></td>
+</tr>
+<tr class="row-odd"><td><p>A_user01</p></td>
+<td><p>********(2), A社_関東, ********(4)</p></td>
+</tr>
+<tr class="row-even"><td><p>A_user02</p></td>
+<td><p>********(2), ********(3), A社_関西</p></td>
+</tr>
+<tr class="row-odd"><td><p>A_user03</p></td>
+<td><p>********(2), A社_関東, A社_関西</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/image416.png"><img alt="../../../_images/image416.png" src="../../../_images/image416.png" style="width: 5.7205in; height: 1.96684in;" /></a>
+<p><strong>図 4.5-6
+「A_user01」でログインした場合の「一覧/更新」サブメニュー</strong></p>
+</div></blockquote>
+<ol class="arabic simple">
+<li></li>
+<li></li>
+<li><p>廃止・復活</p></li>
+</ol>
+<blockquote>
+<div><p>廃止・復活でアクセス許可ロールが変更されることはありません。</p>
+</div></blockquote>
+<p>アクセス許可ロールが空白の場合、全てのユーザでデータの閲覧・変更が可能になります（Excelからアップロードする場合、自動的にアクセス許可ロールが指定されます
+※<strong>図 4.5-3</strong>）。</p>
+<p>ロールベースアクセス制御（RBAC）を導入しない場合、アクセス許可ロールは設定しないで下さい。</p>
+<section id="id57">
+<h3><a href="#id55"><span class="problematic" id="id56">**</span></a><a class="headerlink" href="#id57" title="この見出しへのパーマリンク">¶</a></h3>
+</section>
+</section>
+<section id="restapi">
+<h2>RestAPIからのアップロード<a class="headerlink" href="#restapi" title="この見出しへのパーマリンク">¶</a></h2>
+<p>RestAPIからのアップロード（登録・更新・廃止・復活）については前述の「4.5
+Excelからのアップロード」と同様です。</p>
+<p>ただし、Excelからのアップロードと異なり、「アクセス許可ロール」はデフォルトで指定がありません。</p>
+<blockquote>
+<div><p><strong>表 4.6-1 アップロード元によるデフォルト値の差</strong></p>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>アップ
+ロード元</strong></p></th>
+<th class="head"><p><strong>デフォルト値</strong></p></th>
+<th class="head"><p><strong>デフォ
+ルト値で登録した結果</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Excel</p></td>
+<td><p>ログインした
+ユーザのデフォルトアクセス許
+可ロールが指定される（<strong>図
+4.5-3</strong>）</p></td>
+<td><p>指定
+されたロールのユーザの
+み、データの参照が可能</p></td>
+</tr>
+<tr class="row-odd"><td><p>RestAPI</p></td>
+<td><p>指定なし</p></td>
+<td><p>全ユ
+ーザがデータの参照可能</p></td>
+</tr>
+</tbody>
+</table>
+<p>RestAPIからアップロードする場合は「アクセス許可ロールの指定なし」がデフォルトとなります。</p>
+<p>「アクセス許可ロール」欄が空白の場合、すべてのユーザでデータの閲覧・変更が可能となるため、特定のロール以外から閲覧・変更をさせたくないデータがある場合はご注意ください。</p>
+<p>データを閲覧・変更するユーザを絞りたい場合は、アクセス許可ロールを指定の上アップロードしてください。</p>
+<p>ロールベースアクセス制御（RBAC）を導入しない場合、アクセス許可ロールは設定しないで下さい。</p>
+<ol class="arabic simple">
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+<p>RestAPIからの操作については「ITA_利用手順マニュアル
+RestAPI」もあわせてご参照ください。</p>
+<p>※「FILTER（X-Command）」については「<em>5.4
+RestAPI表示フィルタ</em>」で後述します。</p>
+<p>RestAPIからデータの登録・更新を行う場合のアクセス許可ロールには、
+「管理コンソール」メニューグループ&gt;「ロール・ユーザ紐付管理」メニュー
+でユーザに紐付いているロールの範囲内でロールを設定します。ロールを複数設定する場合はカンマで区切る必要があります。</p>
+<p>アクセス許可ロールが空白の場合、全てのユーザでデータの閲覧・変更が可能になります。</p>
+<p>ロールベースアクセス制御（RBAC）を導入しない場合、アクセス許可ロールは設定しないで下さい。</p>
+</section>
+</section>
+<section id="id58">
+<h1>紐付けロールによる表示制御<a class="headerlink" href="#id58" title="この見出しへのパーマリンク">¶</a></h1>
+<p>本章以降では、
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー
+に以下のデータが登録されていることを前提とします。</p>
+<a class="reference internal image-reference" href="../../../_images/image424.png"><img alt="../../../_images/image424.png" src="../../../_images/image424.png" style="width: 6.20054in; height: 2.80691in;" /></a>
+<p>図 5- 1 「基本コンソール」メニューグループ&gt;「オペレーション」メニュー</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td></td>
+<td><p>op
+e_</p>
+<p>s
+amp
+le1</p>
+</td>
+<td><p>op
+e_</p>
+<p>s
+amp
+le2</p>
+</td>
+<td><p>op
+e_</p>
+<p>s
+amp
+le3</p>
+</td>
+<td><p>op
+e_</p>
+<p>s
+amp
+le4</p>
+</td>
+<td><p>op
+e_</p>
+<p>s
+amp
+le5</p>
+</td>
+<td><p>op
+e_</p>
+<p>s
+amp
+le6</p>
+</td>
+<td><p>op
+e_</p>
+<p>s
+amp
+le7</p>
+</td>
+<td><p>op
+e_</p>
+<p>s
+amp
+le8</p>
+</td>
+<td><p>op
+e_</p>
+<p>s
+amp
+le9</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>システ
+ム管理者</strong></p>
+<p>（admi
+nistrator）</p>
+</td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+<td><p>◆</p></td>
+<td><p>◆</p></td>
+<td><p>◆</p></td>
+<td><p>◆</p></td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>**
+A社_admin**</p>
+<p>（A_admin）</p>
+</td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+<td><p>◆</p></td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+<td><p>◆</p></td>
+<td></td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>A
+社_user01</strong></p>
+<p>（
+A_user01）</p>
+</td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+<td><p>◆</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>A
+社_user02</strong></p>
+<p>（
+A_user02）</p>
+</td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+<td></td>
+<td><p>◆</p>
+<p></p>
+</td>
+<td></td>
+<td></td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>A
+社_user03</strong></p>
+<p>（
+A_user03）</p>
+</td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+<td><p>◆</p></td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+<td></td>
+<td></td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>**
+B社_admin**</p>
+<p>（B_admin）</p>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>B
+社_user01</strong></p>
+<p>（
+B_user01）</p>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+<td></td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>B
+社_user02</strong></p>
+<p>（
+B_user02）</p>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+<td></td>
+<td></td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>B
+社_user03</strong></p>
+<p>（
+B_user03）</p>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+<td></td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+<td><p>◆</p>
+<p></p>
+<p></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>表 5- 1 ユーザごとに表示されるデータ一覧</p>
+<p>◆：各ユーザで表示対象となるデータ</p>
+<section id="id59">
+<h2>一覧表示<a class="headerlink" href="#id59" title="この見出しへのパーマリンク">¶</a></h2>
+<p>「一覧/更新」サブメニューに表示されるデータは、
+「管理コンソール」メニューグループ&gt;「ロール・ユーザ紐付管理」メニュー
+でユーザに紐付けたロールが、アクセス許可ロールに付与されているデータになります。</p>
+<a class="reference internal image-reference" href="../../../_images/image434.png"><img alt="../../../_images/image434.png" src="../../../_images/image434.png" style="width: 6.10236in; height: 4.25316in;" /></a>
+<p><strong>図 5.1-1 「表　4- 1」を反映した「ロール・ユーザ紐付管理」メニュー</strong></p>
+<ol class="arabic simple" start="5">
+<li><ol class="arabic simple">
+<li></li>
+</ol>
+</li>
+</ol>
+<ul class="simple">
+<li><p><strong>ユーザ名：システム管理者</strong> （ログインID：administrator）**　**</p></li>
+</ul>
+<blockquote>
+<div><p>ユーザ「administrator」でログインした場合、以下のデータが
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー
+に表示されます。</p>
+<a class="reference internal image-reference" href="../../../_images/image444.png"><img alt="../../../_images/image444.png" src="../../../_images/image444.png" style="width: 5.70866in; height: 0.94009in;" /></a>
+<p><strong>表 5.1-1 「表 5- 1」の抜粋</strong></p>
+<a class="reference internal image-reference" href="../../../_images/image453.png"><img alt="../../../_images/image453.png" src="../../../_images/image453.png" style="width: 5.90718in; height: 2.82024in;" /></a>
+<p><strong>図　5.1-2
+「administrator」でログインした場合の「一覧/更新」サブメニュー</strong></p>
+<p>ユーザ「administrator」と各ロールの紐付は以下のとおりです（前述の「表　4-1」から抜粋したものです）。</p>
+<a class="reference internal image-reference" href="../../../_images/image463.png"><img alt="../../../_images/image463.png" src="../../../_images/image463.png" style="width: 5.70866in; height: 1.10477in;" /></a>
+<p><strong>表 5.1-2 「表　4- 1」の抜粋</strong></p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a href="#id60"><span class="problematic" id="id61">**</span></a>ユーザ名：A社_管理　<a href="#id62"><span class="problematic" id="id63">**</span></a>（ユーザID：A_admin）</p></li>
+</ul>
+<blockquote>
+<div><p>ユーザ「A_admin」でログインした場合、以下のデータが
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー
+に表示されます。</p>
+<a class="reference internal image-reference" href="../../../_images/image473.png"><img alt="../../../_images/image473.png" src="../../../_images/image473.png" style="width: 5.70866in; height: 0.82221in;" /></a>
+<p><strong>表 5.1-3 「表 5- 1」の抜粋</strong></p>
+<a class="reference internal image-reference" href="../../../_images/image484.png"><img alt="../../../_images/image484.png" src="../../../_images/image484.png" style="width: 5.94718in; height: 2.12685in;" /></a>
+<p><strong>図　5.1-3
+「A_admin」でログインした場合の「一覧/更新」サブメニュー</strong></p>
+<p>ユーザ「A_admin」と各ロールの紐付は以下のとおりです（前述の「表　4-1」から抜粋したものです）。</p>
+<a class="reference internal image-reference" href="../../../_images/image493.png"><img alt="../../../_images/image493.png" src="../../../_images/image493.png" style="width: 5.70866in; height: 0.97267in;" /></a>
+<p><strong>表 5.1-4 「表　4- 1」の抜粋</strong></p>
+</div></blockquote>
+<section id="id66">
+<h3><a href="#id64"><span class="problematic" id="id65">**</span></a><a class="headerlink" href="#id66" title="この見出しへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p><a href="#id67"><span class="problematic" id="id68">**</span></a>ユーザ名：A社_user01　<a href="#id69"><span class="problematic" id="id70">**</span></a>（ユーザID：A_user01）</p></li>
+</ul>
+<blockquote>
+<div><p>ユーザ「A_user01」でログインした場合、以下のデータが
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー
+に表示されます。</p>
+<a class="reference internal image-reference" href="../../../_images/image503.png"><img alt="../../../_images/image503.png" src="../../../_images/image503.png" style="width: 5.70866in; height: 0.82221in;" /></a>
+</div></blockquote>
+<p><strong>表 5.1-5 「表 5- 1」の抜粋</strong></p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/image517.png"><img alt="../../../_images/image517.png" src="../../../_images/image517.png" style="width: 5.90718in; height: 1.84683in;" /></a>
+<p><strong>図　5.1-4
+「A_user01」でログインした場合の「一覧/更新」サブメニュー</strong></p>
+<p>ユーザ「A_user01」と各ロールの紐付は以下のとおりです（前述の「表　4-1」から抜粋したものです）。</p>
+<a class="reference internal image-reference" href="../../../_images/image522.png"><img alt="../../../_images/image522.png" src="../../../_images/image522.png" style="width: 5.70866in; height: 0.96615in;" /></a>
+<p><strong>表 5.1-6 「表　4- 1」の抜粋</strong></p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a href="#id71"><span class="problematic" id="id72">**</span></a>ユーザ名：A社_user02　<a href="#id73"><span class="problematic" id="id74">**</span></a>（ユーザID：A_user02）</p></li>
+</ul>
+<blockquote>
+<div><p>ユーザ「A_user02」でログインした場合、以下のデータが
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー
+に表示されます。</p>
+<a class="reference internal image-reference" href="../../../_images/image532.png"><img alt="../../../_images/image532.png" src="../../../_images/image532.png" style="width: 5.70866in; height: 0.82695in;" /></a>
+</div></blockquote>
+<p><strong>表 5.1-7 「表 5- 1」の抜粋</strong></p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/image543.png"><img alt="../../../_images/image543.png" src="../../../_images/image543.png" style="width: 6.02719in; height: 1.88683in;" /></a>
+<p><strong>図　5.1-5
+「A_user02」でログインした場合の「一覧/更新」サブメニュー</strong></p>
+<p>ユーザ「A_user02」と各ロールの紐付は以下のとおりです（前述の「表　4-1」から抜粋したものです）。</p>
+<a class="reference internal image-reference" href="../../../_images/image553.png"><img alt="../../../_images/image553.png" src="../../../_images/image553.png" style="width: 5.70866in; height: 0.96615in;" /></a>
+<p><strong>表 5.1-8 「表　4- 1」の抜粋</strong></p>
+</div></blockquote>
+</section>
+<section id="id77">
+<h3><a href="#id75"><span class="problematic" id="id76">**</span></a><a class="headerlink" href="#id77" title="この見出しへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p><a href="#id78"><span class="problematic" id="id79">**</span></a>ユーザ名：A社_user03　<a href="#id80"><span class="problematic" id="id81">**</span></a>（ユーザID：A_user03）</p></li>
+</ul>
+<blockquote>
+<div><p>ユーザ「A_user03」でログインした場合、以下のデータが
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー
+に表示されます。</p>
+<a class="reference internal image-reference" href="../../../_images/image564.png"><img alt="../../../_images/image564.png" src="../../../_images/image564.png" style="width: 5.70866in; height: 0.82754in;" /></a>
+</div></blockquote>
+<p><strong>表 5.1-9 「表 5- 1」の抜粋</strong></p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/image574.png"><img alt="../../../_images/image574.png" src="../../../_images/image574.png" style="width: 6.09386in; height: 2.07351in;" /></a>
+<p><strong>図　5.1-6
+「A_user03」でログインした場合の「一覧/更新」サブメニュー</strong></p>
+<p>ユーザ「A_user03」と各ロールの紐付は以下のとおりです（前述の「表　4-1」から抜粋したものです）。</p>
+<a class="reference internal image-reference" href="../../../_images/image583.png"><img alt="../../../_images/image583.png" src="../../../_images/image583.png" style="width: 5.70866in; height: 0.96615in;" /></a>
+<p><strong>表 5.1-10 「表　4- 1」の抜粋</strong></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>**
+ユーザ名：B社_管理　<a href="#id82"><span class="problematic" id="id83">**</span></a>（ユーザID：B_admin）</p></li>
+</ul>
+<blockquote>
+<div><p>ユーザ「B_admin」でログインした場合、以下のデータが
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー
+に表示されます。</p>
+<a class="reference internal image-reference" href="../../../_images/image593.png"><img alt="../../../_images/image593.png" src="../../../_images/image593.png" style="width: 5.70866in; height: 0.8228in;" /></a>
+<p><strong>表 5.1-11 「表 5- 1」の抜粋</strong></p>
+<a class="reference internal image-reference" href="../../../_images/image603.png"><img alt="../../../_images/image603.png" src="../../../_images/image603.png" style="width: 5.85384in; height: 1.90017in;" /></a>
+<p><strong>図　5.1-7
+「B_admin」でログインした場合の「一覧/更新」サブメニュー</strong></p>
+<p>ユーザ「B_admin」と各ロールの紐付は以下のとおりです（前述の「表　4-1」から抜粋したものです）。</p>
+<a class="reference internal image-reference" href="../../../_images/image615.png"><img alt="../../../_images/image615.png" src="../../../_images/image615.png" style="width: 5.70866in; height: 0.96615in;" /></a>
+<p><strong>表 5.1-12 「表　4- 1」の抜粋</strong></p>
+</div></blockquote>
+</section>
+<section id="id86">
+<h3><a href="#id84"><span class="problematic" id="id85">**</span></a><a class="headerlink" href="#id86" title="この見出しへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p><a href="#id87"><span class="problematic" id="id88">**</span></a>ユーザ名：B社_user01　<a href="#id89"><span class="problematic" id="id90">**</span></a>（ユーザID：B_user01）</p></li>
+</ul>
+<blockquote>
+<div><p>ユーザ「B_user01」でログインした場合、以下のデータが
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー
+に表示されます。</p>
+<a class="reference internal image-reference" href="../../../_images/image623.png"><img alt="../../../_images/image623.png" src="../../../_images/image623.png" style="width: 5.70866in; height: 0.82695in;" /></a>
+</div></blockquote>
+<p><strong>表 5.1-13 「</strong>表　4- 1<strong>表 5- 1」の抜粋</strong></p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/image633.png"><img alt="../../../_images/image633.png" src="../../../_images/image633.png" style="width: 6.12053in; height: 1.75349in;" /></a>
+<p><strong>図　5.1-8
+「B_user01」でログインした場合の「一覧/更新」サブメニュー</strong></p>
+<p>ユーザ「B_user01」と各ロールの紐付は以下のとおりです（前述の「表　4-1」から抜粋したものです）。</p>
+<a class="reference internal image-reference" href="../../../_images/image642.png"><img alt="../../../_images/image642.png" src="../../../_images/image642.png" style="width: 5.70866in; height: 0.96615in;" /></a>
+<p><strong>表 5.1-14 「表　4- 1」の抜粋</strong></p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a href="#id91"><span class="problematic" id="id92">**</span></a>ユーザ名：B社_user02　<a href="#id93"><span class="problematic" id="id94">**</span></a>（ユーザID：B_user02）</p></li>
+</ul>
+<blockquote>
+<div><p>ユーザ「B_user02」でログインした場合、以下のデータが
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー
+に表示されます。</p>
+<a class="reference internal image-reference" href="../../../_images/image653.png"><img alt="../../../_images/image653.png" src="../../../_images/image653.png" style="width: 5.70866in; height: 0.82695in;" /></a>
+</div></blockquote>
+<p><strong>表 5.1-15 「表 5- 1」の抜粋</strong></p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/image663.png"><img alt="../../../_images/image663.png" src="../../../_images/image663.png" style="width: 6.1472in; height: 1.71348in;" /></a>
+<p><strong>図　5.1-9
+「B_user02」でログインした場合の「一覧/更新」サブメニュー</strong></p>
+<p>ユーザ「B_user02」と各ロールの紐付は以下のとおりです（前述の「表　4-1」から抜粋したものです）。</p>
+<a class="reference internal image-reference" href="../../../_images/image673.png"><img alt="../../../_images/image673.png" src="../../../_images/image673.png" style="width: 5.70866in; height: 0.96615in;" /></a>
+<p><strong>表 5.1-16 「表　4- 1」の抜粋</strong></p>
+</div></blockquote>
+</section>
+<section id="id97">
+<h3><a href="#id95"><span class="problematic" id="id96">**</span></a><a class="headerlink" href="#id97" title="この見出しへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><p><a href="#id98"><span class="problematic" id="id99">**</span></a>ユーザ名：B社_user03　<a href="#id100"><span class="problematic" id="id101">**</span></a>（ユーザID：B_user03）</p></li>
+</ul>
+<blockquote>
+<div><p>ユーザ「B_user03」でログインした場合、以下のデータが
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー
+に表示されます。</p>
+<a class="reference internal image-reference" href="../../../_images/image683.png"><img alt="../../../_images/image683.png" src="../../../_images/image683.png" style="width: 5.70866in; height: 0.82695in;" /></a>
+</div></blockquote>
+<p><strong>表 5.1-17 「表 5- 1」の抜粋</strong></p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/image693.png"><img alt="../../../_images/image693.png" src="../../../_images/image693.png" style="width: 6.17387in; height: 1.88683in;" /></a>
+<p><strong>図　5.1-10
+「B_user03」でログインした場合の「一覧/更新」サブメニュー</strong></p>
+<p>ユーザ「B_user03」と各ロールの紐付は以下のとおりです（前述の「表　4-1」から抜粋したものです）。</p>
+<a class="reference internal image-reference" href="../../../_images/image703.png"><img alt="../../../_images/image703.png" src="../../../_images/image703.png" style="width: 5.70866in; height: 0.96615in;" /></a>
+<p><strong>表 5.1-18 「表　4- 1」の抜粋</strong></p>
+</div></blockquote>
+</section>
+</section>
+<section id="id102">
+<h2>変更履歴<a class="headerlink" href="#id102" title="この見出しへのパーマリンク">¶</a></h2>
+<div class="line-block">
+<div class="line">「一覧/更新」サブメニューに表示されるデータのみ「変更履歴」サブメニューへも表示が可能です。</div>
+<div class="line">また、履歴にもアクセス許可ロールが付与されています。</div>
+</div>
+<p>例）ユーザ「B_user02」でログインした場合</p>
+<blockquote>
+<div><p>「一覧/更新」サブメニューに表示されるデータ（オペレーションID：6、9）が、「変更履歴」サブメニューで表示可能です。</p>
+<a class="reference internal image-reference" href="../../../_images/image715.png"><img alt="../../../_images/image715.png" src="../../../_images/image715.png" style="width: 6.04052in; height: 1.70015in;" /></a>
+<a class="reference internal image-reference" href="../../../_images/image723.png"><img alt="../../../_images/image723.png" src="../../../_images/image723.png" style="width: 6.07036in; height: 1.41098in;" /></a>
+</div></blockquote>
+<p><strong>図 5.2-1
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+<blockquote>
+<div><p>また、アクセス権のないデータについては表示することができません。</p>
+<a class="reference internal image-reference" href="../../../_images/image733.png"><img alt="../../../_images/image733.png" src="../../../_images/image733.png" style="width: 5.52048in; height: 2.6469in;" /></a>
+</div></blockquote>
+<p><strong>図 5.2-2
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+<p><em>ユーザの「ロール・ユーザ紐付管理」メニューで紐付いているロール</em>が付与されているデータを、「変更履歴」サブメニューでは表示対象としています。</p>
+<p>例）ユーザ「B_user02」でログインした場合</p>
+<blockquote>
+<div><p><em>ユーザ「B_user02」の「ロール・ユーザ紐付管理」メニューで紐付いているロール</em></p>
+<a class="reference internal image-reference" href="../../../_images/image743.png"><img alt="../../../_images/image743.png" src="../../../_images/image743.png" style="width: 5.90718in; height: 1.55347in;" /></a>
+<p><strong>図 5.2-3
+「管理コンソール」メニューグループ&gt;「ロール・ユーザ紐付管理」メニュー</strong></p>
+<p><em>ユーザの「ロール・ユーザ紐付管理」メニューで紐付いているロール</em>が付与されているデータ</p>
+<a class="reference internal image-reference" href="../../../_images/image753.png"><img alt="../../../_images/image753.png" src="../../../_images/image753.png" style="width: 5.98719in; height: 2.86025in;" /></a>
+</div></blockquote>
+<p><strong>図 5.2-4
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+<p>「変更履歴」サブメニューに表示されるデータについて、新しくアクセス許可ロールを付与された場合、アクセス許可ロールが異なる過去のロールに紐づくデータは表示されません。</p>
+<p>例）「A社」のデータが「B社」に渡った場合</p>
+<blockquote>
+<div><p>ユーザ「A_admin」「B_admin」のデータを用いて、データが「A社」から「B社」に渡った場合のアクセス許可ロールについて説明します。</p>
+<p>下図は、ユーザ「administrator」でログインした時の「オペレーション一覧」メニューです。</p>
+<a class="reference internal image-reference" href="../../../_images/image763.png"><img alt="../../../_images/image763.png" src="../../../_images/image763.png" style="width: 6.20054in; height: 2.96692in;" /></a>
+</div></blockquote>
+<p><strong>図 5.2-5
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+<blockquote>
+<div><p>「A社サイド（ユーザ：A_admin）」から見えているものを赤色で、「B社サイド（ユーザ：B_admin）」から見えているものを青色で塗り分けています。（ユーザ「A_admin」および「B_admin」でログインした場合のそれぞれの表示については、既出の「図
+5.1-4」および「図 5.1-8」をご確認ください。）</p>
+<p>また、他のロールから見られたくない情報として「備考」欄に「極秘１～３」および「社外秘１～３」を登録しています。</p>
+<p>データが「A社」から「B社」に渡る場合を想定し、A社サイドの「極秘１～３」を削除したうえで「オペレーションID：1、2、3、4」の「アクセス許可ロール」欄を「B_社管理」に変更します。</p>
+<a class="reference internal image-reference" href="../../../_images/image773.png"><img alt="../../../_images/image773.png" src="../../../_images/image773.png" style="width: 6.05548in; height: 1.69444in;" /></a>
+</div></blockquote>
+<p><strong>図 5.2-6
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+<section id="id105">
+<h3><a href="#id103"><span class="problematic" id="id104">**</span></a><a class="headerlink" href="#id105" title="この見出しへのパーマリンク">¶</a></h3>
+<blockquote>
+<div><p>ユーザ「administrator」からログアウトし、ユーザ「B_admin」でログインしなおした場合、「一覧/更新」サブメニューには「オペレーションID：1、2、3、4、6、7、8、9」の計8件が表示されます。</p>
+<a class="reference internal image-reference" href="../../../_images/image783.png"><img alt="../../../_images/image783.png" src="../../../_images/image783.png" style="width: 5.94718in; height: 2.84691in;" /></a>
+</div></blockquote>
+<p><strong>図 5.2-7
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+<blockquote>
+<div><p>アクセス許可ロールを変更した「オペレーションID：1、2、3、4」について「変更履歴」サブメニューで表示を確認すると、異なる過去のロール（A社サイド）に紐づくデータは表示されません。</p>
+<a class="reference internal image-reference" href="../../../_images/image792.png"><img alt="../../../_images/image792.png" src="../../../_images/image792.png" style="width: 5.90718in; height: 4.44705in;" /></a>
+</div></blockquote>
+<p><strong>図 5.2-8
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+<blockquote>
+<div><p>「オペレーションID：1、2、3、4、7、8、9」について「社外秘１～７」と備考欄を書き換えます。</p>
+<a class="reference internal image-reference" href="../../../_images/image802.png"><img alt="../../../_images/image802.png" src="../../../_images/image802.png" style="width: 6.00052in; height: 2.44021in;" /></a>
+</div></blockquote>
+<p><strong>図 5.2-9
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+<blockquote>
+<div><p>「変更履歴」サブメニューにて、「オペレーションID：2」のデータを指定した結果、ロールが「A社サイド」だったころに登録されていた「極秘１」は表示されず、今回登録した「社外秘２」のみが表示されます。</p>
+<a class="reference internal image-reference" href="../../../_images/image814.png"><img alt="../../../_images/image814.png" src="../../../_images/image814.png" style="width: 5.90718in; height: 1.63347in;" /></a>
+</div></blockquote>
+<p><strong>図 5.2-10
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+</section>
+</section>
+<section id="id106">
+<h2>表示フィルタ<a class="headerlink" href="#id106" title="この見出しへのパーマリンク">¶</a></h2>
+<p>「一覧/更新」サブメニューに表示できるデータのみ「表示フィルタ」サブメニューで絞り込んだ表示が可能です。</p>
+<a class="reference internal image-reference" href="../../../_images/image822.png"><img alt="../../../_images/image822.png" src="../../../_images/image822.png" style="width: 6.43008in; height: 3.07896in;" /></a>
+<p><strong>図 5.3-1
+ユーザ「administrator」で「フィルタ」ボタンを押下した場合の「一覧/更新」サブメニュー</strong></p>
+<a class="reference internal image-reference" href="../../../_images/image832.png"><img alt="../../../_images/image832.png" src="../../../_images/image832.png" style="width: 6.34722in; height: 3.0336in;" /></a>
+<p><strong>図 5.3-2
+ユーザ「A_user01」で「フィルタ」ボタンを押下した場合の「一覧/更新」サブメニュー</strong></p>
+<p>「表示フィルタ」サブメニューの「アクセス権」欄において、以下のパターンで検索が可能です。</p>
+<p><strong>表 5.3-1 検索パターン</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><ul class="simple">
+<li></li>
+<li></li>
+</ul>
+<p>N
+o
+.
+*
+*</p>
+</th>
+<th class="head"><p><strong>パターン</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><ul class="simple">
+<li></li>
+<li></li>
+</ul>
+<ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>プルダウンメニューにて、単一選択での検索</p></td>
+</tr>
+<tr class="row-odd"><td><ul class="simple">
+<li></li>
+<li></li>
+</ul>
+<ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>プルダウンメニューにて、複数選択での検索</p></td>
+</tr>
+<tr class="row-even"><td><ul class="simple">
+<li></li>
+<li></li>
+</ul>
+<ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>プルダウンメニューにて、”{空白}”を単一選択した検索</p></td>
+</tr>
+<tr class="row-odd"><td><ul class="simple">
+<li></li>
+<li></li>
+</ul>
+<ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>プルダウンメニューにて、”{空白}”とその他を複数選択した検索</p></td>
+</tr>
+<tr class="row-even"><td><ul class="simple">
+<li></li>
+<li></li>
+</ul>
+<ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>文字列入力にて、キーワードを入力したあいまい検索</p></td>
+</tr>
+<tr class="row-odd"><td><ul class="simple">
+<li></li>
+<li></li>
+</ul>
+<ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>文字列入力にて、実在するロール名称を入力した検索</p></td>
+</tr>
+<tr class="row-even"><td><ul class="simple">
+<li></li>
+<li></li>
+</ul>
+<ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>文
+字列入力にて、実在するロール名称をカンマで区切り複数入力した検索</p></td>
+</tr>
+</tbody>
+</table>
+<p>また、検索ができないパターンとして文字列入力欄にカンマを使用した場合は、あいまい検索ができません。</p>
+<p>検索パターンNo.1～7について以降で詳細を説明します。</p>
+<ol class="arabic simple">
+<li><p>プルダウンメニューにて、単一選択での検索</p></li>
+</ol>
+<blockquote>
+<div><p>例）ユーザ「administrator」でログインし、「アクセス権」欄のプルダウンメニューにて、</p>
+<p>アクセス許可ロール「システム管理者」を選択した検索結果</p>
+<a class="reference internal image-reference" href="../../../_images/image852.png"><img alt="../../../_images/image852.png" src="../../../_images/image852.png" style="width: 5.70866in; height: 2.61408in;" /></a>
+<p><strong>図 5.3-4
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>プルダウンメニューにて、複数選択での検索</p></li>
+</ol>
+<blockquote>
+<div><p>例）ユーザ「administrator」でログインし、「アクセス権」欄のプルダウンメニューにて、</p>
+<p>アクセス許可ロール「A社_関西」と「B社_関西」を選択した検索結果</p>
+<a class="reference internal image-reference" href="../../../_images/image862.png"><img alt="../../../_images/image862.png" src="../../../_images/image862.png" style="width: 6.01455in; height: 2.5in;" /></a>
+<p><strong>図 5.3-5
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>プルダウンメニューにて、”{空白}”を単一選択した検索</p></li>
+</ol>
+<blockquote>
+<div><p>例）ユーザ「administrator」でログインし、「アクセス権」欄のプルダウンメニューにて、</p>
+<p>アクセス許可ロール「{空白}」を選択した検索結果</p>
+<a class="reference internal image-reference" href="../../../_images/image872.png"><img alt="../../../_images/image872.png" src="../../../_images/image872.png" style="width: 6.10916in; height: 2.35417in;" /></a>
+<p><strong>図 5.3-6
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>プルダウンメニューにて、”{空白}”とその他を複数選択した検索</p></li>
+</ol>
+<blockquote>
+<div><p>例）ユーザ「administrator」でログインし、「アクセス権」欄のプルダウンメニューにて、</p>
+<p>アクセス許可ロール「{空白}」と「A社_管理」を選択した検索結果</p>
+<a class="reference internal image-reference" href="../../../_images/image882.png"><img alt="../../../_images/image882.png" src="../../../_images/image882.png" style="width: 5.70866in; height: 2.86538in;" /></a>
+<p><strong>図 5.3-7
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li><p>文字列入力にて、キーワードを入力したあいまい検索</p></li>
+</ol>
+<blockquote>
+<div><p>例）ユーザ「administrator」でログインし、「アクセス権」欄の文字列入力にて、</p>
+<p>キーワード「管理」を入力した検索結果</p>
+<a class="reference internal image-reference" href="../../../_images/image892.png"><img alt="../../../_images/image892.png" src="../../../_images/image892.png" style="width: 5.66325in; height: 3.15318in;" /></a>
+<p><strong>図 5.3-8
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+<p>※カンマを使用した場合は、あいまい検索ができません。</p>
+</div></blockquote>
+<ol class="arabic simple" start="6">
+<li><p>文字列入力にて、実在するロール名称を入力した検索</p></li>
+</ol>
+<blockquote>
+<div><p>例）ユーザ「administrator」でログインし、「アクセス権」欄の文字列入力にて、</p>
+<p>キーワード「A社_関東」を入力した検索結果</p>
+<a class="reference internal image-reference" href="../../../_images/image901.png"><img alt="../../../_images/image901.png" src="../../../_images/image901.png" style="width: 5.70778in; height: 2.97219in;" /></a>
+<p><strong>図 5.3-9
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+</div></blockquote>
+<ol class="arabic simple" start="7">
+<li><p>文字列入力にて、実在するロール名称をカンマで区切り複数入力した検索</p></li>
+</ol>
+<blockquote>
+<div><p>例）ユーザ「administrator」でログインし、「アクセス権」欄の文字列入力にて、</p>
+<p>キーワード「A社_関東,A社_関西」を入力した検索結果</p>
+<a class="reference internal image-reference" href="../../../_images/image911.png"><img alt="../../../_images/image911.png" src="../../../_images/image911.png" style="width: 5.6765in; height: 2.8801in;" /></a>
+<p><strong>図 5.3-10
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+<p>※カンマで区切り複数入力する場合、記述する順序によっては検索ができません。</p>
+</div></blockquote>
+<ol class="arabic simple">
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ol>
+</section>
+<section id="id107">
+<h2>RestAPI表示フィルタ<a class="headerlink" href="#id107" title="この見出しへのパーマリンク">¶</a></h2>
+<p>ReatAPIのFILTER(X-Command)でのアクセス許可ロールの扱い方について説明します。</p>
+<p>FILTER(X-Command)の列毎のフィルタの種類が3種類あります。</p>
+<p><strong>表 5.4-1 フィルタの種類</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>フィル
+タの種類</strong></p></th>
+<th class="head"><p><strong>詳細</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>NORMAL</strong></p></td>
+<td><p>通常の 曖昧検索</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>RANGE</strong></p></td>
+<td><p>STARTとENDで指定されたロールをOR検索</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LIST</strong></p></td>
+<td><p>複数の完全一致条件による検索</p></td>
+</tr>
+</tbody>
+</table>
+<p>フィルタを扱うパターンとしてさらに下記の条件に分かれます。</p>
+<p><strong>表 5.4-2 ロール名の数</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>ロー
+ル名の数</strong></p></th>
+<th class="head"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>A</strong></p></td>
+<td><p>1個</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>B</strong></p></td>
+<td><p>複数</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>表 5.4-3 検索パターン</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>検索
+パターン</strong></p></th>
+<th class="head"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>a</strong></p></td>
+<td><p>曖昧なロール名を曖昧検索</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>b</strong></p></td>
+<td><p>完全一致するロール名を曖昧検索</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>c</strong></p></td>
+<td><p>完全一致するロール名を完全一致で検索</p></td>
+</tr>
+</tbody>
+</table>
+<p>上記の組み合わせを用いて、各フィルタでのアクセス許可ロールの扱い方について説明します。</p>
+<p>また、RestAPIの構成としては以下の「図 5.4-1」のとおりです。</p>
+<a class="reference internal image-reference" href="../../../_images/image921.png"><img alt="../../../_images/image921.png" src="../../../_images/image921.png" style="width: 6.15278in; height: 3.95139in;" /></a>
+<p><strong>図 5.4-1 RestAPIの構成</strong></p>
+<p>前提として、「表 5- 1」の登録情報に下図赤枠の情報を追加しています。</p>
+<a class="reference internal image-reference" href="../../../_images/image931.png"><img alt="../../../_images/image931.png" src="../../../_images/image931.png" style="width: 6.62055in; height: 3.06597in;" /></a>
+<p><strong>図 5.4-2
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+<ol class="upperalpha simple">
+<li><p>ロール名が1個の場合</p>
+<ol class="loweralpha simple">
+<li><p>曖昧なロール名を曖昧検索</p></li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/image941.png"><img alt="../../../_images/image941.png" src="../../../_images/image941.png" style="width: 5.31496in; height: 1.9246in;" /></a>
+<p><strong>図 5.4-3
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+</div></blockquote>
+<ol class="loweralpha simple" start="2">
+<li><p>完全一致するロール名を曖昧検索</p></li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/image95.png"><img alt="../../../_images/image95.png" src="../../../_images/image95.png" style="width: 5.31496in; height: 1.44124in;" /></a>
+<p><strong>図 5.4-4
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+</div></blockquote>
+<ol class="upperalpha simple" start="2">
+<li><p>ロール名が複数の場合</p></li>
+</ol>
+<ol class="loweralpha" start="2">
+<li><div class="line-block">
+<div class="line">完全一致するロール名を曖昧検索</div>
+<div class="line">（該当あり）</div>
+</div>
+</li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/image96.png"><img alt="../../../_images/image96.png" src="../../../_images/image96.png" style="width: 5.31496in; height: 1.26575in;" /></a>
+<p><strong>図 5.4-5
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+</div></blockquote>
+<ol class="loweralpha" start="2">
+<li><div class="line-block">
+<div class="line">完全一致するロール名を曖昧検索</div>
+<div class="line">（該当なし）</div>
+</div>
+</li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/image97.png"><img alt="../../../_images/image97.png" src="../../../_images/image97.png" style="width: 5.15473in; height: 0.95302in;" /></a>
+<p><strong>図 5.4-6
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+</div></blockquote>
+<ol class="upperalpha simple">
+<li><p>ロール名が1個の場合</p></li>
+</ol>
+<ol class="loweralpha simple">
+<li><p>曖昧なロール名を曖昧検索</p></li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/image98.png"><img alt="../../../_images/image98.png" src="../../../_images/image98.png" style="width: 5.31496in; height: 2.63944in;" /></a>
+<p><strong>図 5.4-7
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+</div></blockquote>
+<ol class="loweralpha simple" start="2">
+<li><p>完全一致するロール名を曖昧検索</p></li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/image99.png"><img alt="../../../_images/image99.png" src="../../../_images/image99.png" style="width: 5.31496in; height: 1.84348in;" /></a>
+<p><strong>図 5.4-8
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+</div></blockquote>
+<ol class="upperalpha simple" start="2">
+<li><p>ロール名が複数の場合</p></li>
+</ol>
+<ol class="loweralpha simple" start="2">
+<li><p>完全一致するロール名を曖昧検索</p></li>
+</ol>
+<blockquote>
+<div><p>（該当あり）</p>
+<a class="reference internal image-reference" href="../../../_images/image100.png"><img alt="../../../_images/image100.png" src="../../../_images/image100.png" style="width: 5.31496in; height: 2.27181in;" /></a>
+<p><strong>図 5.4-9
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+</div></blockquote>
+<ol class="loweralpha simple" start="2">
+<li><p>完全一致するロール名を曖昧検索</p></li>
+</ol>
+<blockquote>
+<div><p>（該当なし）</p>
+<a class="reference internal image-reference" href="../../../_images/image1011.png"><img alt="../../../_images/image1011.png" src="../../../_images/image1011.png" style="width: 5.31496in; height: 0.95302in;" /></a>
+<p><strong>図 5.4-10
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+</div></blockquote>
+<ol class="upperalpha simple">
+<li><p>ロール名が1個の場合</p></li>
+</ol>
+<ol class="loweralpha simple" start="3">
+<li><p>完全一致するロール名を完全一致で検索</p></li>
+</ol>
+<blockquote>
+<div><p>（該当あり）</p>
+<a class="reference internal image-reference" href="../../../_images/image1021.png"><img alt="../../../_images/image1021.png" src="../../../_images/image1021.png" style="width: 5.31496in; height: 1.24776in;" /></a>
+<p><strong>図 5.4-11
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+</div></blockquote>
+<ol class="loweralpha simple" start="3">
+<li><p>完全一致するロール名を完全一致で検索</p></li>
+</ol>
+<blockquote>
+<div><p>（該当なし）</p>
+<a class="reference internal image-reference" href="../../../_images/image1011.png"><img alt="../../../_images/image1011.png" src="../../../_images/image1011.png" style="width: 5.31496in; height: 0.95302in;" /></a>
+<p><strong>図 5.4-12
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+</div></blockquote>
+<ol class="upperalpha simple" start="2">
+<li><p>ロール名が複数の場合</p></li>
+</ol>
+<ol class="loweralpha simple" start="3">
+<li><p>完全一致するロール名を完全一致で検索</p></li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/image1031.png"><img alt="../../../_images/image1031.png" src="../../../_images/image1031.png" style="width: 4.91606in; height: 1.38872in;" /></a>
+<p><strong>図 5.4-13
+「基本コンソール」メニューグループ&gt;「オペレーション一覧」メニュー</strong></p>
+</div></blockquote>
+</section>
+</section>
+
+
+</div>
+
+
+<div id="articleNavigation">
+  <ul>
+  </ul>
+</div>
+
+
+<div id="pageTopLink">
+  <a href="#container"><i>↑</i> Page Top</a>
+</div>
+
+</article>
+</div>
+</main>
+</div><!-- End #contents -->
+<div id="footer">
+  <footer class="divInner">
+    <small>Copyright © 2022 NEC Corporation</small>
+  </footer>
+</div><!-- End #footer -->
+
+<div id="overlay"></div>
+
+</div><!-- End #container -->
+  </body>
+</html>

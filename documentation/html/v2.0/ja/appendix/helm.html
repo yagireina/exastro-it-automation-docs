@@ -1,0 +1,1274 @@
+
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <title>Helm 関連 &#8212; Documentation  ドキュメント</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/option.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/translations.js"></script>
+  
+    <script type="text/javascript" src="../../../_static/exastro_documents.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="検索" href="../../../search.html" /> 
+  </head>
+<body id="page" class="ja">
+
+
+<div id="container">
+
+<div id="header">
+  <header class="divInner">
+    <!-- Exastro logo -->
+    <div id="logo"><img src="../../../_static/img/exastro.svg" alt="Exastro"></div>
+    <!-- Project name -->
+    <div id="projectName"><a href="../../../index.html">Documentation</a></div>
+    <!-- Heaedr navigation -->
+    <div id="headerSearch">
+      <form class="search" action="../../../search.html" method="get">
+        <input type="text" name="q" aria-labelledby="searchlabel">
+        <button type="submit" value="検索"><img src="../../../_static/img/search.png" alt="検索"></button>
+      </form>
+    </div>
+  </header>
+</div><!-- End #header -->
+
+
+<div id="toolbar">
+  <div class="divInner">
+    
+    <div id="documentVersion">
+      <dl>
+        <dt>Document version</dt>
+        <dd>
+          <div>
+            <select name="version" onchange="location.href=value;">
+                file_path: v2.0/ja/appendix/helm
+                  <option value="#"
+                  selected
+                  >current</option>
+                file_path: v2.0/ja/appendix/helm
+                  <option value="#"
+                  selected
+                  >v2.0 (current)</option>
+            </select>
+          </div>
+        </dd>
+      </dl>
+    </div>
+
+    <div id="documentLanguage">
+      <dl>
+        <dt>Language</dt>
+        <dd>
+          <div>
+            <select name="lang" onchange="location.href=value;">
+                file_path: v2.0/ja/appendix/helm
+                hasdoc: True
+                  <option value="#"
+                  selected
+                  >日本語</option>
+                file_path: v2.0/en/appendix/helm
+                hasdoc: False
+            </select>
+          </div>
+        </dd>
+      </dl>
+    </div>
+    <div id="toolbarNavigation">
+      <ul>
+      </ul>
+    </div>
+  </div>
+</div><!-- End #toolbar -->
+
+<div id="sideMenu">
+
+  <div id="menuButton"></div>
+  
+  <aside class="divInner">
+    <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Exastro IT Automation Documentation</a></li>
+</ul>
+
+    <!-- <ul>
+      <li class="toctree-l1"><a class="reference internal" href="../../../../genindex.html">索引</a></li>
+    </ul> -->
+    
+  </aside>
+</div><!-- End #sideMenu -->
+
+<div id="contents">
+<main class="divInner">
+
+
+<div id="breadcrumbs">
+  <ul>
+    <li><a href="../../../index.html">HOME</a></li>
+    
+    <li>Helm 関連</li>
+  </ul>
+</div>
+
+
+<div id="article">
+<article class="divInner">
+<div class="body" role="main">
+
+  <section id="helm">
+<h1>Helm 関連<a class="headerlink" href="#helm" title="この見出しへのパーマリンク">¶</a></h1>
+<section id="id1">
+<h2>設定値<a class="headerlink" href="#id1" title="この見出しへのパーマリンク">¶</a></h2>
+<section id="exastro-platform">
+<h3>Exastro Platform<a class="headerlink" href="#exastro-platform" title="この見出しへのパーマリンク">¶</a></h3>
+<table class="docutils align-left" id="id2">
+<caption><span class="caption-text">Exastro Platform における Values 一覧</span><a class="headerlink" href="#id2" title="このテーブルへのパーマリンク">¶</a></caption>
+<colgroup>
+<col style="width: 31.2%" />
+<col style="width: 31.2%" />
+<col style="width: 6.2%" />
+<col style="width: 6.2%" />
+<col style="width: 25.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>キー</p></th>
+<th class="head"><p>説明</p></th>
+<th class="head"><p>変更可否</p></th>
+<th class="head"><p>必須</p></th>
+<th class="head"><p>設定値</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>.global.authGlobalDefinition.name</p></td>
+<td><p>認証機能の定義名</p></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>auth-global</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.authGlobalDefinition.enabled</p></td>
+<td><p>認証機能の利用有無</p></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>true</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.authGlobalDefinition.image.registry</p></td>
+<td><p>認証機能で利用するデフォルトイメージレジストリ</p></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;docker.io&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.authGlobalDefinition.image.organization</p></td>
+<td><p>認証機能で利用するデフォルトイメージレジストリの組織名</p></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>exastro</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.authGlobalDefinition.image.package</p></td>
+<td><p>認証機能で利用するデフォルトイメージレジストリのパッケージ名</p></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>exastro-platform</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.authGlobalDefinition.config.DEFAULT_LANGUAGE</p></td>
+<td><p>認証機能で使用する既定の言語</p></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;ja&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.authGlobalDefinition.config.LANGUAGE</p></td>
+<td><p>認証機能で使用する言語</p></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;en&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.authGlobalDefinition.config.TZ</p></td>
+<td><p>認証機能で使用するタイムゾーン</p></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;Asia/Tokyo&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.authGlobalDefinition.config.PYTHONIOENCODING</p></td>
+<td><p>認証機能で使用する Python ファイルの文字コード</p></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>utf-8</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.authGlobalDefinition.config.PLATFORM_API_PROTOCOL</p></td>
+<td><p>認証機能で公開する内部の API エンドポイントで利用するプロトコル</p></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;http&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.authGlobalDefinition.config.PLATFORM_API_HOST</p></td>
+<td><p>認証機能で公開する内部の API エンドポイントで利用するホスト名</p></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;platform-api&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.authGlobalDefinition.config.PLATFORM_API_PORT</p></td>
+<td><p>認証機能で公開する内部の API エンドポイントで利用するポート番号(TCP)</p></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;8000&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.authGlobalDefinition.config.PLATFORM_WEB_PROTOCOL</p></td>
+<td><p>認証機能で公開する内部の Web エンドポイントで利用するプロトコル</p></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;http&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.authGlobalDefinition.config.PLATFORM_WEB_HOST</p></td>
+<td><p>認証機能で公開する内部の Web エンドポイントで利用するホスト名</p></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;platform-web&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.authGlobalDefinition.config.PLATFORM_WEB_PORT</p></td>
+<td><p>認証機能で公開する内部の Web エンドポイントで利用するポート番号(TCP)</p></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;8000&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.authGlobalDefinition.persistence.enabled</p></td>
+<td><div class="line-block">
+<div class="line">認証機能におけるデータの永続化の有無</div>
+<div class="line">※現在このパラメータは使用していません。</div>
+</div>
+</td>
+<td><p>可 (無効)</p></td>
+<td><p>○</p></td>
+<td><div class="line-block">
+<div class="line"><strong class="program">true</strong> (デフォルト): 永続化する。</div>
+<div class="line"><strong class="program">false</strong>: 永続化しない。</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>.global.authGlobalDefinition.persistence.accessMode</p></td>
+<td><div class="line-block">
+<div class="line">認証機能における Persisten Volume Claim のアクセスモード</div>
+<div class="line">※現在このパラメータは使用していません。</div>
+</div>
+</td>
+<td><p>可 (無効)</p></td>
+<td><p>○</p></td>
+<td><div class="line-block">
+<div class="line"><strong class="program">ReadWriteMany</strong> (デフォルト): ボリュームは多数のNodeで読み取り専用としてマウント。</div>
+<div class="line"><strong class="program">ReadWriteOnce</strong>: ボリュームは単一のNodeで読み取り/書き込みとしてマウント。</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>.global.authGlobalDefinition.persistence.size</p></td>
+<td><div class="line-block">
+<div class="line">認証機能における Persisten Volume Claim のボリュームに要求するサイズ(Bytes)</div>
+<div class="line">※現在このパラメータは使用していません。</div>
+</div>
+</td>
+<td><p>可 (無効)</p></td>
+<td><p>○</p></td>
+<td><p>&quot;10Gi&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.authGlobalDefinition.persistence.volumeType</p></td>
+<td><div class="line-block">
+<div class="line">認証機能における Persisten Volume のボリュームタイプ</div>
+<div class="line">Storage Class を利用する場合は設定は不要です。</div>
+<div class="line">※現在このパラメータは使用していません。</div>
+</div>
+</td>
+<td><p>可 (無効)</p></td>
+<td><p>○</p></td>
+<td><p>&quot;hostPath&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.authGlobalDefinition.persistence.storageClass</p></td>
+<td><div class="line-block">
+<div class="line">認証機能におけるデータの永続化のために利用する Storage Class</div>
+<div class="line">Persistent Volume を利用する場合は設定は不要です。</div>
+<div class="line">※現在このパラメータは使用していません。</div>
+</div>
+</td>
+<td><p>可 (無効)</p></td>
+<td><p>○</p></td>
+<td><p>&quot;-&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.keycloakDefinition.name</p></td>
+<td><p>Keycloak の定義名</p></td>
+<td><p>可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;keycloak&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.keycloakDefinition.enabled</p></td>
+<td><p>Exastro Platform と同一のクラスタ内への Keycloak のデプロイ要否</p></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><div class="line-block">
+<div class="line"><strong class="program">true</strong> (デフォルト): 同一クラスタ内に Keycloak をデプロイします。</div>
+<div class="line"><strong class="program">false</strong> : 同一クラスタ内に Keycloak をデプロイしません。(別途 Keycloak の容易が必要です。)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>.global.keycloakDefinition.config.API_KEYCLOAK_PROTOCOL</p></td>
+<td><p>Keycloak API エンドポイントのプロトコル</p></td>
+<td><p>可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;http”</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.keycloakDefinition.config.API_KEYCLOAK_HOST</p></td>
+<td><p>Keycloak API エンドポイントのホスト名、もしくは、FQDN</p></td>
+<td><p>可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;keycloak.exastro-platform.svc&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.keycloakDefinition.config.API_KEYCLOAK_PORT</p></td>
+<td><p>Keycloak API エンドポイントのポート番号</p></td>
+<td><p>可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;8080&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.keycloakDefinition.config.KEYCLOAK_PROTOCOL</p></td>
+<td><p>Keycloak エンドポイントのプロトコル</p></td>
+<td><p>可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;http&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.keycloakDefinition.config.KEYCLOAK_HOST</p></td>
+<td><p>Keycloak エンドポイントのホスト名、もしくは、FQDN</p></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;keycloak.exastro-platform.svc&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.keycloakDefinition.config.KEYCLOAK_PORT</p></td>
+<td><p>Keycloak API エンドポイントのポート番号</p></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;8080&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.keycloakDefinition.config.KEYCLOAK_MASTER_REALM</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;master&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.keycloakDefinition.config.KEYCLOAK_DB_DATABASE</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;keycloak&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.keycloakDefinition.secret.KEYCLOAK_USER</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.keycloakDefinition.secret.KEYCLOAK_PASSWORD</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.keycloakDefinition.secret.KEYCLOAK_DB_USER</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.keycloakDefinition.secret.KEYCLOAK_DB_PASSWORD</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.itaDefinition.name</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;ita&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.itaDefinition.enabled</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;true&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.itaDefinition.config     &quot;.global.itaDefinition.config.ITA_WEB_PROTOCOL</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>http&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.itaDefinition.config.ITA_WEB_HOST</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;ita-web-server.exastro-it-automation.svc&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.itaDefinition.config.ITA_WEB_PORT</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;8000&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.itaDefinition.config.ITA_API_PROTOCOL</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;http&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.itaDefinition.config.ITA_API_HOST</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;ita-api-organization.exastro-it-automation.svc&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.itaDefinition.config.ITA_API_PORT</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;8080&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.itaDefinition.config.ITA_API_ADMIN_PROTOCOL</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;http&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.itaDefinition.config.ITA_API_ADMIN_HOST</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;ita-api-admin.exastro-it-automation.svc&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.itaDefinition.config.ITA_API_ADMIN_PORT</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;8080&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.authDatabaseDefinition.name</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;auth-database&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.authDatabaseDefinition.enabled</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;true&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.authDatabaseDefinition.config.DB_VENDOR</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;mariadb&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.authDatabaseDefinition.config.DB_HOST</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;mariadb.exastro-platform.svc&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.authDatabaseDefinition.config.DB_PORT</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;3306&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.authDatabaseDefinition.config.DB_DATABASE</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;platform&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.authDatabaseDefinition.secret.DB_ADMIN_USER</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.authDatabaseDefinition.secret.DB_ADMIN_PASSWORD</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.authDatabaseDefinition.secret.DB_USER</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.authDatabaseDefinition.secret.DB_PASSWORD</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.databaseDefinition.name</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;mariadb&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.databaseDefinition.enabled</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;true&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.databaseDefinition.secret.MARIADB_ROOT_PASSWORD</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.databaseDefinition.persistence.enabled</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;true&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.databaseDefinition.persistence.reinstall</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;false&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.databaseDefinition.persistence.accessMode</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;ReadWriteOnce&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.databaseDefinition.persistence.size</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;20Gi&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.databaseDefinition.persistence.volumeType</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;hostPath&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.databaseDefinition.persistence.storageClass</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;-&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.platform-api.image.repository</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;exastro/exastro-platform-api&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.platform-api.image.tag</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;1.0.6&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.platform-auth.ingress.enabled</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;true&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.platform-auth.ingress.hosts[0].host</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;exastro-suite.example.local&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.platform-auth.ingress.hosts[0].paths[0].path</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;/&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.platform-auth.ingress.hosts[0].paths[0].pathType</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;Prefix&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.platform-auth.ingress.hosts[0].paths[0].backend</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;http&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.platform-auth.ingress.hosts[1].host</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;exastro-suite-mng.example.local&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.platform-auth.ingress.hosts[1].paths[0].path</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;/&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.platform-auth.ingress.hosts[1].paths[0].pathType</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;Prefix&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.platform-auth.ingress.hosts[1].paths[0].backend</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;httpMng&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.platform-auth.service.type</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;ClusterIP&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.platform-auth.image.repository</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;exastro/exastro-platform-auth&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.platform-auth.image.tag</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;1.0.6&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.platform-setup.keycloak.image.repository</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;exastro/exastro-platform-job&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.platform-setup.keycloak.image.tag</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;1.0.6&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.platform-web.image.repository</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;exastro/exastro-platform-web&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.platform-web.image.tag</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;1.0.6&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.mariadb.image.repository</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;mariadb&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.mariadb.image.tag</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;10.9&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.mariadb.image.pullPolicy</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;IfNotPresent&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.mariadb.resources.requests.memory</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;256Mi&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.mariadb.resources.requests.cpu</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;1m&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.mariadb.resources.limits.memory</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;2Gi&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.mariadb.resources.limits.cpu</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;4&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.keycloak.image.repository</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;exastro/keycloak&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.keycloak.image.tag</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;1.0.6&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.keycloak.image.pullPolicy</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;IfNotPresent&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.keycloak.resources.requests.memory</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;256Mi&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.keycloak.resources.requests.cpu</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;1m&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>.keycloak.resources.limits.memory</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;2Gi&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p>.keycloak.resources.limits.cpu</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>&quot;4&quot;</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="exastro-it-automation">
+<h3>Exastro IT Automation<a class="headerlink" href="#exastro-it-automation" title="この見出しへのパーマリンク">¶</a></h3>
+<table class="docutils align-left" id="id3">
+<caption><span class="caption-text">Exastro IT Automation における Values 一覧</span><a class="headerlink" href="#id3" title="このテーブルへのパーマリンク">¶</a></caption>
+<colgroup>
+<col style="width: 31.2%" />
+<col style="width: 31.2%" />
+<col style="width: 6.2%" />
+<col style="width: 6.2%" />
+<col style="width: 25.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>.global.itaGlobalDefinition.name</p></th>
+<th class="head"></th>
+<th class="head"><p>不可</p></th>
+<th class="head"><p>○</p></th>
+<th class="head"><p>ita-global</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>.global.itaGlobalDefinition.enabled</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>true</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.itaGlobalDefinition.image.registry</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>docker.io</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.itaGlobalDefinition.image.organization</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>exastro</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.itaGlobalDefinition.image.package</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>exastro-it-automation</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.itaGlobalDefinition.config.DEFAULT_LANGUAGE</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>ja</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.itaGlobalDefinition.config.LANGUAGE</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>en</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.itaGlobalDefinition.config.CONTAINER_BASE</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>kubernetes</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.itaGlobalDefinition.config.TZ</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>Asia/Tokyo</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.itaGlobalDefinition.config.STORAGEPATH</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>/storage/</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.itaGlobalDefinition.persistence.enabled</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>true</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.itaGlobalDefinition.persistence.accessMode</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>ReadWriteMany</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.itaGlobalDefinition.persistence.size</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>10Gi</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.itaGlobalDefinition.persistence.volumeType</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>hostPath</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.itaGlobalDefinition.persistence.storageClass</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>.global.gitlabDefinition.name</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>gitlab</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.gitlabDefinition.enabled</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>true</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.gitlabDefinition.config.GITLAB_PROTOCOL</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>http</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.gitlabDefinition.config.GITLAB_HOST</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>gitlab.exastro-platform.svc</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.gitlabDefinition.config.GITLAB_PORT</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>80</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.gitlabDefinition.secret.GITLAB_ROOT_TOKEN</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>.global.itaDatabaseDefinition.name</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>ita-database</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.itaDatabaseDefinition.enabled</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>true</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.itaDatabaseDefinition.config.DB_VENDOR</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>mariadb</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.itaDatabaseDefinition.config.DB_HOST</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>mariadb.exastro-platform.svc</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.itaDatabaseDefinition.config.DB_PORT</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>3306</p></td>
+</tr>
+<tr class="row-odd"><td><p>.global.itaDatabaseDefinition.config.DB_DATABASE</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>ITA_DB</p></td>
+</tr>
+<tr class="row-even"><td><p>.global.itaDatabaseDefinition.secret.DB_ADMIN_USER</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>.global.itaDatabaseDefinition.secret.DB_ADMIN_PASSWORD</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>.global.itaDatabaseDefinition.secret.DB_USER</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>.global.itaDatabaseDefinition.secret.DB_PASSWORD</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>.ita-api-admin.replicaCount</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>.ita-api-admin.image.repository</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>exastro/exastro-it-automation-api-admin</p></td>
+</tr>
+<tr class="row-even"><td><p>.ita-api-admin.image.tag</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>2.0.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>.ita-api-admin.image.pullPolicy</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>IfNotPresent</p></td>
+</tr>
+<tr class="row-even"><td><p>.ita-api-organization.replicaCount</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>.ita-api-organization.image.repository</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>exastro/exastro-it-automation-api-organization</p></td>
+</tr>
+<tr class="row-even"><td><p>.ita-api-organization.image.tag</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>2.0.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>.ita-api-organization.image.pullPolicy</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>IfNotPresent</p></td>
+</tr>
+<tr class="row-even"><td><p>.ita-by-ansible-execute.replicaCount</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>.ita-by-ansible-execute.image.repository</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>exastro/exastro-it-automation-by-ansible-execute</p></td>
+</tr>
+<tr class="row-even"><td><p>.ita-by-ansible-execute.image.tag</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>2.0.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>.ita-by-ansible-execute.image.pullPolicy</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>IfNotPresent</p></td>
+</tr>
+<tr class="row-even"><td><p>.ita-by-ansible-execute.extraEnv.EXECUTE_INTERVAL</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>.ita-by-ansible-execute.extraEnv.ANSIBLE_AGENT_IMAGE</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>exastro/exastro-it-automation-by-ansible-agent</p></td>
+</tr>
+<tr class="row-even"><td><p>.ita-by-ansible-execute.extraEnv.ANSIBLE_AGENT_IMAGE_TAG</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>2.0.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>.ita-by-ansible-execute.serviceAccount.create</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>false</p></td>
+</tr>
+<tr class="row-even"><td><p>.ita-by-ansible-execute.serviceAccount.name</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>ita-by-ansible-execute-sa</p></td>
+</tr>
+<tr class="row-odd"><td><p>.ita-by-ansible-legacy-role-vars-listup.replicaCount</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>.ita-by-ansible-legacy-role-vars-listup.extraEnv.EXECUTE_INTERVAL</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>.ita-by-ansible-legacy-role-vars-listup.image.repository</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>exastro/exastro-it-automation-by-ansible-legacy-role-vars-listup</p></td>
+</tr>
+<tr class="row-even"><td><p>.ita-by-ansible-legacy-role-vars-listup.image.tag</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>2.0.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>.ita-by-ansible-legacy-role-vars-listup.image.pullPolicy</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>IfNotPresent</p></td>
+</tr>
+<tr class="row-even"><td><p>.ita-by-ansible-towermaster-sync.replicaCount</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>.ita-by-ansible-towermaster-sync.extraEnv.EXECUTE_INTERVAL</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>.ita-by-ansible-towermaster-sync.image.repository</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>exastro/exastro-it-automation-by-ansible-towermaster-sync</p></td>
+</tr>
+<tr class="row-odd"><td><p>.ita-by-ansible-towermaster-sync.image.tag</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>2.0.1</p></td>
+</tr>
+<tr class="row-even"><td><p>.ita-by-ansible-towermaster-sync.image.pullPolicy</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>IfNotPresent</p></td>
+</tr>
+<tr class="row-odd"><td><p>.ita-by-conductor-synchronize.replicaCount</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>.ita-by-conductor-synchronize.extraEnv.EXECUTE_INTERVAL</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>.ita-by-conductor-synchronize.image.repository</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>exastro/exastro-it-automation-by-conductor-synchronize</p></td>
+</tr>
+<tr class="row-even"><td><p>.ita-by-conductor-synchronize.image.tag</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>2.0.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>.ita-by-conductor-synchronize.image.pullPolicy</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>IfNotPresent</p></td>
+</tr>
+<tr class="row-even"><td><p>.ita-by-menu-create.replicaCount</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>.ita-by-menu-create.extraEnv.EXECUTE_INTERVAL</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>.ita-by-menu-create.image.repository</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>exastro/exastro-it-automation-by-menu-create</p></td>
+</tr>
+<tr class="row-odd"><td><p>.ita-by-menu-create.image.tag</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>2.0.1</p></td>
+</tr>
+<tr class="row-even"><td><p>.ita-by-menu-create.image.pullPolicy</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>IfNotPresent</p></td>
+</tr>
+<tr class="row-odd"><td><p>.ita-database-setup-job.image.repository</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>.ita-database-setup-job.image.tag</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>.ita-database-setup-job.image.pullPolicy</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>IfNotPresent</p></td>
+</tr>
+<tr class="row-even"><td><p>.ita-web-server.replicaCount</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>.ita-web-server.image.repository</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>exastro/exastro-it-automation-web-server</p></td>
+</tr>
+<tr class="row-even"><td><p>.ita-web-server.image.tag</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>2.0.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>.ita-web-server.image.pullPolicy</p></td>
+<td></td>
+<td><p>不可</p></td>
+<td><p>○</p></td>
+<td><p>IfNotPresent</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+</div>
+
+
+<div id="articleNavigation">
+  <ul>
+  </ul>
+</div>
+
+
+<div id="pageTopLink">
+  <a href="#container"><i>↑</i> Page Top</a>
+</div>
+
+</article>
+</div>
+</main>
+</div><!-- End #contents -->
+<div id="footer">
+  <footer class="divInner">
+    <small>Copyright © 2022 NEC Corporation</small>
+  </footer>
+</div><!-- End #footer -->
+
+<div id="overlay"></div>
+
+</div><!-- End #container -->
+  </body>
+</html>

@@ -1,0 +1,1035 @@
+
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <title>1.2. インストール方法 (Kubernetes) &#8212; Documentation  ドキュメント</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/option.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/translations.js"></script>
+  
+    <script type="text/javascript" src="../../../_static/exastro_documents.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="検索" href="../../../search.html" />
+    <link rel="next" title="2. Exastro-it-automation のシステム構成" href="../it_automation_base/index.html" />
+    <link rel="prev" title="1.1. Azure Kubernetes Service" href="aks.html" /> 
+  </head>
+<body id="page" class="ja">
+
+
+<div id="container">
+
+<div id="header">
+  <header class="divInner">
+    <!-- Exastro logo -->
+    <div id="logo"><img src="../../../_static/img/exastro.svg" alt="Exastro"></div>
+    <!-- Project name -->
+    <div id="projectName"><a href="../../../index.html">Documentation</a></div>
+    <!-- Heaedr navigation -->
+    <div id="headerSearch">
+      <form class="search" action="../../../search.html" method="get">
+        <input type="text" name="q" aria-labelledby="searchlabel">
+        <button type="submit" value="検索"><img src="../../../_static/img/search.png" alt="検索"></button>
+      </form>
+    </div>
+  </header>
+</div><!-- End #header -->
+
+
+<div id="toolbar">
+  <div class="divInner">
+    
+    <div id="documentVersion">
+      <dl>
+        <dt>Document version</dt>
+        <dd>
+          <div>
+            <select name="version" onchange="location.href=value;">
+                file_path: v2.0/ja/installation/installation_kubernetes
+                  <option value="#"
+                  selected
+                  >current</option>
+                file_path: v2.0/ja/installation/installation_kubernetes
+                  <option value="#"
+                  selected
+                  >v2.0 (current)</option>
+            </select>
+          </div>
+        </dd>
+      </dl>
+    </div>
+
+    <div id="documentLanguage">
+      <dl>
+        <dt>Language</dt>
+        <dd>
+          <div>
+            <select name="lang" onchange="location.href=value;">
+                file_path: v2.0/ja/installation/installation_kubernetes
+                hasdoc: True
+                  <option value="#"
+                  selected
+                  >日本語</option>
+                file_path: v2.0/en/installation/installation_kubernetes
+                hasdoc: False
+            </select>
+          </div>
+        </dd>
+      </dl>
+    </div>
+    <div id="toolbarNavigation">
+      <ul>
+        <li class="prev"><a href="aks.html" title="前のトピックへ"><span class="section-number">1.1. </span>Azure Kubernetes Service</a></li>
+        <li class="next"><a href="../it_automation_base/index.html" title="次のトピックへ"><span class="section-number">2. </span>Exastro-it-automation のシステム構成</a></li>
+      </ul>
+    </div>
+  </div>
+</div><!-- End #toolbar -->
+
+<div id="sideMenu">
+
+  <div id="menuButton"></div>
+  
+  <aside class="divInner">
+    <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Exastro IT Automation Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">マニュアル(日本語)</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">1. インストール</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="aks.html">1.1. Azure Kubernetes Service</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">1.2. インストール方法 (Kubernetes)</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#id1">1.2.1. はじめに</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id2">1.2.2. 前提条件</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id3">1.2.3. インストールの準備</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id4">1.2.4. インストール</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id6">1.2.5. インストール状況確認</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id7">1.2.6. 接続確認</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../it_automation_base/index.html">2. Exastro-it-automation のシステム構成</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../ja_manual_design/index.html">マニュアル構成法</a></li>
+</ul>
+</li>
+</ul>
+
+    <!-- <ul>
+      <li class="toctree-l1"><a class="reference internal" href="../../../../genindex.html">索引</a></li>
+    </ul> -->
+    
+  </aside>
+</div><!-- End #sideMenu -->
+
+<div id="contents">
+<main class="divInner">
+
+
+<div id="breadcrumbs">
+  <ul>
+    <li><a href="../../../index.html">HOME</a></li>
+    <li><a href="../../index.html">Exastro IT Automation Documentation</a></li>
+    <li><a href="../index.html">マニュアル(日本語)</a></li>
+    <li><a href="index.html"><span class="section-number">1. </span>インストール</a></li>
+    
+    <li><span class="section-number">1.2. </span>インストール方法 (Kubernetes)</li>
+  </ul>
+</div>
+
+
+<div id="article">
+<article class="divInner">
+<div class="body" role="main">
+
+  <section id="kubernetes">
+<h1><span class="section-number">1.2. </span>インストール方法 (Kubernetes)<a class="headerlink" href="#kubernetes" title="この見出しへのパーマリンク">¶</a></h1>
+<section id="id1">
+<h2><span class="section-number">1.2.1. </span>はじめに<a class="headerlink" href="#id1" title="この見出しへのパーマリンク">¶</a></h2>
+<div class="line-block">
+<div class="line">本章では、Exastro IT Automation を利用する際に必要となる、Exastro Platform および Exastro IT Automation を導入する手順について説明します。</div>
+</div>
+</section>
+<section id="id2">
+<h2><span class="section-number">1.2.2. </span>前提条件<a class="headerlink" href="#id2" title="この見出しへのパーマリンク">¶</a></h2>
+<ul>
+<li><p>クライアント要件</p>
+<div class="line-block">
+<div class="line">動作確認が取れているクライアントアプリケーションのバージョンは下記のとおりです。</div>
+</div>
+<table class="docutils align-default" id="id8">
+<caption><span class="caption-number">表 1.1 </span><span class="caption-text">クライアント要件</span><a class="headerlink" href="#id8" title="このテーブルへのパーマリンク">¶</a></caption>
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>アプリケーション</p></th>
+<th class="head"><p>バージョン</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Helm</p></td>
+<td><p>v3.9.x</p></td>
+</tr>
+<tr class="row-odd"><td><p>kubectl</p></td>
+<td><p>1.23</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p>デプロイ環境</p>
+<div class="line-block">
+<div class="line">動作確認が取れているコンテナ環境の最小要求リソースとバージョンは下記のとおりです。</div>
+</div>
+<table class="docutils align-default" id="id9">
+<caption><span class="caption-number">表 1.2 </span><span class="caption-text">デプロイ環境</span><a class="headerlink" href="#id9" title="このテーブルへのパーマリンク">¶</a></caption>
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>リソース種別</p></th>
+<th class="head"><p>要求リソース</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CPU</p></td>
+<td><p>2 Cores (3.0 GHz)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Memory</p></td>
+<td><p>4GB</p></td>
+</tr>
+<tr class="row-even"><td><p>Storage (Container image size)</p></td>
+<td><p>10GB</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kubernetes</p></td>
+<td><p>1.23</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<div class="line-block">
+<div class="line">データベースおよびファイルの永続化のために、別途ストレージ領域を用意する必要があります。</div>
+<div class="line">Storage サイズには、Exastro IT Automation が使用する入出力データのファイルは含まれていないため、利用状況に応じて容量を見積もる必要があります。</div>
+</div>
+</div>
+</li>
+<li><p>通信要件</p>
+<ul class="simple">
+<li><p>クライアントからデプロイ先のコンテナ環境にアクセスできる必要があります。</p></li>
+<li><p>Platform管理者用と一般ユーザー用の2つ通信ポートが使用となります。</p></li>
+<li><p>コンテナ環境からコンテナイメージの取得のために、Docker Hub に接続できる必要があります。</p></li>
+</ul>
+</li>
+<li><p>外部コンポーネント</p>
+<ul class="simple">
+<li><p>MariaDB、もしくは、MySQL サーバ</p></li>
+<li><p>GitLabリポジトリ、および、アカウントの払い出しが可能なこと</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<div class="line-block">
+<div class="line">GitLab環境を同一クラスタに構築する場合は、GitLabのシステム要件に対応する最小要件を追加で容易する必要があります。</div>
+<div class="line">Database環境を同一クラスタに構築する場合は、使用するDatabaseのシステム要件に対応する最小要件を定義する必要があります</div>
+</div>
+</div>
+</li>
+</ul>
+</section>
+<section id="id3">
+<h2><span class="section-number">1.2.3. </span>インストールの準備<a class="headerlink" href="#id3" title="この見出しへのパーマリンク">¶</a></h2>
+<ol class="arabic">
+<li><p>Helm リポジトリの登録</p>
+<div class="line-block">
+<div class="line">Exastro Suite は、以下の2つのアプリケーションから構成されています。</div>
+</div>
+<ul class="simple">
+<li><p>共通基盤 (Exastro Platform)</p></li>
+<li><p>Exastro IT Automation</p></li>
+</ul>
+<div class="line-block">
+<div class="line">そのため、以下の Helm リポジトリより、2つのHelmリポジトリを登録する必要があります。</div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 28.6%" />
+<col style="width: 71.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>アプリケーション名</p></th>
+<th class="head"><p>リポジトリ</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>共通基盤</p></td>
+<td><p><a class="reference external" href="https://exastro-suite.github.io/exastro-platform/charts/">https://exastro-suite.github.io/exastro-platform/charts/</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Exastro IT Automation</p></td>
+<td><p><a class="reference external" href="https://exastro-suite.github.io/exastro-it-automation/charts/">https://exastro-suite.github.io/exastro-it-automation/charts/</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># 共通基盤 (Exastro Platform) の Helm リポジトリを登録</span>
+helm repo add exastro-platform https://exastro-suite.github.io/exastro-platform/charts/ -n exastro-platform
+<span class="c1"># Exastro IT Automation の Helm リポジトリを登録</span>
+helm repo add exastro-it-automation https://exastro-suite.github.io/exastro-it-automation/charts/ -n exastro-it-automation
+<span class="c1"># リポジトリ情報の更新</span>
+helm repo update
+</pre></div>
+</div>
+</li>
+<li><p>デフォルト設定値の取得</p>
+<div class="line-block">
+<div class="line">下記のコマンドから共通基盤 values.yaml のデフォルト値を出力します。</div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>helm show values exastro-platform/exastro-platform &gt; exastro-platform.yaml
+</pre></div>
+</div>
+<details>
+  <summary>exastro-platform.yaml</summary><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Default values for platform.</span><span class="w"></span>
+<span class="c1"># This is a YAML-formatted file.</span><span class="w"></span>
+<span class="c1"># Declare variables to be passed into your templates.</span><span class="w"></span>
+<span class="nt">global</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">authGlobalDefinition</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">auth-global</span><span class="w"></span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">registry</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;docker.io&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">organization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">exastro</span><span class="w"></span>
+<span class="w">      </span><span class="nt">package</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">exastro-platform</span><span class="w"></span>
+<span class="w">    </span><span class="nt">config</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">DEFAULT_LANGUAGE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ja&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">LANGUAGE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;en&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">TZ</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Asia/Tokyo&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">PYTHONIOENCODING</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">utf-8</span><span class="w"></span>
+<span class="w">      </span><span class="nt">PLATFORM_API_PROTOCOL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">PLATFORM_API_HOST</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;platform-api&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">PLATFORM_API_PORT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8000&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">PLATFORM_WEB_PROTOCOL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">PLATFORM_WEB_HOST</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;platform-web&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">PLATFORM_WEB_PORT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8000&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">persistence</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">      </span><span class="nt">accessMode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteMany</span><span class="w"></span>
+<span class="w">      </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10Gi</span><span class="w"></span>
+<span class="w">      </span><span class="nt">volumeType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hostPath</span><span class="w"> </span><span class="c1"># e.g.) hostPath or AKS</span><span class="w"></span>
+<span class="w">      </span><span class="nt">storageClass</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;-&quot;</span><span class="w"> </span><span class="c1"># e.g.) azurefile or - (None)</span><span class="w"></span>
+<span class="w">      </span><span class="c1"># matchLabels:</span><span class="w"></span>
+<span class="w">      </span><span class="c1">#   release: &quot;stable&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="c1"># matchExpressions:</span><span class="w"></span>
+<span class="w">      </span><span class="c1">#   - {key: environment, operator: In, values: [dev]}</span><span class="w"></span>
+<span class="w">  </span><span class="nt">keycloakDefinition</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">keycloak</span><span class="w"></span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">    </span><span class="nt">config</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">API_KEYCLOAK_PROTOCOL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">API_KEYCLOAK_HOST</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;keycloak.exastro-platform.svc&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">API_KEYCLOAK_PORT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8080&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">KEYCLOAK_PROTOCOL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">KEYCLOAK_HOST</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;keycloak.exastro-platform.svc&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">KEYCLOAK_PORT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8080&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">KEYCLOAK_MASTER_REALM</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;master&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">KEYCLOAK_DB_DATABASE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;keycloak&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">secret</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">KEYCLOAK_USER</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">KEYCLOAK_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">KEYCLOAK_DB_USER</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">KEYCLOAK_DB_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">itaDefinition</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ita</span><span class="w"></span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">    </span><span class="nt">config</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">ITA_WEB_PROTOCOL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">ITA_WEB_HOST</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ita-web-server.exastro-it-automation.svc&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">ITA_WEB_PORT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8000&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">ITA_API_PROTOCOL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">ITA_API_HOST</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ita-api-organization.exastro-it-automation.svc&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">ITA_API_PORT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8080&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">ITA_API_ADMIN_PROTOCOL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">ITA_API_ADMIN_HOST</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ita-api-admin.exastro-it-automation.svc&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">ITA_API_ADMIN_PORT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8080&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">authDatabaseDefinition</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">auth-database</span><span class="w"></span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">    </span><span class="nt">config</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">DB_VENDOR</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mariadb&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">DB_HOST</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mariadb.exastro-platform.svc&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">DB_PORT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3306&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">DB_DATABASE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;platform&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">secret</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">DB_ADMIN_USER</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">DB_ADMIN_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">DB_USER</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">DB_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">databaseDefinition</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb</span><span class="w"></span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">    </span><span class="nt">secret</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">MARIADB_ROOT_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">persistence</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">      </span><span class="nt">reinstall</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
+<span class="w">      </span><span class="nt">accessMode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span><span class="w"></span>
+<span class="w">      </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20Gi</span><span class="w"></span>
+<span class="w">      </span><span class="nt">volumeType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hostPath</span><span class="w"> </span><span class="c1"># e.g.) hostPath or AKS</span><span class="w"></span>
+<span class="w">      </span><span class="nt">storageClass</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;-&quot;</span><span class="w"> </span><span class="c1"># e.g.) azurefile or - (None)</span><span class="w"></span>
+<span class="w">      </span><span class="c1"># matchLabels:</span><span class="w"></span>
+<span class="w">      </span><span class="c1">#   release: &quot;stable&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="c1"># matchExpressions:</span><span class="w"></span>
+<span class="w">      </span><span class="c1">#   - {key: environment, operator: In, values: [dev]}</span><span class="w"></span>
+
+<span class="nt">platform-api</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;exastro/exastro-platform-api&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.0.2&quot;</span><span class="w"></span>
+
+<span class="nt">platform-auth</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ingress</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">    </span><span class="nt">hosts</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">exastro-suite.example.local</span><span class="w"></span>
+<span class="w">        </span><span class="nt">paths</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span><span class="w"></span>
+<span class="w">            </span><span class="nt">pathType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Prefix</span><span class="w"></span>
+<span class="w">            </span><span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">exastro-suite-mng.example.local</span><span class="w"></span>
+<span class="w">        </span><span class="nt">paths</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span><span class="w"></span>
+<span class="w">            </span><span class="nt">pathType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Prefix</span><span class="w"></span>
+<span class="w">            </span><span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;httpMng&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">service</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterIP</span><span class="w"></span>
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;exastro/exastro-platform-auth&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.0.2&quot;</span><span class="w"></span>
+
+<span class="nt">platform-setup</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">keycloak</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;exastro/exastro-platform-job&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.0.2&quot;</span><span class="w"></span>
+
+<span class="nt">platform-web</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;exastro/exastro-platform-web&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.0.2&quot;</span><span class="w"></span>
+
+<span class="nt">mariadb</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mariadb&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10.9&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">pullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IfNotPresent</span><span class="w"></span>
+<span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">requests</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;256Mi&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1m&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">limits</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2Gi&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;4&quot;</span><span class="w"></span>
+
+<span class="nt">keycloak</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;exastro/keycloak&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.0.2&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">pullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IfNotPresent</span><span class="w"></span>
+<span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">requests</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;256Mi&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1m&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">limits</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2Gi&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;4&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+</details><div class="line-block">
+<div class="line">同様に、下記のコマンドから Exastro IT Automation の values.yaml のデフォルト値を出力します。</div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>helm show values exastro-it-automation/exastro-it-automation &gt; exastro-it-automation.yaml
+</pre></div>
+</div>
+<details>
+<summary>exastro-it-automation.yaml</summary><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Default values for Exastro IT Automation.</span><span class="w"></span>
+<span class="c1"># This is a YAML-formatted file.</span><span class="w"></span>
+<span class="c1"># Declare variables to be passed into your templates.</span><span class="w"></span>
+<span class="nt">global</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">itaGlobalDefinition</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ita-global</span><span class="w"></span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">registry</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;docker.io&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">organization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">exastro</span><span class="w"></span>
+<span class="w">      </span><span class="nt">package</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">exastro-it-automation</span><span class="w"></span>
+<span class="w">    </span><span class="nt">config</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">DEFAULT_LANGUAGE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ja&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">LANGUAGE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;en&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">CONTAINER_BASE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;kubernetes&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">TZ</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Asia/Tokyo&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">STORAGEPATH</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/storage/&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">persistence</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">      </span><span class="nt">accessMode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteMany</span><span class="w"></span>
+<span class="w">      </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10Gi</span><span class="w"></span>
+<span class="w">      </span><span class="nt">volumeType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hostPath</span><span class="w"> </span><span class="c1"># e.g.) hostPath or AKS</span><span class="w"></span>
+<span class="w">      </span><span class="nt">storageClass</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;-&quot;</span><span class="w"> </span><span class="c1"># e.g.) azurefile or - (None)</span><span class="w"></span>
+<span class="w">      </span><span class="c1"># matchLabels:</span><span class="w"></span>
+<span class="w">      </span><span class="c1">#   release: &quot;stable&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="c1"># matchExpressions:</span><span class="w"></span>
+<span class="w">      </span><span class="c1">#   - {key: environment, operator: In, values: [dev]}</span><span class="w"></span>
+<span class="w">  </span><span class="nt">gitlabDefinition</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitlab</span><span class="w"></span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">    </span><span class="nt">config</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">GITLAB_PROTOCOL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">GITLAB_HOST</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gitlab.exastro-platform.svc&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">GITLAB_PORT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;80&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">secret</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">GITLAB_ROOT_TOKEN</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">itaDatabaseDefinition</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ita-database</span><span class="w"></span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">    </span><span class="nt">config</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">DB_VENDOR</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mariadb&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">DB_HOST</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mariadb.exastro-platform.svc&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">DB_PORT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3306&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">DB_DATABASE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ITA_DB&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">secret</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">DB_ROOT_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">DB_USER</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">DB_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+
+<span class="nt">ita-api-admin</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">replicaCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;exastro/exastro-it-automation-api-admin&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2.0.0&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">pullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IfNotPresent</span><span class="w"></span>
+
+<span class="nt">ita-api-organization</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">replicaCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;exastro/exastro-it-automation-api-organization&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2.0.0&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">pullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IfNotPresent</span><span class="w"></span>
+
+<span class="nt">ita-by-ansible-execute</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">replicaCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;exastro/exastro-it-automation-by-ansible-execute&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2.0.0&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">pullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IfNotPresent</span><span class="w"></span>
+<span class="w">  </span><span class="nt">extraEnv</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">EXECUTE_INTERVAL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">ANSIBLE_AGENT_IMAGE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;exastro/exastro-it-automation-by-ansible-agent&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">ANSIBLE_AGENT_IMAGE_TAG</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2.0.0&quot;</span><span class="w"></span>
+
+<span class="nt">ita-by-ansible-legacy-role-vars-listup</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">replicaCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
+<span class="w">  </span><span class="nt">extraEnv</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">EXECUTE_INTERVAL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;exastro/exastro-it-automation-by-ansible-legacy-role-vars-listup&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2.0.0&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">pullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IfNotPresent</span><span class="w"></span>
+
+<span class="nt">ita-by-ansible-towermaster-sync</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">replicaCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
+<span class="w">  </span><span class="nt">extraEnv</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">EXECUTE_INTERVAL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;exastro/exastro-it-automation-by-ansible-towermaster-sync&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2.0.0&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">pullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IfNotPresent</span><span class="w"></span>
+
+<span class="nt">ita-by-conductor-synchronize</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">replicaCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
+<span class="w">  </span><span class="nt">extraEnv</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">EXECUTE_INTERVAL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;exastro/exastro-it-automation-by-conductor-synchronize&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2.0.0&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">pullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IfNotPresent</span><span class="w"></span>
+
+<span class="nt">ita-by-menu-create</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">replicaCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
+<span class="w">  </span><span class="nt">extraEnv</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">EXECUTE_INTERVAL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;exastro/exastro-it-automation-by-menu-create&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2.0.0&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">pullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IfNotPresent</span><span class="w"></span>
+
+<span class="nt">ita-database-setup-job</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">pullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IfNotPresent</span><span class="w"></span>
+
+<span class="nt">ita-web-server</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">replicaCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;exastro/exastro-it-automation-web-server&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2.0.0&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">pullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IfNotPresent</span><span class="w"></span>
+</pre></div>
+</div>
+</details></li>
+</ol>
+<ol class="arabic" id="ingress-setting" start="3">
+<li><p>サービス公開の設定 (Ingress の設定)</p>
+<div class="line-block">
+<div class="line">サービス公開用のドメイン情報を Ingress に登録することでDNSを使ったサービス公開を行います。</div>
+<div class="line">Azure におけるドメイン名の確認方法については <a class="reference internal" href="aks.html#aks-dns"><span class="std std-ref">ドメイン名の確認</span></a> を確認してください。</div>
+<div class="line">下記は、AKSのIngress Controller を使用する際の例を記載しております。</div>
+</div>
+<ul>
+<li><p>exastro-platform.yaml</p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>platform-auth:<span class="w"></span>
+<span class="w"> </span>  ingress:<span class="w"></span>
+<span class="w"> </span>    enabled: true<span class="w"></span>
+<span class="gi">+    annotations:</span><span class="w"></span>
+<span class="gi">+      kubernetes.io/ingress.class: addon-http-application-routing</span><span class="w"></span>
+<span class="gi">+      nginx.ingress.kubernetes.io/proxy-body-size: 100m</span><span class="w"></span>
+<span class="gi">+      nginx.ingress.kubernetes.io/proxy-buffer-size: 256k</span><span class="w"></span>
+<span class="gi">+      nginx.ingress.kubernetes.io/server-snippet: |</span><span class="w"></span>
+<span class="gi">+        client_header_buffer_size 100k;</span><span class="w"></span>
+<span class="gi">+        large_client_header_buffers 4 100k;</span><span class="w"></span>
+<span class="w"> </span>    hosts:<span class="w"></span>
+<span class="gd">-      - host: exastro-suite.example.local</span><span class="w"></span>
+<span class="gi">+      - host: exastro-suite.xxxxxxxxxxxxxxxxxx.japaneast.aksapp.io ★ここにドメイン名を記載</span><span class="w"></span>
+<span class="w"> </span>        paths:<span class="w"></span>
+<span class="w"> </span>          - path: /<span class="w"></span>
+<span class="w"> </span>            pathType: Prefix<span class="w"></span>
+<span class="w"> </span>            backend: &quot;http&quot;<span class="w"></span>
+<span class="gd">-      - host: exastro-suite-mng.example.local</span><span class="w"></span>
+<span class="gi">+      - host: exastro-suite-mng.xxxxxxxxxxxxxxxxxx.japaneast.aksapp.io ★ここにドメイン名を記載</span><span class="w"></span>
+<span class="w"> </span>        paths:<span class="w"></span>
+<span class="w"> </span>          - path: /<span class="w"></span>
+<span class="w"> </span>            pathType: Prefix<span class="w"></span>
+<span class="w"> </span>            backend: &quot;httpMng&quot;<span class="w"></span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+<ol class="arabic" id="database-setup" start="4">
+<li><p>データベース起動の有無</p>
+<p>Kubernetes クラスタ内にデータベース用Podの起動有無を選択します。</p>
+<ul>
+<li><p>データベースコンテナ起動ありの場合: 対応不要</p></li>
+<li><p>データベースコンテナ起動なし(外部DB利用)の場合: DB接続情報の修正</p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="w"> </span># exastro-platform.yaml<span class="w"></span>
+<span class="w"> </span>global:<span class="w"></span>
+<span class="w"> </span>  keycloakDefinition:<span class="w"></span>
+<span class="w"> </span>    name: keycloak<span class="w"></span>
+<span class="w"> </span>    enabled: true<span class="w"></span>
+<span class="w"> </span>    secret:<span class="w"></span>
+<span class="gd">-      KEYCLOAK_USER: &quot;&quot;</span><span class="w"></span>
+<span class="gd">-      KEYCLOAK_PASSWORD: &quot;&quot;</span><span class="w"></span>
+<span class="gd">-      KEYCLOAK_DB_USER: &quot;&quot;</span><span class="w"></span>
+<span class="gd">-      KEYCLOAK_DB_PASSWORD: &quot;&quot;</span><span class="w"></span>
+<span class="gi">+      KEYCLOAK_USER: &quot;KeyCloakログインユーザ&quot;</span><span class="w"></span>
+<span class="gi">+      KEYCLOAK_PASSWORD: &quot;KeyCloakログインパスワード&quot;</span><span class="w"></span>
+<span class="gi">+      KEYCLOAK_DB_USER: &quot;KeyCloak用DBユーザ&quot;</span><span class="w"></span>
+<span class="gi">+      KEYCLOAK_DB_PASSWORD: &quot;KeyCloak用DBパスワード&quot;</span><span class="w"></span>
+<span class="w"> </span>  authDatabaseDefinition:<span class="w"></span>
+<span class="w"> </span>    name: auth-database<span class="w"></span>
+<span class="w"> </span>    enabled: true<span class="w"></span>
+<span class="w"> </span>    config:<span class="w"></span>
+<span class="w"> </span>      DB_VENDOR: &quot;mariadb&quot;<span class="w"></span>
+<span class="gd">-      DB_HOST: &quot;mariadb.exastro-platform.svc&quot;</span><span class="w"></span>
+<span class="gd">-      DB_PORT: &quot;3306&quot;</span><span class="w"></span>
+<span class="gi">+      DB_HOST: &quot;外部DBの接続先&quot;</span><span class="w"></span>
+<span class="gi">+      DB_PORT: &quot;外部DBのポート番号&quot;</span><span class="w"></span>
+<span class="w"> </span>      DB_DATABASE: &quot;platform&quot;<span class="w"></span>
+<span class="w"> </span> databaseDefinition:<span class="w"></span>
+<span class="w"> </span>   name: mariadb<span class="w"></span>
+<span class="gd">-   enabled: true</span><span class="w"></span>
+<span class="gi">+   enabled: false</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="w"> </span># exastro-it-automation.yaml<span class="w"></span>
+<span class="w"> </span>global:<span class="w"></span>
+<span class="w"> </span>  itaDatabaseDefinition:<span class="w"></span>
+<span class="w"> </span>    name: ita-database<span class="w"></span>
+<span class="w"> </span>    enabled: true<span class="w"></span>
+<span class="w"> </span>    config:<span class="w"></span>
+<span class="w"> </span>      DB_VENDOR: &quot;mariadb&quot;<span class="w"></span>
+<span class="gd">-      DB_HOST: &quot;mariadb.exastro-platform.svc&quot;</span><span class="w"></span>
+<span class="gd">-      DB_PORT: &quot;3306&quot;</span><span class="w"></span>
+<span class="gi">+      DB_HOST: &quot;外部DBの接続先&quot;</span><span class="w"></span>
+<span class="gi">+      DB_PORT: &quot;外部DBのポート番号&quot;</span><span class="w"></span>
+<span class="w"> </span>      DB_DATABASE: &quot;platform&quot;<span class="w"></span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>データベース接続アカウントの設定</p>
+<div class="line-block">
+<div class="line">データベース接続のためのアカウント情報を登録します。</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<div class="line-block">
+<div class="line">アカウントには、データベースを作成する権限が必要です。</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<div class="line-block">
+<div class="line">認証情報などはすべて平文で問題ありません。(Base64エンコードは不要)</div>
+</div>
+</div>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="w"># exastro-platform.yaml</span>
+<span class="w">global:</span>
+<span class="w"> </span>   authDatabaseDefinition:<span class="w"></span>
+<span class="w"> </span>   name: auth-database<span class="w"></span>
+<span class="w"> </span>   enabled: true<span class="w"></span>
+<span class="w"> </span>   config:<span class="w"></span>
+<span class="w"> </span>       DB_VENDOR: &quot;mariadb&quot;<span class="w"></span>
+<span class="w"> </span>       DB_HOST: &quot;mariadb.exastro-platform.svc&quot;<span class="w"></span>
+<span class="w"> </span>       DB_PORT: &quot;3306&quot;<span class="w"></span>
+<span class="w"> </span>       DB_DATABASE: &quot;platform&quot;<span class="w"></span>
+<span class="w"> </span>   secret:<span class="w"></span>
+<span class="gd">-      DB_ADMIN_USER: &quot;&quot;</span><span class="w"></span>
+<span class="gd">-      DB_ADMIN_PASSWORD: &quot;&quot;</span><span class="w"></span>
+<span class="gd">-      DB_USER: &quot;&quot;</span><span class="w"></span>
+<span class="gd">-      DB_PASSWORD: &quot;&quot;</span><span class="w"></span>
+<span class="gi">+      DB_ADMIN_USER: &quot;DBの管理ユーザ名&quot;</span><span class="w"></span>
+<span class="gi">+      DB_ADMIN_PASSWORD: &quot;DBの管理ユーザのパスワード&quot;</span><span class="w"></span>
+<span class="gi">+      DB_USER: &quot;認証基盤用ユーザ名&quot;</span><span class="w"></span>
+<span class="gi">+      DB_PASSWORD: &quot;認証基盤用ユーザのパスワード&quot;</span><span class="w"></span>
+<span class="w"> </span>   databaseDefinition:<span class="w"></span>
+<span class="w"> </span>   name: mariadb<span class="w"></span>
+<span class="w"> </span>   enabled: true<span class="w"></span>
+<span class="w"> </span>   secret:<span class="w"></span>
+<span class="gd">-      MARIADB_ROOT_PASSWORD: &quot;&quot;</span><span class="w"></span>
+<span class="gi">+      MARIADB_ROOT_PASSWORD: &quot;DBのルートパスワード&quot;</span><span class="w"></span>
+<span class="w"> </span>   persistence:<span class="w"></span>
+<span class="w"> </span>       enabled: true<span class="w"></span>
+<span class="w"> </span>       reinstall: false<span class="w"></span>
+<span class="w"> </span>       accessMode: ReadWriteOnce<span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="w"># exastro-it-automation.yaml</span>
+<span class="w">global:</span>
+<span class="w"> </span>   itaDatabaseDefinition:<span class="w"></span>
+<span class="w"> </span>   name: ita-database<span class="w"></span>
+<span class="w"> </span>   enabled: true<span class="w"></span>
+<span class="w"> </span>   config:<span class="w"></span>
+<span class="w"> </span>       DB_VENDOR: &quot;mariadb&quot;<span class="w"></span>
+<span class="w"> </span>       DB_HOST: &quot;mariadb.exastro-platform.svc&quot;<span class="w"></span>
+<span class="w"> </span>       DB_PORT: &quot;3306&quot;<span class="w"></span>
+<span class="w"> </span>       DB_DATABASE: &quot;ITA_DB&quot;<span class="w"></span>
+<span class="w"> </span>   secret:<span class="w"></span>
+<span class="gd">-      DB_ADMIN_USER: &quot;&quot;</span><span class="w"></span>
+<span class="gd">-      DB_ADMIN_PASSWORD: &quot;&quot;</span><span class="w"></span>
+<span class="gd">-      DB_USER: &quot;&quot;</span><span class="w"></span>
+<span class="gd">-      DB_PASSWORD: &quot;&quot;</span><span class="w"></span>
+<span class="gi">+      DB_ADMIN_USER: &quot;DBの管理ユーザ名&quot;</span><span class="w"></span>
+<span class="gi">+      DB_ADMIN_PASSWORD: &quot;DBの管理ユーザのパスワード&quot;</span><span class="w"></span>
+<span class="gi">+      DB_USER: &quot;認証基盤用ユーザ名&quot;</span><span class="w"></span>
+<span class="gi">+      DB_PASSWORD: &quot;認証基盤用ユーザのパスワード&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>GitLab 連携設定</p>
+<div class="line-block">
+<div class="line">GitLab 連携のためのアカウント情報を登録します。</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<div class="line-block">
+<div class="line">アカウントには、GitLab のアカウントを作成する権限が必要です。</div>
+</div>
+</div>
+<ul>
+<li><p>exastro-it-automation.yaml (Exastro IT Automation) の修正箇所</p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="w"># exastro-it-automation.yaml</span>
+<span class="w">global:</span>
+<span class="w"> </span> gitlabDefinition:<span class="w"></span>
+<span class="w"> </span>   name: gitlab<span class="w"></span>
+<span class="w"> </span>   enabled: true<span class="w"></span>
+<span class="w"> </span>   config:<span class="w"></span>
+<span class="gd">-     GITLAB_PROTOCOL: &quot;http&quot;</span><span class="w"></span>
+<span class="gd">-     GITLAB_HOST: &quot;gitlab.exastro-platform.svc&quot;</span><span class="w"></span>
+<span class="gd">-     GITLAB_PORT: &quot;80&quot;</span><span class="w"></span>
+<span class="gi">+     GITLAB_PROTOCOL: &quot;接続プロトコル http or https&quot;</span><span class="w"></span>
+<span class="gi">+     GITLAB_HOST: &quot;接続先&quot;</span><span class="w"></span>
+<span class="gi">+     GITLAB_PORT: &quot;接続ポート&quot;</span><span class="w"></span>
+<span class="w"> </span>   secret:<span class="w"></span>
+<span class="gd">-     GITLAB_ROOT_TOKEN: &quot;&quot;</span><span class="w"></span>
+<span class="gi">+     GITLAB_ROOT_TOKEN: &quot;GitLabのRoot権限を持ったトークン&quot;</span><span class="w"></span>
+<span class="w"> </span> itaDatabaseDefinition:<span class="w"></span>
+<span class="w"> </span>   name: ita-database<span class="w"></span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>永続ボリューム - PersistentVolume(pv)の設定例</p>
+<div class="line-block">
+<div class="line">データベースのデータ永続化 (クラスタ内コンテナがある場合)、および、ファイルの永続化のために、永続ボリュームを設定する必要があります。</div>
+</div>
+<ul>
+<li><p>マネージドディスクを使用する場合 (本番向け)</p>
+<div class="line-block">
+<div class="line">Azure のストレージを利用する場合、下記のように StorageClass を定義することで利用が可能です。</div>
+<div class="line">※以下を適用した際は、values.yaml ファイルの値も合わせて修正する必要があります。</div>
+</div>
+<ul>
+<li><p>storage-class-exastro-suite.yaml</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">storage.k8s.io/v1</span><span class="w"></span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StorageClass</span><span class="w"></span>
+<span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">exastro-suite-azurefile-csi-nfs</span><span class="w"></span>
+<span class="nt">provisioner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file.csi.azure.com</span><span class="w"></span>
+<span class="nt">allowVolumeExpansion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="nt">parameters</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nfs</span><span class="w"></span>
+<span class="nt">mountOptions</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nconnect=8</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>exastro-it-automation.yaml (helm valuesファイル)</p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>   persistence:<span class="w"></span>
+<span class="w"> </span>     enabled: true<span class="w"></span>
+<span class="w"> </span>     accessMode: ReadWriteMany<span class="w"></span>
+<span class="w"> </span>     size: 10Gi<span class="w"></span>
+<span class="w"> </span>     volumeType: hostPath # e.g.) hostPath or AKS<span class="w"></span>
+<span class="gd">-     storageClass: &quot;-&quot; # e.g.) azurefile or - (None)</span><span class="w"></span>
+<span class="gi">+     storageClass: &quot;exastro-suite-azurefile-csi-nfs&quot; # e.g.) azurefile or - (None)</span><span class="w"></span>
+<span class="w"> </span>     # matchLabels:<span class="w"></span>
+<span class="w"> </span>     #   release: &quot;stable&quot;<span class="w"></span>
+<span class="w"> </span>     # matchExpressions:<span class="w"></span>
+<span class="w"> </span>     #   - {key: environment, operator: In, values: [dev]}<span class="w"></span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Kubernetes ノードのディレクトリを利用する場合 (テスト・検証向け)</p>
+<div class="line-block">
+<div class="line">設定方法は各サーバやサービスなどによって異なりますが、ここでは hostPath を使用した例を記載します。</div>
+<div class="line">※マネージドサービスを利用する場合は、後続の例を参照してください。</div>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">危険</p>
+<div class="line-block">
+<div class="line">データの永続化自体は可能ですが、コンピュートノードの増減や変更によりデータが消えてしまう可能性があるため本番環境では使用しないでください。</div>
+<div class="line">また、Azure で構築した AKS クラスタは、クラスタを停止すると AKS クラスターの Node が解放されるため、保存していた情報は消えてしまいます。そのため、Node が停止しないように注意が必要となります。</div>
+</div>
+</div>
+<ul>
+<li><p>pv-database.yaml (データベース用ボリューム)</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># pv-database.yaml</span><span class="w"></span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class="w"></span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolume</span><span class="w"></span>
+<span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pv-database</span><span class="w"></span>
+<span class="nt">spec</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">capacity</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20Gi</span><span class="w"></span>
+<span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span><span class="w"></span>
+<span class="w">  </span><span class="nt">persistentVolumeReclaimPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Retain</span><span class="w"></span>
+<span class="w">  </span><span class="nt">hostPath</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/data/exastro-suite/exastro-platform/database</span><span class="w"></span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DirectoryOrCreate</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>pv-ita-common.yaml (ファイル用ボリューム)</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># pv-ita-common.yaml</span><span class="w"></span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class="w"></span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolume</span><span class="w"></span>
+<span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pv-ita-common</span><span class="w"></span>
+<span class="nt">spec</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">capacity</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10Gi</span><span class="w"></span>
+<span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteMany</span><span class="w"></span>
+<span class="w">  </span><span class="nt">persistentVolumeReclaimPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Retain</span><span class="w"></span>
+<span class="w">  </span><span class="nt">hostPath</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/data/exastro-suite/exastro-it-automation/ita-common</span><span class="w"></span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DirectoryOrCreate</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id4">
+<span id="id5"></span><h2><span class="section-number">1.2.4. </span>インストール<a class="headerlink" href="#id4" title="この見出しへのパーマリンク">¶</a></h2>
+<ol class="arabic">
+<li><p>Namespace (名前空間) の作成</p>
+<ul>
+<li><p>コマンドラインから以下のコマンドで Namespace を作成します。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 共通基盤用の Namespace 作成</span>
+kubectl create ns exastro-platform
+<span class="c1"># Exastro IT Automation 用の Namespace 作成</span>
+kubectl create ns exastro-it-automation
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>インストール</p>
+<ul>
+<li><p>Helm を使い Kubernetes 環境にインストールを行います。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 共通基盤用のリソースをデプロイ</span>
+helm install exastro-platform exastro-platform/exastro-platform -n exastro-platform -f exastro-platform.yaml
+<span class="c1"># Exastro IT Automation 用のリソースをデプロイ</span>
+helm install exastro-it-automation exastro-it-automation/exastro-it-automation -n exastro-it-automation -f exastro-it-automation.yaml
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id6">
+<h2><span class="section-number">1.2.5. </span>インストール状況確認<a class="headerlink" href="#id6" title="この見出しへのパーマリンク">¶</a></h2>
+<ol class="arabic">
+<li><p>Pod状態確認</p>
+<ul>
+<li><p>共通基盤 (Exastro Platform)</p>
+<div class="line-block">
+<div class="line">コマンドラインから以下のコマンドを入力して、インストールが完了していることを確認します。</div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pod の一覧を取得</span>
+kubectl get po -n exastro-platform
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">正常動作している場合は、すべて “Running” もしくは “Completed” となります。</div>
+<div class="line">※正常に起動するまで数分かかる場合があります。</div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ kubectl get po -n exastro-platform
+
+NAME                                 READY   STATUS      RESTARTS   AGE
+keycloak-64df696bf5-5667l        <span class="m">1</span>/1     Running     <span class="m">0</span>          51s
+mariadb-7b4fb98469-6j4sg         <span class="m">1</span>/1     Running     <span class="m">0</span>          51s
+platform-api-6b644ddcd-sfrzs     <span class="m">1</span>/1     Running     <span class="m">0</span>          51s
+platform-auth-6ddd9457bf-6pphj   <span class="m">1</span>/1     Running     <span class="m">0</span>          51s
+platform-setup-tq8vn             <span class="m">0</span>/1     Completed   <span class="m">0</span>          51s
+platform-web-7c57c6994-ntxvh     <span class="m">1</span>/1     Running     <span class="m">0</span>          51s
+</pre></div>
+</div>
+</li>
+<li><p>Exastro IT Automation</p>
+<div class="line-block">
+<div class="line">コマンドラインから以下のコマンドを入力して、インストールが完了していることを確認します。</div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl get po -n exastro-it-automation
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ kubectl get po -n exastro-it-automation
+
+NAME                                                         READY   STATUS      RESTARTS   AGE
+ita-api-admin-65b976ccf5-w2rd6                           <span class="m">1</span>/1     Running     <span class="m">0</span>          28s
+ita-api-organization-759c486d5b-z7pbv                    <span class="m">1</span>/1     Running     <span class="m">0</span>          28s
+ita-by-ansible-execute-6c854b74cb-7s5ls                  <span class="m">1</span>/1     Running     <span class="m">0</span>          28s
+ita-by-ansible-legacy-role-vars-listup-b5bcdb44c-gq7pr   <span class="m">1</span>/1     Running     <span class="m">0</span>          28s
+ita-by-ansible-towermaster-sync-576d54b94c-b7t4s         <span class="m">1</span>/1     Running     <span class="m">0</span>          28s
+ita-by-conductor-synchronize-7dc96dcff5-q657p            <span class="m">1</span>/1     Running     <span class="m">0</span>          28s
+ita-by-menu-create-7c667fd48c-9zlqg                      <span class="m">1</span>/1     Running     <span class="m">0</span>          28s
+ita-setup-5g6nh                                          <span class="m">0</span>/1     Completed   <span class="m">0</span>          28s
+ita-web-server-785cc9447-hwggj                           <span class="m">1</span>/1     Running     <span class="m">0</span>          28s
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+<div class="line-block">
+<div class="line">以上で設定が完了となり、Ingress で登録したホスト名でログイン可能になります。</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<div class="line-block">
+<div class="line">初期データ設定が完了するまでは、Exastro Suite の GUI および API は呼び出せませんのでご注意ください。</div>
+</div>
+</div>
+</section>
+<section id="id7">
+<h2><span class="section-number">1.2.6. </span>接続確認<a class="headerlink" href="#id7" title="この見出しへのパーマリンク">¶</a></h2>
+<div class="line-block">
+<div class="line">ブラウザより、Ingress で登録した管理者側のホスト名で設定した URL を使って設定画面に入れることを確認します。</div>
+</div>
+<p><a class="reference external" href="https://exastro-suite-mng.xxxxxxx.japaneast.aksapp.io/auth/">https://exastro-suite-mng.xxxxxxx.japaneast.aksapp.io/auth/</a></p>
+<div class="line-block">
+<div class="line">以下の画面が表示された場合、<span class="menuselection">Administration Console</span> を選択して、ログインできることを確認してください。</div>
+</div>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../../_images/administrator-console.png"><img alt="administrator-console" src="../../../_images/administrator-console.png" style="width: 952.0px; height: 460.0px;" /></a>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<div class="line-block">
+<div class="line">ログイン ID とパスワードは、exastro-platform.yaml ファイルで設定した内容となります。</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">インストールが完了したら、<a class="reference internal" href="../platform/organization.html"><span class="doc">Organization (オーガナイゼーション)</span></a> の作成を行います。</div>
+</div>
+</section>
+</section>
+
+
+</div>
+
+
+<div id="articleNavigation">
+  <ul>
+    <li class="prev"><a href="aks.html" title="前のトピックへ"><span>前のトピックへ</span><span class="section-number">1.1. </span>Azure Kubernetes Service</a></li>
+    <li class="next"><a href="../it_automation_base/index.html" title="次のトピックへ"><span>次のトピックへ</span><span class="section-number">2. </span>Exastro-it-automation のシステム構成</a></li>
+  </ul>
+</div>
+
+
+<div id="pageTopLink">
+  <a href="#container"><i>↑</i> Page Top</a>
+</div>
+
+</article>
+</div>
+</main>
+</div><!-- End #contents -->
+<div id="footer">
+  <footer class="divInner">
+    <small>Copyright © 2022 NEC Corporation</small>
+  </footer>
+</div><!-- End #footer -->
+
+<div id="overlay"></div>
+
+</div><!-- End #container -->
+  </body>
+</html>

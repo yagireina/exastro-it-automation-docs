@@ -1,0 +1,786 @@
+
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <title>マニュアル構文 &#8212; Documentation  ドキュメント</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/option.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/translations.js"></script>
+  
+    <script type="text/javascript" src="../../_static/exastro_documents.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="prev" title="マニュアルのビルド" href="build_flow.html" /> 
+  </head>
+<body id="page" class="ja">
+
+
+<div id="container">
+
+<div id="header">
+  <header class="divInner">
+    <!-- Exastro logo -->
+    <div id="logo"><img src="../../_static/img/exastro.svg" alt="Exastro"></div>
+    <!-- Project name -->
+    <div id="projectName"><a href="../../index.html">Documentation</a></div>
+    <!-- Heaedr navigation -->
+    <div id="headerSearch">
+      <form class="search" action="../../search.html" method="get">
+        <input type="text" name="q" aria-labelledby="searchlabel">
+        <button type="submit" value="検索"><img src="../../_static/img/search.png" alt="検索"></button>
+      </form>
+    </div>
+  </header>
+</div><!-- End #header -->
+
+
+<div id="toolbar">
+  <div class="divInner">
+    
+    <div id="documentVersion">
+      <dl>
+        <dt>Document version</dt>
+        <dd>
+          <div>
+            <select name="version" onchange="location.href=value;">
+                file_path: v2.0/ja_manual_design/manual_syntax
+                  <option value="#"
+                  selected
+                  >current</option>
+                file_path: v2.0/ja_manual_design/manual_syntax
+                  <option value="#"
+                  selected
+                  >v2.0 (current)</option>
+            </select>
+          </div>
+        </dd>
+      </dl>
+    </div>
+
+    <div id="documentLanguage">
+      <dl>
+        <dt>Language</dt>
+        <dd>
+          <div>
+            <select name="lang" onchange="location.href=value;">
+                file_path: v2.0/ja/manual_syntax
+                hasdoc: False
+                file_path: v2.0/en/manual_syntax
+                hasdoc: False
+            </select>
+          </div>
+        </dd>
+      </dl>
+    </div>
+    <div id="toolbarNavigation">
+      <ul>
+        <li class="prev"><a href="build_flow.html" title="前のトピックへ">マニュアルのビルド</a></li>
+      </ul>
+    </div>
+  </div>
+</div><!-- End #toolbar -->
+
+<div id="sideMenu">
+
+  <div id="menuButton"></div>
+  
+  <aside class="divInner">
+    <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Exastro IT Automation Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../ja/index.html">マニュアル(日本語)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">マニュアル構成法</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="manual_rule.html">マニュアル記述ルール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build_flow.html">マニュアルのビルド</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">マニュアル構文</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#index-rst">index.rst</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#id2">機能1</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id3">機能2</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id4">index.rst 内構文</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#rst">ドキュメント記述用 .rst ファイル</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#id5">構文 (ドキュメント内見出)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id11">構文 (リスト)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id14">構文 (強調)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id18">構文 (パラグラフ)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id22">構文 (画像差込)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id26">構文 (表)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id29">グリッドテーブル内表記の注意点</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id34">構文 (ボタン)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id36">構文 (注釈)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    <!-- <ul>
+      <li class="toctree-l1"><a class="reference internal" href="../../../../genindex.html">索引</a></li>
+    </ul> -->
+    
+  </aside>
+</div><!-- End #sideMenu -->
+
+<div id="contents">
+<main class="divInner">
+
+
+<div id="breadcrumbs">
+  <ul>
+    <li><a href="../../index.html">HOME</a></li>
+    <li><a href="../index.html">Exastro IT Automation Documentation</a></li>
+    <li><a href="index.html">マニュアル構成法</a></li>
+    
+    <li>マニュアル構文</li>
+  </ul>
+</div>
+
+
+<div id="article">
+<article class="divInner">
+<div class="body" role="main">
+
+  <section id="id1">
+<h1>マニュアル構文<a class="headerlink" href="#id1" title="この見出しへのパーマリンク">¶</a></h1>
+<section id="index-rst">
+<span id="index-rns"></span><h2>index.rst<a class="headerlink" href="#index-rst" title="この見出しへのパーマリンク">¶</a></h2>
+<section id="id2">
+<h3>機能1<a class="headerlink" href="#id2" title="この見出しへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">ビルド時、システムはドキュメントルート、、大章ディレクトリの配下に置かれたindex.rst の内容を見て章と章を紐づけ、全体を構成します。</div>
+</div>
+<figure class="align-center" id="id37">
+<a class="reference internal image-reference" href="../../_images/role_of_index_rst_v2_0.png"><img alt="role_of_index" src="../../_images/role_of_index_rst_v2_0.png" style="width: 5.84375in; height: 1.09375in;" /></a>
+<figcaption>
+<p><span class="caption-number">図 3 </span><span class="caption-text">index.rstの役割</span><a class="headerlink" href="#id37" title="この画像へのパーマリンク">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="id3">
+<h3>機能2<a class="headerlink" href="#id3" title="この見出しへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">各 index.rst で章見出しを定義する事が出来ます。</div>
+<div class="line"><br /></div>
+<div class="line">各index.rst 内に記述した見出と出力結果</div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>documentation
+　<span class="p">|</span>-- html
+　<span class="p">|</span>-- images
+　<span class="p">|</span>-- v2.0
+　<span class="p">|</span>   <span class="p">|</span>-- ja_manual_design
+　<span class="p">|</span>   <span class="p">|</span>   <span class="p">|</span>-- index.rst &lt;-- <span class="s2">&quot;マニュアル構成法&quot;</span> を記述
+　<span class="p">|</span>   <span class="p">|</span>
+　<span class="p">|</span>   <span class="p">|</span>-- ja
+　<span class="p">|</span>   <span class="p">|</span>   <span class="p">|</span>-- index.rst &lt;--- <span class="s2">&quot;Exastro-it-automation 2.0 操作マニュアル&quot;</span> を記述
+　<span class="p">|</span>   <span class="p">|</span>
+　<span class="p">|</span>   <span class="p">|</span>-- index.rst
+　<span class="p">|</span>-- install
+　<span class="p">|</span>-- index.rst &lt;--- <span class="s2">&quot;xastro-it-automation Documentation&quot;</span> を記述
+</pre></div>
+</div>
+<figure class="align-center" id="id38">
+<a class="reference internal image-reference" href="../../_images/title_in_index_rst_v_2_0.png"><img alt="title_in_index_rst" src="../../_images/title_in_index_rst_v_2_0.png" style="width: 5.84375in; height: 1.09375in;" /></a>
+<figcaption>
+<p><span class="caption-number">図 4 </span><span class="caption-text">各index.rst 内見出</span><a class="headerlink" href="#id38" title="この画像へのパーマリンク">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="id4">
+<h3>index.rst 内構文<a class="headerlink" href="#id4" title="この見出しへのパーマリンク">¶</a></h3>
+<div class="line-block">
+<div class="line">indes.rst 内の記述方法について大章「インストール」内に配置した index.rst を例に挙げて説明します。</div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">============</span>
+<span class="nv">インストール</span>
+<span class="o">============</span>
+
+.. toctree::
+:maxdepth: <span class="m">1</span>
+
+getting_oase
+requirements
+installer/index
+container/index
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">記述した内容が章見出し (インストール) となります。</div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">============</span>
+<span class="nv">インストール</span>
+<span class="o">============</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id39">
+<a class="reference internal image-reference" href="../../_images/indexrst_syntax1_v2_0.png"><img alt="role_of_index" src="../../_images/indexrst_syntax1_v2_0.png" style="width: 5.84375in; height: 1.09375in;" /></a>
+<figcaption>
+<p><span class="caption-number">図 5 </span><span class="caption-text">大章まで表示</span><a class="headerlink" href="#id39" title="この画像へのパーマリンク">¶</a></p>
+</figcaption>
+</figure>
+<div class="line-block">
+<div class="line">どのレベルの見出しまで右側の見出一覧に表示するかを指定します。</div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.. toctree::
+:maxdepth: <span class="m">1</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id40">
+<a class="reference internal image-reference" href="../../_images/toctree_lvl1.png"><img alt="role_of_index" src="../../_images/toctree_lvl1.png" style="width: 5.84375in; height: 1.09375in;" /></a>
+<figcaption>
+<p><span class="caption-number">図 6 </span><span class="caption-text">中章まで表示</span><a class="headerlink" href="#id40" title="この画像へのパーマリンク">¶</a></p>
+</figcaption>
+</figure>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.. toctree::
+:maxdepth: <span class="m">2</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id41">
+<a class="reference internal image-reference" href="../../_images/toctree_lvl2.png"><img alt="role_of_index" src="../../_images/toctree_lvl2.png" style="width: 5.84375in; height: 1.09375in;" /></a>
+<figcaption>
+<p><span class="caption-number">図 7 </span><span class="caption-text">小章まで表示</span><a class="headerlink" href="#id41" title="この画像へのパーマリンク">¶</a></p>
+</figcaption>
+</figure>
+<div class="line-block">
+<div class="line">配下にくる章が格納されているディレクトリを指定します。</div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>getting_oase
+requirements
+installer/index
+container/index
+</pre></div>
+</div>
+</section>
+</section>
+<section id="rst">
+<span id="doc-rns"></span><h2>ドキュメント記述用 .rst ファイル<a class="headerlink" href="#rst" title="この見出しへのパーマリンク">¶</a></h2>
+<section id="id5">
+<h3>構文 (ドキュメント内見出)<a class="headerlink" href="#id5" title="この見出しへのパーマリンク">¶</a></h3>
+<section id="id6">
+<h4>大見出<a class="headerlink" href="#id6" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">======</span>
+<span class="nv">大見出</span>
+<span class="o">======</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="../../_images/image127.png"><img alt="image1" src="../../_images/image127.png" style="width: 5.68735in; height: 0.56253in;" /></a></div>
+</div>
+</section>
+<section id="id7">
+<h4>中見出<a class="headerlink" href="#id7" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">中見出</span>
+<span class="o">======</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="../../_images/image226.png"><img alt="image2" src="../../_images/image226.png" style="width: 5.68735in; height: 0.56253in;" /></a></div>
+</div>
+</section>
+<section id="id8">
+<h4>小見出1<a class="headerlink" href="#id8" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>小見出1
+-------
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="../../_images/image319.png"><img alt="image3" src="../../_images/image319.png" style="width: 5.118615in; height: 0.506277in;" /></a></div>
+</div>
+</section>
+<section id="id9">
+<h4>小見出2<a class="headerlink" href="#id9" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>小見出2
+~~~~~~~
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="../../_images/komidashi2.png"><img alt="image4" src="../../_images/komidashi2.png" style="width: 5.118615in; height: 0.506277in;" /></a></div>
+</div>
+</section>
+<section id="id10">
+<h4>小見出3<a class="headerlink" href="#id10" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>小見出3
+*******
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="../../_images/komidashi3.png"><img alt="image5" src="../../_images/komidashi3.png" style="width: 5.118615in; height: 0.506277in;" /></a></div>
+</div>
+</section>
+</section>
+<section id="id11">
+<h3>構文 (リスト)<a class="headerlink" href="#id11" title="この見出しへのパーマリンク">¶</a></h3>
+<section id="id12">
+<h4>番号なしリスト<a class="headerlink" href="#id12" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>- リストa
+- リストb
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>リストa</p></li>
+<li><p>リストb</p></li>
+</ul>
+</section>
+<section id="id13">
+<h4>番号付リスト<a class="headerlink" href="#id13" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#. リストa</span>
+<span class="c1">#. リストb</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>リストa</p></li>
+<li><p>リストb</p></li>
+</ol>
+</section>
+</section>
+<section id="id14">
+<h3>構文 (強調)<a class="headerlink" href="#id14" title="この見出しへのパーマリンク">¶</a></h3>
+<section id="id15">
+<h4>強調<a class="headerlink" href="#id15" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>**強調されます**
+</pre></div>
+</div>
+<p><strong>強調されます</strong></p>
+</section>
+<section id="id16">
+<h4>コマンド<a class="headerlink" href="#id16" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ファイル一覧は :command:<span class="sb">`</span>ls<span class="sb">`</span> で見ることができます。
+</pre></div>
+</div>
+<p>ファイル一覧は <strong class="command">ls</strong> で見ることができます。</p>
+</section>
+<section id="id17">
+<h4>ファイルパス<a class="headerlink" href="#id17" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nginx のメインの設定ファイルは :file:<span class="sb">`</span>/etc/nginx/nginx.conf<span class="sb">`</span> です。
+</pre></div>
+</div>
+<p>nginx のメインの設定ファイルは <code class="file docutils literal notranslate"><span class="pre">/etc/nginx/nginx.conf</span></code> です。</p>
+</section>
+</section>
+<section id="id18">
+<h3>構文 (パラグラフ)<a class="headerlink" href="#id18" title="この見出しへのパーマリンク">¶</a></h3>
+<section id="id19">
+<h4>パラグラフ<a class="headerlink" href="#id19" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="p">|</span> パラグラフはじまり
+<span class="p">|</span> つづきのパラグラ
+
+<span class="p">|</span> 第二パラグラフ
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">パラグラフはじまり</div>
+<div class="line">つづきのパラグラフ</div>
+</div>
+<div class="line-block">
+<div class="line">第二パラグラフ</div>
+</div>
+</section>
+<section id="id20">
+<h4>見出+パラグラフ<a class="headerlink" href="#id20" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>見出
+  <span class="p">|</span> 内容1
+  <span class="p">|</span> 内容2
+</pre></div>
+</div>
+<dl>
+<dt>見出</dt><dd><div class="line-block">
+<div class="line">内容1</div>
+<div class="line">内容2</div>
+</div>
+</dd>
+</dl>
+</section>
+<section id="id21">
+<h4>番号付見出+パラグラフ<a class="headerlink" href="#id21" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#. | 番号付見出</span>
+   <span class="p">|</span> 内容1
+   <span class="p">|</span> 内容2
+</pre></div>
+</div>
+<ol class="arabic">
+<li><div class="line-block">
+<div class="line">番号付見出</div>
+<div class="line">内容1</div>
+<div class="line">内容2</div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="id22">
+<h3>構文 (画像差込)<a class="headerlink" href="#id22" title="この見出しへのパーマリンク">¶</a></h3>
+<section id="id23">
+<h4>画像差込 (キャプション付)<a class="headerlink" href="#id23" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>幅 <span class="m">5</span> inch x scale <span class="m">60</span>% <span class="o">=</span> 幅 <span class="m">3</span> inch で表示されます。
+
+.. figure:: ../../images/ja_manual_design/charg.png
+   :width: 5in
+   :scale: <span class="m">80</span>%
+   :align: center
+   :alt: role_of_index
+
+   index.rstの役割  &lt;--- キャプション
+</pre></div>
+</div>
+<p>幅 5 inch x scale 60% = 幅 3 inch で表示されます。</p>
+<figure class="align-center" id="id42">
+<a class="reference internal image-reference" href="../../_images/chart.png"><img alt="role_of_index" src="../../_images/chart.png" style="width: 4.0in; height: 78.4px;" /></a>
+<figcaption>
+<p><span class="caption-number">図 8 </span><span class="caption-text">index.rstの役割</span><a class="headerlink" href="#id42" title="この画像へのパーマリンク">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="id24">
+<h4>画像差込 (キャプションなし)<a class="headerlink" href="#id24" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>幅 300px x scale <span class="m">80</span>% <span class="o">=</span> 幅 240px で表示されます。
+.. image:: ../../images/ja_manual_design/chart.png
+   :width: 300px
+   :scale: <span class="m">80</span>%
+   :align: center
+   :alt: role_of_index
+</pre></div>
+</div>
+<p>幅 300px x scale 80% = 幅 240px で表示されます。</p>
+<a class="reference internal image-reference" href="../../_images/chart.png"><img alt="role_of_index" class="align-center" src="../../_images/chart.png" style="width: 240.0px; height: 240.0px;" /></a>
+</section>
+<section id="id25">
+<h4>画像差込 (文中引用))<a class="headerlink" href="#id25" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>画像がここに→　<span class="p">|</span>aa<span class="p">|</span> 差し込まれます。
+
+.. <span class="p">|</span>aa<span class="p">|</span> image:: ../../images/ja_manual_design/sample_img_v2_0.png
+   :width: <span class="m">1</span>.5in
+   :alt: サンプルイメージ指定したパスにある画像が差し込まれます。
+</pre></div>
+</div>
+<p>画像がここに→　<a class="reference internal" href="../../_images/chart.png"><img alt="サンプルイメージ" src="../../_images/chart.png" style="width: 1.5in; height: 0.52in;" /></a> 差し込まれます。</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="id26">
+<h3>構文 (表)<a class="headerlink" href="#id26" title="この見出しへのパーマリンク">¶</a></h3>
+<section id="id27">
+<h4>グリッドテーブル<a class="headerlink" href="#id27" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.. table:: グリッドテーブルサンプル
+
+   +----------+-------+---------+
+   <span class="p">|</span> 見出1    <span class="p">|</span> 見出2 <span class="p">|</span> 見出3   <span class="p">|</span>
+   <span class="p">|</span>          <span class="p">|</span>       <span class="p">|</span>         <span class="p">|</span>
+   +<span class="o">==========</span>+<span class="o">=======</span>+<span class="o">=========</span>+
+   <span class="p">|</span> 内容1    <span class="p">|</span> 内容2 <span class="p">|</span> 内容3   <span class="p">|</span>
+   +----------+-------+---------+
+</pre></div>
+</div>
+<table class="docutils align-default" id="id43">
+<caption><span class="caption-number">表 1 </span><span class="caption-text">グリッドテーブルサンプル</span><a class="headerlink" href="#id43" title="このテーブルへのパーマリンク">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>見出1</p></th>
+<th class="head"><p>見出2</p></th>
+<th class="head"><p>見出3</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>内容1</p></td>
+<td><p>内容2</p></td>
+<td><p>内容3</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="csv">
+<h4>CSVテーブル<a class="headerlink" href="#csv" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.. csv-table:: CSVテーブルサンプル
+   :header: 項目名1, 項目名2, 項目名3
+   :widths: <span class="m">10</span>, <span class="m">30</span>, <span class="m">30</span>
+
+   内容1, 内容2, 内容3
+</pre></div>
+</div>
+<table class="docutils align-default" id="id44">
+<caption><span class="caption-number">表 2 </span><span class="caption-text">CSVテーブルサンプル</span><a class="headerlink" href="#id44" title="このテーブルへのパーマリンク">¶</a></caption>
+<colgroup>
+<col style="width: 14.3%" />
+<col style="width: 42.9%" />
+<col style="width: 42.9%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>項目名1</p></th>
+<th class="head"><p>項目名2</p></th>
+<th class="head"><p>項目名3</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>内容1</p></td>
+<td><p>内容2</p></td>
+<td><p>内容3</p></td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<div class="line-block">
+<div class="line">表組1 では以下の記号は半角記号扱いとなります。</div>
+<div class="line">※ (こめじるし),  ①などの〇付記号</div>
+</div>
+</div>
+</section>
+<section id="id28">
+<h4>リストテーブル<a class="headerlink" href="#id28" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.. list-table:: リストテーブルサンプル
+   :widths: <span class="m">30</span> <span class="m">40</span> <span class="m">20</span>
+   :header-rows: <span class="m">1</span>
+   :align: left
+
+   * - 項目名1
+     - 項目名2
+     - 項目名3
+   * - 内容A
+     - <span class="p">|</span> リストテーブルでは
+       <span class="p">|</span> １セル内に複数行入れることが
+       <span class="p">|</span> 容易にできます。
+     - <span class="p">|</span> 内容C
+   * - 内容D
+     - 内容E
+     - 内容F
+</pre></div>
+</div>
+<table class="docutils align-left" id="id45">
+<caption><span class="caption-number">表 3 </span><span class="caption-text">リストテーブルサンプル</span><a class="headerlink" href="#id45" title="このテーブルへのパーマリンク">¶</a></caption>
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 50.0%" />
+<col style="width: 25.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>項目名1</p></th>
+<th class="head"><p>項目名2</p></th>
+<th class="head"><p>項目名3</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>内容A</p></td>
+<td><div class="line-block">
+<div class="line">リストテーブルでは</div>
+<div class="line">１セル内に複数行入れることが</div>
+<div class="line">容易にできます。</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">内容C</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>内容D</p></td>
+<td><p>内容E</p></td>
+<td><p>内容F</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="id29">
+<h3>グリッドテーブル内表記の注意点<a class="headerlink" href="#id29" title="この見出しへのパーマリンク">¶</a></h3>
+<section id="id30">
+<h4>複数行をつなげて表示<a class="headerlink" href="#id30" title="この見出しへのパーマリンク">¶</a></h4>
+<p><strong>正</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>+-------
+<span class="p">|</span> 通信条<span class="se">\ </span>   --&gt; <span class="s2">&quot;通信条件&quot;</span> とつなげて出力されます。
+<span class="p">|</span> 件
+</pre></div>
+</div>
+<p><strong>誤</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>+-------
+<span class="p">|</span> 通信条    --&gt; <span class="s2">&quot;通信条 件&quot;</span> と出力されます。
+<span class="p">|</span> 件
+</pre></div>
+</div>
+</section>
+<section id="id31">
+<h4>文字強調<a class="headerlink" href="#id31" title="この見出しへのパーマリンク">¶</a></h4>
+<p><strong>正</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>+-------
+<span class="p">|</span> **通<span class="se">\ </span>   --&gt; 正しく強調されます。
+<span class="p">|</span> 信**
+</pre></div>
+</div>
+<p><strong>誤</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>+-------
+<span class="p">|</span>**通<span class="se">\ </span>    --&gt; 強調されません。<span class="o">(</span>罫線と、** の間に空きがない<span class="o">)</span>
+<span class="p">|</span> 信**
+</pre></div>
+</div>
+<p><strong>誤</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>+-------
+<span class="p">|</span>**通<span class="se">\ </span>    --&gt; 強調されません。<span class="o">(</span>終わりの ** が続いていない<span class="o">)</span>
+<span class="p">|</span> 信*
+<span class="p">|</span>*
+</pre></div>
+</div>
+</section>
+<section id="id32">
+<h4>複数行をつなげて出力 (任意の箇所に空白をいれる時)<a class="headerlink" href="#id32" title="この見出しへのパーマリンク">¶</a></h4>
+<p>&quot;Exastro ITAのWebコンテンツへのアクセス&quot; と一行で出力する場合。
+空白は行末につけます。</p>
+<p><strong>正</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> <span class="p">|</span> Exastro <span class="se">\ </span>               <span class="p">|</span> --&gt; <span class="s2">&quot;Exastro ITAのWebコンテンツへのアクセス&quot;</span>
+ <span class="p">|</span> ITAのWebコンテンツへの<span class="se">\ </span> <span class="p">|</span>
+ <span class="p">|</span> アクセス                 <span class="p">|</span>
+ <span class="p">|</span>                          <span class="p">|</span>
+-+--------------------------+
+</pre></div>
+</div>
+<p><strong>誤</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> <span class="p">|</span> Exastro<span class="se">\ </span>                <span class="p">|</span> --&gt;文字列が崩れます。 <span class="o">(</span>空白が行頭にきています。<span class="o">)</span>
+ <span class="p">|</span>  ITAのWebコンテンツへの<span class="se">\ </span><span class="p">|</span>
+ <span class="p">|</span> アクセス                 <span class="p">|</span>
+ <span class="p">|</span>                          <span class="p">|</span>
+-+--------------------------+
+</pre></div>
+</div>
+</section>
+<section id="id33">
+<h4>表内での一覧表記<a class="headerlink" href="#id33" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.. table:: 表組例1
+
+   +-----------------+---------+
+   <span class="p">|</span> 新機<span class="se">\ </span>          <span class="p">|</span> 項目B   <span class="p">|</span>
+   <span class="p">|</span> 能について      <span class="p">|</span>         <span class="p">|</span>   --&gt; <span class="s2">&quot;*&quot;</span> 又は <span class="s2">&quot;#.&quot;</span> を使って項目を列挙します。
+   <span class="p">|</span>                 <span class="p">|</span>         <span class="p">|</span>   --&gt; 前行との間に要空白
+   <span class="p">|</span> * 項目1         <span class="p">|</span>         <span class="p">|</span>
+   <span class="p">|</span> * 項目2         <span class="p">|</span>         <span class="p">|</span>
+   +-----------------+---------+
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id34">
+<h3>構文 (ボタン)<a class="headerlink" href="#id34" title="この見出しへのパーマリンク">¶</a></h3>
+<section id="id35">
+<h4>ボタン<a class="headerlink" href="#id35" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>:guilabel:<span class="sb">`</span> アクション<span class="sb">`</span>
+</pre></div>
+</div>
+<p><span class="guilabel"> アクション</span></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="id36">
+<h3>構文 (注釈)<a class="headerlink" href="#id36" title="この見出しへのパーマリンク">¶</a></h3>
+<section id="note">
+<h4>note<a class="headerlink" href="#note" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.. note:: <span class="p">|</span> 補足的な情報を示しています。
+ <span class="p">|</span> Note に記載されている内容は読み飛ばしても困ることは無いでしょう。
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注釈</p>
+<div class="line-block">
+<div class="line">補足的な情報を示しています。</div>
+<div class="line">Note に記載されている内容は読み飛ばしても困ることは無いでしょう。</div>
+</div>
+</div>
+</section>
+<section id="tip">
+<h4>tip<a class="headerlink" href="#tip" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.. tip:: <span class="p">|</span> 操作や作業におけるノウハウを示しています。
+   <span class="p">|</span> Tip に記載されている内容を読み飛ばした場合ユーザに混乱が生じる可能性があります。
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<div class="line-block">
+<div class="line">操作や作業におけるノウハウを示しています。</div>
+<div class="line">Tip に記載されている内容を読み飛ばした場合ユーザに混乱が生じる可能性があります。</div>
+</div>
+</div>
+</section>
+<section id="warning">
+<h4>warning<a class="headerlink" href="#warning" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.. warning:: <span class="p">|</span> 操作上の注意点を示しています。
+   <span class="p">|</span> Warning に記載された内容はユーザが把握しておくほうが適切な情報です。
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<div class="line-block">
+<div class="line">操作上の注意点を示しています。</div>
+<div class="line">Warning に記載された内容はユーザが把握しておくほうが適切な情報です。</div>
+</div>
+</div>
+</section>
+<section id="danger">
+<h4>danger<a class="headerlink" href="#danger" title="この見出しへのパーマリンク">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.. danger:: <span class="p">|</span> 正常なサービスへ影響を与える可能性がある操作についての危険性を示しています。
+   <span class="p">|</span> Danger に記載された内容を知らない場合、大きな問題を引き起こす可能性があります。
+</pre></div>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">危険</p>
+<div class="line-block">
+<div class="line">正常なサービスへ影響を与える可能性がある操作についての危険性を示しています。</div>
+<div class="line">Danger に記載された内容を知らない場合、大きな問題を引き起こす可能性があります。</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+</div>
+
+
+<div id="articleNavigation">
+  <ul>
+    <li class="prev"><a href="build_flow.html" title="前のトピックへ"><span>前のトピックへ</span>マニュアルのビルド</a></li>
+  </ul>
+</div>
+
+
+<div id="pageTopLink">
+  <a href="#container"><i>↑</i> Page Top</a>
+</div>
+
+</article>
+</div>
+</main>
+</div><!-- End #contents -->
+<div id="footer">
+  <footer class="divInner">
+    <small>Copyright © 2022 NEC Corporation</small>
+  </footer>
+</div><!-- End #footer -->
+
+<div id="overlay"></div>
+
+</div><!-- End #container -->
+  </body>
+</html>

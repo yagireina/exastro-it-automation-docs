@@ -1,0 +1,738 @@
+
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <title>目次 &#8212; Documentation  ドキュメント</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/option.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/translations.js"></script>
+  
+    <script type="text/javascript" src="../../../_static/exastro_documents.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="検索" href="../../../search.html" /> 
+  </head>
+<body id="page" class="ja">
+
+
+<div id="container">
+
+<div id="header">
+  <header class="divInner">
+    <!-- Exastro logo -->
+    <div id="logo"><img src="../../../_static/img/exastro.svg" alt="Exastro"></div>
+    <!-- Project name -->
+    <div id="projectName"><a href="../../../index.html">Documentation</a></div>
+    <!-- Heaedr navigation -->
+    <div id="headerSearch">
+      <form class="search" action="../../../search.html" method="get">
+        <input type="text" name="q" aria-labelledby="searchlabel">
+        <button type="submit" value="検索"><img src="../../../_static/img/search.png" alt="検索"></button>
+      </form>
+    </div>
+  </header>
+</div><!-- End #header -->
+
+
+<div id="toolbar">
+  <div class="divInner">
+    
+    <div id="documentVersion">
+      <dl>
+        <dt>Document version</dt>
+        <dd>
+          <div>
+            <select name="version" onchange="location.href=value;">
+                file_path: v2.0/ja/it_automation_base/sso
+                  <option value="#"
+                  selected
+                  >current</option>
+                file_path: v2.0/ja/it_automation_base/sso
+                  <option value="#"
+                  selected
+                  >v2.0 (current)</option>
+            </select>
+          </div>
+        </dd>
+      </dl>
+    </div>
+
+    <div id="documentLanguage">
+      <dl>
+        <dt>Language</dt>
+        <dd>
+          <div>
+            <select name="lang" onchange="location.href=value;">
+                file_path: v2.0/ja/it_automation_base/sso
+                hasdoc: True
+                  <option value="#"
+                  selected
+                  >日本語</option>
+                file_path: v2.0/en/it_automation_base/sso
+                hasdoc: False
+            </select>
+          </div>
+        </dd>
+      </dl>
+    </div>
+    <div id="toolbarNavigation">
+      <ul>
+      </ul>
+    </div>
+  </div>
+</div><!-- End #toolbar -->
+
+<div id="sideMenu">
+
+  <div id="menuButton"></div>
+  
+  <aside class="divInner">
+    <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Exastro IT Automation Documentation</a></li>
+</ul>
+
+    <!-- <ul>
+      <li class="toctree-l1"><a class="reference internal" href="../../../../genindex.html">索引</a></li>
+    </ul> -->
+    
+  </aside>
+</div><!-- End #sideMenu -->
+
+<div id="contents">
+<main class="divInner">
+
+
+<div id="breadcrumbs">
+  <ul>
+    <li><a href="../../../index.html">HOME</a></li>
+    
+    <li>目次</li>
+  </ul>
+</div>
+
+
+<div id="article">
+<article class="divInner">
+<div class="body" role="main">
+
+  <a class="reference internal image-reference" href="../../../_images/image120.png"><img alt="../../../_images/image120.png" src="../../../_images/image120.png" style="width: 3.35069in; height: 0.78542in;" /></a>
+<p>ITA_システム構成/環境構築ガイド</p>
+<p>SSO(シングルサインオン)編</p>
+<p><em>－</em>第1.9版<em>－</em></p>
+<p>Copyright © NEC Corporation 2020. All rights reserved.</p>
+<p>免責事項</p>
+<p>本書の内容はすべて日本電気株式会社が所有する著作権に保護されています。</p>
+<p>本書の内容の一部または全部を無断で転載および複写することは禁止されています。</p>
+<p>本書の内容は将来予告なしに変更することがあります。</p>
+<p>日本電気株式会社は、本書の技術的もしくは編集上の間違い、欠落について、一切責任を負いません。</p>
+<p>日本電気株式会社は、本書の内容に関し、その正確性、有用性、確実性その他いかなる保証もいたしません。</p>
+<p>商標</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>LinuxはLinus</dt><dd><p>Torvalds氏の米国およびその他の国における登録商標または商標です。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Red Hatは、Red Hat,</dt><dd><p>Inc.の米国およびその他の国における登録商標または商標です。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Apache、Apache Tomcat、Tomcatは、Apache Software</dt><dd><p>Foundationの登録商標または商標です。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Oracle、MySQLは、Oracle Corporation</dt><dd><p>およびその子会社、関連会社の米国およびその他の国における登録商標です。</p>
+</dd>
+</dl>
+</li>
+<li><p>MariaDBは、MariaDB Foundationの登録商標または商標です。</p></li>
+<li><p>Ansibleは、Red Hat, Inc.の登録商標または商標です。</p></li>
+<li><dl class="simple">
+<dt>Active Directoryは、米国Microsoft</dt><dd><p>Corporationの米国およびその他の国における登録商標または商標です。</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>その他、本書に記載のシステム名、会社名、製品名は、各社の登録商標もしくは商標です。</p>
+<p>なお、® マーク、TMマークは本書に明記しておりません。</p>
+<p>※本書では「Exastro IT Automation」を「ITA」として記載します。</p>
+<section id="id1">
+<h1>目次<a class="headerlink" href="#id1" title="この見出しへのパーマリンク">¶</a></h1>
+<p><a class="reference external" href="#_Toc59639563">目次</a> <a class="reference external" href="#_Toc59639563">2</a></p>
+<p><a class="reference external" href="#はじめに">はじめに</a> <a class="reference external" href="#はじめに">3</a></p>
+<p><a class="reference external" href="#機能">1 機能</a> <a class="reference external" href="#機能">4</a></p>
+<p><a class="reference external" href="#システム構成">2 システム構成</a> <a class="reference external" href="#システム構成">5</a></p>
+<p><a class="reference external" href="#システム要件">3 システム要件</a> <a class="reference external" href="#システム要件">6</a></p>
+<p><a class="reference external" href="#itaでサポートしているsso認証方式">4
+ITAでサポートしているSSO認証方式</a>
+<a class="reference external" href="#itaでサポートしているsso認証方式">7</a></p>
+<p><a class="reference external" href="#設定フロー">5 設定フロー</a> <a class="reference external" href="#設定フロー">8</a></p>
+<p><a class="reference external" href="#ロールについて">6 ロールについて</a> <a class="reference external" href="#ロールについて">12</a></p>
+<p><a class="reference external" href="#ログイン画面">7 ログイン画面</a> <a class="reference external" href="#ログイン画面">13</a></p>
+<p><a class="reference external" href="#ログイン後の画面">8 ログイン後の画面</a> <a class="reference external" href="#ログイン後の画面">14</a></p>
+<p><a class="reference external" href="#sso認証ユーザーの管理について">9 SSO認証ユーザーの管理について</a>
+<a class="reference external" href="#sso認証ユーザーの管理について">15</a></p>
+<p><a class="reference external" href="#adactivedirectoryとの併用について">10
+AD(ActiveDirectory)との併用について</a>
+<a class="reference external" href="#adactivedirectoryとの併用について">16</a></p>
+<p><a class="reference external" href="#リバースproxy環境においての注意点">11
+リバースPROXY環境においての注意点</a>
+<a class="reference external" href="#リバースproxy環境においての注意点">17</a></p>
+</section>
+<section id="id2">
+<h1>はじめに<a class="headerlink" href="#id2" title="この見出しへのパーマリンク">¶</a></h1>
+<p>本書では、ITAでシングルサインオン認証（以下、「SSO認証」）機能を利用頂く為に必要なシステム構成について説明します。</p>
+<p>SSO認証機能を利用するにあたっては、ITA基本機能が構築済であることが前提です。ITA基本機能の構築に関しては、「システム構成／環境構築ガイド_基本編」をご覧ください。</p>
+</section>
+<section id="id3">
+<h1>機能<a class="headerlink" href="#id3" title="この見出しへのパーマリンク">¶</a></h1>
+<p>SSO認証機能は、以下の機能を提供します。</p>
+<p>表 1‑1 機能名</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>N
+o</p></th>
+<th class="head"><p>機能名</p></th>
+<th class="head"><p>概要</p></th>
+<th class="head"><p>WEB</p>
+<p>コ
+ンテ
+ンツ</p>
+</th>
+<th class="head"><p>Ba
+ckYard</p>
+<p>コン
+テンツ</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>SSO
+認証機能</p></td>
+<td><p>外部認証プロバイダ
+ーを使用してITAの認証を行います。</p></td>
+<td><p>○</p></td>
+<td><p>―</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id4">
+<h1>システム構成<a class="headerlink" href="#id4" title="この見出しへのパーマリンク">¶</a></h1>
+<a class="reference internal image-reference" href="../../../_images/image220.png"><img alt="../../../_images/image220.png" src="../../../_images/image220.png" style="width: 6.63634in; height: 2.59411in;" /></a>
+</section>
+<section id="id5">
+<h1>システム要件<a class="headerlink" href="#id5" title="この見出しへのパーマリンク">¶</a></h1>
+<p>SSO認証機能はITAシステムのシステム要件に準拠するため、「システム構成／環境構築ガイド_基本編」を参照してください。</p>
+<p>SSO認証機能を利用するには、ITAシステムがインストールされているシステム及び利用者のクライアントデバイスがSSO認証プロバイダーとHTTP/HTTPS通信可能であることが必要です。</p>
+<p>ITAシステム側のHTTP/HTTPS通信は直接またはPROXYを使用しての通信をサポートしております。ただし認証が必要なPROXYはサポートしておりません。</p>
+<p>利用者のクライアント側のHTTP/HTTPS通信はSSO認証プロバイダーにSSO認証とは関係なく正常に認証できることが必要です。</p>
+</section>
+<section id="itasso">
+<h1>ITAでサポートしているSSO認証方式<a class="headerlink" href="#itasso" title="この見出しへのパーマリンク">¶</a></h1>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>No</p></th>
+<th class="head"><p>ITA上の認証方式名</p></th>
+<th class="head"><p>概要</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>OAuth2</p></td>
+<td><p>OAuth version2.0</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id6">
+<h1>設定フロー<a class="headerlink" href="#id6" title="この見出しへのパーマリンク">¶</a></h1>
+<ol class="arabic simple">
+<li><p>認証プロバイダーへのクライアント登録</p></li>
+</ol>
+<p>利用したい認証プロバイダーを利用するためにITAでサポートされている認証方法に必要なクライアント登録を行い認証に必要な情報を取得します。</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>No</p></th>
+<th class="head"><p>認証方式</p></th>
+<th class="head"><p>認証に必要な情報</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>OAuth2</p></td>
+<td><p>・clientId</p>
+<p>・clinentSecret</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>プロバイダーに設定するコールバックURL(またはリダイレクトURL)は以下を設定してください。</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>N
+o</p></th>
+<th class="head"><p>認証方式</p></th>
+<th class="head"><p>コールバックURL(リダイレクトURL)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>oauth2</p></td>
+<td><p>https//(ITAの
+FQDN)/common/common_sso_auth.php?oauth2&amp;callback</p></td>
+</tr>
+</tbody>
+</table>
+<p>※ITAの設定がhttp(非SSL)の場合はコールバックURLもhttp://・・としてください(非推奨)</p>
+<ol class="arabic simple" start="2">
+<li><p>ITAのSSO基本情報の登録</p></li>
+</ol>
+<p>メインメニュー &gt;&gt; 管理コンソール　&gt;&gt; SSO基本情報管理</p>
+<p>主にログイン画面への表示情報と認証方法を設定します。</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>N
+o</p></th>
+<th class="head"><p>項目名</p></th>
+<th class="head"><p>設定内容</p></th>
+<th class="head"><p>必
+須</p></th>
+<th class="head"><p>備考</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>プ
+ロバイ
+ダーID</p></td>
+<td><p>自動採番</p></td>
+<td><p>○</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>プ
+ロバイ
+ダー名</p></td>
+<td><p>プロバイダー名</p></td>
+<td><p>〇</p></td>
+<td><p>ログイン
+画面に表示するプロバイダー名</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>認
+証方式</p></td>
+<td><p>認証方式を選択</p></td>
+<td><p>〇</p></td>
+<td><p>OAuth2のみ</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>ロゴ</p></td>
+<td><p>画像ファイル
+をアップロード</p></td>
+<td></td>
+<td><p>ログイン画面
+に表示するプロバイダーのロゴ</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>表示
+フラグ</p></td>
+<td><p>ログイン画面
+への表示フラグ</p></td>
+<td><p>〇</p></td>
+<td><p>選択肢：表示　or 非表示</p>
+<p>※認証に必要な情報が不足
+している場合は表示されません</p>
+<p>「④ログイン
+画面への表示について」を参照</p>
+</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="3">
+<li><p>ITAのSSO属性情報の登録</p></li>
+</ol>
+<blockquote>
+<div><p>メインメニュー &gt;&gt; 管理コンソール　&gt;&gt; SSO属性情報管理</p>
+<p>主に認証設定とプロバイダーからのユーザー情報取得に関する設定します。</p>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>N
+o</p></th>
+<th class="head"><p>項目名</p></th>
+<th class="head"><p>設定内容</p></th>
+<th class="head"><p>必
+須</p></th>
+<th class="head"><p>備考</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>属性ID</p></td>
+<td><p>自動採番</p></td>
+<td><p>○</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>プ
+ロバイ
+ダー名</p></td>
+<td><p>プロバイダー名</p></td>
+<td><p>〇</p></td>
+<td><p>「SSO基
+本情報管理」に登録済みのプロ
+バイダーをプルダウンから選択</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>設
+定項目</p></td>
+<td><p>設定項目</p></td>
+<td><p>〇</p></td>
+<td><p>設定する
+項目をプルダウンから選択する</p>
+<p>※設定項目は
+下記の「設定項目一覧」を参照</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>設定値</p></td>
+<td><p>設定値</p></td>
+<td></td>
+<td><p>設定項目に対する設定値</p></td>
+</tr>
+</tbody>
+</table>
+<p>※プロバイダーと設定項目は重複登録できません。</p>
+<p>設定項目一覧</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>認証
+方式</p></th>
+<th class="head"><p>項目名</p></th>
+<th class="head"><p>設定内容</p></th>
+<th class="head"><p>必
+須</p></th>
+<th class="head"><p>備考</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>O
+Auth2</p></td>
+<td><p>clientId</p></td>
+<td><p>認証
+クライアント識別子</p></td>
+<td><p>○</p></td>
+<td><p>認証
+プロバイダーから払出
+された値を設定します</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>cl
+ientSecret</p></td>
+<td><p>認証クライ
+アントシークレット</p></td>
+<td><p>〇</p></td>
+<td><p>認証
+プロバイダーから払出
+された値を設定します</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>author
+izationUri</p></td>
+<td><p>ユーザー
+認証エンドポイント</p></td>
+<td><p>〇</p></td>
+<td><p>認証プロ
+バイダーの仕様を確認
+して設定してください</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>acce
+ssTokenUri</p></td>
+<td><p>accessToken
+取得エンドポイント</p></td>
+<td><p>〇</p></td>
+<td><p>認証プロ
+バイダーの仕様を確認
+して設定してください</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>resour
+ceOwnerUri</p></td>
+<td><p>ユーザー情報
+取得エンドポイント</p></td>
+<td><p>〇</p></td>
+<td><p>認証プロ
+バイダーの仕様を確認
+して設定してください</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>scope</p></td>
+<td><p>ユーザー情
+報の開示(取得)範囲</p></td>
+<td></td>
+<td><p>認証プロ
+バイダーの仕様を確認
+して設定してください</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>id</p></td>
+<td><p>ユーザーIDキー名</p></td>
+<td><p>〇</p></td>
+<td><p>resour
+ceOwnerUriで取得する</p>
+<p>ユー
+ザーデータ内のキー名</p>
+</td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>name</p></td>
+<td><p>ユーザー名キー名</p></td>
+<td><p>〇</p></td>
+<td><p>resour
+ceOwnerUriで取得する</p>
+<p>ユー
+ザーデータ内のキー名</p>
+</td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>email</p></td>
+<td><p>ユーザーメ
+ールアドレスキー名</p></td>
+<td></td>
+<td><p>resour
+ceOwnerUriで取得する</p>
+<p>ユー
+ザーデータ内のキー名</p>
+</td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>imageUrl</p></td>
+<td><p>ユー
+ザー画像URLキー名</p></td>
+<td></td>
+<td><p>resourceOw
+nerUriで取得するユー
+ザーデータ内のキー名</p>
+<p>※キーが配
+列になっている場合は
+“&gt;”で区切る</p>
+</td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>ignor
+eSslVerify</p></td>
+<td><p>SSL証
+明書確認オプション</p></td>
+<td></td>
+<td><p>SSLサー
+バー証明書検証の有無</p>
+<p>デフォルト
+ではSSLサーバー証明
+書の検証を行います。</p>
+<p>※
+”1”を設定することでS
+SLサーバー証明書の検
+証がOFFになります。</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>そ
+の他</p></td>
+<td><p>proxy</p></td>
+<td><p>外部と通信する際
+のproxyを指定する</p></td>
+<td></td>
+<td><p><a class="reference external" href="tcp:/">tcp:/</a>/(ホスト名 or
+IPア
+ドレス):(ポート番号)</p>
+<p>または</p>
+<p><a class="reference external" href="http:/">http:/</a>/(ホスト名 or
+IPア
+ドレス):(ポート番号)</p>
+</td>
+</tr>
+<tr class="row-even"><td><p>そ
+の他</p></td>
+<td><p>debug</p></td>
+<td><p>デバッグフラグ</p></td>
+<td></td>
+<td><p>SSOログイン
+失敗時に失敗時の詳細
+情報を画面に表示する</p>
+<p>※”1”を設
+定することでデバッグ
+フラグがonになります</p>
+</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="4">
+<li><p>ログイン画面への表示について</p></li>
+</ol>
+<blockquote>
+<div><p>ログイン画面に表示するには以下のすべての条件を満たしていなければなりません。</p>
+<p>・「②ITAのSSO基本情報」の「表示フラグ」が「表示」となっていること</p>
+<p>・「③ITAのSSO属性情報の登録該当認証方式」で該当認証方式の必須項目が全て設定されていること</p>
+<p>・エンドポイントの各Uriについては“<a class="reference external" href="https://">https://</a>”または“<a class="reference external" href="http://">http://</a>”で始まっている文字列で設定されていること</p>
+<p>・proxyを設定している場合、備考欄に記載のフォーマットで入力されていること</p>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li><p>ログイン画面には表示せずに設定内容が正しいのかを確認する方法</p></li>
+</ol>
+<blockquote>
+<div><p>ログイン画面に表示してしまうと設定が正しいのかわからない状態でもログイン操作がされてしまいます。</p>
+<p>ログイン可能なのかを最終確認してから「②ITAのSSO基本情報」の「表示フラグ」を「表示」に設定することを推奨します。</p>
+<p>ログイン画面への表示フラグを「非表示」としている場合は下記URLを直接ブラウザに入力することで動作検証することができます。</p>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>N
+o</p></th>
+<th class="head"><p>認
+証方式</p></th>
+<th class="head"><p>動作確認URL</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>oauth2</p></td>
+<td><p><a class="reference external" href="https:/">https:/</a>/(ITAのFQDN)/common/c
+ommon_sso_auth.php?oauth2&amp;providerId=(プロバイダーID)</p>
+<p>※プロバイダーIDは「SSO基本情報管理」メニューの項目</p>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id7">
+<h1>ロールについて<a class="headerlink" href="#id7" title="この見出しへのパーマリンク">¶</a></h1>
+<p>SSO認証されたユーザーはITAユーザーとして自動作成されます。</p>
+<p>また、初回ログイン時にSSOデフォルトロール(ロールID:2100000001)に自動的に紐づけされます。</p>
+<p>※割り当ては初回のみです。</p>
+<p>このロールには初期状態ではどのメニューにも紐づいていないため必ず事前に適切なメニューと紐づけを行ってください。紐づけは</p>
+<p>メインメニュー &gt;&gt; 管理コンソール &gt;&gt; ロール・メニュー紐付管理</p>
+<p>で設定可能です。</p>
+</section>
+<section id="id8">
+<h1>ログイン画面<a class="headerlink" href="#id8" title="この見出しへのパーマリンク">¶</a></h1>
+<p>上記の設定フローを完了してログイン画面への表示フラグを「表示」と設定したらログイン画面の下部に表示されます。</p>
+<p>このプロバイダーをクリックすることでSSO認証が実施されます。</p>
+<p>「SSO基本情報管理」でロゴを登録していた場合はプロバイダー名の前にロゴが表示される。</p>
+<a class="reference internal image-reference" href="../../../_images/image317.png"><img alt="../../../_images/image317.png" src="../../../_images/image317.png" style="width: 6.36736in; height: 3.21528in;" /></a>
+</section>
+<section id="id9">
+<h1>ログイン後の画面<a class="headerlink" href="#id9" title="この見出しへのパーマリンク">¶</a></h1>
+<p>SSOでログイン後は右上のログインユーザー情報にSSOプロバイダー情報が表示されます。</p>
+<p>「SSO基本情報管理」でロゴを登録していた場合ロゴが表示されます。登録していない場合はプロバイダー名が表示されます。</p>
+<p>「SSO属性情報管理」で「iimageUrl」(ユーザー画像URL)を登録していてプロバイダーから取得できた場合はユーザーの画像がプロバイダー情報の右側に表示します。</p>
+<a class="reference internal image-reference" href="../../../_images/image417.png"><img alt="../../../_images/image417.png" src="../../../_images/image417.png" style="width: 6.30208in; height: 3.425in;" /></a>
+<p>プロバイダーロゴを登録している、ユーザー画像を取得できた場合</p>
+<a class="reference internal image-reference" href="../../../_images/image518.png"><img alt="../../../_images/image518.png" src="../../../_images/image518.png" style="width: 6.31272in; height: 3.4252in;" /></a>
+<p>プロバイダーロゴを登録していない、ユーザー画像を取得しない場合</p>
+</section>
+<section id="sso">
+<h1>SSO認証ユーザーの管理について<a class="headerlink" href="#sso" title="この見出しへのパーマリンク">¶</a></h1>
+<p>SSO認証ユーザーは名前、メールアドレスは認証プロバイダーで設定されたものをそのまま使用します。</p>
+<p>ITAの管理画面で変更することは可能ですが、次回ログインしたときに自動的にプロバイダーから取得した最新の情報で再設定されます。</p>
+<p>なお、ログインIDについてはITAのユーザー管理で再設定した場合その後再変更されることはありません。</p>
+<p>また、ITAの管理画面でユーザーの廃止を行ったとしてもそのユーザーがプロバイダー側でログイン可能であればITAにログイン時に自動的に復活します。ただし、SSOデフォルトロールへの紐付は行われません。</p>
+<p>特定ユーザーを利用させたくない場合はプロバイダー側でユーザー削除またはログインできないようにするか、ITA側でロールに割り当てないことでITAの利用を制限してください。</p>
+</section>
+<section id="ad-activedirectory">
+<h1>AD(ActiveDirectory)との併用について<a class="headerlink" href="#ad-activedirectory" title="この見出しへのパーマリンク">¶</a></h1>
+<p>SSO認証とAD認証は併用可能です。</p>
+<p>通常ITAでAD認証を有効にしている場合はシステム管理者(ユーザーID:1)およびシステム管理者ロール(ロールID:1)以外のユーザーおよびロールはActiveDirectory設定ファイルに記載していない場合自動的に廃止されますが、SSO認証ユーザー(認証方式:sso)およびSSOデフォルトロール(ロールID：2100000001)は廃止されません。</p>
+</section>
+<section id="proxy">
+<h1>リバースPROXY環境においての注意点<a class="headerlink" href="#proxy" title="この見出しへのパーマリンク">¶</a></h1>
+<p>※リバースPROXYを利用していない場合、本項の問題は生じません。</p>
+<p>ユーザーがITAにアクセスする際に負荷分散等のためにリバースPROXYを利用している場合、SSO認証において以下に該当する場合にリバースPROXYサーバーへの追加設定が必要になります。</p>
+<ul class="simple">
+<li><p>HTTPSを使用していない。(クライアント(ブラウザ)⇔リバースPROXYサーバー間)</p></li>
+<li><p>AWSのELB(ALB,CLB)を利用していない。</p></li>
+</ul>
+<p>※AWSのELB(ALB、CLB)ではこの問題は発生しません。</p>
+<ul class="simple">
+<li><p>リバースPROXY⇒ITAサーバー間でリクエスト元プロトコル情報のヘッダー</p></li>
+</ul>
+<p>(X_FORWARDED_PROTO）を送信していない。</p>
+<p>上記全ての条件を満たす場合、SSO認証のフローの際に元のプロトコルではないプロトコルに代わってしまう可能性があります。また、切り替わる際にどちらか片方のみで運用していた場合はその時点でエラーが発生してしまいます。</p>
+<p>apacheなどのオープンソースソフトウェアでのリバースPROXYを行うことは可能ですが、標準でリクエスト元のプロトコル情報を送っていない場合があります。</p>
+<p>下記にapacheでのリバースPROXYでの追加ヘッダーの設定例を示します。</p>
+<p>※その他の場合については割愛させていただきます。</p>
+<p>アクセスするURL: <a class="reference external" href="http://example.com">http://example.com</a></p>
+<p>リバースPROXYするURL: <a class="reference external" href="http://192.168.100.1">http://192.168.100.1</a></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>&lt;VirtualHost *:80&gt;</p>
+<p>ServerName example.com</p>
+<p>ErrorLog (省略)</p>
+<p>CustomLog (省略)</p>
+<p>ProxyRequests Off</p>
+<p>ProxyPass / <a class="reference external" href="http://192.168.100.1/">http://192.168.100.1/</a></p>
+<p>ProxyPassReverse / <a class="reference external" href="http://192.168.100.1/">http://192.168.100.1/</a></p>
+<p><em>RequestHeader set X-Forwarded-Proto http</em></p>
+<p>&lt;/VirtualHost&gt;</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td></td>
+</tr>
+</tbody>
+</table>
+<p>※下線の行の設定を追加してください。</p>
+</section>
+
+
+</div>
+
+
+<div id="articleNavigation">
+  <ul>
+  </ul>
+</div>
+
+
+<div id="pageTopLink">
+  <a href="#container"><i>↑</i> Page Top</a>
+</div>
+
+</article>
+</div>
+</main>
+</div><!-- End #contents -->
+<div id="footer">
+  <footer class="divInner">
+    <small>Copyright © 2022 NEC Corporation</small>
+  </footer>
+</div><!-- End #footer -->
+
+<div id="overlay"></div>
+
+</div><!-- End #container -->
+  </body>
+</html>

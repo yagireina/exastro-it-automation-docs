@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <title>はじめに &#8212; Documentation  ドキュメント</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/option.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/translations.js"></script>
+  
+    <script type="text/javascript" src="../../../_static/exastro_documents.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="検索" href="../../../search.html" /> 
+  </head>
+<body id="page" class="ja">
+
+
+<div id="container">
+
+<div id="header">
+  <header class="divInner">
+    <!-- Exastro logo -->
+    <div id="logo"><img src="../../../_static/img/exastro.svg" alt="Exastro"></div>
+    <!-- Project name -->
+    <div id="projectName"><a href="../../../index.html">Documentation</a></div>
+    <!-- Heaedr navigation -->
+    <div id="headerSearch">
+      <form class="search" action="../../../search.html" method="get">
+        <input type="text" name="q" aria-labelledby="searchlabel">
+        <button type="submit" value="検索"><img src="../../../_static/img/search.png" alt="検索"></button>
+      </form>
+    </div>
+  </header>
+</div><!-- End #header -->
+
+
+<div id="toolbar">
+  <div class="divInner">
+    
+    <div id="documentVersion">
+      <dl>
+        <dt>Document version</dt>
+        <dd>
+          <div>
+            <select name="version" onchange="location.href=value;">
+                file_path: v2.0/ja/create_param/architecture
+                  <option value="#"
+                  selected
+                  >current</option>
+                file_path: v2.0/ja/create_param/architecture
+                  <option value="#"
+                  selected
+                  >v2.0 (current)</option>
+            </select>
+          </div>
+        </dd>
+      </dl>
+    </div>
+
+    <div id="documentLanguage">
+      <dl>
+        <dt>Language</dt>
+        <dd>
+          <div>
+            <select name="lang" onchange="location.href=value;">
+                file_path: v2.0/ja/create_param/architecture
+                hasdoc: True
+                  <option value="#"
+                  selected
+                  >日本語</option>
+                file_path: v2.0/en/create_param/architecture
+                hasdoc: False
+            </select>
+          </div>
+        </dd>
+      </dl>
+    </div>
+    <div id="toolbarNavigation">
+      <ul>
+      </ul>
+    </div>
+  </div>
+</div><!-- End #toolbar -->
+
+<div id="sideMenu">
+
+  <div id="menuButton"></div>
+  
+  <aside class="divInner">
+    <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Exastro IT Automation Documentation</a></li>
+</ul>
+
+    <!-- <ul>
+      <li class="toctree-l1"><a class="reference internal" href="../../../../genindex.html">索引</a></li>
+    </ul> -->
+    
+  </aside>
+</div><!-- End #sideMenu -->
+
+<div id="contents">
+<main class="divInner">
+
+
+<div id="breadcrumbs">
+  <ul>
+    <li><a href="../../../index.html">HOME</a></li>
+    
+    <li>はじめに</li>
+  </ul>
+</div>
+
+
+<div id="article">
+<article class="divInner">
+<div class="body" role="main">
+
+  <a class="reference internal image-reference" href="../../../_images/image110.png"><img alt="../../../_images/image110.png" src="../../../_images/image110.png" style="width: 3.36944in; height: 0.78681in;" /></a>
+<p>ITA_システム構成/環境構築ガイド</p>
+<p>メニュー作成機能編</p>
+<p>－第1.3版－</p>
+<p>Copyright © NEC Corporation 2020. All rights reserved.</p>
+<p>免責事項</p>
+<p>本書の内容はすべて日本電気株式会社が所有する著作権に保護されています。</p>
+<p>本書の内容の一部または全部を無断で転載および複写することは禁止されています。</p>
+<p>本書の内容は将来予告なしに変更することがあります。</p>
+<p>日本電気株式会社は、本書の技術的もしくは編集上の間違い、欠落について、一切責任を負いません。</p>
+<p>日本電気株式会社は、本書の内容に関し、その正確性、有用性、確実性その他いかなる保証もいたしません。</p>
+<p>商標</p>
+<ul>
+<li><dl class="simple">
+<dt>LinuxはLinus</dt><dd><p>Torvalds氏の米国およびその他の国における登録商標または商標です。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Red Hatは、Red Hat,</dt><dd><p>Inc.の米国およびその他の国における登録商標または商標です。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Apache、Apache Tomcat、Tomcatは、Apache Software</dt><dd><p>Foundationの登録商標または商標です。</p>
+</dd>
+</dl>
+</li>
+<li><div class="line-block">
+<div class="line">Oracle、MySQLは、Oracle Corporation
+  およびその子会社、関連会社の米国およびその他の国における
+| 登録商標です。</div>
+</div>
+</li>
+<li><p>MariaDBは、MariaDB Foundationの登録商標または商標です。</p></li>
+</ul>
+<p>その他、本書に記載のシステム名、会社名、製品名は、各社の登録商標もしくは商標です。</p>
+<p>なお、® マーク、TMマークは本書に明記しておりません。</p>
+<p>※本書では「Exastro IT Automation」を「ITA」として記載します。</p>
+<p><strong>目次</strong></p>
+<p><a class="reference external" href="#はじめに">はじめに</a> <a class="reference external" href="#はじめに">3</a></p>
+<p><a class="reference external" href="#メニュー作成機能の概要">1 メニュー作成機能の概要</a>
+<a class="reference external" href="#メニュー作成機能の概要">4</a></p>
+<p><a class="reference external" href="#システム構成">2 システム構成</a> <a class="reference external" href="#システム構成">5</a></p>
+<p><a class="reference external" href="#システム要件">3 システム要件</a> <a class="reference external" href="#システム要件">6</a></p>
+<section id="id1">
+<h1>はじめに<a class="headerlink" href="#id1" title="この見出しへのパーマリンク">¶</a></h1>
+<p>本書では、ITAのメニュー作成機能を運用する為のシステム構成と環境構築について説明します。</p>
+<div class="line-block">
+<div class="line">メニュー作成機能を利用するにあたっては、ITAの基本機能が構築済であることが前提です。</div>
+<div class="line">ITA基本機能の構築に関しては、「システム構成／環境構築ガイド_基本編」をご覧ください。</div>
+</div>
+</section>
+<section id="id2">
+<h1>メニュー作成機能の概要<a class="headerlink" href="#id2" title="この見出しへのパーマリンク">¶</a></h1>
+<blockquote>
+<div><div class="line-block">
+<div class="line">メニュー作成機能には以下の用途があります。</div>
+<div class="line">詳細は「利用手順マニュアル_メニュー作成機能」をご覧ください。</div>
+</div>
+</div></blockquote>
+<p>表 1‑1 メニュー作成機能の概要</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>N
+o</p></th>
+<th class="head"><p>機能名</p></th>
+<th class="head"><p>用途</p></th>
+<th class="head"><p>WEB</p>
+<p>コン
+テンツ</p>
+</th>
+<th class="head"><p>Ba
+ckYard</p>
+<p>コン
+テンツ</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>メニュ
+ー作成機能</p></td>
+<td><p>Webメニューを作成・管理します。</p></td>
+<td><p>○</p></td>
+<td><p>○</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id3">
+<h1>システム構成<a class="headerlink" href="#id3" title="この見出しへのパーマリンク">¶</a></h1>
+<p>メニュー作成機能のシステム構成は、ITAシステムと同じです。</p>
+<p>ここでは、ITAシステムの推奨構成であるバランスHA型構成を図示します。</p>
+<div class="line-block">
+<div class="line">※ ここでは省略した構成図を記載します。</div>
+<div class="line">詳しくは「システム構成／環境構築ガイド_基本編」を参照してください。</div>
+</div>
+</section>
+<section id="id4">
+<h1>システム要件<a class="headerlink" href="#id4" title="この見出しへのパーマリンク">¶</a></h1>
+<div class="line-block">
+<div class="line">メニュー作成機能のシステム要件はITAシステムのシステム要件に準拠するため、</div>
+<div class="line">「システム構成／環境構築ガイド_基本編」を参照してください。</div>
+</div>
+</section>
+
+
+</div>
+
+
+<div id="articleNavigation">
+  <ul>
+  </ul>
+</div>
+
+
+<div id="pageTopLink">
+  <a href="#container"><i>↑</i> Page Top</a>
+</div>
+
+</article>
+</div>
+</main>
+</div><!-- End #contents -->
+<div id="footer">
+  <footer class="divInner">
+    <small>Copyright © 2022 NEC Corporation</small>
+  </footer>
+</div><!-- End #footer -->
+
+<div id="overlay"></div>
+
+</div><!-- End #container -->
+  </body>
+</html>
