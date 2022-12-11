@@ -1,0 +1,282 @@
+@charset "utf-8";
+/* CSS Document */
+
+.documents.ja #articleTitle,
+.documents.ja footer{
+display: none;
+}
+.documents #articleBody iframe {
+height: calc( 100vh - 41px );
+margin-top: 40px;
+border-top: 1px solid #222;
+}
+
+#mainTitle img {
+height: 20px;
+vertical-align: -4px;
+}
+#website.index #articleTitle .background::before {
+background-image: url("../img/header_oase_home_bar.png");
+}
+#website.index #articleTitle .backgroundMonitor .monitor ul::after {
+background-image: url("../img/header_oase_home_monitor.png");
+}
+
+#website.index #articleTitle .backgroundMonitor .monitor li:nth-child(1) { background-image: url("../img/header_oase_home_slide01.jpg"); animation-name: slideImage1; z-index: 5; }
+#website.index #articleTitle .backgroundMonitor .monitor li:nth-child(2) { background-image: url("../img/header_oase_home_slide02.jpg"); animation-name: slideImage2; z-index: 4; }
+#website.index #articleTitle .backgroundMonitor .monitor li:nth-child(3) { background-image: url("../img/header_oase_home_slide03.jpg"); z-index: 3; }
+@keyframes slideImage1 { 25% { opacity: 1; } 33.33333% { opacity: 0; } 91.66666% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes slideImage2 { 58.33333% { opacity: 1; } 66.66666% { opacity: 0; } 100% { opacity: 0; } }
+
+#website.index #articleTitle .background { background-image: url("../img/header_oase_home.jpg"); }
+#article.overview #articleTitle .background { background-image: url("../img/header_overview.jpg"); }
+#article.learn #articleTitle .background { background-image: url("../img/header_learn.jpg"); }
+#article.case #articleTitle .background { background-image: url("../img/header_case.jpg"); }
+#article.documents #articleTitle .background { background-image: url("../img/header_documents.jpg"); }
+#article.downloads #articleTitle .background { background-image: url("../img/header_downloads.jpg"); }
+#article.faq #articleTitle .background { background-image: url("../img/header_faq.jpg"); }
+#article.webinar #articleTitle .background { background-image: url("../img/header_webinar.jpg"); }
+
+@media screen and ( max-width: 640px ){
+
+  #website.index #articleTitle .background,
+  #website.en.index #articleTitle .background {
+    background-image: url("../img/header_home_sp.jpg");
+  }
+
+}
+
+#articleTitle li:first-child a {
+  background-color: #00A9AC;
+  border-color: #00A9AC;
+}
+#articleTitle li:first-child a.hover {
+  background-color: #00C2C5;
+}
+#website.index #articleBody h2,
+#articleBody h2 {
+  border-color: #00A9AC;
+  color: #00A9AC;
+}
+#articleBody #features dt {
+  color: #00A9AC;
+}
+#articleBody h3 {
+background-color: #009093;
+background-image: linear-gradient( 90deg, #009C9F, #00C2C5 );
+border-color: #FFD200;
+}
+#articleBody h3 strong {
+color: #FFE600;
+}
+#articleBody h3.toggleHeading:hover {
+background-color: #00A9AC;
+background-image: none;
+}
+#articleBody .rightImage dt, #articleBody .leftImage dt {
+color: #009093;
+}
+
+
+@media screen and ( max-width: 640px ){
+
+#articleTitle h1 {
+font-size: 8vw;
+}
+
+}
+
+
+#articleBody section:nth-of-type( even ) {
+background-color: rgba( 0, 169, 172, 0.04 );
+}
+
+
+
+
+
+
+
+
+.en #articleBody #features li a {
+    font-size: 1.25rem;
+}
+#articleBody #features li:nth-child(1),
+#articleBody #features li:nth-child(6) { transform: translateX(-10%); }
+#articleBody #features li:nth-child(2),
+#articleBody #features li:nth-child(5) { transform: translateX(-5%); }
+#articleBody #features li:nth-child(3),
+#articleBody #features li:nth-child(4) { transform: translateX( 0 ); }
+#articleBody #features li a {
+background-image: linear-gradient( #FFF, #F2FDFD );
+border: 2px solid #00A9AC;
+}
+#articleBody #features li a:hover {
+background-image: linear-gradient( #FFF, #FFF7F3 );
+border-color: #FF640A;
+color: #FF640A;
+}
+#articleBody #features li i {
+color: #00A9AC;
+}
+#articleBody #features li a:hover i {
+color: #FF640A;
+}
+#articleBody #features #featuresList svg path.pathBack {
+stroke: #30CDCF;
+}
+#articleBody #features #featuresList svg path.pathDotted {
+stroke: #00A9AC;
+}
+@media screen and ( max-width: 640px ){
+
+#articleBody #features li:nth-child(1),
+#articleBody #features li:nth-child(6),
+#articleBody #features li:nth-child(2),
+#articleBody #features li:nth-child(5),
+#articleBody #features li:nth-child(3),
+#articleBody #features li:nth-child(4) { transform: translateX( 0 ); }
+
+}
+
+
+
+
+#faqNavi {
+border-bottom-color: #7AD2D4;
+}
+.faqNaviTitle {
+border-bottom-color: #00A9AC;
+color: #00A9AC;
+}
+#articleBody #faqNavi a.hover {
+color: #00A9AC;
+}
+#articleBody #faqNavi a.open:hover {
+color: #555;
+}
+#articleBody #faqNavi a::after {
+color: #00A9AC;
+}
+#faqContent .q .mark {
+background-color: #00A9AC;
+border-color: #00A9AC;
+}
+#faqContent .q .text {
+border-color: #00A9AC;
+}
+#faqContent .q:hover .text {
+background-color: #F5FCFC;
+}
+#faqContent .a .mark {
+color: #00A9AC;
+}
+
+
+
+
+#quickStart .learnMapImageInner {
+position: relative;
+z-index: 0;
+}
+#articleBody #quickStart .learnMapAreaList,
+#articleBody #quickStart .learnMapLinkList {
+position: absolute;
+left: 0; top: 0;
+width: 100%; height: 100%;
+margin: 0; padding: 0;
+list-style: none;
+}
+#quickStart .learnMapAreaItem {
+position: absolute;
+left: 0; top: 0;
+z-index: 1;
+width: 100%; height: 100%;
+}
+#quickStart img {
+display: block;
+}
+#quickStart .learnMapLink {
+position: absolute;
+z-index: 10;
+}
+#quickStart .learnMapLink.learnMapLinkZabbix,
+#quickStart .learnMapLink.learnMapLinkPrometheus,
+#quickStart .learnMapLink.learnMapLinkCloudWatch {
+width: 18.961%;
+left: 12.554%;
+}
+#quickStart .learnMapLink.learnMapLinkZabbix { top: 33.908%; }
+#quickStart .learnMapLink.learnMapLinkPrometheus { top: 59.040%; }
+#quickStart .learnMapLink.learnMapLinkCloudWatch { top: 84.173%; }
+
+
+#quickStart .learnMapComingSoon {
+display: block;
+position: absolute;
+right: -12%; top: 20%;
+width: 28%; padding-bottom: 20%;
+background: url("../img/learn_map/learn_map_comingsoon.png") left top no-repeat;
+background-size: cover;
+}
+#quickStart .learnMapLinkBase .learnMapComingSoon {
+width: 23%; padding-bottom: 16%;
+}
+
+#quickStart .learnMapLink.learnMapLinkQuickstart,
+#quickStart .learnMapLink.learnMapLinkBase {
+width: 23.344%;
+left: 38.252%;
+}
+#quickStart .learnMapLink.learnMapLinkQuickstart { top: 41.963%; }
+#quickStart .learnMapLink.learnMapLinkBase { top: 67.301%; }
+
+#quickStart span.learnMapLink {
+cursor: no-drop;
+}
+#quickStart a.learnMapLink:hover {
+transform: scale(1.02);
+}
+#quickStart a.learnMapLink:active {
+transform: scale(.98);
+}
+@media screen and ( max-width: 640px ) {
+#quickStart .learnMapImage {
+overflow: auto;
+}
+#quickStart .learnMapImageInner {
+width: 640px;
+}
+#articleBody #quickStart .learnMapAreaList,
+#articleBody #quickStart .learnMapLinkList {
+width: 640px;
+}
+}
+
+
+/* Webinar */
+.webinarTable th, .webinarTable td {
+border-color: #00878A;
+}
+.webinarTable .comingSoon {
+background-color: #F2F2F2;
+text-align: center;
+vertical-align: middle;
+font-size: 24px;
+font-weight: bold;
+color: #CCC;
+}
+.webinarTable thead th {
+background-color: #00A9AC;
+}
+.webinarNumber {
+color: #FFD200;
+}
+.webinarTable tbody th {
+background-color: #B3E5E6;
+}
+.webinarVersionSelectTitle,
+.webinarCodeText,
+.webinarVersionItem.tabOpen .webinarVersionLink {
+color: #00878A;
+}

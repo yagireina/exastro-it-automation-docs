@@ -1,0 +1,569 @@
+<!doctype html>
+<html><!-- InstanceBegin template="/Templates/oase.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144561796-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144561796-1');
+</script>
+<!-- InstanceParam name="pageLanguage" type="text" value="ja" -->
+<!-- InstanceParam name="pageType" type="text" value="article" -->
+<!-- InstanceParam name="pageTitle" type="text" value="learn" -->
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#002B62">
+<meta http-equiv="content-language" content="ja">
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>Learn | Exastro Operation Autonomy Support Engine</title>
+<!-- InstanceEndEditable -->
+<!-- Stylesheet and JavaScript -->
+<link rel="stylesheet" type="text/css" href="../docs/asset/css/common.css">
+<noscript><link rel="stylesheet" type="text/css" href="../docs/asset/css/noscript.css"></noscript>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
+<link href="../docs/asset/font/fontawesome/css/all.min.css" rel="stylesheet">
+<script src="../docs/asset/js/jquery-1.11.3.js"></script>
+<script src="../docs/asset/js/common.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="asset/css/oase.css">
+<script src="../docs/asset/js/article.js"></script>
+
+<link rel="alternate" hreflang="en" href="./learn.html">
+<link rel="alternate" hreflang="ja" href="./learn_ja.html">
+
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+
+<meta name="keywords" content="Exastro, Exastro Suite, OSS">
+<meta name="description" content="Exastro Operation Autonomy Support Engineは、システム運用業務の自動化・効率化・省力化を実現するためのソフトウェアです。システム運用におけるノウハウやドキュメントをルールとして一元管理し、運用情報から対処方法を自動で判断します。さらにExastro IT Automation等の自動化ソフトウェアをコントロールできるため、対処を自動で実行することも可能です。">
+<meta name="thumbnail" content="../asset/img/ogp_twitter_image.jpg" />
+<meta property="og:description" content="Exastro Operation Autonomy Support Engineは、システム運用業務の自動化・効率化・省力化を実現するためのソフトウェアです。システム運用におけるノウハウやドキュメントをルールとして一元管理し、運用情報から対処方法を自動で判断します。さらにExastro IT Automation等の自動化ソフトウェアをコントロールできるため、対処を自動で実行することも可能です。">
+<link rel="image_src" href="./asset/img/ogp_image.jpg">
+<meta property="og:type" content="article">
+<meta property="og:url" content="./index_ja.html">
+<meta property="og:title" content="Exastro Suite">
+<meta property="og:image" content="./asset/img/ogp_image.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Exastro Suite">
+<meta name="twitter:image" content="../docs/asset/img/ogp_twitter_image.jpg">
+
+
+<!-- InstanceBeginEditable name="head" -->
+<script src="../docs/asset/js/view_documents.js"></script>
+<script>
+$(function(){
+  //var url = location.protocol + "://" + location.host + '/oase-docs/asset/json/documents.json';
+  var url = './asset/json/documents.json';
+  viewDocuments( url );
+});
+</script>
+<!-- InstanceEndEditable -->
+
+</head>
+
+<body id="article" class="oase learn ja">
+
+<div id="container">
+
+<!-- Facebook SDK -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v4.0"></script>
+
+
+<header>
+<div id="header">
+
+<div id="titleArea">
+
+<div id="logo">
+<a href="#"><img src="../docs/asset/img/exastro.svg" alt="Exastro"></a>
+</div>
+<div id="suiteList">
+  <script src="../docs/asset/js/menu_suite.js"></script>
+</div>
+
+<div id="mainTitle">
+<a href="index_ja.html"><span><img src="asset/img/oase.svg" alt="OASE | Operation Autonomy Support Engine"></span></a>
+</div>
+
+</div>
+
+<nav>
+
+<ul id="mainMenu">
+<li class="sp"><a href="index_ja.html" class="home"><i class="fas fa-home"></i><span>Home</span></a></li>
+<li><a href="overview_ja.html" class="overview"><i class="fas fa-server"></i><span>Overview</span></a></li>
+<li><a href="learn_ja.html" class="learn"><i class="fas fa-school"></i><span>Learn</span></a></li>
+<li><a href="webinar_ja.html" class="webinar"><i class="fas fa-video"></i><span>Webinar</span></a></li>
+<li><a href="case_ja.html" class="case"><i class="fas fa-book"></i><span>Case</span></a></li>
+<li><a href="documents_ja.html" class="documents"><i class="fas fa-file-alt"></i><span>Documents</span></a></li>
+<li><a href="downloads_ja.html" class="downloads"><i class="fas fa-download"></i><span>Downloads</span></a></li>
+<li><a href="faq_ja.html" class="faq"><i class="fas fa-question-circle"></i><span>FAQ</span></a></li>
+</ul>
+
+<ul id="subMenu">
+<li><a href="https://twitter.com/ExastroSuite" class="twitter" target="_blank" rel="noopener"><i class="fab fa-twitter-square"></i></a><span>Twitter</span></li>
+<li><a href="https://www.facebook.com/ExastroSuite/" class="facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-square"></i></a><span>Facebook</span></li>
+<li><a href="https://www.youtube.com/channel/UC-kwQiXQfmYXTPbrGR-8qxw" class="youtube" target="_blank" rel="noopener"><i class="fab fa-youtube-square"></i></a><span>YouTube</span></li>
+<li><a href="https://github.com/exastro-suite" class="github" target="_blank" rel="noopener"><i class="fab fa-github-square"></i></a><span>GitHub</span></li>
+<li><span class="share subMenuPlus touch"><i class="fas fa-share-alt"></i></span><span>Share</span></li>
+<li><span class="language subMenuPlus touch"><i class="fas fa-globe"></i></span><span>Language</span></li>
+</ul>
+
+<ul id="shareMenu"> 
+  <li><a href="https://twitter.com/intent/tweet?text=Exastro%20Operation%20Autonomy%20Support%20Engine%26url%3Dhttps%3A%2F%2Fexastro-suite.github.io%2Foase-docs%26amp%3Bhashtags%3DExastro%2COASE%2COperation_Autonomy_Support_Engine%2COSS" target="_blank" rel="noopener"><i class="fab fa-twitter"></i><span>Tweet</span></a></li>
+  <li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fexastro-suite.github.io%2Foase-docs%26src%3Dsdkpreparse" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i><span>Facebook</span></a></li>
+  <li><a href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Fexastro-suite.github.io%2Foase-docs" target="_blank" rel="noopener"><i class="fab fa-line"></i><span>LINE</span></a></li>
+</ul>
+
+<ul id="languageMenu">
+<li><!-- InstanceBeginEditable name="EditHeaderLanguageMenuArea" --><a href="./learn.html" class="en">English</a>
+<!-- InstanceEndEditable --></li>
+<li><span>Japanese</span></li>
+</ul>
+
+</nav>
+</div>
+</header>
+
+
+
+
+
+<main>
+
+<article>
+
+<div id="articleTitle">
+<section>
+<div class="sectionInner">
+<!-- InstanceBeginEditable name="EditContentHeaderArea" -->
+<h1><small>Exastro OASE</small><br>
+Learn</h1>
+<!--<p></p>-->
+<!-- InstanceEndEditable -->
+</div>
+</section>
+</div>
+
+<div id="articleBody">
+<!-- InstanceBeginEditable name="EditContentBodyArea" -->
+<nav id="contentsMenu">
+  <ul>
+		<li><a href="#deploy" class="touch anker">デプロイ例 <i class="fas fa-angle-down"></i></a></li>
+    <li><a href="#introduction" class="touch anker">導入手順 <i class="fas fa-angle-down"></i></a></li>
+    <li><a href="#quickStart" class="touch anker">クイックスタート <i class="fas fa-angle-down"></i></a></li>
+    <li><a href="#base" class="touch anker">Base<i class="fas fa-angle-down"></i></a></li>
+    <li class="toggleMenu"><span class="touch anker">監視ソフトウェア連携 <i class="fas fa-bars"></i></span>
+      <ul>
+        <li><a href="#zabbix" class="touch anker">Zabbix連携 <i class="fas fa-angle-down"></i></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+<section id="deploy">
+  <div class="sectionInner">
+  
+    <h2><em>Exastro OASE</em> のデプロイ例</h2>
+
+    <div class="tabContents">
+      <!-- tab menu -->
+      <div class="tabMenu">
+        <ul class="tabMenuList">
+          <li class="tabMenuItem"><a class="tabMenuLink touch" href="#deploy_allInOne">オールインワン構成</a></li>
+          <li class="tabMenuItem"><a class="tabMenuLink touch" href="#deploy_highAvailability">ハイアベイラビリティ構成</a></li>
+        </ul>
+      </div>
+
+      <div id="deploy_allInOne" class="tabContent">
+        <h3><strong>オールインワン</strong>構成</h3>
+        <p class="image"><span class="loupe touch"><span class="exImage"><img src="./asset/img/deploy_all_in_one.png" alt="オールインワン構成"></span></span></p>
+      </div>
+
+      <div id="deploy_highAvailability" class="tabContent">
+        <h3><strong>ハイアベイラビリティ</strong>構成</h3>
+        <h4>サーバ分散型HA構成</h4>
+        <p class="image"><span class="loupe touch"><span class="exImage"><img src="./asset/img/deploy_high_availability.png" alt="ハイアベイラビリティ サーバ分散型HA構成"></span></span></p>
+      </div>
+      
+    </div>
+
+  </div>
+</section>
+
+<section id="introduction">
+  <div class="sectionInner">
+
+    <h2><em>Exastro OASE</em> を導入しよう</h2>
+    <p>Exastro OASEのインストール方法から基本的な画面の説明を行います。</p>
+    
+    <div class="tabContents subTabContents">
+      <div class="tabMenu">
+        <ul class="tabMenuList">
+          <li class="tabMenuItem"><a class="tabMenuLink touch" href="#install_online">Online</a></li>
+          <li class="tabMenuItem"><a class="tabMenuLink touch" href="#install_offline">Offline</a></li>
+          <li class="tabMenuItem"><a class="tabMenuLink touch" href="#install_versionup">Version up</a></li>
+          <li class="tabMenuItem"><a class="tabMenuLink touch" href="#install_container">Container</a></li>
+        </ul>
+      </div>
+      <div id="install_online" class="tabContent">
+        <h3>オンラインインストール</h3>
+        <div class="viewDocument" data-document="Install_Online"></div>
+        <p style="text-align:left;">お手持ちの環境に OASEをすぐにインストールするためのインストールマニュアルです。RedHat系Linuxディストリビューションに対応しており、インターネットに接続できる必要があります。</p>
+
+        <p style="text-align:left;">インストール完了後、下記の OASEクイックスタートを始めれば、すぐにOASEの魅力的なインターフェースを体験いただくことが可能です。</p>
+
+        <p style="text-align:left;">またOASEインストール前の準備につきましては、<a href="./documents_ja.html" title="OASEドキュメント">こちら</a>をご参照ください。</p>
+        <p><a href="asset/Learn_ja/OASE-online-install_ja.pdf" class="download" download="Operation Autonomy Support Engine オンラインインストール"><i class="fas fa-file-pdf"></i>  マニュアルをダウンロード<i class="note">(PDF)</i></a></p>
+      </div>
+      <div id="install_offline" class="tabContent">
+        <h3>オフラインインストール</h3>
+        <div class="viewDocument" data-document="Install_Offline"></div>
+        <p>お手持ちの環境によっては、外部との通信を制限されている場合がございます。</p>
+        <p>このような環境下の場合でも OASEをご利用いただけるよう、オフラインインストール手順をご紹介いたします。</p>
+        <p><a href="asset/Learn_ja/OASE-offline-install_ja.pdf" class="download" download="Operation Autonomy Support Engine オフラインインストール"><i class="fas fa-file-pdf"></i>  マニュアルをダウンロード<i class="note">(PDF)</i></a></p>
+      </div>
+      <div id="install_versionup" class="tabContent">
+        <h3>バージョンアップ</h3>
+        <div class="viewDocument" data-document="Install_Versionup"></div>
+        <p>OASEはバージョンアップすることが可能です。<br>
+        バージョンアップはVer1.2.0以降のオールインワン構成をサポートしています。</p>
+        <p><a href="asset/Learn_ja/OASE-versionup-install_ja.pdf" class="download" download="Operation Autonomy Support Engine バージョンアップインストール"><i class="fas fa-file-pdf"></i>  マニュアルをダウンロード<i class="note">(PDF)</i></a></p>
+      </div>
+      <div id="install_container" class="tabContent">
+        <h3>コンテナインストール</h3>
+        <div class="rightImage image33"><img src="../docs/asset/img/install_container_docker.png" alt="Container"></div>
+        <p>お手持ちのコンテナ環境にOASEをすぐに起動できます。<br>
+        インターネットに接続できる必要があります。<br>
+        コンテナ起動後、下記のOASEクイックスタートを始めれば、すぐにOASEの魅力的なインターフェースを体験いただくことが可能です。</p>
+
+        <div class="stepContents">
+          <ol class="stepContensList">
+            <li class="stepContentItem">
+              <dl class="stepContent">
+                <dt class="stepContentTitle"><span class="stepContentNumber">Step - 1</span> :コンテナの起動</dt>
+                <dd class="stepContentBody">
+                  <p class="stepContentBodyHeading" style="color:#2496ed;">Docker</p>
+                  <pre style="white-space: normal;"># docker run --hostname="exastro-oase" --privileged --add-host=exastro-oase:127.0.0.1 -d -p 8080:80 -p 10443:443 --name exastro01 exastro/oase:x.x.x</pre>
+                  <p>※ポート番号(8080,10443)とバージョン(x.x.x)は適宜変更してください。</p>
+                </dd>
+              </dl>
+            </li>
+            <li class="stepContentItem">
+              <dl class="stepContent">
+                <dt class="stepContentTitle"><span class="stepContentNumber">Step - 2</span>Operation Autonomy Support Engineコンソールにアクセス</dt>
+                <dd class="stepContentBody">
+                  <p>https://<span class="dummyVariable">[Container-Host-IP]</span>:10443/oase_web/top/login or http://<span class="dummyVariable">[Container-Host-IP]</span>:8080/oase_web/top/login</p>
+                  <p>※ポート番号(8080,10443)は適宜変更してください。</p>
+                </dd>
+              </dl>
+            </li>
+            <li class="stepContentItem">
+              <dl class="stepContent">
+                <dt class="stepContentTitle"><span class="stepContentNumber">Step - 3</span> :ログイン</dt>
+                <dd class="stepContentBody">
+                  <p>ログイン画面が表示されたら、指定のログインID、初期パスワードを入力して、[ログイン]ボタンをクリックしてください。</p>
+                  <p>・ログインID ： administrator<br>
+                  ・初期パスワード ： oaseoaseoase</p>
+                  <p>※インストール後に初めてログインした場合は、「パスワード変更画面」に遷移します。<br>
+                  ※パスワード変更画面から、初期パスワードを変更してください。</p>
+                </dd>
+              </dl>
+            </li>
+            <li class="stepContentItem">
+              <dl class="stepContent">
+                <dt class="stepContentTitle">注意事項</dt>
+                <dd class="stepContentBody">
+                  <p>イメージの詳細は<a href="https://hub.docker.com/r/exastro/oase" target="_blank">Docker-Hub</a>のREADMEを参照ください。</p>
+                </dd>
+              </dl>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="quickStart">
+  <div class="sectionInner">
+
+    <h2><em>Exastro OASE</em> を触ってみよう</h2>
+    
+    <h3><em>Exastro OASE</em> Learn MAP</h3>
+    
+    <div class="learnMapImage">
+      <div class="learnMapImageInner">
+        <div class="learnMapBase"><img src="./asset/img/learn_map/learn_map_ja.png" alt="Learn MAP"></div>
+        <ul class="learnMapLinkList">
+          <li class="learnMapLinkItem"><a href="#quickStartMain" class="learnMapLink learnMapLinkQuickstart anker" data-type="Quickstart"><img src="./asset/img/learn_map/learn_map_btn_quickstart_ja.png" alt="クイックスタート※"></a></li>
+          <li class="learnMapLinkItem"><a href="#base" class="learnMapLink learnMapLinkBase anker" data-type="Base"><img src="./asset/img/learn_map/learn_map_btn_base.png" alt="Exastro OASE Base※"></a></li>
+          <li class="learnMapLinkItem"><a href="#zabbix" class="learnMapLink learnMapLinkZabbix anker" data-type="Zabbix"><img src="./asset/img/learn_map/learn_map_btn_zabbix_ja.png" alt="Zabbix連携編※"></a></li>
+          <li class="learnMapLinkItem"><a href="#prometheus" class="learnMapLink learnMapLinkPrometheus anker" data-type="Prometheus"><img src="./asset/img/learn_map/learn_map_btn_prometheus_ja.png" alt="Prometheus連携編※"></a></li>
+          <li class="learnMapLinkItem"><a href="#grafana" class="learnMapLink learnMapLinkGrafana anker" data-type="Grafana"><img src="./asset/img/learn_map/learn_map_btn_grafana_ja.png" alt="Grafana連携編※"></a></li>
+          <li class="learnMapLinkItem"><span class="learnMapLink learnMapLinkCloudWatch" data-type="CloudWatch"><img src="./asset/img/learn_map/learn_map_btn_cloudwatch_ja.png" alt="CloudWatch連携編※"><span class="learnMapComingSoon"></span></span></li>
+        </ul>
+        <ul class="learnMapAreaList">
+          <li class="learnMapAreaItem learnMapAreaQuickstart" data-type="Quickstart"><img src="./asset/img/learn_map/learn_map_area_mail.png" alt="クイックスタート"></li>
+          <li class="learnMapAreaItem learnMapAreaBase" data-type="Base"><img src="./asset/img/learn_map/learn_map_area_ita.png" alt="Exastro OASE Base"></li>
+          <li class="learnMapAreaItem learnMapAreaZabbix" data-type="Zabbix"><img src="./asset/img/learn_map/learn_map_area_zabbix.png" alt="Zabbix連携編"></li>
+          <li class="learnMapAreaItem learnMapAreaPrometheus" data-type="Prometheus"><img src="./asset/img/learn_map/learn_map_area_prometheus.png" alt="Prometheus連携編"></li>
+          <li class="learnMapAreaItem learnMapAreaGrafana" data-type="Grafana"><img src="./asset/img/learn_map/learn_map_area_grafana.png" alt="Grafana連携編"></li>
+          <li class="learnMapAreaItem learnMapAreaCloudWatch" data-type="CloudWatch"><img src="./asset/img/learn_map/learn_map_area_cloudwatch.png" alt="CloudWatch連携編"></li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      // 表示を切り替える
+      (function(){
+        $('.learnMapLink').on({
+          'mouseenter touchstart': function(){
+            const type = $( this ).attr('data-type');
+            $('.learnMapAreaItem').not('[data-type="' + type + '"]').hide();
+            $('.learnMapLink').not('[data-type="' + type + '"]').css('opacity','0.2');
+          },
+          'mouseleave touchend': function(){
+            $('.learnMapAreaItem').show();
+            $('.learnMapLink').css('opacity','1');
+          },
+        })
+      }());
+    </script>
+    
+    <h3 id="quickStartMain"><em>Exastro OASE</em> クイックスタート</h3>
+    <div class="viewDocument wide" data-document="Quick_start"></div>
+    <p>OASEのインタフェースをスムーズに体感頂くために、クイックスタートをご用意しました。</p>
+    <p>OASEではいくつかのソフトウェアと連携が可能ですが、それらの中で設定が簡易であるメールソフトとの連携を体感頂けます。</p>
+    <p>また OASEは「監視アダプタによるキック」および「ITAと連動したアクション実行」といった最重要な機能を提供していますが、クイックスタートではスムーズに体感頂くために、敢えてこれらの機能の活用を割愛しています。</p>
+    <p><a href="asset/Learn_ja/OASE-quickstart_ja.pdf" class="download" download="Exastro OASE クイックスタート"><i class="fas fa-file-pdf"></i>  マニュアルをダウンロード<i class="note">(PDF)</i></a></p>
+
+  </div>
+</section>
+
+<section id="base">
+  <div class="sectionInner">
+  
+    <h2><em>Exastro OASE</em> Base</h2>
+    <p>OASEの基本機能の利用手順をご用意しました。<br>
+    本書は、ポイントを絞り込んだ「座学編」、簡単にハンズオンしたい方のための「実習編」の2部構成になっております。<br>
+    機能ごとの特長を分かりやすく解説し、イメージしづらい概念的な内容は図解している為、効率よく OASEの共通機能を理解することが可能です。</p>
+
+    <div class="floatContents">
+      <!-- classroomLecture -->
+      <div id="classroomLecture" class="halfContent">
+        <h3><strong>座学</strong>編</h3>
+        <div class="viewDocument only wide" data-document="BASE_Tutorial">
+        </div>
+        <p><a href="asset/Learn_ja/OASE-base_ITA-Driver_lecture_ja.pdf" class="download" download="OASE Base 座学"><i class="fas fa-file-pdf"></i> マニュアルをダウンロード<i class="note">(PDF)</i></a></p>
+      </div>
+      <!-- practice -->
+      <div id="practice" class="halfContent">
+        <h3><strong>実習</strong>編</h3>
+        
+        <div class="viewDocument only wide" data-document="BASE_Practice">
+        </div>
+        <p><a href="asset/Learn_ja/OASE-base_ITA-Driver_practice_ja.pdf" class="download" download="OASE Base 実習"><i class="fas fa-file-pdf"></i> マニュアルをダウンロード<i class="note">(PDF)</i></a></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="zabbix">
+  <div class="sectionInner">
+  
+    <h2><em>Exastro OASE</em> Zabbix連携</h2>
+    <p>OASEの「Zabbix連携」の利用手順をご用意しました。<br>
+    本書は、ポイントを絞り込んだ「座学編」、簡単にハンズオンしたい方のための「実習編」の2部構成になっております。<br>
+    「Zabbixアダプタ」を用いたpull型のイベント検知をすることができます。</p>
+
+    <div class="floatContents">
+      <!-- classroomLecture -->
+      <div id="zabbixLecture" class="halfContent">
+        <h3><strong>座学</strong>編</h3>
+        <div class="viewDocument only wide" data-document="ZABBIX_Tutorial">
+        </div>
+        <p><a href="asset/Learn_ja/OASE-zabbix_lecture_ja.pdf" class="download" download="OASE Zabbix連携 座学"><i class="fas fa-file-pdf"></i> マニュアルをダウンロード<i class="note">(PDF)</i></a></p>
+      </div>
+      <!-- practice -->
+      <div id="zabbixPractice" class="halfContent">
+        <h3><strong>実習</strong>編</h3>
+        
+        <div class="viewDocument only wide" data-document="ZABBIX_Practice">
+        </div>
+        <p><a href="asset/Learn_ja/OASE-zabbix_practice_ja.pdf" class="download" download="OASE Zabbix連携 実習"><i class="fas fa-file-pdf"></i> マニュアルをダウンロード<i class="note">(PDF)</i></a></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="prometheus">
+  <div class="sectionInner">
+  
+    <h2><em>Exastro OASE</em> Prometheus連携</h2>
+    <p>OASEの「Prometheus連携」の利用手順をご用意しました。<br>
+    本書は、簡単にハンズオンしたい方のための「実習編」のみのご用意となっております。<br>
+    「Prometheusアダプタ」を用いたpull型のイベント検知をすることができます。</p>
+
+    <div class="floatContents">
+      <!-- practice -->
+      <div id="prometheusPractice" class="halfContent">
+        <h3><strong>実習</strong>編</h3>
+        
+        <div class="viewDocument only wide" data-document="Prometheus_Practice">
+        </div>
+        <p><a href="asset/Learn_ja/OASE-prometheus_practice_ja.pdf" class="download" download="OASE Prometheus連携 実習"><i class="fas fa-file-pdf"></i> マニュアルをダウンロード<i class="note">(PDF)</i></a></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="grafana">
+  <div class="sectionInner">
+  
+    <h2><em>Exastro OASE</em> Grafana連携</h2>
+    <p>OASEの「Grafana連携」の利用手順をご用意しました。<br>
+    本書は、簡単にハンズオンしたい方のための「実習編」のみのご用意となっております。<br>
+    「Grafanaアダプタ」を用いたpull型のイベント検知をすることができます。</p>
+
+    <div class="floatContents">
+      <!-- practice -->
+      <div id="grafanaPractice" class="halfContent">
+        <h3><strong>実習</strong>編</h3>
+        
+        <div class="viewDocument only wide" data-document="Grafana_Practice">
+        </div>
+        <p><a href="asset/Learn_ja/OASE-grafana_practice_ja.pdf" class="download" download="OASE Grafana連携 実習"><i class="fas fa-file-pdf"></i> マニュアルをダウンロード<i class="note">(PDF)</i></a></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="servicenow">
+  <div class="sectionInner">
+  
+    <h2><em>Exastro OASE</em> Service Now連携</h2>
+    <p>OASEの「Serivce Now連携」の利用手順をご用意しました。<br>
+      本書は、ポイントを絞り込んだ「座学編」、簡単にハンズオンしたい方のための「実習編」の2部構成になっております。<br>
+    「Service Nowドライバ」を用いたアクション実行をすることができます。</p>
+
+    <div class="floatContents">
+      <!-- practice -->
+      <div id="servicenowLecture" class="halfContent">
+        <h3><strong>座学</strong>編</h3>
+        
+        <div class="viewDocument only wide" data-document="ServiceNow_Tutorial">
+        </div>
+        <p><a href="asset/Learn_ja/OASE-servicenow_lecture_ja.pdf" class="download" download="OASE ServiceNow連携 座学"><i class="fas fa-file-pdf"></i> マニュアルをダウンロード<i class="note">(PDF)</i></a></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- InstanceEndEditable -->
+</div>
+
+</article>
+
+</main>
+
+
+
+
+
+<!-- Go To TOP -->
+<div id="topMove"><a href="#" class="touch anker"><i class="fas fa-arrow-up"></i><span>Page Top</span></a></div>
+
+
+
+
+
+<!-- FOOTER -->
+<footer>
+
+  <div id="footerInner">
+
+    <div id="footerAbout">
+      <div id="footerLogo"><img src="../docs/asset/img/exastro.svg" alt="Exastro"></div>
+      <p>Exastro is an open source software suite for digitizing, automating and labor saving the system life cycle.</p>
+    </div>
+
+    <div id="footerMenu">
+
+      <script src="../docs/asset/js/menu_footer.js"></script>
+
+      <div id="footerShareMenu">
+        <dl>
+          <dt><i class="fas fa-share-alt"></i><span>Share</span></dt>
+          <dd>
+            <ul> 
+                <li><a href="https://twitter.com/intent/tweet?text=Exastro%20Operation%20Autonomy%20Support%20Engine%26url%3Dhttps%3A%2F%2Fexastro-suite.github.io%2Foase-docs%26amp%3Bhashtags%3DExastro%2COASE%2COperation_Autonomy_Support_Engine%2COSS" target="_blank" rel="noopener"><i class="fab fa-twitter"></i><span>Tweet</span></a></li>
+                <li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fexastro-suite.github.io%2Foase-docs%26src%3Dsdkpreparse" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i><span>Facebook</span></a></li>
+                <li><a href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Fexastro-suite.github.io%2Foase-docs" target="_blank" rel="noopener"><i class="fab fa-line"></i><span>LINE</span></a></li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+
+    </div><!-- /#footerMenu -->
+
+  </div><!-- /#footerInner -->
+
+  <div id="copyright">
+    <p><small><script src="../docs/asset/js/copyright.js"></script></small></p>
+  </div>
+
+</footer>
+
+
+
+
+
+<!-- InstanceBeginEditable name="EditFooterArea" -->
+<!-- InstanceEndEditable -->
+
+
+
+
+
+</div><!-- /#container -->
+
+
+
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<script type="text/javascript">
+piAId = '873721';
+piCId = '21538';
+piHostname = 'pi.pardot.com';
+
+(function() {
+	function async_load(){
+		var s = document.createElement('script'); s.type = 'text/javascript';
+		s.src = ('https:' == document.location.protocol ? 'https://pi' : 'http://cdn') + '.pardot.com/pd.js';
+		var c = document.getElementsByTagName('script')[0]; c.parentNode.insertBefore(s, c);
+	}
+	if(window.attachEvent) { window.attachEvent('onload', async_load); }
+	else { window.addEventListener('load', async_load, false); }
+})();
+</script>
+</body>
+<!-- InstanceEnd --></html>

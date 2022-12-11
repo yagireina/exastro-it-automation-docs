@@ -1,0 +1,73 @@
+{
+	"en": {
+		"Install_Online": {
+      "type": "pdf",
+      "url": "Learn/OASE-online-install.pdf"
+    },
+		"Install_Offline": {
+      "type": "pdf",
+      "url": "Learn/OASE-offline-install.pdf"
+    },
+		"Install_Versionup": {
+      "type": "pdf",
+      "url": "Learn/OASE-versionup-install.pdf"
+    },
+		"Quick_start": {
+      "type": "pdf",
+      "url": "Learn/OASE-quickstart.pdf"
+    }
+	},
+	"ja": {
+		"Install_Online": {
+      "type": "pdf",
+      "url": "Learn_ja/OASE-online-install_ja.pdf"
+    },
+		"Install_Offline": {
+      "type": "pdf",
+      "url": "Learn_ja/OASE-offline-install_ja.pdf"
+    },
+		"Install_Versionup": {
+      "type": "pdf",
+      "url": "Learn_ja/OASE-versionup-install_ja.pdf"
+    },
+		"Quick_start": {
+      "type": "pdf",
+      "url": "Learn_ja/OASE-quickstart_ja.pdf"
+    },
+		"BASE_Tutorial": {
+      "type": "pdf",
+      "url": "Learn_ja/OASE-base_ITA-Driver_lecture_ja.pdf"
+    },
+		"BASE_Practice": {
+      "type": "pdf",
+      "url": "Learn_ja/OASE-base_ITA-Driver_practice_ja.pdf"
+    },
+		"ZABBIX_Tutorial": {
+      "type": "pdf",
+      "url": "Learn_ja/OASE-zabbix_lecture_ja.pdf"
+    },
+		"ZABBIX_Practice": {
+      "type": "pdf",
+      "url": "Learn_ja/OASE-zabbix_practice_ja.pdf"
+    },
+		"Prometheus_Practice": {
+      "type": "pdf",
+      "url": "Learn_ja/OASE-prometheus_practice_ja.pdf"
+    },
+		"Grafana_Practice": {
+      "type": "pdf",
+      "url": "Learn_ja/OASE-grafana_practice_ja.pdf"
+    },
+		"ServiceNow_Tutorial": {
+      "type": "pdf",
+      "url": "Learn_ja/OASE-servicenow_lecture_ja.pdf"
+    }
+	},
+	"config": {
+    "pdf_viewer_url" : "https://exastro-suite.github.io/docs/asset/library/pdfjs/web/viewer.html?file=",
+    "pdf_viewer_parameters" : "#page=1",
+		"pdf_url": "https://exastro-suite.github.io/oase-docs/asset/",
+		"slide_url": "https://docs.google.com/presentation/d/e/",
+		"slide_parameters": "/embed?start=false&loop=false&delayms=3000"
+	}
+}

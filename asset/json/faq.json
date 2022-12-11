@@ -1,0 +1,82 @@
+{
+    "ja": {
+        "全般": {
+            "1": {
+                "Q": "「SMTPサーバーの接続情報が設定されていません。OASEインストール時の初期設定をご確認ください」という旨のメッセージが表示された。",
+                "A": "SMTPサーバの接続情報の設定内容に誤りがあるため出力されているメッセージです。\nSMTP設定値の例に従い、接続情報の再設定をお願いいたします。\n\nSMTP設定値の例)\n{'IPADDR':'127.0.0.1', 'PORT':25, 'AUTH':FALSE}\n\n■設定方法\n[データベースへ直接アクセス可能な場合]\nOASE_T_SYSTEM.config_id=\"OASE_MAIL_SMTP\"レコードの\nvalueカラムに直接設定する。\n\n[DBへ直接アクセスできない場合]\nインストール時に設定した「oase_answers.txt」 の oasemail_smtp に値を設定し、\n再読み込みを実施する。"
+            },
+            "data": {
+                "frequently": "",
+                "abbreviation": "",
+                "icon": "fa-sticky-note",
+                "id": "general"
+            }
+        },
+        "ディシジョンテーブル": {
+            "1": {
+                "Q": "ディシジョンテーブルの作成、または、削除試行の度にエラーとなる",
+                "A": "{a{https://exastro-suite.github.io/oase-docs/OASE_documents_ja/html/settings/installation.html}環境構築マニュアル -基本編-}の\n「注意事項」をご参照の上、RHDMの再起動またはメモリのチューニングの対応を実施してください。"
+            },
+            "data": {
+                "frequently": "",
+                "abbreviation": "",
+                "icon": "fa-table",
+                "id": "decision-table"
+            }
+        },
+        "ルール": {
+            "1": {
+                "Q": "「適用プロセスでエラーが発生しました。再度ルールファイルのアップロードをしてください」の文言に従い、再試行を重ねても同じエラーが発生し続ける",
+                "A": "{a{https://exastro-suite.github.io/oase-docs/OASE_documents_ja/html/settings/installation.html}環境構築マニュアル -基本編-}の\n「注意事項」をご参照の上、RHDMの再起動またはメモリのチューニングの対応を実施してください。"
+            },
+            "2": {
+                "Q": "「ルール実行でエラーが発生しました。再実行を試みてください。何度も同じエラーとなる場合、ディシジョンテーブル画面から不要なディシジョンテーブル名を削除することで、エラーが解消されることもあります」の文言に従い、再試行を重ねても同じエラーが発生し続ける",
+                "A": "{a{https://exastro-suite.github.io/oase-docs/OASE_documents_ja/html/settings/installation.html}環境構築マニュアル -基本編-}の\n「注意事項」をご参照の上、RHDMの再起動またはメモリのチューニングの対応を実施してください。"
+            },
+            "data": {
+                "frequently": "",
+                "abbreviation": "",
+                "icon": "fa-list",
+                "id": "rule"
+            }
+        },
+        "アクション履歴": {
+            "1": {
+                "Q": "アクション履歴のログ詳細に「実行状況の取得ができませんでした」と表示され、ITAアクションの結果が分からない。",
+                "A": "ITAが正常に動作しているか確認してください。"
+            },
+            "data": {
+                "frequently": "",
+                "abbreviation": "",
+                "icon": "fa-running",
+                "id": "action-history"
+            }
+        }
+    },
+    "en": {
+        "General": {
+            "1": {
+                "Q": "An message with this instruction appeared.\n\"No SMTP server connection information is set. Please check the initial settings when OASE was installed.\"",
+                "A": "This message is displayed when there is an error in the contents of the set SMTP Server Connection information.\nPlease use the example listed below to reconfigure your connection information. \n\nSMTP Settings value example)\n{'IPADDR':'127.0.0.1', 'PORT':25, 'AUTH':FALSE}\n\n■How to configure it\n[If it's possible to directly access the database]\nDirectly set the value in the value collumn in the OASE_T_SYSTEM.config_id=\"\"OASE_MAIL_SMTP\"\" record.\n\n[If you dont have direct access to the database]\nset the value to oasemail_smtp in the \"oase_answers.txt\" file you set when installing OASE and reboot the system."
+            },
+            "data": {
+                "frequently": "",
+                "abbreviation": "",
+                "icon": "fa-sticky-note",
+                "id": "general"
+            }
+        },
+        "Action history": {
+            "1": {
+                "Q": "In the detailed Action history log, \"Could not acquire execution status\",\nmeaning that I cant see the results of the ITA Action. ",
+                "A": "Please check if ITA is running normally."
+            },
+            "data": {
+                "frequently": "",
+                "abbreviation": "",
+                "icon": "fa-running",
+                "id": "action-history"
+            }
+        }
+    }
+}
