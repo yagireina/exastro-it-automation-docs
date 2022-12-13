@@ -8,7 +8,7 @@ on:
 
 jobs:
   auto-merge:
-    if: github.ref_name != 'main'
+    if: github.ref_name != 'main' && github.repository_owner != 'exastro-suite'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
