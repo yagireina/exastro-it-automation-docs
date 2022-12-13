@@ -19,7 +19,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          PULL_REQUEST_URI=$(gh pr create -B main -t 'Create pull request to main' -l 'auto merge' -b "")
+          PULL_REQUEST_URI=$(gh pr create -B main -t 'Create pull request to main' -b "")
           echo "::set-output name=PULL_REQUEST_URI::$PULL_REQUEST_URI"
       - name: Merge Pull Request ${{ github.ref_name }} to main
         env:
