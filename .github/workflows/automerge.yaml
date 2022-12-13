@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: github.ref
+          ref: ${{ github.ref }}
       - name: Create Pull Request ${{ github.ref_name }} to main
         id: create-pull-request
         env:
