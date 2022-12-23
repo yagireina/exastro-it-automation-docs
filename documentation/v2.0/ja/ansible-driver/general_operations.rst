@@ -4129,981 +4129,983 @@ Movement-Playbook紐付（Movement-対話種別紐付、Movement-ロール紐付
 
 構築コード記述方法
 ==================
-.. _general_operations_write_playbook_ansible_legacy:
-Playbook（Ansible-Legacy）の記述
---------------------------------
-| 「 :ref:`general_operations_playbook_file_list_ansible_legacy_only` 」でアップロードされたPlaybookは、ITAで生成するマスターPlaybookよりinclude形式で実行されます。
-| ITAで作成するマスターPlaybookはへッダーセクションとtasksセクションで構成されます。
-
-
-ヘッダーセクション
-~~~~~~~~~~~~~~~~~~~~~
-
-| アップロードアップロードするPlaybookにはヘッダーセクションは含む必要はありません。
-| ヘッダーセクションは、デフォルト値が決まっていますが、「 :ref:`general_operations_movement_list` 」のヘッダーセクションで変更することが出来ます。
-|
-| ▼ヘッダーセクションのデフォルト値について 
-- | Ansible Coreの場合 
-
-.. code-block:: yaml
-
-   # ヘッダーセクションのデフォルト値　
-     - hosts: all
-       remote_user: "{{ __loginuser__ }}"
-       gather_facts: no
-       become: no
-
-- | Ansible Automation Controllerの場合 
-
-.. code-block:: yaml  
-
-   # ヘッダーセクションのデフォルト値　
-     - hosts: all                                                
-       gather_facts: no                                         
-       become: yes                                              
-
-tasksセクション
-~~~~~~~~~~~~~~~~ 
-| アップロードされたPlaybookは、ITAで生成するマスタPlaybookよりinclude形式で実行されます。
-| Playbook基本書式についてはAnsibleの公式マニュアルを参照してください。
-|
-| 例)
-
-.. code-block:: yaml
-   
-   - name: コメント                                                     
-     template:                                                          
-       src:   "{{ item.src }}"                                         
-       dest:  "{{ item.dest }}"                                          
-       owner: "{{ item.owner is none |ternary('root', item.owner) }}"    
-       group: "{{ item.group is none |ternary('bacula', item.group) }}"   
-       mode:  "{{ item.mode is none |ternary('0654', item.mode) }}"
-   
-.. warning:: | Playbook内のインデントは2倍数で調整して下さい。
- | 文字コードは、UTF-8のBOMなしで作成して下さい。
-
-| アップロードさたPlaybookは、「 :ref:`general_operations_movement_details` 」のインクルード順序に従いincludeします。
-   
-.. figure:: ./general_operations/image_2b_1.png
-   :align: center
-   :width: 6.85417in
-   :height: 4.67187in
-
-
-.. _general_operations_write_dialog_file_ansible_pioneer:
-対話ファイル（Ansible-Pioneer）の記述
----------------------------------------
-| Ansible-Pioneerでは、ITA独自モジュールをAnsibleに組込んでいます。
-| 対話ファイルはITA独自書式となります。
-
-.. warning:: | 文字コードは、UTF-8のBOMなしで作成して下さい。
-   | 対話ファイルはYAML形式のファイルとして扱います。YAML形式に準じていない記述があると、対話ファイルのアップロード時や作業実行時にエラーとなります。詳しくは、本章の「 :ref:`general_operations_things_to_keep_in_mind_when_writing_dialogue_files_in_yaml_format` 」を参照して下さい。
-
-対話ファイルの構成
-~~~~~~~~~~~~~~~~~~
-| 対話ファイルは2種類のセクションにより構成されます。
-
-.. table:: 
-  :align: Left
-  
-  +------------------+------------------------------------------------------+
-  | **セクション名** | **用途**                                             |
-  +==================+======================================================+
-  | conf             | timeoutパラメータによりタイムアウト値を指定します。  |
-  |                  |                                                      |
-  |                  | タイムアウト値:1～3600(単位:秒)                      |
-  +------------------+------------------------------------------------------+
-  | exe_list         | 4種\                                                 |
-  |                  | の対話コマンドにより作業対象ホストの構築を行います。 |
-  +------------------+------------------------------------------------------+
- 
-| 以降に対話コマンドを記述します。
-| 例1-1)
- 
-.. code-block:: yaml
-                                                             
-   # コメント                                                         
-   conf:                                                            
-     timeout: 10                                                    
-   exec_list:   
-
-
-.. tip:: | 対話ファイルの先頭にtimeoutパラメータを記述します。   
- | コメントはAnsibleの基本書式と同様の記述が出来ます。
-
-対話コマンド
-~~~~~~~~~~~~
-| 対話コマンドは以下の5種類があります。
-
-.. table::
-  :align: Left
-
-  +---------------------+------------------------------------------------------+
-  | **モジュール**      | **用途**                                             |
-  +=====================+======================================================+
-  | exec                | 作業対象ホストにコマンドを投入します。               |
-  +---------------------+------------------------------------------------------+
-  | expect              | 作業対象ホストが標準出力に出力する内容よ\            |
-  |                     | り、期待する文字列(プロンプト)の出力を待ち合せます。 |
-  +---------------------+------------------------------------------------------+
-  | state               | 作業対象ホストにコ\                                  |
-  |                     | マンドを投入し、標準出力にプロンプトを出力するまでの |
-  |                     | 標準出力の内容を外部Shellで解析し結果判定をします。  |
-  +---------------------+------------------------------------------------------+
-  | command             | 作業対象ホストにコマンドを投入する前\                |
-  |                     | 後において、繰り返しや条件分岐を行うことができます。 |
-  +---------------------+------------------------------------------------------+
-  | localaction         | Ansible/Ansible Automation\                          |
-  |                     | Controllerサーバ上でコマンドを実行します。           |
-  +---------------------+------------------------------------------------------+
-
-①expectモジュール
-*******************
-| 作業対象ホストが標準出力に出力する内容より、期待する文字列(プロンプト)の出力を待ち合せます。期待する文字列を正規表記で記述できます。
-| 期待する文字列を受取ると次へ進みます。また、timeoutパラメータで指定された時間内に受取れない場合は対話ファイルを異常終了します。
-| 例2-1)
-
-.. code-block:: yaml
-
-   # telnet接続でパスワード入力のプロンプトを待ち合せます。
-     - expect: 'Password'   
-                                              
-   
-.. note:: | 待ち合わせる文字列をコーテーションで囲むことを推奨します。   
-
-②execモジュール
-*******************
-
-| 作業対象ホストにコマンドを投入します。
-| execモジュールとexpectモジュールは対で使用します。
-| 例2-2)
-
-.. code-block:: yaml
-
-   # telnet接続でパスワード入力のプロンプトを待ち合せてパスワードを投入します。   
-     - expect: 'Password'                                                              
-       exec: itapassword                                                               
-         
-      
-.. note:: | 必要に応じコーテーションで囲むことを推奨します。   
-
-③stateモジュール
-*******************
-
-| 作業対象ホストにコマンドを投入し、標準出力にプロンプトを出力するまでの標準出力の内容を外部Shellで解析し結果判定をします。
-
-.. table:: stateモジュールの書式
-   :align: Left
-
-   +----------------------+------------+----------------------------------------------------------------------------------+
-   | パラメータ　         | 必須/任意  | 説明　                                                                           |
-   +======================+============+==================================================================================+
-   | state                | 必須       | 投入するコマンドを指定します。                                                   |
-   |                      |            |                                                                                  |
-   +----------------------+------------+----------------------------------------------------------------------------------+
-   | prompt               | 必須       | 待受けプロンプトを指定します。正規表記で記述できます。                           |
-   |                      |            |                                                                                  |
-   +----------------------+------------+----------------------------------------------------------------------------------+
-   | shell                | 任意       | 作成したshellで結果を確認する場合に、shellファイル名を指定します。               |
-   |                      |            |                                                                                  |
-   |                      |            | 作成したshellのexitコードが0の場合は正常、他は異常と判定します。                 |  
-   |                      |            |                                                                                  |
-   |                      |            | デフォルトのshellで結果を確認する場合、本パラメータは不要となります。            |
-   |                      |            |                                                                                  |
-   |                      |            | デフォルトのshellはparameter(-)で指定された文字列で標準出力の内容をgrepします。  |
-   |                      |            |                                                                                  |
-   |                      |            | マッチする行が1行でもあれば正常とし、マッチする行がなければ異常と判定します。    |
-   |                      |            |                                                                                  |
-   |                      |            | また、parameterを指定しなかった場合、異常と判定されます。                        |
-   |                      |            |                                                                                  |
-   |                      |            | コマンドの結果(標準出力)をstdout_fileで指定したファイルに退避したい目的で使用す\ |
-   |                      |            | る場合、ignore_errorsで「yes」を指定して下さい。                                 |
-   +----------------------+------------+----------------------------------------------------------------------------------+
-   | parameter            | 任意       | 投入するコマンドの結果(標準出力)を検索する文字列を指定します。                   |
-   |                      |            |                                                                                  |
-   |                      |            | shellを指定している場合、作成したshellの実行時パラメータとなります。複数ある場合\|
-   |                      |            | は検索文字列を列挙します。                                                       |
-   +----------------------+------------+----------------------------------------------------------------------------------+
-   | stdout_file          | 任意       | 投入するコマンドの結果(標準出力)を退避するファイルです。                         |
-   |                      |            |                                                                                  |
-   +----------------------+------------+----------------------------------------------------------------------------------+
-   | success_exit         | 任意       | 検索結果が正常の場合で対話ファイルを正常終了する場合に「yes」を指定します。      |
-   |                      |            |                                                                                  |
-   |                      |            | 「no」の場合は正常の場合は次に進みます。                                         |
-   |                      |            |                                                                                  |
-   |                      |            | デフォルトは「no」。                                                             |
-   +----------------------+------------+----------------------------------------------------------------------------------+
-   | ignore_errors        | 任意       | 検索結果が異常でも次に進む場合に「yes」を指定します。                            |
-   |                      |            |                                                                                  |
-   |                      |            | 「no」の場合は、異常の場合に対話ファイルを異常終了とします。                     |
-   |                      |            |                                                                                  |
-   |                      |            | デフォルトは「no」。                                                             |
-   +----------------------+------------+----------------------------------------------------------------------------------+
-     
-| 例2-3)
-
-.. code-block:: yaml
-
-   # hostsファイルをcatし、表示結果をparameter値でgrepしている。139.0.0.1、lalhostを含む行があれば正常と判定し次に進みます。
-   # 行がなければ異常と判定し対話ファイルを異常終了します。
-   exec_list:
-     - state: 'cat /etc/hosts'
-       prompt: 'root@{{ __loginhostname__ }}'
-       parameter: 
-         - '139.0.0.1'
-         - 'lalhost'
-     - expect: root@{{ __loginhostname__ }}
-       exec: exit
-
-| 例2-4) 
-
-.. code-block:: yaml
-
-   # hostsファイルをcatし、表示結果をparameter値でgrepしている。
-   # 139.0.0.1、lalhostを含む行があれば正常と判定しますがsuccess_exit: yesの設定により対話ファイルを正常終了します。
-   # 行がなければ異常と判定し対話ファイルを異常終了します。                                     
-   
-   exec_list:                                                                                
-     - state: 'cat /etc/hosts'                                                                 
-       prompt: 'root@{{ __loginhostname__ }}'                                                   
-       parameter:                                                                               
-         - '139.0.0.1'                                                                            
-         - 'lalhost'                                                                              
-       success_exit: yes                                                                        
-     - expect: root@{{ __loginhostname__ }}                                                   
-       exec: exit                                                                               
-
-
-| 例2-5) 
-
-.. code-block:: yaml
-
-   # hostsファイルをcatし、表示結果をparameter値でgrepしている。139.0.0.1、lalhostを含む
-   # 139.0.0.1、lalhostを含む行があれば正常と判定し次に進みます。
-   # 行がなければ異常と判定しますがignore_errors: yesの設定により次に進みます。                                                      
-   
-   exec_list:                                                                           
-     - state: 'cat /etc/hosts'                                                            
-       prompt: 'root@{{ __loginhostname__ }}'                                              
-       parameter:                                                                          
-         - '139.0.0.1'                                                                       
-         - 'lalhost'                                                                         
-       ignore_errors: yes                                                                  
-     - expect: root@{{ __loginhostname__ }}                                              
-       exec: exit                                                                          
-  
-
-| 例2-6) 
-
-.. code-block:: yaml
-
-   # hostsファイルをcatし、ユーザー作成のshellで表示結果をparameter値でgrepしている。
-   # 139.0.0.1、lalhostを含む行があれば正常と判定し次に進みます。 
-   # 行がなければ異常と判定し対話ファイルを異常終了します。  
-
-   exec_list:                                          
-     - state: 'cat /etc/hosts'
-       prompt: 'root@{{ __loginhostname__ }}'
-       shell: '/tmp/grep.sh'
-       stdout_file: '/tmp/stdout.txt'
-       parameter: 
-         - '139.0.0.1'
-         - 'lalhost'  
-     - expect: root@{{ __loginhostname__ }}
-       exec: exit
-
-   # ユーザー作成 shell(/tmp/grep.sh)
-   #!/bin/bash
-   STDOUT=/tmp/STDOUT.tmp
-   STDERR=/tmp/STDERR.tmp
-   cat /tmp/stdout.txt|grep $1|grep $2 | wc -l >${STDOUT} 2>${STDERR}
-   RET=$?
-   if [ $RET -ne 0 ]; then
-       EXIT_CODE=$RET
-   else
-       if [ -s ${STDERR} ]; then
-           EXIT_CODE=1
-       else
-           CNT=`cat ${STDOUT}`
-           if [ ${CNT} -eq 0 ]; then
-               EXIT_CODE=1
-           else
-               EXIT_CODE=0
-           fi
-       fi
-   fi
-
-
-| 例2-7)
-
-.. code-block:: yaml
-
-   # hostsファイルをcatし、表示結果をstdout_file で指定したファイルに保存し次に進みます。
-   # デフォルトのshellはparameterの設定がないと異常と判定します。次に進める為にignore_errors: yesを設定します。
-   exec_list:
-     - state: 'cat /etc/hosts'
-       prompt: 'root@{{ __loginhostname__ }}'
-       stdout_file: '{{ __symphony_workflowdir__ }}/hosts'
-       ignore_errors: yes
-     - expect: root@{{ __loginhostname__ }}
-       exec: exit
-
-④commandモジュール
-********************
-| 作業対象ホストにコマンドを投入する前後において、繰り返しや条件分岐を行うことができます。
-| commandモジュールの書式
-
-.. table::
-   :align: Left
-
-   +----------------------+------------+----------------------------------------------------------------------------------+
-   | パラメータ　         | 必須/任意  | 説明　                                                                           |
-   +======================+============+==================================================================================+
-   | command              | 必須       | 投入するコマンドを指定します。                                                   |
-   |                      |            |                                                                                  |
-   +----------------------+------------+----------------------------------------------------------------------------------+
-   | prompt               | 必須       | 待受けプロンプトを指定します。正規表記で記述できます。                           |
-   |                      |            |                                                                                  |
-   +----------------------+------------+----------------------------------------------------------------------------------+
-   | timeout              | 任意       | コマンドを送ってからのプロンプト待ちタイマを指定します。                         |
-   |                      |            |                                                                                  |
-   |                      |            | 省略されている場合は、conf->timeoutを使用します。                                |
-   +----------------------+------------+----------------------------------------------------------------------------------+
-   | register             | 任意       | コマンドを送信後に標準出力の情報を設定する変数「任意の文字列」を指定します。     |
-   |                      |            |                                                                                  |
-   |                      |            | with_itemsでループしている場合は、最後のコマンド送信後の標準出力の情報が設定され\|
-   |                      |            | ます。                                                                           |
-   |                      |            |                                                                                  |
-   |                      |            | 設定した変数はcommandモジュールの条件判定(when・exec_when・failed_when)でのみ使\ |
-   |                      |            | 用できます。                                                                     |
-   |                      |            |                                                                                  |
-   |                      |            | 設定した変数は、1つのみ保持できます。次にregisterで別の変数に値を設定した場合、\ |
-   |                      |            | 前に設定した変数は削除されます。                                                 |
-   +----------------------+------------+----------------------------------------------------------------------------------+
-   | with_items           | 任意       | with_itemsにコマンドをループして投入する場合にに複数具体値変数の変数名を設定し\  |
-   |                      |            | ます。各変数のスコープはitem.X(Xは0から99)とします。                             |
-   |                      |            |                                                                                  |
-   |                      |            | prompt、timeoutでwith_itemsを利用する場合の変数名は下記の通りにしてください。    |
-   |                      |            |                                                                                  |
-   |                      |            | prompt: {{ VAR_prompt_XXX }}                                                     |
-   |                      |            |                                                                                  |
-   |                      |            | timeout: {{ VAR_timeout_XXX }}                                                   |
-   |                      |            |                                                                                  |
-   |                      |            | (XXXは任意の半角英数字とアンダースコア)                                          |
-   |                      |            |                                                                                  |
-   |                      |            | with_itemsに設定する各変数の具体値数が同じでない場合、各変数の具体値数の最大値数\|
-   |                      |            | でループします。具体値が不足している変数の具体値は空として扱います。             |
-   |                      |            |                                                                                  |
-   |                      |            | また、promptやtimeoutでwith_itemsを利用する場合、具体値数に注意が必要です。      |
-   |                      |            |                                                                                  |
-   |                      |            | prompt→command→prompt→command→prompt・・・(以下ループ)となり、command数+1の\     |
-   |                      |            | 具体値を設定する必要があります。(timeoutも同様)                                  |
-   |                      |            |                                                                                  |
-   |                      |            | prompt、timeout の変数の具体値数が不足していると、作業実行時にエラーになります。 |
-   +----------------------+------------+----------------------------------------------------------------------------------+
-   | when                 | 任意       | command実行前の条件判定です。                                                    |
-   |                      |            |                                                                                  |
-   |                      |            | 条件にマッチしてcommand実行します。                                              |
-   |                      |            |                                                                                  |
-   |                      |            | 条件にマッチしていなければ次のcommand行に移ります。                              |
-   |                      |            |                                                                                  |
-   |                      |            | 条件式                                                                           |
-   |                      |            |                                                                                  |
-   |                      |            | 　変数定義判定                                                                   |
-   |                      |            |                                                                                  |
-   |                      |            | 　VAR_xx is define　　　変数が定義されている　　true                             |
-   |                      |            |                                                                                  |
-   |                      |            | 　VAR_xx is undefine　　変数が未定義　　　　　　true                             |
-   |                      |            |                                                                                  |
-   |                      |            | 　Exp）                                                                          |
-   |                      |            |                                                                                  |
-   |                      |            | 　　- 'VAR_status is define'                                                     |
-   |                      |            |                                                                                  |
-   |                      |            | 　　- 'VAR_status is undefine'                                                   |
-   |                      |            |                                                                                  |
-   |                      |            | ※define/undefineはITAの変数(VAR_xx)のみ指定可能                                  |
-   |                      |            |                                                                                  |
-   |                      |            | 変数具体値判定                                                                   |
-   |                      |            |                                                                                  |
-   |                      |            | VAR_xx/register変数　比較演算子　文字列                                          |
-   |                      |            |                                                                                  |
-   |                      |            | VAR_xx/register変数　比較演算子　VAR_xx                                          |
-   |                      |            |                                                                                  |
-   |                      |            | VAR_xx/register変数　match(正規表記文字列/VAR_xx)                                |
-   |                      |            |                                                                                  |
-   |                      |            | VAR_xx/register変数　no match(正規表記文字列/VAR_xx)                             |
-   |                      |            |                                                                                  |
-   |                      |            | ※比較演算子は「==」、「!=」、「>」、「>=」、「<」、「<=」                        |
-   |                      |            |                                                                                  |
-   |                      |            | ※比較演算子の「>」、「>=」、「<」、「<=」は数値を想定しています。                |
-   |                      |            |                                                                                  |
-   |                      |            | 　Exp）                                                                          |
-   |                      |            |                                                                                  |
-   |                      |            | 　　- '{{ VAR_status }} match(active)'                                           |
-   |                      |            |                                                                                  |
-   |                      |            | 　　- '{{ VAR_status }} == active'                                               |
-   |                      |            |                                                                                  |
-   |                      |            | 　　- 'register変数match(active)'                                                |
-   |                      |            |                                                                                  |
-   |                      |            | 　※activeなどの条件判定する文字列をクォーテーションで囲む必要はありません。      |
-   |                      |            |                                                                                  |
-   |                      |            | and/orによる複合条件                                                             |
-   |                      |            |                                                                                  |
-   |                      |            | 　or条件を行いたい場合、判定条件の間にORを記述します。                           |
-   |                      |            |                                                                                  |
-   |                      |            | 　Exp）                                                                          |
-   |                      |            |                                                                                  |
-   |                      |            | 　　- '{{ VAR_status }} == 1　OR {{ VAR_status }} == 2'                          |
-   |                      |            |                                                                                  |
-   |                      |            | 　and条件を行いたい場合、複数行に分けて記述するとand条件になります。             |
-   |                      |            |                                                                                  |
-   |                      |            | 　Exp）                                                                          |
-   |                      |            |                                                                                  |
-   |                      |            | 　　- '{{ VAR_status }} == 1　OR {{ VAR_status }} == 2'                          |
-   |                      |            |                                                                                  |
-   |                      |            | 　　- '{{ VAR_sub_status }} == 1'                                                |
-   +----------------------+------------+----------------------------------------------------------------------------------+
-   | exec_when            | 任意       | ループ毎の条件判定です。(continue条件)                                           |
-   |                      |            |                                                                                  |
-   |                      |            | with_itemsが記述されている場合に条件判定を行います。                             |
-   |                      |            |                                                                                  |
-   |                      |            | 条件にマッチしていれば該当ループのcommandを実行します。                          |
-   |                      |            |                                                                                  |
-   |                      |            | マッチしていなければ次のループへ移ります。                                       |
-   |                      |            |                                                                                  |
-   |                      |            | 条件式                                                                           |
-   |                      |            |                                                                                  |
-   |                      |            | 　when:と同様の記述が行えます。                                                  |
-   +----------------------+------------+----------------------------------------------------------------------------------+
-   | failed_when          | 任意       | command実行後(ループ毎)のstdoutの内容に対する条件判定です。                      |
-   |                      |            |                                                                                  |
-   |                      |            | with_itemsが記述されている場合に条件判定を行います。                             |
-   |                      |            |                                                                                  |
-   |                      |            | 条件にマッチしていれば正常とします。                                             |
-   |                      |            |                                                                                  |
-   |                      |            | マッチしていなければ異常とし、対話ファイルを異常終了させます。                   |
-   |                      |            |                                                                                  |
-   |                      |            | 条件式                                                                           |
-   |                      |            |                                                                                  |
-   |                      |            | 　変数具体値判定                                                                 |
-   |                      |            |                                                                                  |
-   |                      |            | 　stdout 比較演算子 文字列                                                       |
-   +----------------------+------------+----------------------------------------------------------------------------------+
-
-
-| registerパラメータの有効範囲
-
-.. code-block:: yaml
-
-   exec_list:
-     - expect: 'assword:'
-       exec: '{{ __loginpassword__ }}'
-     - command: 'systemctl status httpd'
-       prompt: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
-       register: httpd_status_register
-     - command: 'systemctl restart httpd'
-       when:
-         - httpd_status_register no match(running)
-       prompt: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
-     - command: 'systemctl status mysql'
-       prompt: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
-       register: mysql_status_register
-     - command: 'systemctl restart mysql'
-       when:
-         - mysql_status_register no match(running)
-       prompt: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
-     - expect: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
-       exec: exit
-
-.. tip:: | 6行目のhttpd_status_registerは、11行目のcommandモジュール内のregisterで別の変数(mysql_status_register)に値を設定している為、10行目までが有効範囲となります。
-
-
-例)　with_itemsで定義した変数はregister/when以外でitem.Xでスコープすることが出来ます。
-
-.. code-block:: yaml
-      
-   with_items:
-      - '{{ VAR_item1 }}'   #item.0
-      - '{{ VAR_item2 }}'   #item.1
-   exec_when:
-      - '{{ item.0 }} == active'
-      - '{{ item.0 }} == {{ VAR_status }}'
-      - 'register変数 match({{ item.0 }})'
-   failed_when:
-      - 'stdout match({{ item.1 }})'
-
-| 例）commandモジュールで、下記コマンドを実行したい場合
-|  ・systemctl start httpd
-|  ・systemctl start mysql
-
-| 対話ファイルの記述とwith_itemsで使用する変数の具体値は以下の様になります。
-
-| ▼対話ファイルの記述内容
-
-.. code-block:: yaml
-
-   - command: "systemctl  {{ item.0 }}  {{ item.1 }}"
-     prompt: '{{ item.2 }}'
-     timeout: '{{ item.3 }}'
-     with_items:
-        - '{{ VAR_status_list }}'    # item.0
-        - '{{ VAR_service_list }}'   # item.1
-        - '{{ VAR_prompt_list }}'    # item.2
-        - '{{ VAR_timeout_list }}'   # item.3
-
-| ▼with_itemsで使用する変数の具体値
-
-| 　VAR_status_list:　　　　　 VAR_service_list:
-| 　- start　　　　　　　　　　- httpd                   
-| 　- start　　　　　　　　　　- mysql
-| 　VAR_prompt_list:　　　　　 VAR_timeout_list:
-| 　 - コマンドプロンプト　　　 - 10
-| 　 - コマンドプロンプト　　　 - 10
-| 　 - コマンドプロンプト　　　 - 10
-
-
-| 例3-1)
-
-.. code-block:: yaml
-
-  conf:
-    timeout: 30
-
-  exec_list:
-  # プロンプト以外の文字列で待合せが必要な場合は、expect/execの組合せでする。
-  # パスワードが必要な場合
-    - expect: 'password:'
-      exec:   '{{ __loginpassword__ }}'
-
-  # VAR_hosts_makeというITA変数がホスト変数ファイルに記載されている場合、
-  # hostsファイルをcatします。記載されていない場合は、スキップします。
-    - command: cat /etc/hosts
-      prompt: root@{{ __loginhostname__ }}
-      when: 
-        - VAR_hosts_make is define
-    - expect: root@{{ __loginhostname__ }}
-      exec: exit
-
-
-| 例3-2)
-
-.. code-block:: yaml
-
-   conf:
-     timeout: 30
-
-   exec_list:
-   # プロンプト以外の文字列で待合せが必要な場合は、expect/execの組合せでする。
-   # パスワードが必要な場合
-     - expect: 'password:'
-       exec:   '{{ __loginpassword__ }}'
-
-   # VAR_hosts_makeというITA変数がホスト変数ファイルに記載されている場合、
-   # hostsファイルをcatします。記載されていない場合は、スキップします。
-   # catにより、標準出力されたhostsファイルの内容をresult_stdoutに退避します。
-     - command: cat /etc/hosts
-       prompt: root@{{ __loginhostname__ }}
-       register: result_stdout
-       when: 
-         - VAR_hosts_make is define
-
-   # VAR_hosts_makeというITA変数がホスト変数ファイルに記載されている場合、
-   # command実行します。記載されていない場合は、スキップします。
-   # with_itemsの複数具体値変数に設定されている具体値数分command実行します。
-   # ループ毎の条件判定として、hostsファイルに「ipアドレス ホスト名」が該当しない場合
-   # command実行します。
-   # hostsファイルの最終行にechoによる、「IPアドレス ホスト名」を追記します。
-
-     - command: 'echo {{ item.0 }}  {{ item.1 }} >> /etc/hosts'
-       prompt: 'root@{{ __loginhostname__ }}'
-       when: 
-         - VAR_hosts_make is define
-       with_items:
-         - '{{ VAR_hosts_ip }}'      # item.0
-         - '{{ VAR_hosts_name }}'   # item.1
-       exec_when:
-         - result_stdout no match({{ item.0 }} *{{ item.1 }})
-
-     - expect: root@{{ __loginhostname__ }}
-       exec: exit
-
-
-| 例3-3)
-
-.. code-block:: yaml
-
-   conf:
-     timeout: 30
-
-   exec_list:
-   # プロンプト以外の文字列で待合せが必要な場合は、expect/execの組合せでする。
-   # パスワードが必要な場合
-     - expect: 'password:'
-       exec:   '{{ __loginpassword__ }}'
-
-   # with_itemsの複数具体値変数に設定されている具体値数分command実行します。
-   # 自動起動設定を実行します。
-     - command: 'systemctl enable {{ item.0 }}'
-       prompt: 'root@{{ __loginhostname__ }}'
-       with_items:
-         - '{{ VAR_service_name_list }}'  # item.0
-
-   # with_itemsの複数具体値変数に設定されている具体値数分command実行します。
-   # サービスの起動を実行します。
-     - command: 'systemctl start {{ item.0 }}'
-       prompt: 'root@{{ __loginhostname__ }}'
-       with_items:
-         - '{{ VAR_service_name_list }}'  # item.0
-
-   # with_itemsの複数具体値変数に設定されている具体値数分command実行します。
-   # サービスのステータスを標準出力します。
-   # 標準出力された結果の内容に、item.1の正規表現がある場合、正となります。
-   # 例えば、VAR_service_status_listの具体値をrunningと設定し、サービスが起動している場合、
-   # 「Active: active (running)」のrunnigが一致するので正となります。(次のループに移ります)
-   # そうでない場合は、異常と判断し、対話ファイルは異常終了となります。
-     - command: 'systemctl status {{ item.0 }}'
-       prompt: 'root@{{ __loginhostname__ }}'
-       with_items:
-         - '{{ VAR_service_name_list }}'  # item.0
-         - '{{ VAR_service_status_list }}'  # item.1
-       failed_when:
-         - stdout match({{ item.1 }})
-
-     - expect: root@{{ __loginhostname__ }}
-       exec: exit
-
-
-| 例3-4)
-
-.. code-block:: yaml
-
-   conf:
-     timeout: 30
-   exec_list:
-   # プロンプト以外の文字列で待合せが必要な場合は、expect/execの組合せでする。
-   # パスワードが必要な場合
-     - expect: 'password:'
-       exec:   '{{ __loginpassword__ }}'
-
-   # with_itemsの複数具体値変数に設定されている具体値数分command実行します。
-   # commandに「{{ item.0 }}」のみの記述をする場合は、ダブルクォーテーションで囲みます。
-   # promptやtimeoutでwith_itemsを利用する場合、具体値数に注意が必要です。
-   # prompt→command→prompt→command→prompt ・・・(以下ループ)となり、command数+1
-   # 設定する必要があります。(timeoutも同様)
-     - command: "{{ item.0 }}"
-       prompt: '{{ item.1 }}'
-       timeout: '{{ item.2 }}'
-       with_items:
-         - '{{ VAR_command_list }}'  # item.0
-         - '{{ VAR_prompt_list }}'    # item.1
-         - '{{ VAR_timeout_list }}'    # item.2
-     - expect: root@{{ __loginhostname__ }}
-       exec: exit
-
-| 例3-5)
-
-.. code-block:: yaml
-
-   conf:
-     timeout: 30
-
-   exec_list:
-   # プロンプト以外の文字列で待合せが必要な場合は、expect/execの組合せでする。
-   # パスワードが必要な場合
-     - expect: 'password:'
-       exec:   '{{ __loginpassword__ }}'
-
-   # with_itemsの複数具体値変数に設定されている具体値数分command実行します。
-   # 代入値管理の具体値に{{ item.X }} を設定することができます。その際は対話ファイルに記載する
-   # item.Xより具体値に記載するitem.Xの数値が大きくなるようにしてください。
-   # 今回の例で実行するcommandは「systemctl status ky_pioneer_execute-workflow.service」
-     - command: "{{ item.0 }}"
-       prompt: 'root@{{ __loginhostname__ }}'
-       with_items:
-         - '{{ VAR_command_list }}'      # item.0
-         - '{{ VAR_service_name_list }}'  # item.1
-
-     - expect: root@{{ __loginhostname__ }}
-       exec: exit
-   
-| ※ VAR_command_list      ・・・ systemctl status {{ item.1 }}
-| ※ VAR_service_name_list ・・・ ky_pioneer_execute-workflow.service
-
-| 例3-6)
-
-.. code-block:: yaml
-
-   conf:
-     timeout: 30
-
-   exec_list:
-   # プロンプト以外の文字列で待合せが必要な場合は、expect/execの組合せでする。
-   # パスワードが必要な場合
-     - expect: 'password:'
-       exec:   '{{ __loginpassword__ }}'
-
-   # and/orによる複合条件の記述例です。
-   # or条件を行いたい場合、if文を横に記述することができます。
-   # and条件を行いたい場合、複数行に分けて記述するとand条件になります。
-   # 今回、whenを例にしていますが、exec_when、failed_whenも同様です。
-     - command: echo aaa
-       prompt: 'root@{{ __loginhostname__ }}'
-       when:
-         - 10 == 9 OR 10 != 9 OR 10 >= 9
-         - 10 > 9 OR 10 <= 9 OR 10 < 9
-
-     - expect: root@{{ __loginhostname__ }}
-       exec: exit
-
-           
-⑤localactionモジュール
-************************
-| Ansible/Ansible Automation Controllerサーバ上でコマンドを実行します。
-| localactionモジュールの書式
-
-.. table::
-   :align: Left
-
-   +----------------------+------------+----------------------------------------------------------------------------------+
-   | パラメータ　         | 必須/任意  | 説明　                                                                           |
-   +======================+============+==================================================================================+
-   | localaction          | 必須       | 実行するコマンドを指定します。                                                   |
-   |                      |            |                                                                                  |
-   |                      |            | confセクションのtimeoutパラメータでのタイマ監視は適用外です。                    |
-   |                      |            |                                                                                  |
-   |                      |            | コマンドが完了するまで次のステップに進みません。                                 |
-   +----------------------+------------+----------------------------------------------------------------------------------+
-   | ignore_errors        | 任意       | コマンドの実行結果が異常でも次に進む場合に「yes」を指定します。                  |
-   |                      |            |                                                                                  |
-   |                      |            | 「no」の場合は、異常の場合に対話ファイルを異常終了します。                       |
-   |                      |            |                                                                                  |
-   |                      |            | デフォルトは「no」。                                                             |
-   +----------------------+------------+----------------------------------------------------------------------------------+
-
-| 例4-1)
-
-.. code-block:: yaml
-         
-  # Symphony実行時の各Movementで共有するディレクトリ({{ __symphony_workflowdir__ }})にホスト毎のディレクトリを設けて、hostsファイルを退避します。
-  
-  exec_list:
-    - localaction: mkdir -p 755 {{ __symphony_workflowdir__ }}/{{ __loginhostname__ }}
-      ignore_errors: yes
-    - state: cat /etc/hosts
-      prompt: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
-      stdout_file: '{{ __symphony_workflowdir__ }}/{{ __loginhostname__ }}/hosts'
-      ignore_errors: yes
-    - expect: root@{{ __loginhostname__ }}
-      exec: exit
-
-正規表記
-~~~~~~~~~
-| 下記のコマンド及びパラメータに記述された文字列は正規表記で評価されます。
--  expectモジュール
--  stateモジュールのpromptパラメータ
--  commandモジュールのpromptパラメータ
-| 正規表記で記述した文字列にメタ文字「(){}.など」を含む場合、メタ文字の前にエスケープ文字「\\」を挿入する必要があります。
-   
-| 正しい例)
-
-.. code-block:: yaml
-
-   XAMPP Developer Files ¥[Y¥/n¥] exec_list:  
-
-| 誤った例)
-
-.. code-block:: yaml
-
-   XAMPP Developer Files [Y/n] exec_list:
-
-| stateモジュールとcommandモジュールは、実行したコマンドの結果（標準出力）の取り出しを行っています。取り出す上での留意事項を以下に記述します。
-
-#. | 実行したコマンドの結果（標準出力）とプロンプトの区切り
-   | 実行したコマンドの結果（標準出力）とプロンプトの区切りをpromptパラメータで指定された文字列で行います。実行したコマンドの結果（標準出力）の判定やファイルへの保存を行う場合は、正規表記で .*付の後方一致は記述しないで下さい。実行したコマンドの結果（標準出力）が取り出せません。
+..
+   .. _general_operations_write_playbook_ansible_legacy:
+   Playbook（Ansible-Legacy）の記述
+   --------------------------------
+   | 「 :ref:`general_operations_playbook_file_list_ansible_legacy_only` 」でアップロードされたPlaybookは、ITAで生成するマスターPlaybookよりinclude形式で実行されます。
+   | ITAで作成するマスターPlaybookはへッダーセクションとtasksセクションで構成されます。
+
+
+   ヘッダーセクション
+   ~~~~~~~~~~~~~~~~~~~~~
+
+   | アップロードアップロードするPlaybookにはヘッダーセクションは含む必要はありません。
+   | ヘッダーセクションは、デフォルト値が決まっていますが、「 :ref:`general_operations_movement_list` 」のヘッダーセクションで変更することが出来ます。
    |
-   | .* 付の後方一致の正規表記の例
-   | '\ **.\***\ [\\#\\$\\%] $''
+   | ▼ヘッダーセクションのデフォルト値について 
+   - | Ansible Coreの場合 
+
+   .. code-block:: yaml
+
+      # ヘッダーセクションのデフォルト値　
+        - hosts: all
+          remote_user: "{{ __loginuser__ }}"
+          gather_facts: no
+          become: no
+
+   - | Ansible Automation Controllerの場合 
+
+   .. code-block:: yaml  
+
+      # ヘッダーセクションのデフォルト値　
+        - hosts: all                                                
+          gather_facts: no                                         
+          become: yes                                              
+
+   tasksセクション
+   ~~~~~~~~~~~~~~~~ 
+   | アップロードされたPlaybookは、ITAで生成するマスタPlaybookよりinclude形式で実行されます。
+   | Playbook基本書式についてはAnsibleの公式マニュアルを参照してください。
    |
-#. | エスケープシーケンスの対応
-   | 構築対象機器に依存しますが、構築対象機器から送られてくるプロンプトの直前にOperating
-   | System Commandシーケンスが付加されている場合があります。promptパラメータで指定された文字列の直前にあるエスケープシーケンスを排除しています。
+   | 例)
 
-複数具体値変数使用時の注意事項
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-| 対話ファイルで複数具体値変数が使用出来るパラメータは、commandモジュールのwith_itemsパラメータのみです。これ以外で使用した場合、作業実行時にエラーとなります。
+   .. code-block:: yaml
+      
+      - name: コメント                                                     
+        template:                                                          
+          src:   "{{ item.src }}"                                         
+          dest:  "{{ item.dest }}"                                          
+          owner: "{{ item.owner is none |ternary('root', item.owner) }}"    
+          group: "{{ item.group is none |ternary('bacula', item.group) }}"   
+          mode:  "{{ item.mode is none |ternary('0654', item.mode) }}"
+      
+   .. warning:: | Playbook内のインデントは2倍数で調整して下さい。
+    | 文字コードは、UTF-8のBOMなしで作成して下さい。
 
-コマンドプロンプト以外のプロンプトを処理する場合の注意事項
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-| コマンドプロンプト以外のプロンプトを処理する場合、execモジュールとexpectモジュールの組合せで対話ファイルを作成して下さい。commandとstateモジュールでは処理できません。
-
-| 例) 
-
-.. code-block:: yaml
-
-   # ssh-keygenを対話ファイルで処理する。
-
-   conf:
-     timeout: 10
+   | アップロードさたPlaybookは、「 :ref:`general_operations_movement_details` 」のインクルード順序に従いincludeします。
+      
+   .. figure:: ./general_operations/image_2b_1.png
+      :align: center
+      :width: 6.85417in
+      :height: 4.67187in
 
 
-   exec_list:
-   # ssh接続　パスワード認証
-     - expect: 'assword:'
-       exec: '{{ __loginpassword__ }}'
+   .. _general_operations_write_dialog_file_ansible_pioneer:
+   対話ファイル（Ansible-Pioneer）の記述
+   ---------------------------------------
+   | Ansible-Pioneerでは、ITA独自モジュールをAnsibleに組込んでいます。
+   | 対話ファイルはITA独自書式となります。
 
-   # ssh-keygenコマンド実行
-     - expect: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
-       exec: ssh-keygen
+   .. warning:: | 文字コードは、UTF-8のBOMなしで作成して下さい。
+      | 対話ファイルはYAML形式のファイルとして扱います。YAML形式に準じていない記述があると、対話ファイルのアップロード時や作業実行時にエラーとなります。詳しくは、本章の「 :ref:`general_operations_things_to_keep_in_mind_when_writing_dialogue_files_in_yaml_format` 」を参照して下さい。
+
+   対話ファイルの構成
+   ~~~~~~~~~~~~~~~~~~
+   | 対話ファイルは2種類のセクションにより構成されます。
+
+   .. table:: 
+     :align: Left
      
-   # 以降がコマンドプロンプト以外のプロンプトに対する処理
-   # 秘密鍵ファイルのパスを設定 
-   # expectは正規表記で評価されるので、エスケープが必要なメタ文字にはエスケープ文字(\)を挿入する必要があります。
-     - expect: 'id_rsa\):'
-       exec: '{{ VAR_id_rsa_path }}'
+     +------------------+------------------------------------------------------+
+     | **セクション名** | **用途**                                             |
+     +==================+======================================================+
+     | conf             | timeoutパラメータによりタイムアウト値を指定します。  |
+     |                  |                                                      |
+     |                  | タイムアウト値:1～3600(単位:秒)                      |
+     +------------------+------------------------------------------------------+
+     | exe_list         | 4種\                                                 |
+     |                  | の対話コマンドにより作業対象ホストの構築を行います。 |
+     +------------------+------------------------------------------------------+
+    
+   | 以降に対話コマンドを記述します。
+   | 例1-1)
+    
+   .. code-block:: yaml
+                                                                
+      # コメント                                                         
+      conf:                                                            
+        timeout: 10                                                    
+      exec_list:   
 
-   # パスフレーズを設定
-     - expect: ' passphrase\):'
-       exec: '{{ VAR_passphrase }}'
 
-   # パスフレーズを確認
-     - expect: ' passphrase again:'
-       exec: '{{ VAR_passphrase }}'
+   .. tip:: | 対話ファイルの先頭にtimeoutパラメータを記述します。   
+    | コメントはAnsibleの基本書式と同様の記述が出来ます。
 
-   # 生成された 秘密鍵ファイルを確認
-     - expect: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
-       exec: 'ls -al {{ VAR_id_rsa_path }}'
+   対話コマンド
+   ~~~~~~~~~~~~
+   | 対話コマンドは以下の5種類があります。
 
-   # ssh接続クローズ
-     - expect: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
-       exec: exit
+   .. table::
+     :align: Left
 
-| ※ VAR_id_rsa_path　・・・　秘密鍵ファイルのパスを設定します。
-| ※ VAR_passphrase 　・・・　パスフレーズを設定します。
-|
-| ◎リターンしたい場合
-| 変数使用の場合は具体値を空白(未入力)にします。
-| 変数を使用していない場合は空文字列(コーテーションを2個並べます)を記載します。
+     +---------------------+------------------------------------------------------+
+     | **モジュール**      | **用途**                                             |
+     +=====================+======================================================+
+     | exec                | 作業対象ホストにコマンドを投入します。               |
+     +---------------------+------------------------------------------------------+
+     | expect              | 作業対象ホストが標準出力に出力する内容よ\            |
+     |                     | り、期待する文字列(プロンプト)の出力を待ち合せます。 |
+     +---------------------+------------------------------------------------------+
+     | state               | 作業対象ホストにコ\                                  |
+     |                     | マンドを投入し、標準出力にプロンプトを出力するまでの |
+     |                     | 標準出力の内容を外部Shellで解析し結果判定をします。  |
+     +---------------------+------------------------------------------------------+
+     | command             | 作業対象ホストにコマンドを投入する前\                |
+     |                     | 後において、繰り返しや条件分岐を行うことができます。 |
+     +---------------------+------------------------------------------------------+
+     | localaction         | Ansible/Ansible Automation\                          |
+     |                     | Controllerサーバ上でコマンドを実行します。           |
+     +---------------------+------------------------------------------------------+
 
-.. code-block:: yaml
+   ①expectモジュール
+   *******************
+   | 作業対象ホストが標準出力に出力する内容より、期待する文字列(プロンプト)の出力を待ち合せます。期待する文字列を正規表記で記述できます。
+   | 期待する文字列を受取ると次へ進みます。また、timeoutパラメータで指定された時間内に受取れない場合は対話ファイルを異常終了します。
+   | 例2-1)
 
-   exec: ''
+   .. code-block:: yaml
 
-対話ファイル終了時の注意事項
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-| 対話ファイルの最後に、セッションを終了するコマンドを投入するようにして下さい。
-| 最終行のモジュールが終了するとセッションをクローズします。最終行にファイルコピーなど処理に時間がかかるコマンドが記載されている場合、コマンド終了前にセッションがクローズされコマンドが異常終了してしまう場合があります。
+      # telnet接続でパスワード入力のプロンプトを待ち合せます。
+        - expect: 'Password'   
+                                                 
+      
+   .. note:: | 待ち合わせる文字列をコーテーションで囲むことを推奨します。   
 
-| 例)
+   ②execモジュール
+   *******************
 
-.. code-block:: yaml
+   | 作業対象ホストにコマンドを投入します。
+   | execモジュールとexpectモジュールは対で使用します。
+   | 例2-2)
 
-   conf:
-     timeout: 10
+   .. code-block:: yaml
 
-   exec_list:
-   # ssh接続　パスワード認証
-     - expect: 'assword:'
-       exec: '{{ __loginpassword__ }}'
+      # telnet接続でパスワード入力のプロンプトを待ち合せてパスワードを投入します。   
+        - expect: 'Password'                                                              
+          exec: itapassword                                                               
+            
+         
+   .. note:: | 必要に応じコーテーションで囲むことを推奨します。   
 
-   # ファイルコピー
-     - expect: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
-       exec: 'cp -rfp {{ VAR_src_path }} {{ VAR_dest_path }}'
+   ③stateモジュール
+   *******************
 
-   # 直前のコマンド終了をコマンドプロンプトで待ち合わせ、exitコマンドを投入する記載を対話ファイルの最後に挿入
-     - expect: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
-       exec: exit
+   | 作業対象ホストにコマンドを投入し、標準出力にプロンプトを出力するまでの標準出力の内容を外部Shellで解析し結果判定をします。
 
-.. _general_operations_things_to_keep_in_mind_when_writing_dialogue_files_in_yaml_format:
-対話ファイルをyaml形式で記載する際の注意事項
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-| 対話ファイルはyaml形式のファイルとして扱います。以下のようなYAML形式に準じていない記載があると対話モジュールのアップロード時や作業実行時にエラーとなります。
-- 各モジュールのパラメータに変数を記載している場合でパラメータ全体をクォーテーションで囲んでいない場合。
-- 各パラメータを定数のみで記載している場合で、定数の終端が「\ **:**\ 」の場合など、パラメータ全体をクォーテーションで囲んでいない場合。
-| 各モジュールのパラメータは、パラメータ全体をクォーテーションで囲むことを推奨します。
+   .. table:: stateモジュールの書式
+      :align: Left
 
-| 正しい例）
+      +----------------------+------------+----------------------------------------------------------------------------------+
+      | パラメータ　         | 必須/任意  | 説明　                                                                           |
+      +======================+============+==================================================================================+
+      | state                | 必須       | 投入するコマンドを指定します。                                                   |
+      |                      |            |                                                                                  |
+      +----------------------+------------+----------------------------------------------------------------------------------+
+      | prompt               | 必須       | 待受けプロンプトを指定します。正規表記で記述できます。                           |
+      |                      |            |                                                                                  |
+      +----------------------+------------+----------------------------------------------------------------------------------+
+      | shell                | 任意       | 作成したshellで結果を確認する場合に、shellファイル名を指定します。               |
+      |                      |            |                                                                                  |
+      |                      |            | 作成したshellのexitコードが0の場合は正常、他は異常と判定します。                 |  
+      |                      |            |                                                                                  |
+      |                      |            | デフォルトのshellで結果を確認する場合、本パラメータは不要となります。            |
+      |                      |            |                                                                                  |
+      |                      |            | デフォルトのshellはparameter(-)で指定された文字列で標準出力の内容をgrepします。  |
+      |                      |            |                                                                                  |
+      |                      |            | マッチする行が1行でもあれば正常とし、マッチする行がなければ異常と判定します。    |
+      |                      |            |                                                                                  |
+      |                      |            | また、parameterを指定しなかった場合、異常と判定されます。                        |
+      |                      |            |                                                                                  |
+      |                      |            | コマンドの結果(標準出力)をstdout_fileで指定したファイルに退避したい目的で使用す\ |
+      |                      |            | る場合、ignore_errorsで「yes」を指定して下さい。                                 |
+      +----------------------+------------+----------------------------------------------------------------------------------+
+      | parameter            | 任意       | 投入するコマンドの結果(標準出力)を検索する文字列を指定します。                   |
+      |                      |            |                                                                                  |
+      |                      |            | shellを指定している場合、作成したshellの実行時パラメータとなります。複数ある場合\|
+      |                      |            | は検索文字列を列挙します。                                                       |
+      +----------------------+------------+----------------------------------------------------------------------------------+
+      | stdout_file          | 任意       | 投入するコマンドの結果(標準出力)を退避するファイルです。                         |
+      |                      |            |                                                                                  |
+      +----------------------+------------+----------------------------------------------------------------------------------+
+      | success_exit         | 任意       | 検索結果が正常の場合で対話ファイルを正常終了する場合に「yes」を指定します。      |
+      |                      |            |                                                                                  |
+      |                      |            | 「no」の場合は正常の場合は次に進みます。                                         |
+      |                      |            |                                                                                  |
+      |                      |            | デフォルトは「no」。                                                             |
+      +----------------------+------------+----------------------------------------------------------------------------------+
+      | ignore_errors        | 任意       | 検索結果が異常でも次に進む場合に「yes」を指定します。                            |
+      |                      |            |                                                                                  |
+      |                      |            | 「no」の場合は、異常の場合に対話ファイルを異常終了とします。                     |
+      |                      |            |                                                                                  |
+      |                      |            | デフォルトは「no」。                                                             |
+      +----------------------+------------+----------------------------------------------------------------------------------+
+        
+   | 例2-3)
 
-.. code-block:: yaml
+   .. code-block:: yaml
 
-   - expect: 'assword:'
-     exec:  '{{ __loginpassword__ }}'
-   - expect: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
-     exec: 'ls'
-   - command: 'echo {{ item.0 }}'
-     prompt: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
-     exec_when:
-       - '{{ item.1 }} == run'
-     with_items:
-       - '{{ VAR_echo }}' 
-       - '{{ VAR_exec_when }}' 
-       - '{{ VAR_failed_when }}' 
-     failed_when:
-       - stdout == match({{ item.2 }})
-   - state: '{{ VAR_command }}'
-     prompt: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
-     parameter:
-       - '{{ VAR_p1 }}' 
-       - '{{ VAR_p2 }}' 
-     success_exit: 'yes'
+      # hostsファイルをcatし、表示結果をparameter値でgrepしている。139.0.0.1、lalhostを含む行があれば正常と判定し次に進みます。
+      # 行がなければ異常と判定し対話ファイルを異常終了します。
+      exec_list:
+        - state: 'cat /etc/hosts'
+          prompt: 'root@{{ __loginhostname__ }}'
+          parameter: 
+            - '139.0.0.1'
+            - 'lalhost'
+        - expect: root@{{ __loginhostname__ }}
+          exec: exit
 
-| 誤った例）
+   | 例2-4) 
 
-.. code-block:: yaml
+   .. code-block:: yaml
 
-   - expect: assword:
-     exec:  {{ __loginpassword__ }}
-   - expect: {{ __loginuser__ }}@{{ __loginhostname__ }}
-     exec: ls
-   - command: echo {{ item.0 }}
-     prompt: {{ __loginuser__ }}@{{ __loginhostname__ }}
-     exec_when:
-       - {{ item.1 }} == run
-     with_items:
-       - {{ VAR_echo }}
-       - {{ VAR_exec_when }}
-       - {{ VAR_failed_when }}
-     failed_when:
-       - stdout == match({{ item.2 }})
-   - state: {{ VAR_command }}
-     prompt: {{ __loginuser__ }}@{{ __loginhostname__ }}
-     parameter:
-       - {{ VAR_p1 }}
-       - {{ VAR_p2 }}
-     success_exit: yes
+      # hostsファイルをcatし、表示結果をparameter値でgrepしている。
+      # 139.0.0.1、lalhostを含む行があれば正常と判定しますがsuccess_exit: yesの設定により対話ファイルを正常終了します。
+      # 行がなければ異常と判定し対話ファイルを異常終了します。                                     
+      
+      exec_list:                                                                                
+        - state: 'cat /etc/hosts'                                                                 
+          prompt: 'root@{{ __loginhostname__ }}'                                                   
+          parameter:                                                                               
+            - '139.0.0.1'                                                                            
+            - 'lalhost'                                                                              
+          success_exit: yes                                                                        
+        - expect: root@{{ __loginhostname__ }}                                                   
+          exec: exit                                                                               
 
-   
-構築対象機器のログインユーザーのLANGについての注意事項
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-| ログインユーザーの「LANG」は、「UTF-8/euc/shift_jis」の3種類についてサポートしています。
-| ログインユーザーの「LANG」の設定は機器一覧より行ってください。
-| 「euc/shift_jis」を設定した場合、構築対象機器との通信制御で使用しているpexpectモジュールのUTF-8へのデコード処理の特性で対話ファイルを正しく処理出来ない場合があります。
-- 一部の全角文字( ①②等)をUTF-8にデコード出来ません。デコード出来ない文字は??で表示されます。
-- 一部の全角文字( － 等)をexpect等のプロンプト待ちで使用した場合、「LANG」がUTF-8では待ち受けが正しく出来ますが、LANGが「euc/shift_jis」では待ち受けがタイムアウトしてしまいます。
 
-構築対象機器へ投入するコマンドの終端コードについての注意事項
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-構築対象機器へ投入するコマンドの終端コードは「LF」を送信します。構築対象機器のコマンド終端コードが「CRLF」の場合、対話ファイルで構築対象機器に投入するコマンドの末尾に「\r」を追加して下さい。
+   | 例2-5) 
 
-.. code-block:: yaml
+   .. code-block:: yaml
 
-   conf:
-     timeout: 10
-   exec_list:
-     - expect: 'password:'
-       exec: 'XXXXXXXX\r'
-     - command: '{{ VAR_command }}\r'
-       prompt: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
-     - state: '{{ VAR_state }}\r'
-       prompt: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
-       parameter:
-        - '{{ VAR_parameter1 }}' 
-        - '{{ VAR_parameter2 }}'
-             
-.. _general_operations_write_role_package_ansible_legacy_role:
+      # hostsファイルをcatし、表示結果をparameter値でgrepしている。139.0.0.1、lalhostを含む
+      # 139.0.0.1、lalhostを含む行があれば正常と判定し次に進みます。
+      # 行がなければ異常と判定しますがignore_errors: yesの設定により次に進みます。                                                      
+      
+      exec_list:                                                                           
+        - state: 'cat /etc/hosts'                                                            
+          prompt: 'root@{{ __loginhostname__ }}'                                              
+          parameter:                                                                          
+            - '139.0.0.1'                                                                       
+            - 'lalhost'                                                                         
+          ignore_errors: yes                                                                  
+        - expect: root@{{ __loginhostname__ }}                                              
+          exec: exit                                                                          
+     
+
+   | 例2-6) 
+
+   .. code-block:: yaml
+
+      # hostsファイルをcatし、ユーザー作成のshellで表示結果をparameter値でgrepしている。
+      # 139.0.0.1、lalhostを含む行があれば正常と判定し次に進みます。 
+      # 行がなければ異常と判定し対話ファイルを異常終了します。  
+
+      exec_list:                                          
+        - state: 'cat /etc/hosts'
+          prompt: 'root@{{ __loginhostname__ }}'
+          shell: '/tmp/grep.sh'
+          stdout_file: '/tmp/stdout.txt'
+          parameter: 
+            - '139.0.0.1'
+            - 'lalhost'  
+        - expect: root@{{ __loginhostname__ }}
+          exec: exit
+
+      # ユーザー作成 shell(/tmp/grep.sh)
+      #!/bin/bash
+      STDOUT=/tmp/STDOUT.tmp
+      STDERR=/tmp/STDERR.tmp
+      cat /tmp/stdout.txt|grep $1|grep $2 | wc -l >${STDOUT} 2>${STDERR}
+      RET=$?
+      if [ $RET -ne 0 ]; then
+          EXIT_CODE=$RET
+      else
+          if [ -s ${STDERR} ]; then
+              EXIT_CODE=1
+          else
+              CNT=`cat ${STDOUT}`
+              if [ ${CNT} -eq 0 ]; then
+                  EXIT_CODE=1
+              else
+                  EXIT_CODE=0
+              fi
+          fi
+      fi
+
+
+   | 例2-7)
+
+   .. code-block:: yaml
+
+      # hostsファイルをcatし、表示結果をstdout_file で指定したファイルに保存し次に進みます。
+      # デフォルトのshellはparameterの設定がないと異常と判定します。次に進める為にignore_errors: yesを設定します。
+      exec_list:
+        - state: 'cat /etc/hosts'
+          prompt: 'root@{{ __loginhostname__ }}'
+          stdout_file: '{{ __symphony_workflowdir__ }}/hosts'
+          ignore_errors: yes
+        - expect: root@{{ __loginhostname__ }}
+          exec: exit
+
+   ④commandモジュール
+   ********************
+   | 作業対象ホストにコマンドを投入する前後において、繰り返しや条件分岐を行うことができます。
+   | commandモジュールの書式
+
+   .. table::
+      :align: Left
+
+      +----------------------+------------+----------------------------------------------------------------------------------+
+      | パラメータ　         | 必須/任意  | 説明　                                                                           |
+      +======================+============+==================================================================================+
+      | command              | 必須       | 投入するコマンドを指定します。                                                   |
+      |                      |            |                                                                                  |
+      +----------------------+------------+----------------------------------------------------------------------------------+
+      | prompt               | 必須       | 待受けプロンプトを指定します。正規表記で記述できます。                           |
+      |                      |            |                                                                                  |
+      +----------------------+------------+----------------------------------------------------------------------------------+
+      | timeout              | 任意       | コマンドを送ってからのプロンプト待ちタイマを指定します。                         |
+      |                      |            |                                                                                  |
+      |                      |            | 省略されている場合は、conf->timeoutを使用します。                                |
+      +----------------------+------------+----------------------------------------------------------------------------------+
+      | register             | 任意       | コマンドを送信後に標準出力の情報を設定する変数「任意の文字列」を指定します。     |
+      |                      |            |                                                                                  |
+      |                      |            | with_itemsでループしている場合は、最後のコマンド送信後の標準出力の情報が設定され\|
+      |                      |            | ます。                                                                           |
+      |                      |            |                                                                                  |
+      |                      |            | 設定した変数はcommandモジュールの条件判定(when・exec_when・failed_when)でのみ使\ |
+      |                      |            | 用できます。                                                                     |
+      |                      |            |                                                                                  |
+      |                      |            | 設定した変数は、1つのみ保持できます。次にregisterで別の変数に値を設定した場合、\ |
+      |                      |            | 前に設定した変数は削除されます。                                                 |
+      +----------------------+------------+----------------------------------------------------------------------------------+
+      | with_items           | 任意       | with_itemsにコマンドをループして投入する場合にに複数具体値変数の変数名を設定し\  |
+      |                      |            | ます。各変数のスコープはitem.X(Xは0から99)とします。                             |
+      |                      |            |                                                                                  |
+      |                      |            | prompt、timeoutでwith_itemsを利用する場合の変数名は下記の通りにしてください。    |
+      |                      |            |                                                                                  |
+      |                      |            | prompt: {{ VAR_prompt_XXX }}                                                     |
+      |                      |            |                                                                                  |
+      |                      |            | timeout: {{ VAR_timeout_XXX }}                                                   |
+      |                      |            |                                                                                  |
+      |                      |            | (XXXは任意の半角英数字とアンダースコア)                                          |
+      |                      |            |                                                                                  |
+      |                      |            | with_itemsに設定する各変数の具体値数が同じでない場合、各変数の具体値数の最大値数\|
+      |                      |            | でループします。具体値が不足している変数の具体値は空として扱います。             |
+      |                      |            |                                                                                  |
+      |                      |            | また、promptやtimeoutでwith_itemsを利用する場合、具体値数に注意が必要です。      |
+      |                      |            |                                                                                  |
+      |                      |            | prompt→command→prompt→command→prompt・・・(以下ループ)となり、command数+1の\     |
+      |                      |            | 具体値を設定する必要があります。(timeoutも同様)                                  |
+      |                      |            |                                                                                  |
+      |                      |            | prompt、timeout の変数の具体値数が不足していると、作業実行時にエラーになります。 |
+      +----------------------+------------+----------------------------------------------------------------------------------+
+      | when                 | 任意       | command実行前の条件判定です。                                                    |
+      |                      |            |                                                                                  |
+      |                      |            | 条件にマッチしてcommand実行します。                                              |
+      |                      |            |                                                                                  |
+      |                      |            | 条件にマッチしていなければ次のcommand行に移ります。                              |
+      |                      |            |                                                                                  |
+      |                      |            | 条件式                                                                           |
+      |                      |            |                                                                                  |
+      |                      |            | 　変数定義判定                                                                   |
+      |                      |            |                                                                                  |
+      |                      |            | 　VAR_xx is define　　　変数が定義されている　　true                             |
+      |                      |            |                                                                                  |
+      |                      |            | 　VAR_xx is undefine　　変数が未定義　　　　　　true                             |
+      |                      |            |                                                                                  |
+      |                      |            | 　Exp）                                                                          |
+      |                      |            |                                                                                  |
+      |                      |            | 　　- 'VAR_status is define'                                                     |
+      |                      |            |                                                                                  |
+      |                      |            | 　　- 'VAR_status is undefine'                                                   |
+      |                      |            |                                                                                  |
+      |                      |            | ※define/undefineはITAの変数(VAR_xx)のみ指定可能                                  |
+      |                      |            |                                                                                  |
+      |                      |            | 変数具体値判定                                                                   |
+      |                      |            |                                                                                  |
+      |                      |            | VAR_xx/register変数　比較演算子　文字列                                          |
+      |                      |            |                                                                                  |
+      |                      |            | VAR_xx/register変数　比較演算子　VAR_xx                                          |
+      |                      |            |                                                                                  |
+      |                      |            | VAR_xx/register変数　match(正規表記文字列/VAR_xx)                                |
+      |                      |            |                                                                                  |
+      |                      |            | VAR_xx/register変数　no match(正規表記文字列/VAR_xx)                             |
+      |                      |            |                                                                                  |
+      |                      |            | ※比較演算子は「==」、「!=」、「>」、「>=」、「<」、「<=」                        |
+      |                      |            |                                                                                  |
+      |                      |            | ※比較演算子の「>」、「>=」、「<」、「<=」は数値を想定しています。                |
+      |                      |            |                                                                                  |
+      |                      |            | 　Exp）                                                                          |
+      |                      |            |                                                                                  |
+      |                      |            | 　　- '{{ VAR_status }} match(active)'                                           |
+      |                      |            |                                                                                  |
+      |                      |            | 　　- '{{ VAR_status }} == active'                                               |
+      |                      |            |                                                                                  |
+      |                      |            | 　　- 'register変数match(active)'                                                |
+      |                      |            |                                                                                  |
+      |                      |            | 　※activeなどの条件判定する文字列をクォーテーションで囲む必要はありません。      |
+      |                      |            |                                                                                  |
+      |                      |            | and/orによる複合条件                                                             |
+      |                      |            |                                                                                  |
+      |                      |            | 　or条件を行いたい場合、判定条件の間にORを記述します。                           |
+      |                      |            |                                                                                  |
+      |                      |            | 　Exp）                                                                          |
+      |                      |            |                                                                                  |
+      |                      |            | 　　- '{{ VAR_status }} == 1　OR {{ VAR_status }} == 2'                          |
+      |                      |            |                                                                                  |
+      |                      |            | 　and条件を行いたい場合、複数行に分けて記述するとand条件になります。             |
+      |                      |            |                                                                                  |
+      |                      |            | 　Exp）                                                                          |
+      |                      |            |                                                                                  |
+      |                      |            | 　　- '{{ VAR_status }} == 1　OR {{ VAR_status }} == 2'                          |
+      |                      |            |                                                                                  |
+      |                      |            | 　　- '{{ VAR_sub_status }} == 1'                                                |
+      +----------------------+------------+----------------------------------------------------------------------------------+
+      | exec_when            | 任意       | ループ毎の条件判定です。(continue条件)                                           |
+      |                      |            |                                                                                  |
+      |                      |            | with_itemsが記述されている場合に条件判定を行います。                             |
+      |                      |            |                                                                                  |
+      |                      |            | 条件にマッチしていれば該当ループのcommandを実行します。                          |
+      |                      |            |                                                                                  |
+      |                      |            | マッチしていなければ次のループへ移ります。                                       |
+      |                      |            |                                                                                  |
+      |                      |            | 条件式                                                                           |
+      |                      |            |                                                                                  |
+      |                      |            | 　when:と同様の記述が行えます。                                                  |
+      +----------------------+------------+----------------------------------------------------------------------------------+
+      | failed_when          | 任意       | command実行後(ループ毎)のstdoutの内容に対する条件判定です。                      |
+      |                      |            |                                                                                  |
+      |                      |            | with_itemsが記述されている場合に条件判定を行います。                             |
+      |                      |            |                                                                                  |
+      |                      |            | 条件にマッチしていれば正常とします。                                             |
+      |                      |            |                                                                                  |
+      |                      |            | マッチしていなければ異常とし、対話ファイルを異常終了させます。                   |
+      |                      |            |                                                                                  |
+      |                      |            | 条件式                                                                           |
+      |                      |            |                                                                                  |
+      |                      |            | 　変数具体値判定                                                                 |
+      |                      |            |                                                                                  |
+      |                      |            | 　stdout 比較演算子 文字列                                                       |
+      +----------------------+------------+----------------------------------------------------------------------------------+
+
+
+   | registerパラメータの有効範囲
+
+   .. code-block:: yaml
+
+      exec_list:
+        - expect: 'assword:'
+          exec: '{{ __loginpassword__ }}'
+        - command: 'systemctl status httpd'
+          prompt: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
+          register: httpd_status_register
+        - command: 'systemctl restart httpd'
+          when:
+            - httpd_status_register no match(running)
+          prompt: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
+        - command: 'systemctl status mysql'
+          prompt: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
+          register: mysql_status_register
+        - command: 'systemctl restart mysql'
+          when:
+            - mysql_status_register no match(running)
+          prompt: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
+        - expect: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
+          exec: exit
+
+   .. tip:: | 6行目のhttpd_status_registerは、11行目のcommandモジュール内のregisterで別の変数(mysql_status_register)に値を設定している為、10行目までが有効範囲となります。
+
+
+   例)　with_itemsで定義した変数はregister/when以外でitem.Xでスコープすることが出来ます。
+
+   .. code-block:: yaml
+         
+      with_items:
+         - '{{ VAR_item1 }}'   #item.0
+         - '{{ VAR_item2 }}'   #item.1
+      exec_when:
+         - '{{ item.0 }} == active'
+         - '{{ item.0 }} == {{ VAR_status }}'
+         - 'register変数 match({{ item.0 }})'
+      failed_when:
+         - 'stdout match({{ item.1 }})'
+
+   | 例）commandモジュールで、下記コマンドを実行したい場合
+   |  ・systemctl start httpd
+   |  ・systemctl start mysql
+
+   | 対話ファイルの記述とwith_itemsで使用する変数の具体値は以下の様になります。
+
+   | ▼対話ファイルの記述内容
+
+   .. code-block:: yaml
+
+      - command: "systemctl  {{ item.0 }}  {{ item.1 }}"
+        prompt: '{{ item.2 }}'
+        timeout: '{{ item.3 }}'
+        with_items:
+           - '{{ VAR_status_list }}'    # item.0
+           - '{{ VAR_service_list }}'   # item.1
+           - '{{ VAR_prompt_list }}'    # item.2
+           - '{{ VAR_timeout_list }}'   # item.3
+
+   | ▼with_itemsで使用する変数の具体値
+
+   | 　VAR_status_list:　　　　　 VAR_service_list:
+   | 　- start　　　　　　　　　　- httpd                   
+   | 　- start　　　　　　　　　　- mysql
+   | 　VAR_prompt_list:　　　　　 VAR_timeout_list:
+   | 　 - コマンドプロンプト　　　 - 10
+   | 　 - コマンドプロンプト　　　 - 10
+   | 　 - コマンドプロンプト　　　 - 10
+
+
+   | 例3-1)
+
+   .. code-block:: yaml
+
+     conf:
+       timeout: 30
+
+     exec_list:
+     # プロンプト以外の文字列で待合せが必要な場合は、expect/execの組合せでする。
+     # パスワードが必要な場合
+       - expect: 'password:'
+         exec:   '{{ __loginpassword__ }}'
+
+     # VAR_hosts_makeというITA変数がホスト変数ファイルに記載されている場合、
+     # hostsファイルをcatします。記載されていない場合は、スキップします。
+       - command: cat /etc/hosts
+         prompt: root@{{ __loginhostname__ }}
+         when: 
+           - VAR_hosts_make is define
+       - expect: root@{{ __loginhostname__ }}
+         exec: exit
+
+
+   | 例3-2)
+
+   .. code-block:: yaml
+
+      conf:
+        timeout: 30
+
+      exec_list:
+      # プロンプト以外の文字列で待合せが必要な場合は、expect/execの組合せでする。
+      # パスワードが必要な場合
+        - expect: 'password:'
+          exec:   '{{ __loginpassword__ }}'
+
+      # VAR_hosts_makeというITA変数がホスト変数ファイルに記載されている場合、
+      # hostsファイルをcatします。記載されていない場合は、スキップします。
+      # catにより、標準出力されたhostsファイルの内容をresult_stdoutに退避します。
+        - command: cat /etc/hosts
+          prompt: root@{{ __loginhostname__ }}
+          register: result_stdout
+          when: 
+            - VAR_hosts_make is define
+
+      # VAR_hosts_makeというITA変数がホスト変数ファイルに記載されている場合、
+      # command実行します。記載されていない場合は、スキップします。
+      # with_itemsの複数具体値変数に設定されている具体値数分command実行します。
+      # ループ毎の条件判定として、hostsファイルに「ipアドレス ホスト名」が該当しない場合
+      # command実行します。
+      # hostsファイルの最終行にechoによる、「IPアドレス ホスト名」を追記します。
+
+        - command: 'echo {{ item.0 }}  {{ item.1 }} >> /etc/hosts'
+          prompt: 'root@{{ __loginhostname__ }}'
+          when: 
+            - VAR_hosts_make is define
+          with_items:
+            - '{{ VAR_hosts_ip }}'      # item.0
+            - '{{ VAR_hosts_name }}'   # item.1
+          exec_when:
+            - result_stdout no match({{ item.0 }} *{{ item.1 }})
+
+        - expect: root@{{ __loginhostname__ }}
+          exec: exit
+
+
+   | 例3-3)
+
+   .. code-block:: yaml
+
+      conf:
+        timeout: 30
+
+      exec_list:
+      # プロンプト以外の文字列で待合せが必要な場合は、expect/execの組合せでする。
+      # パスワードが必要な場合
+        - expect: 'password:'
+          exec:   '{{ __loginpassword__ }}'
+
+      # with_itemsの複数具体値変数に設定されている具体値数分command実行します。
+      # 自動起動設定を実行します。
+        - command: 'systemctl enable {{ item.0 }}'
+          prompt: 'root@{{ __loginhostname__ }}'
+          with_items:
+            - '{{ VAR_service_name_list }}'  # item.0
+
+      # with_itemsの複数具体値変数に設定されている具体値数分command実行します。
+      # サービスの起動を実行します。
+        - command: 'systemctl start {{ item.0 }}'
+          prompt: 'root@{{ __loginhostname__ }}'
+          with_items:
+            - '{{ VAR_service_name_list }}'  # item.0
+
+      # with_itemsの複数具体値変数に設定されている具体値数分command実行します。
+      # サービスのステータスを標準出力します。
+      # 標準出力された結果の内容に、item.1の正規表現がある場合、正となります。
+      # 例えば、VAR_service_status_listの具体値をrunningと設定し、サービスが起動している場合、
+      # 「Active: active (running)」のrunnigが一致するので正となります。(次のループに移ります)
+      # そうでない場合は、異常と判断し、対話ファイルは異常終了となります。
+        - command: 'systemctl status {{ item.0 }}'
+          prompt: 'root@{{ __loginhostname__ }}'
+          with_items:
+            - '{{ VAR_service_name_list }}'  # item.0
+            - '{{ VAR_service_status_list }}'  # item.1
+          failed_when:
+            - stdout match({{ item.1 }})
+
+        - expect: root@{{ __loginhostname__ }}
+          exec: exit
+
+
+   | 例3-4)
+
+   .. code-block:: yaml
+
+      conf:
+        timeout: 30
+      exec_list:
+      # プロンプト以外の文字列で待合せが必要な場合は、expect/execの組合せでする。
+      # パスワードが必要な場合
+        - expect: 'password:'
+          exec:   '{{ __loginpassword__ }}'
+
+      # with_itemsの複数具体値変数に設定されている具体値数分command実行します。
+      # commandに「{{ item.0 }}」のみの記述をする場合は、ダブルクォーテーションで囲みます。
+      # promptやtimeoutでwith_itemsを利用する場合、具体値数に注意が必要です。
+      # prompt→command→prompt→command→prompt ・・・(以下ループ)となり、command数+1
+      # 設定する必要があります。(timeoutも同様)
+        - command: "{{ item.0 }}"
+          prompt: '{{ item.1 }}'
+          timeout: '{{ item.2 }}'
+          with_items:
+            - '{{ VAR_command_list }}'  # item.0
+            - '{{ VAR_prompt_list }}'    # item.1
+            - '{{ VAR_timeout_list }}'    # item.2
+        - expect: root@{{ __loginhostname__ }}
+          exec: exit
+
+   | 例3-5)
+
+   .. code-block:: yaml
+
+      conf:
+        timeout: 30
+
+      exec_list:
+      # プロンプト以外の文字列で待合せが必要な場合は、expect/execの組合せでする。
+      # パスワードが必要な場合
+        - expect: 'password:'
+          exec:   '{{ __loginpassword__ }}'
+
+      # with_itemsの複数具体値変数に設定されている具体値数分command実行します。
+      # 代入値管理の具体値に{{ item.X }} を設定することができます。その際は対話ファイルに記載する
+      # item.Xより具体値に記載するitem.Xの数値が大きくなるようにしてください。
+      # 今回の例で実行するcommandは「systemctl status ky_pioneer_execute-workflow.service」
+        - command: "{{ item.0 }}"
+          prompt: 'root@{{ __loginhostname__ }}'
+          with_items:
+            - '{{ VAR_command_list }}'      # item.0
+            - '{{ VAR_service_name_list }}'  # item.1
+
+        - expect: root@{{ __loginhostname__ }}
+          exec: exit
+      
+   | ※ VAR_command_list      ・・・ systemctl status {{ item.1 }}
+   | ※ VAR_service_name_list ・・・ ky_pioneer_execute-workflow.service
+
+   | 例3-6)
+
+   .. code-block:: yaml
+
+      conf:
+        timeout: 30
+
+      exec_list:
+      # プロンプト以外の文字列で待合せが必要な場合は、expect/execの組合せでする。
+      # パスワードが必要な場合
+        - expect: 'password:'
+          exec:   '{{ __loginpassword__ }}'
+
+      # and/orによる複合条件の記述例です。
+      # or条件を行いたい場合、if文を横に記述することができます。
+      # and条件を行いたい場合、複数行に分けて記述するとand条件になります。
+      # 今回、whenを例にしていますが、exec_when、failed_whenも同様です。
+        - command: echo aaa
+          prompt: 'root@{{ __loginhostname__ }}'
+          when:
+            - 10 == 9 OR 10 != 9 OR 10 >= 9
+            - 10 > 9 OR 10 <= 9 OR 10 < 9
+
+        - expect: root@{{ __loginhostname__ }}
+          exec: exit
+
+              
+   ⑤localactionモジュール
+   ************************
+   | Ansible/Ansible Automation Controllerサーバ上でコマンドを実行します。
+   | localactionモジュールの書式
+
+   .. table::
+      :align: Left
+
+      +----------------------+------------+----------------------------------------------------------------------------------+
+      | パラメータ　         | 必須/任意  | 説明　                                                                           |
+      +======================+============+==================================================================================+
+      | localaction          | 必須       | 実行するコマンドを指定します。                                                   |
+      |                      |            |                                                                                  |
+      |                      |            | confセクションのtimeoutパラメータでのタイマ監視は適用外です。                    |
+      |                      |            |                                                                                  |
+      |                      |            | コマンドが完了するまで次のステップに進みません。                                 |
+      +----------------------+------------+----------------------------------------------------------------------------------+
+      | ignore_errors        | 任意       | コマンドの実行結果が異常でも次に進む場合に「yes」を指定します。                  |
+      |                      |            |                                                                                  |
+      |                      |            | 「no」の場合は、異常の場合に対話ファイルを異常終了します。                       |
+      |                      |            |                                                                                  |
+      |                      |            | デフォルトは「no」。                                                             |
+      +----------------------+------------+----------------------------------------------------------------------------------+
+
+   | 例4-1)
+
+   .. code-block:: yaml
+            
+     # Symphony実行時の各Movementで共有するディレクトリ({{ __symphony_workflowdir__ }})にホスト毎のディレクトリを設けて、hostsファイルを退避します。
+     
+     exec_list:
+       - localaction: mkdir -p 755 {{ __symphony_workflowdir__ }}/{{ __loginhostname__ }}
+         ignore_errors: yes
+       - state: cat /etc/hosts
+         prompt: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
+         stdout_file: '{{ __symphony_workflowdir__ }}/{{ __loginhostname__ }}/hosts'
+         ignore_errors: yes
+       - expect: root@{{ __loginhostname__ }}
+         exec: exit
+
+   正規表記
+   ~~~~~~~~~
+   | 下記のコマンド及びパラメータに記述された文字列は正規表記で評価されます。
+   -  expectモジュール
+   -  stateモジュールのpromptパラメータ
+   -  commandモジュールのpromptパラメータ
+   | 正規表記で記述した文字列にメタ文字「(){}.など」を含む場合、メタ文字の前にエスケープ文字「\\」を挿入する必要があります。
+      
+   | 正しい例)
+
+   .. code-block:: yaml
+
+      XAMPP Developer Files ¥[Y¥/n¥] exec_list:  
+
+   | 誤った例)
+
+   .. code-block:: yaml
+
+      XAMPP Developer Files [Y/n] exec_list:
+
+   | stateモジュールとcommandモジュールは、実行したコマンドの結果（標準出力）の取り出しを行っています。取り出す上での留意事項を以下に記述します。
+
+   #. | 実行したコマンドの結果（標準出力）とプロンプトの区切り
+      | 実行したコマンドの結果（標準出力）とプロンプトの区切りをpromptパラメータで指定された文字列で行います。実行したコマンドの結果（標準出力）の判定やファイルへの保存を行う場合は、正規表記で .*付の後方一致は記述しないで下さい。実行したコマンドの結果（標準出力）が取り出せません。
+      |
+      | .* 付の後方一致の正規表記の例
+      | '\ **.\***\ [\\#\\$\\%] $''
+      |
+   #. | エスケープシーケンスの対応
+      | 構築対象機器に依存しますが、構築対象機器から送られてくるプロンプトの直前にOperating
+      | System Commandシーケンスが付加されている場合があります。promptパラメータで指定された文字列の直前にあるエスケープシーケンスを排除しています。
+
+   複数具体値変数使用時の注意事項
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   | 対話ファイルで複数具体値変数が使用出来るパラメータは、commandモジュールのwith_itemsパラメータのみです。これ以外で使用した場合、作業実行時にエラーとなります。
+
+   コマンドプロンプト以外のプロンプトを処理する場合の注意事項
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   | コマンドプロンプト以外のプロンプトを処理する場合、execモジュールとexpectモジュールの組合せで対話ファイルを作成して下さい。commandとstateモジュールでは処理できません。
+
+   | 例) 
+
+   .. code-block:: yaml
+
+      # ssh-keygenを対話ファイルで処理する。
+
+      conf:
+        timeout: 10
+
+
+      exec_list:
+      # ssh接続　パスワード認証
+        - expect: 'assword:'
+          exec: '{{ __loginpassword__ }}'
+
+      # ssh-keygenコマンド実行
+        - expect: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
+          exec: ssh-keygen
+        
+      # 以降がコマンドプロンプト以外のプロンプトに対する処理
+      # 秘密鍵ファイルのパスを設定 
+      # expectは正規表記で評価されるので、エスケープが必要なメタ文字にはエスケープ文字(\)を挿入する必要があります。
+        - expect: 'id_rsa\):'
+          exec: '{{ VAR_id_rsa_path }}'
+
+      # パスフレーズを設定
+        - expect: ' passphrase\):'
+          exec: '{{ VAR_passphrase }}'
+
+      # パスフレーズを確認
+        - expect: ' passphrase again:'
+          exec: '{{ VAR_passphrase }}'
+
+      # 生成された 秘密鍵ファイルを確認
+        - expect: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
+          exec: 'ls -al {{ VAR_id_rsa_path }}'
+
+      # ssh接続クローズ
+        - expect: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
+          exec: exit
+
+   | ※ VAR_id_rsa_path　・・・　秘密鍵ファイルのパスを設定します。
+   | ※ VAR_passphrase 　・・・　パスフレーズを設定します。
+   |
+   | ◎リターンしたい場合
+   | 変数使用の場合は具体値を空白(未入力)にします。
+   | 変数を使用していない場合は空文字列(コーテーションを2個並べます)を記載します。
+
+   .. code-block:: yaml
+
+      exec: ''
+
+   対話ファイル終了時の注意事項
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   | 対話ファイルの最後に、セッションを終了するコマンドを投入するようにして下さい。
+   | 最終行のモジュールが終了するとセッションをクローズします。最終行にファイルコピーなど処理に時間がかかるコマンドが記載されている場合、コマンド終了前にセッションがクローズされコマンドが異常終了してしまう場合があります。
+
+   | 例)
+
+   .. code-block:: yaml
+
+      conf:
+        timeout: 10
+
+      exec_list:
+      # ssh接続　パスワード認証
+        - expect: 'assword:'
+          exec: '{{ __loginpassword__ }}'
+
+      # ファイルコピー
+        - expect: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
+          exec: 'cp -rfp {{ VAR_src_path }} {{ VAR_dest_path }}'
+
+      # 直前のコマンド終了をコマンドプロンプトで待ち合わせ、exitコマンドを投入する記載を対話ファイルの最後に挿入
+        - expect: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
+          exec: exit
+
+   .. _general_operations_things_to_keep_in_mind_when_writing_dialogue_files_in_yaml_format:
+   対話ファイルをyaml形式で記載する際の注意事項
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   | 対話ファイルはyaml形式のファイルとして扱います。以下のようなYAML形式に準じていない記載があると対話モジュールのアップロード時や作業実行時にエラーとなります。
+   - 各モジュールのパラメータに変数を記載している場合でパラメータ全体をクォーテーションで囲んでいない場合。
+   - 各パラメータを定数のみで記載している場合で、定数の終端が「\ **:**\ 」の場合など、パラメータ全体をクォーテーションで囲んでいない場合。
+   | 各モジュールのパラメータは、パラメータ全体をクォーテーションで囲むことを推奨します。
+
+   | 正しい例）
+
+   .. code-block:: yaml
+
+      - expect: 'assword:'
+        exec:  '{{ __loginpassword__ }}'
+      - expect: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
+        exec: 'ls'
+      - command: 'echo {{ item.0 }}'
+        prompt: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
+        exec_when:
+          - '{{ item.1 }} == run'
+        with_items:
+          - '{{ VAR_echo }}' 
+          - '{{ VAR_exec_when }}' 
+          - '{{ VAR_failed_when }}' 
+        failed_when:
+          - stdout == match({{ item.2 }})
+      - state: '{{ VAR_command }}'
+        prompt: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
+        parameter:
+          - '{{ VAR_p1 }}' 
+          - '{{ VAR_p2 }}' 
+        success_exit: 'yes'
+
+   | 誤った例）
+
+   .. code-block:: yaml
+
+      - expect: assword:
+        exec:  {{ __loginpassword__ }}
+      - expect: {{ __loginuser__ }}@{{ __loginhostname__ }}
+        exec: ls
+      - command: echo {{ item.0 }}
+        prompt: {{ __loginuser__ }}@{{ __loginhostname__ }}
+        exec_when:
+          - {{ item.1 }} == run
+        with_items:
+          - {{ VAR_echo }}
+          - {{ VAR_exec_when }}
+          - {{ VAR_failed_when }}
+        failed_when:
+          - stdout == match({{ item.2 }})
+      - state: {{ VAR_command }}
+        prompt: {{ __loginuser__ }}@{{ __loginhostname__ }}
+        parameter:
+          - {{ VAR_p1 }}
+          - {{ VAR_p2 }}
+        success_exit: yes
+
+      
+   構築対象機器のログインユーザーのLANGについての注意事項
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   | ログインユーザーの「LANG」は、「UTF-8/euc/shift_jis」の3種類についてサポートしています。
+   | ログインユーザーの「LANG」の設定は機器一覧より行ってください。
+   | 「euc/shift_jis」を設定した場合、構築対象機器との通信制御で使用しているpexpectモジュールのUTF-8へのデコード処理の特性で対話ファイルを正しく処理出来ない場合があります。
+   - 一部の全角文字( ①②等)をUTF-8にデコード出来ません。デコード出来ない文字は??で表示されます。
+   - 一部の全角文字( － 等)をexpect等のプロンプト待ちで使用した場合、「LANG」がUTF-8では待ち受けが正しく出来ますが、LANGが「euc/shift_jis」では待ち受けがタイムアウトしてしまいます。
+
+   構築対象機器へ投入するコマンドの終端コードについての注意事項
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   構築対象機器へ投入するコマンドの終端コードは「LF」を送信します。構築対象機器のコマンド終端コードが「CRLF」の場合、対話ファイルで構築対象機器に投入するコマンドの末尾に「\r」を追加して下さい。
+
+   .. code-block:: yaml
+
+      conf:
+        timeout: 10
+      exec_list:
+        - expect: 'password:'
+          exec: 'XXXXXXXX\r'
+        - command: '{{ VAR_command }}\r'
+          prompt: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
+        - state: '{{ VAR_state }}\r'
+          prompt: '{{ __loginuser__ }}@{{ __loginhostname__ }}'
+          parameter:
+           - '{{ VAR_parameter1 }}' 
+           - '{{ VAR_parameter2 }}'
+                
+   .. _general_operations_write_role_package_ansible_legacy_role:
+
 ロールパッケージ（Ansible-Legacy Role）の記述
 ---------------------------------------------
 
-| 基本書式についてはAnsibleベストプラクティスの公式マニュアルを参照してください。
+| 基本書式については `Ansibleベストプラクティス <https://docs.ansible.com/ansible/2.9_ja/user_guide/playbooks_best_practices.html#directory-layout>`_ の公式マニュアルを参照してください。
 | 「 :ref:`general_operations_role_package_list_ansible_legacy_role_only` 」でアップロードするロールパッケージファイルのZipに含めるべきディレクトリと、ITAでの扱いについて記述します。
 
 .. code-block:: none
@@ -5161,93 +5163,90 @@ tasksセクション
            │ 
            └─ [role名②] ロールの数に特に制限はありません。
 
+.. list-table:: 
+   :widths: 25 15 40
+   :header-rows: 1
+   :align: left
 
-
-| **（1） site.yml**
-| 　site.yml(マスターPlaybook)は ITA で作成します。 
-| 　存在する場合は上書きします。 
-|
-| **（2） hosts**
-| 　hosts ファイルは ITA で作成します。 
-| 　存在する場合は上書きします。 
-| 
-| **（3） group_vars**
-| 　ホストグループ変数は扱えません。
-| 　group_vars ディレクトリが存在する場合は削除します。 
-|
-| **（4） host_vars**
-| 　ホスト変数は ITA で作成します。
-| 　host_vars ディレクトリが存在する場合が上書きします。 
-|
-| **（5） ITA readme**
-| 　ホストグループ変数は扱えません。
-| 　group_vars ディレクトリが存在する場合は削除します。 
-| 　ITA readme のファイル名の命名規則
-| 　　ita_readme_[ロール名].yml 
-| 　例 )
-| 　　ロール名: mysql　　　　　　　ファイル名: ita_readme_mysql.yml 
-| 　　ロール名: mysql/install　　　ファイル名: ita_readme_mysql%install.yml
-.. warning:: | roleのディレクトリ階層が深い場合、ロール名に含まれる / を % に置き換える必要があります。
-|
-| **（6） 読替表**
-| 　読替表はロール毎に定義します。無くてもエラーにはなりません。
-| 　読替表のファイル名のファイル名の命名規則
-| 　　ita_translation-table_[ロール名].txt
-| 　例 )
-| 　　ロール名: mysql　　　　　　　ファイル名: ita_translation-table_mysql.txt 
-| 　　ロール名: mysql/install　　　ファイル名: ita_translation-table_mysql%install.txt
-.. warning:: | roleのディレクトリ階層が深い場合、ロール名に含まれる / を % に置き換える必要があります。
-
-| **（7） roles**
-| 　roles ディレクトリが存在しない場合はアップロードでエラーになります。
-|
-| **（8）roles/[role 名①]**
-| 　role 名ディレクトリが存在しない場合はアップロードでエラーになります。
-| 　tasks ディレクトリを含むディレクトリを role として扱います。  
-| 　ディレクトリ階層が深くても問題ありません。 
-|
-| **（9）roles/[role 名①]/readme.md**
-| 　ITA は関知しません。
-|
-| **（10）roles/[role 名①]/tasks**
-| 　tasks ディレクトリは必須です。 
-| 　playbook ファイルは、文字コードが UTF-8 の BOM なで作成して下さい。
-| 　main.yml がない場合はアップロードでエラーになります。 
-| 　main.yml 以外のファイルも配置できます
-| 　サブディレクトリに main.yml 以外のファイルを配置できます。 
-|
-| **（11）roles/[role 名①]/handlers**
-| 　handlers ディレクトリの有無は関知しません。
-| 　playbook ファイルは、文字コードが UTF-8 の BOM なしで作成して下さい。
-| 　ディレクトリ階層が深くても問題ありません。 
-|
-| **（12）roles/[role 名①]/templates**
-| 　templates ディレクトリの有無は関知しません。 
-| 　サブディレクトリにファイルを配置できます。 
-|
-| **（13）roles/[role 名①]/files**
-| 　files ディレクトリの有無は関知しません。 
-| 　ファイル及びサブディレクトリの有無は関知しません。   
-| 　ファイル内容は関知しません。  
-|
-| **（14）roles/[role 名①]/vars**
-| 　vars ディレクトリの有無は関知しません。 
-| 　playbook ファイルは、文字コードが UTF-8 の BOM なしで作成して下さい。
-| 　ファイル及びサブディレクトリの有無は関知しません。 
-| 　ファイル内容は関知しません。 
-|
-| **（15）roles/[role 名①]/defaults**
-| 　defaults ディレクトリの有無は関知しません。 
-| 　playbook ファイルは、文字コードが UTF-8 の BOM なしで作成して下さい。
-| 　main.yml の有無は関知しません。  
-| 　main.yml 以外のファイルも配置できます。 
-| 　サブディレクトリに main.yml 以外のファイルを配置できます。
-|
-| **（16）roles/[role 名①]/meta**
-| 　meta ディレクトリの有無は関知しません。  
-| 　playbook ファイルは、文字コードが UTF-8 の BOM なしで作成して下さい。
-| 　ファイル及びサブディレクトリの有無は関知しません。
-| 　ファイル内容は関知しません。  
+   * - 
+     - | 含めるべきファイル
+       | 〇　：必要
+       | △　：任意 
+     - ITAでの取り扱い
+   * - \(1)\　site.yml　\(マスターPlaybook)\
+     - △
+     - ITAで作成されるため、存在する場合は上書きされます。
+   * - \(2)\　hosts
+     - △
+     - ITAで作成されるため、存在する場合は上書きされます。
+   * - \(3)\　group_vars
+     - △
+     - ITAで作成されるため、存在する場合は上書きされます。
+   * - \(4)\　host_vars
+     - △
+     - ITAで作成されるため、存在する場合は上書きされます。
+   * - \(5)\　ITA readme
+     - △
+     - | ITA readmeはロール毎に定義します。無くてもエラーにはなりません。
+       | ITA readmeは、文字コードがUTF-8のBOMなしで作成して下さい。
+       | 詳細については「 :ref:`general_operations_write_ita_readme_ansible_legacy_role_only` 」をご確認ください。
+   * - \(6)\　読替表
+     - △
+     - | 読替表はロール毎に定義します。無くてもエラーにはなりません。
+       | 詳細については「 :ref:`general_operations_write_translation_table_ansible_legacy_role_only` 」をご確認ください。
+   * - \(7)\　roles
+     - 〇
+     - rolesディレクトリが存在しない場合はアップロードでエラーになります。
+   * - \(8)\　roles/[role 名①]
+     - 〇
+     - | role名ディレクトリが存在しない場合はアップロードでエラーになります。
+       | tasksディレクトリを含むディレクトリをroleとして扱います。
+       | ディレクトリ階層が深くても問題ありません。
+   * - \(9)\　roles/[role 名①]/readme.md
+     - △
+     - ITA は関知しません。
+   * - \(10)\　roles/[role 名①]/tasks
+     - 〇
+     - | tasksディレクトリは必須です。
+       | playbookファイルは、文字コードがUTF-8のBOMなで作成して下さい。
+       | main.ymlがない場合はアップロードでエラーになります。
+       | main.yml以外のファイルも配置できます。
+       | サブディレクトリにmain.yml以外のファイルを配置できます。 
+   * - \(11)\　roles/[role 名①]/handlers
+     - △
+     - | handlersディレクトリの有無は関知しません。
+       | playbookファイルは、文字コードがUTF-8のBOMなしで作成して下さい。
+       | main.ymlの有無は関知しません。
+       | main.yml以外のファイルも配置できます。
+       | サブディレクトリにファイルを配置できます。    
+   * - \(12)\　roles/[role 名①]/templates
+     - △
+     - | templatesディレクトリの有無は関知しません。
+       | サブディレクトリにファイルを配置できます。 
+   * - \(13)\　roles/[role 名①]/files
+     - △
+     - | filesディレクトリの有無は関知しません。
+       | ファイル及びサブディレクトリの有無は関知しません。
+       | ファイル内容は関知しません。
+   * - \(14)\　roles/[role 名①]/vars
+     - △
+     - | varsディレクトリの有無は関知しません。
+       | playbookファイルは、文字コードがUTF-8のBOMなしで作成して下さい。
+       | ファイル及びサブディレクトリの有無は関知しません。
+       | ファイル内容は関知しません。
+   * - \(15)\　roles/[role 名①]/defaults
+     - △
+     - | defaultsディレクトリの有無は関知しません。
+       | playbookファイルは、文字コードがUTF-8のBOMなしで作成して下さい。
+       | main.ymlの有無は関知しません。
+       | main.yml以外のファイルも配置できます。
+       | サブディレクトリにmain.yml以外のファイルを配置できます。    
+   * - \(16)\　roles/[role 名①]/meta
+     - △
+     - | metaディレクトリの有無は関知しません。
+       | playbookファイルは、文字コードがUTF-8のBOMなしで作成して下さい。
+       | ファイル及びサブディレクトリの有無は関知しません。
+       | ファイル内容は関知しません。
 
 マスターPlaybook
 ~~~~~~~~~~~~~~~~~~
@@ -5336,7 +5335,7 @@ Ansible Role Directory Structureにおける所定ディクレトリのサブデ
    | parent/sample_role2/sample_role3とparent/sample_role2/sample_role4にもtasksディレクトリがありますが、parent/sample_role2にtasksディレクトリがありロールとして認識していますので、ロールとして扱いません。
 
 .. _general_operations_write_ita_readme_ansible_legacy_role_only:
-ITAreadme（Ansible-Legacy Roleのみ）の記述
+ITAreadme（Ansible-Legacy Role）の記述
 ------------------------------------------
 | 代入値管理機能は、defaults変数定義ファイルに定義した変数の型を解釈して、各変数およびそのメンバー変数などに変数の値を設定します。
 |
@@ -5347,12 +5346,22 @@ ITA readmeのファイル名の命名規則
    
 | 　ita_readme_[ロール名].yml
 | 　例)
-| 　　 ロール名: mysql ファイル名: ita_readme_mysql.yml
-| 　　 ロール名: mysql/install ファイル名: ita_readme_mysql%install.yml
+
+.. table::
+   :align: Left
+
+   +-------------------------------------------+--------------------------------------------------+
+   | ロール名                                  | 作成するファイル名                               |
+   +===========================================+==================================================+
+   | mysql                                     | ita_readme_mysql.yml                             |
+   +-------------------------------------------+--------------------------------------------------+
+   | mysql/install                             | ita_readme_mysql%install.yml                     |
+   +-------------------------------------------+--------------------------------------------------+
 
 .. warning:: | roleのディレクトリ階層が深い場合、ロール名に含まれる / を % に置き換える必要があります。
 
-読替表のフォーマット
+
+ITA readmeのフォーマット
 ~~~~~~~~~~~~~~~~~~~~~~
 | フォーマットはYAML形式となります。
 | 文字コードはUTF-8のBOMなしで作成して下さい。
@@ -5411,7 +5420,7 @@ ITA readmeのファイル名の命名規則
 | ITA readmeに記載した変数と具体値は適用されません。
 
 .. _general_operations_write_translation_table_ansible_legacy_role_only:
-読替表（Ansible-Legacy Roleのみ）の記述
+読替表（Ansible-Legacy Role）の記述
 ---------------------------------------
 | defaults変数定義ファイルまたはITA readmeに定義されている「VAR_xxx」以外の変数に対して、「 :ref:`general_operations_substitution_value_list` 」機能で変数の具体値を設定出来るようにするための設定を行うファイルです。
 | defaults変数定義ファイルまたはITA readmeに定義されている「VAR_xxx」以外の変数「任意変数」に対して代入値管理機能で扱う変数「読替変数」の紐付を定義します。
@@ -5421,9 +5430,19 @@ ITA readmeのファイル名の命名規則
 
 | 　ita_translation-table_[ロール名].txt
 | 　例)
-| 　　 ロール名: mysql ファイル名: ita_translation-table_mysql.txt
-| 　　 ロール名: mysql/install ファイル名: ita_translation-table_mysql%install.txt
- 
+
+.. table:: **デフォルト値表示ルール**
+   :align: Left
+   :widths: 25 50 
+
+   +-------------------------------+---------------------------------------------+
+   |    ロール名                   |       作成するファイル名                    |
+   +===============================+=============================================+
+   |    mysql                      |       ita_translation-table_mysql.txt       |
+   +-------------------------------+---------------------------------------------+
+   |   mysql/install               |  ita_translation-table_mysql%install.txt    |
+   +-------------------------------+---------------------------------------------+
+   
 .. warning:: | roleのディレクトリ階層が深い場合、ロール名に含まれる / を % に置き換える必要があります。
 
 
@@ -5432,18 +5451,8 @@ ITA readmeのファイル名の命名規則
 | テキスト形式で下記フォーマットとなります。
 | 文字コードはUTF-8のBOMなしで作成して下さい。
 | ロール内で読替変数と任意変数の組合せは一意である必要があります。
-| 　　読替変数($s*):($s+)任意変数 
+| 読替変数に関する詳細は「  :doc:`../basic_console` 」を参照してください。
 
-| 　　　　読替変数:LCA_***
-| 　　　　　　　\***\：半角英数字とｱﾝﾀﾞｽｺｱ（ _ ）が利用可能です。(最小値:1 ﾊﾞｲﾄ、最大値:256 ﾊﾞｲﾄ)
-| 　　　　任意変数::(最小値:1 ﾊﾞｲﾄ、最大値:256 ﾊﾞｲﾄ)
-| 　　　　($s*):半角スペース 0 個以上
-| 　　　　($s+):半角スペース 1 個以上
-|
-| 　　例)
-| 　　　LCA_var1: var1
-| 　　　# #から始まる行はコメント行
-| 　　　LCA_var2: var
 
 .. image:: ./general_operations/image65.png
    :width: 6.22054in
@@ -5533,7 +5542,7 @@ ITA readmeのファイル名の命名規則
    :height: 3.67187in
    
 
-「ita_readme」と「読替表」の活用例（Ansible-Legacy Roleのみ）
+「ita_readme」と「読替表」の活用例（Ansible-Legacy Role）
 -------------------------------------------------------------
 
 | Ansible-Legacy Roleにおける「ita_readme」と「読替表」の活用例について、観点1～9を列挙します。
@@ -5719,15 +5728,32 @@ BackYardコンテンツ
 .. table:: モード別アップロードした資材の変数の扱い
   :align: Left
 
-  +-------------------------+--------------+--------------+--------------+
-  | メニュー                | Legacy　　   | Legacy Role  | Pioneer　　  |
-  +=========================+==============+==============+==============+
-  | Playbook素材集          | ○            | ×            | ×            |
-  +-------------------------+--------------+--------------+--------------+
-  | ロールパッケージ管理    | ×            | ○            | ×            |
-  +-------------------------+--------------+--------------+--------------+
-  | 対話ファイル素材集      | ×            | ×            | ○            |
-  +-------------------------+--------------+--------------+--------------+
+  +-------------------------+--------------+
+  | メニュー                | Legacy Role  |
+  +=========================+==============+
+  | Playbook素材集          | ×            | 
+  +-------------------------+--------------+
+  | ロールパッケージ管理    | ○            | 
+  +-------------------------+--------------+
+  | 対話ファイル素材集      | ×            |
+  +-------------------------+--------------+
+
+..
+   ※修正前
+  .. table:: モード別アップロードした資材の変数の扱い
+    :align: Left
+
+    +-------------------------+--------------+--------------+--------------+
+    | メニュー                | Legacy　　   | Legacy Role  | Pioneer　　  |
+    +=========================+==============+==============+==============+
+    | Playbook素材集          | ○            | ×            | ×            |
+    +-------------------------+--------------+--------------+--------------+
+    | ロールパッケージ管理    | ×            | ○            | ×            |
+    +-------------------------+--------------+--------------+--------------+
+    | 対話ファイル素材集      | ×            | ×            | ○            |
+    +-------------------------+--------------+--------------+--------------+
+
+
 
 | なお、取出すタイミングは 自動プロセスの起動周期 に依存します。
 
@@ -5853,24 +5879,9 @@ Ansible利用ガイドラインITA追加ルール
    +--------------------------------------+-------------------------------+
    | **説明**                             | **対象ファイル名**            |
    +======================================+===============================+
-   | Legacy/pioneer/legacyRole実行監視    | ky_ans\                       |
+   | LegacyRole実行監視                   | ky_ans\                       |
    |                                      | ible_execute-workflow.service |
    | 未実行作業の実行を行う。             |                               |
-   +--------------------------------------+-------------------------------+
-   | legacy変数自動登録                   | ky_legacy_va\                 |
-   |                                      | rsautolistup-workflow.service |
-   | アップロ\                            |                               |
-   | ードした資材から変数の取出しを行う。 |                               |
-   +--------------------------------------+-------------------------------+
-   | legacy自動登録設定                   | ky_legacy\                    |
-   |                                      | _valautostup-workflow.service |
-   | 自動登録設定に設定された情報を代入値 |                               |
-   | 管理と作業対象メニューに反映を行う。 |                               |
-   +--------------------------------------+-------------------------------+
-   | pioneer自動登録設定                  | ky\_                          |
-   |                                      | pioneer                       |
-   | 自動登録設定に設定された情報を代入値 | _valautostup-workflow.service |
-   | 管理と作業対象メニューに反映を行う。 |                               |
    +--------------------------------------+-------------------------------+
    | legacyRole変数自動登録               | ky_legacy_role_va\            |
    |                                      | rsautolistup-workflow.service |
@@ -5889,7 +5900,53 @@ Ansible利用ガイドラインITA追加ルール
    | Cont\                                |                               |
    | rollerから各種設定情報の取得を行う。 |                               |
    +--------------------------------------+-------------------------------+
-  
+
+..
+   ※修正前(v2.0用に)
+
+  .. table::
+     :align: Left
+
+     +--------------------------------------+-------------------------------+
+     | **説明**                             | **対象ファイル名**            |
+     +======================================+===============================+
+     | Legacy/pioneer/legacyRole実行監視    | ky_ans\                       |
+     |                                      | ible_execute-workflow.service |
+     | 未実行作業の実行を行う。             |                               |
+     +--------------------------------------+-------------------------------+
+     | legacy変数自動登録                   | ky_legacy_va\                 |
+     |                                      | rsautolistup-workflow.service |
+     | アップロ\                            |                               |
+     | ードした資材から変数の取出しを行う。 |                               |
+     +--------------------------------------+-------------------------------+
+     | legacy自動登録設定                   | ky_legacy\                    |
+     |                                      | _valautostup-workflow.service |
+     | 自動登録設定に設定された情報を代入値 |                               |
+     | 管理と作業対象メニューに反映を行う。 |                               |
+     +--------------------------------------+-------------------------------+
+     | pioneer自動登録設定                  | ky\_                          |
+     |                                      | pioneer                       |
+     | 自動登録設定に設定された情報を代入値 | _valautostup-workflow.service |
+     | 管理と作業対象メニューに反映を行う。 |                               |
+     +--------------------------------------+-------------------------------+
+     | legacyRole変数自動登録               | ky_legacy_role_va\            |
+     |                                      | rsautolistup-workflow.service |
+     | アップロ\                            |                               |
+     | ードした資材から変数の取出しを行う。 |                               |
+     +--------------------------------------+-------------------------------+
+     | legacyRole自動登録設定               | ky_legacy_role\               |
+     |                                      | _valautostup-workflow.service |
+     | 自動登録設定に設定された情報を代入値 |                               |
+     | 管理と作業対象メニューに反映を行う。 |                               |
+     +--------------------------------------+-------------------------------+
+     | Ansible Automation\                  | ky_ansible_tow\               |
+     | Controllerデータ同期                 | ermasterSync-workflow.service |
+     |                                      |                               |
+     | Ansible Automation\                  |                               |
+     | Cont\                                |                               |
+     | rollerから各種設定情報の取得を行う。 |                               |
+     +--------------------------------------+-------------------------------+
+
 | 対象ファイルは「/usr/lib/systemd/system」に格納されています。
 | プロセス起動/停止/再起動の方法は次の通りです。
 | root権限でコマンドを実行してください。
@@ -5950,164 +6007,167 @@ Ansible実行時に使用される投入データとITAメニューの紐づけ
 | 
 | 各種データとITAメニューの関係性は以下の通りです。
 
-Ansible-Legacy投入データ
-~~~~~~~~~~~~~~~~~~~~~~~~
+..
+   ※修正前(v2.0用に)
 
-.. table:: Ansible-Legacy投入データ
-   :align: Left
+  Ansible-Legacy投入データ
+  ~~~~~~~~~~~~~~~~~~~~~~~~
 
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | メニューグループ              | メニュー                      | 項目                                                   | ディレクトリ解凍時のパス                   |
-   +===============================+===============================+========================================================+============================================+
-   | Ansible-Legacy                | Playbook素材集                | プレイブック素材                                       | /child_playbooks                           |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible 共通                  | テンプレート管理              | テンプレート素材                                       | /template_files                            |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible 共通                  | ファイル管理                  | ファイル素材                                           | /copy_files                                |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible-Legacy                | 代入値管理                    | ファイル素材                                           | /upload_files                              |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible 共通                  | グローバル変数管理            | 変数名/具体値                                          | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible-Legacy                | 代入値管理                    | 変数名/具体値(文字列)                                  | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible-Legacy                | 代入値管理                    | 変数名/具体値(ファイル)                                | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible-Legacy                | template 管理                 | テンプレート素材                                       | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible-Legacy                | ファイル管理                  | ファイル変数名                                         | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible-Legacy                | インターフェース情報          | データリレイストレージパス(ITA)                        | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible-Legacy                | インターフェース情報          | Symphony インスタンスデータリレイストレージパス(ANS)   | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible-Legacy                | インターフェース情報          | Conductor インスタンスデータリレイストレージパス(ANS)  | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | プロトコル                                             | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | ログインユーザ ID                                      | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | ログインパスワード                                     | /host_vars                                 |
-   |                               |                               |                                                        |                                            |
-   |                               |                               | ※ansible-vault で暗号化                                |                                            |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | ホスト名                                               | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | ssh 認証鍵ファイル                                     | /ssh_key_files                             |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | サーバ証明書                                           | /winrm_ca_files                            |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible 共通                  | インターフェース情報          | オプションパラメータ                                   | /AnsibleExecOption.txt                     |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible-Legacy                | Movement 一覧                 | オプションパラメータ                                   | /AnsibleExecOption.txt                     |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | ログインユーザ ID                                      | /hosts                                     |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | ログインパスワード                                     | /hosts                                     |
-   |                               |                               |                                                        |                                            |
-   |                               |                               | ※ansible-vault で暗号化                                |                                            |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | ホスト名                                               | /hosts                                     |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | IP アドレス                                            | /hosts                                     |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | インベントリファイル追加オプション                     | /hosts                                     |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | WinRM 接続情報                                         | /hosts                                     |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | 接続オプション                                         | /hosts                                     |
-   |                               |                               |                                                        |                                            |
-   |                               |                               | ※ansible_ssh_extra_args の値                           |                                            |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible-Legacy                | Playbook 素材集               | プレイブック素材                                       | /playbook.yml                              |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible-Legacy                | Movement-Playbook紐付         | インクルード順序                                       | /playbook.yml                              |
-   |                               |                               |                                                        |                                            |
-   |                               | （Movement-対話種別紐付、\    |                                                        |                                            |
-   |                               | Movement-ロール紐付）         |                                                        |                                            |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+  .. table:: Ansible-Legacy投入データ
+     :align: Left
+
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | メニューグループ              | メニュー                      | 項目                                                   | ディレクトリ解凍時のパス                   |
+     +===============================+===============================+========================================================+============================================+
+     | Ansible-Legacy                | Playbook素材集                | プレイブック素材                                       | /child_playbooks                           |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible 共通                  | テンプレート管理              | テンプレート素材                                       | /template_files                            |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible 共通                  | ファイル管理                  | ファイル素材                                           | /copy_files                                |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible-Legacy                | 代入値管理                    | ファイル素材                                           | /upload_files                              |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible 共通                  | グローバル変数管理            | 変数名/具体値                                          | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible-Legacy                | 代入値管理                    | 変数名/具体値(文字列)                                  | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible-Legacy                | 代入値管理                    | 変数名/具体値(ファイル)                                | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible-Legacy                | template 管理                 | テンプレート素材                                       | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible-Legacy                | ファイル管理                  | ファイル変数名                                         | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible-Legacy                | インターフェース情報          | データリレイストレージパス(ITA)                        | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible-Legacy                | インターフェース情報          | Symphony インスタンスデータリレイストレージパス(ANS)   | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible-Legacy                | インターフェース情報          | Conductor インスタンスデータリレイストレージパス(ANS)  | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | プロトコル                                             | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | ログインユーザ ID                                      | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | ログインパスワード                                     | /host_vars                                 |
+     |                               |                               |                                                        |                                            |
+     |                               |                               | ※ansible-vault で暗号化                                |                                            |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | ホスト名                                               | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | ssh 認証鍵ファイル                                     | /ssh_key_files                             |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | サーバ証明書                                           | /winrm_ca_files                            |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible 共通                  | インターフェース情報          | オプションパラメータ                                   | /AnsibleExecOption.txt                     |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible-Legacy                | Movement 一覧                 | オプションパラメータ                                   | /AnsibleExecOption.txt                     |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | ログインユーザ ID                                      | /hosts                                     |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | ログインパスワード                                     | /hosts                                     |
+     |                               |                               |                                                        |                                            |
+     |                               |                               | ※ansible-vault で暗号化                                |                                            |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | ホスト名                                               | /hosts                                     |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | IP アドレス                                            | /hosts                                     |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | インベントリファイル追加オプション                     | /hosts                                     |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | WinRM 接続情報                                         | /hosts                                     |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | 接続オプション                                         | /hosts                                     |
+     |                               |                               |                                                        |                                            |
+     |                               |                               | ※ansible_ssh_extra_args の値                           |                                            |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible-Legacy                | Playbook 素材集               | プレイブック素材                                       | /playbook.yml                              |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible-Legacy                | Movement-Playbook紐付         | インクルード順序                                       | /playbook.yml                              |
+     |                               |                               |                                                        |                                            |
+     |                               | （Movement-対話種別紐付、\    |                                                        |                                            |
+     |                               | Movement-ロール紐付）         |                                                        |                                            |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
 
 
 
 
-Ansible-Pioneer投入データ
-~~~~~~~~~~~~~~~~~~~~~~~~~
+  Ansible-Pioneer投入データ
+  ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. table:: Ansible-Pioneer投入データ
-   :align: Left
+  .. table:: Ansible-Pioneer投入データ
+     :align: Left
 
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | メニューグループ              | メニュー                      | 項目                                                   | ディレクトリ解凍時のパス                   |
-   +===============================+===============================+========================================================+============================================+
-   | Ansible-Legacy                | Playbook素材集                | プレイブック素材                                       | /child_playbooks                           |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible 共通                  | テンプレート管理              | テンプレート素材                                       | /template_files                            |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible 共通                  | ファイル管理                  | ファイル素材                                           | /copy_files                                |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible- Pioneer              | 代入値管理                    | ファイル素材                                           | /upload_files                              |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible 共通                  | グローバル変数管理            | 変数名/具体値                                          | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible-Pioneer               | 代入値管理                    | 変数名/具体値(文字列)                                  | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible-Pioneer               | 代入値管理                    | 変数名/具体値(ファイル)                                | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible-Pioneer               | template 管理                 | テンプレート素材                                       | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible-Pioneer               | ファイル管理                  | ファイル変数名                                         | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible-Pioneer               | インターフェース情報          | データリレイストレージパス(ITA)                        | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible-Pioneer               | インターフェース情報          | Symphony インスタンスデータリレイストレージパス(ANS)   | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible-Pioneer               | インターフェース情報          | Conductor インスタンスデータリレイストレージパス(ANS)  | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | プロトコル                                             | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | ログインユーザ ID                                      | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | ログインパスワード                                     | /host_vars                                 |
-   |                               |                               |                                                        |                                            |
-   |                               |                               | ※base64、rot13の順でエンコードした値                   |                                            |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | ホスト名                                               | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | Pioneer 利用情報                                       | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible-Pioneer               | Movement 一覧                 | 並列実行数                                             | /host_vars                                 |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | ssh 認証鍵ファイル                                     | /ssh_key_files                             |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible 共通                  | インターフェース情報          | オプションパラメータ                                   | /AnsibleExecOption.txt                     |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible-Pioneer               | Movement 一覧                 | オプションパラメータ                                   | /AnsibleExecOption.txt                     |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | ログインユーザ ID                                      | /hosts                                     |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | ログインパスワード                                     | /hosts                                     |
-   |                               |                               |                                                        |                                            |
-   |                               |                               | ※base64、rot13の順でエンコードした値                   |                                            |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | ホスト名                                               | /hosts                                     |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | IP アドレス                                            | /hosts                                     |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | インベントリファイル追加オプション                     | /hosts                                     |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | Pioneer 利用情報                                       | /hosts                                     |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | 接続オプション                                         | /hosts                                     |
-   |                               |                               |                                                        |                                            |
-   |                               |                               | ※ansible_ssh_extra_args の値                           |                                            |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible-Pioneer               | 対話ファイル素材集            | 対話ファイル素材                                       | /playbook.yml                              |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | Ansible-Pioneer               | Movement-Playbook紐付         | インクルード順序                                       | /playbook.yml                              |
-   |                               |                               |                                                        |                                            |
-   |                               | （Movement-対話種別紐付、\    |                                                        |                                            |
-   |                               | Movement-ロール紐付）         |                                                        |                                            |
-   +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | メニューグループ              | メニュー                      | 項目                                                   | ディレクトリ解凍時のパス                   |
+     +===============================+===============================+========================================================+============================================+
+     | Ansible-Legacy                | Playbook素材集                | プレイブック素材                                       | /child_playbooks                           |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible 共通                  | テンプレート管理              | テンプレート素材                                       | /template_files                            |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible 共通                  | ファイル管理                  | ファイル素材                                           | /copy_files                                |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible- Pioneer              | 代入値管理                    | ファイル素材                                           | /upload_files                              |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible 共通                  | グローバル変数管理            | 変数名/具体値                                          | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible-Pioneer               | 代入値管理                    | 変数名/具体値(文字列)                                  | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible-Pioneer               | 代入値管理                    | 変数名/具体値(ファイル)                                | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible-Pioneer               | template 管理                 | テンプレート素材                                       | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible-Pioneer               | ファイル管理                  | ファイル変数名                                         | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible-Pioneer               | インターフェース情報          | データリレイストレージパス(ITA)                        | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible-Pioneer               | インターフェース情報          | Symphony インスタンスデータリレイストレージパス(ANS)   | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible-Pioneer               | インターフェース情報          | Conductor インスタンスデータリレイストレージパス(ANS)  | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | プロトコル                                             | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | ログインユーザ ID                                      | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | ログインパスワード                                     | /host_vars                                 |
+     |                               |                               |                                                        |                                            |
+     |                               |                               | ※base64、rot13の順でエンコードした値                   |                                            |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | ホスト名                                               | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | Pioneer 利用情報                                       | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible-Pioneer               | Movement 一覧                 | 並列実行数                                             | /host_vars                                 |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | ssh 認証鍵ファイル                                     | /ssh_key_files                             |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible 共通                  | インターフェース情報          | オプションパラメータ                                   | /AnsibleExecOption.txt                     |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible-Pioneer               | Movement 一覧                 | オプションパラメータ                                   | /AnsibleExecOption.txt                     |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | ログインユーザ ID                                      | /hosts                                     |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | ログインパスワード                                     | /hosts                                     |
+     |                               |                               |                                                        |                                            |
+     |                               |                               | ※base64、rot13の順でエンコードした値                   |                                            |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | ホスト名                                               | /hosts                                     |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | IP アドレス                                            | /hosts                                     |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | インベントリファイル追加オプション                     | /hosts                                     |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | Pioneer 利用情報                                       | /hosts                                     |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | 基本コンソール                | 機器一覧                      | 接続オプション                                         | /hosts                                     |
+     |                               |                               |                                                        |                                            |
+     |                               |                               | ※ansible_ssh_extra_args の値                           |                                            |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible-Pioneer               | 対話ファイル素材集            | 対話ファイル素材                                       | /playbook.yml                              |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
+     | Ansible-Pioneer               | Movement-Playbook紐付         | インクルード順序                                       | /playbook.yml                              |
+     |                               |                               |                                                        |                                            |
+     |                               | （Movement-対話種別紐付、\    |                                                        |                                            |
+     |                               | Movement-ロール紐付）         |                                                        |                                            |
+     +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
 
 Ansible-LegacyRole投入データ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -6142,39 +6202,39 @@ Ansible-LegacyRole投入データ
    +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
    | Ansible-LegacyRole            | インターフェース情報          | Conductor インスタンスデータリレイストレージパス(ANS)  | /host_vars                                 |
    +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | プロトコル                                             | /host_vars                                 |
+   | Ansible共通                   | 機器一覧                      | プロトコル                                             | /host_vars                                 |
    +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | ログインユーザ ID                                      | /host_vars                                 |
+   | Ansible共通                   | 機器一覧                      | ログインユーザ ID                                      | /host_vars                                 |
    +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | ログインパスワード                                     | /host_vars                                 |
+   | Ansible共通                   | 機器一覧                      | ログインパスワード                                     | /host_vars                                 |
    |                               |                               |                                                        |                                            |
    |                               |                               | ※ansible-vault で暗号化                                |                                            |
    +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | ホスト名                                               | /host_vars                                 |
+   | Ansible共通                   | 機器一覧                      | ホスト名                                               | /host_vars                                 |
    +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | ssh 認証鍵ファイル                                     | /ssh_key_files                             |
+   | Ansible共通                   | 機器一覧                      | ssh 認証鍵ファイル                                     | /ssh_key_files                             |
    +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | サーバ証明書                                           | /winrm_ca_files                            |
+   | Ansible共通                   | 機器一覧                      | サーバ証明書                                           | /winrm_ca_files                            |
    +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
    | Ansible 共通                  | インターフェース情報          | オプションパラメータ                                   | /AnsibleExecOption.txt                     |
    +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
    | Ansible-LegacyRole            | Movement 一覧                 | オプションパラメータ                                   | /AnsibleExecOption.txt                     |
    +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | ログインユーザ ID                                      | /hosts                                     |
+   | Ansible共通                   | 機器一覧                      | ログインユーザ ID                                      | /hosts                                     |
    +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | ログインパスワード                                     | /hosts                                     |
+   | Ansible共通                   | 機器一覧                      | ログインパスワード                                     | /hosts                                     |
    |                               |                               |                                                        |                                            |
    |                               |                               | ※ansible-vault で暗号化                                |                                            |
    +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | ホスト名                                               | /hosts                                     |
+   | Ansible共通                   | 機器一覧                      | ホスト名                                               | /hosts                                     |
    +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | IP アドレス                                            | /hosts                                     |
+   | Ansible共通                   | 機器一覧                      | IP アドレス                                            | /hosts                                     |
    +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | インベントリファイル追加オプション                     | /hosts                                     |
+   | Ansible共通                   | 機器一覧                      | インベントリファイル追加オプション                     | /hosts                                     |
    +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | WinRM 接続情報                                         | /hosts                                     |
+   | Ansible共通                   | 機器一覧                      | WinRM 接続情報                                         | /hosts                                     |
    +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
-   | 基本コンソール                | 機器一覧                      | 接続オプション                                         | /hosts                                     |
+   | Ansible共通                   | 機器一覧                      | 接続オプション                                         | /hosts                                     |
    |                               |                               |                                                        |                                            |
    |                               |                               | ※ansible_ssh_extra_args の値                           |                                            |
    +-------------------------------+-------------------------------+--------------------------------------------------------+--------------------------------------------+
@@ -6195,9 +6255,20 @@ Ansible-LegacyRole投入データ
 #. | /ベースディレクトリ/ドライバパス/作業番号/in
 #. | /ベースディレクトリ/ドライバパス/作業番号/out
    | ベースディレクトリ　: インターフェース情報=>データリレイストレージパス(Ansible)
-   | ドライバパス　:  legacy: legacy/ns　 Legacy-role: legacy/rl　 pioneer: pioneer/ns
+   | ドライバパス　:  Legacy-role: legacy/rl　 
    | 作業番号:　作業実行時の作業番号を右寄せで不足分は0を埋めた10桁の文字列。
    | 　　　　　 作業番号: 12345 => 0000012345
+
+..
+  ① 投入データの解凍先ディレクトリの作成
+  *****************************************
+  | 以下の2つのディレクトリを作成し、1.のディレクトリに投入データを解凍します。
+  #. | /ベースディレクトリ/ドライバパス/作業番号/in
+  #. | /ベースディレクトリ/ドライバパス/作業番号/out
+     | ベースディレクトリ　: インターフェース情報=>データリレイストレージパス(Ansible)
+     | ドライバパス　:  legacy: legacy/ns　 Legacy-role: legacy/rl　 pioneer: pioneer/ns
+     | 作業番号:　作業実行時の作業番号を右寄せで不足分は0を埋めた10桁の文字列。
+     | 　　　　　 作業番号: 12345 => 0000012345
   
 | 尚、投入データには、機器一覧にアップロードした秘密鍵ファイルが含まれていません。秘密鍵ファイルを必要といる認証方式の場合、投入データに含まれているインベントリファイル「hosts」を開き、ansible_ssh_private_key_fileに設定されているパスに秘密鍵ファイルをコピーして下さい。
 
@@ -6216,12 +6287,21 @@ Ansible-LegacyRole投入データ
     
 ② 投入データを直接実行するコマンド
 ***********************************
-| Ansible-Legacy
-| 　　   ansible-playbook (オプション) –i hosts --vault-password-file　パスワードファイル playbook.yml
-| Ansible-Pioneer
-| 　　   ansible-playbook (オプション) –i hosts --vault-password-file　パスワードファイル playbook.yml
 | Ansible-LegacyRole
 | 　　   ansible-playbook (オプション) –i hosts --vault-password-file　パスワードファイル site.yml
+
+.. 
+  ② 投入データを直接実行するコマンド
+  ***********************************
+  | Ansible-Legacy
+  | 　　   ansible-playbook (オプション) –i hosts --vault-password-file　パスワードファイル playbook.yml
+  | Ansible-Pioneer
+  | 　　   ansible-playbook (オプション) –i hosts --vault-password-file　パスワードファイル playbook.yml
+  | Ansible-LegacyRole
+  | 　　   ansible-playbook (オプション) –i hosts --vault-password-file　パスワードファイル site.yml
+  |
+
+
 |
 | パスワードファイル名は任意です。パスワードファイルに設定するパスワードは、ＩＴＡインストール先/ita-root/confs/commonconfs/ansible_vault_accesskey.txtの内容を、rot13、base64の順でデコードした値を使用して下さい。
 
@@ -6230,124 +6310,128 @@ Ansible実行時に作成される結果データ
 | [投入データ]をansibleで実行した結果を[結果データ]としてZIP形式で保存します。
 | [結果データ]はZIP形式で「 :ref:`general_operations_check_operation_status` 」よりダウンロードが可能です。
 
-Legacy結果データに保存されるファイル一覧
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. table:: Legacy結果データの保存されるファイル一覧
-   :align: Left
+..
+   ※修正前(v2.0用に)
 
-   +---------------+-----------------------------------------+----+------+
-   | **ファ\       | **記録内容**                            | A\ | Ans\ |
-   | イル名**      |                                         | ns\| ible\|
-   |               |                                         | ib\| Au\  |
-   |               |                                         | le\| toma\|
-   |               |                                         | Co\| tion\|
-   |               |                                         | re\| Co\  |
-   |               |                                         | の\| ntro\|
-   |               |                                         | 場\| ller\|
-   |               |                                         | 合 | の\  |
-   |               |                                         |    | 場合 |
-   +===============+=========================================+====+======+
-   | result.txt    | Ansibleの実行結果を記録                 | 〇 |      |
-   +---------------+-----------------------------------------+----+------+
-   | xxx.pid       | Ansible-playbbokコ\                     | 〇 |      |
-   |               | マンドのプロセスIDを記録するファイル。  |    |      |
-   |               |                                         |    |      |
-   |               | x\                                      |    |      |
-   |               | xx:Ansible-playbbokコマンドのプロセスID |    |      |
-   +---------------+-----------------------------------------+----+------+
-   | error.log     | 作業実行時にITAがなにかしらのエラ\      | 〇 | 〇   |
-   |               | ーによりエラーメッセージを出力した場合\ |    |      |
-   |               | 、または、Ansible-playbbokコマンドがな\ |    |      |
-   |               | にかとらのエラーによりエラーメッセージ\ |    |      |
-   |               | を出力した場合のエラー出力先ファイル。  |    |      |
-   |               |                                         |    |      |
-   |               | 作業実行確\                             |    |      |
-   |               | 認のエラーログに表示に表示される内容。  |    |      |
-   +---------------+-----------------------------------------+----+------+
-   | exec.log      | Ansible-playbbokが出力した\             | 〇 | 〇   |
-   |               | 実行ログを一部加工したログファイル。作\ |    |      |
-   |               | 業実行確認の実行ログに表示される内容。  |    |      |
-   +---------------+-----------------------------------------+----+------+
-   | exec.log.org  | Ansible-playbbokが出力した実行ログ      | 〇 | 〇   |
-   +---------------+-----------------------------------------+----+------+
-   | I             | 分割された実行ログファイルです。        |    | 〇   |
-   | ta_<mode名>\_ |                                         |    |      |
-   |               | ファイル名の命名規則は :ref:`gen\       |    |      |
-   | execut        | eral_operations_check_operation_stat\   |    |      |
-   | ions_jobtpl\_ | us` の⑥実行ログ表示を参照下さい。       |    |      |
-   |               |                                         |    |      |
-   | <作業番号>_<  |                                         |    |      |
-   | グループ番号> |                                         |    |      |
-   +---------------+-----------------------------------------+----+------+
-   | forced.txt    | 緊急停止をした場合の記録ファイル        | 〇 |      |
-   +---------------+-----------------------------------------+----+------+
-   | user_files    | 実行したplaybook\                       | 〇 | 〇   |
-   |               | でITA独自変数「__workflowdir__」\       |    |      |
-   |               | になにかしらのファイル出力をした場\     |    |      |
-   |               | 合のファイルが記録されるディレクトリ。  |    |      |
-   +---------------+-----------------------------------------+----+------+
 
-Pioneer結果データに保存されるファイル一覧
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Legacy結果データに保存されるファイル一覧
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  .. table:: Legacy結果データの保存されるファイル一覧
+     :align: Left
 
-.. table:: Pioneer結果データの保存されるファイル一覧
-   :align: Left
-   
-   +---------------+-----------------------------------------+----+------+
-   | **ファ\       | **記録内容**                            | A\ | Ans\ |
-   | イル名**      |                                         | ns\| ible\|
-   |               |                                         | ib\| Au\  |
-   |               |                                         | le\| toma\|
-   |               |                                         | Co\| tion\|
-   |               |                                         | re\| Cont\|
-   |               |                                         | の\| roll\|
-   |               |                                         | 場\| erの\|
-   |               |                                         | 合 | 場合 |
-   +===============+=========================================+====+======+
-   | result.txt    | Ansibleの実行結果を記録                 | 〇 |      |
-   +---------------+-----------------------------------------+----+------+
-   | xxx.pid       | Ansible-playbbokコ\                     | 〇 |      |
-   |               | マンドのプロセスIDを記録するファイル。  |    |      |
-   |               |                                         |    |      |
-   |               | x\                                      |    |      |
-   |               | xx:Ansible-playbbokコマンドのプロセスID |    |      |
-   +---------------+-----------------------------------------+----+------+
-   | pioneer.xxx   | Pioneerモジ\                            | 〇 | 〇   |
-   |               | ュールのプロセスIDを記録するファイル。  |    |      |
-   |               |                                         |    |      |
-   |               | xxx: PioneerモジュールのプロセスID      |    |      |
-   +---------------+-----------------------------------------+----+------+
-   | error.log     | 作業実行時にITAがなにかしらのエラ\      | 〇 | 〇   |
-   |               | ーによりエラーメッセージを出力した場合\ |    |      |
-   |               | 、または、Ansible-playbbokコマンドがな\ |    |      |
-   |               | にかとらのエラーによりエラーメッセージ\ |    |      |
-   |               | を出力した場合のエラー出力先ファイル。  |    |      |
-   |               |                                         |    |      |
-   |               | 作業実行確\                             |    |      |
-   |               | 認のエラーログに表示に表示される内容。  |    |      |
-   +---------------+-----------------------------------------+----+------+
-   | exec.log      | Ansible-playbbokが出力した\             | 〇 | 〇   |
-   |               | 実行ログを一部加工したログファイル。作\ |    |      |
-   |               | 業実行確認の実行ログに表示される内容。  |    |      |
-   +---------------+-----------------------------------------+----+------+
-   | exec.log.org  | Ansible-playbbokが出力した実行ログ      | 〇 | 〇   |
-   +---------------+-----------------------------------------+----+------+
-   | I             | 分割された実行ログファイルです。        |    | 〇   |
-   | ta_<mode名>\_ |                                         |    |      |
-   |               | ファイル名の命名規則は :ref:`gene\      |    |      |
-   | execut        | ral_operations_check_operation_sta\     |    |      |
-   | ions_jobtpl\_ | tus` の⑥実行ログ表示を参照下さい。      |    |      |
-   |               |                                         |    |      |
-   | <作業番号>_<  |                                         |    |      |
-   | グループ番号> |                                         |    |      |
-   +---------------+-----------------------------------------+----+------+
-   | forced.txt    | 緊急停止をした場合の記録ファイル        | 〇 |      |
-   +---------------+-----------------------------------------+----+------+
-   | user_files    | 実行したplaybook\                       | 〇 | 〇   |
-   |               | でITA独自変数「__workflowdir__」\       |    |      |
-   |               | になにかしらのファイル出力をした場\     |    |      |
-   |               | 合のファイルが記録されるディレクトリ。  |    |      |
-   +---------------+-----------------------------------------+----+------+
+     +---------------+-----------------------------------------+----+------+
+     | **ファ\       | **記録内容**                            | A\ | Ans\ |
+     | イル名**      |                                         | ns\| ible\|
+     |               |                                         | ib\| Au\  |
+     |               |                                         | le\| toma\|
+     |               |                                         | Co\| tion\|
+     |               |                                         | re\| Co\  |
+     |               |                                         | の\| ntro\|
+     |               |                                         | 場\| ller\|
+     |               |                                         | 合 | の\  |
+     |               |                                         |    | 場合 |
+     +===============+=========================================+====+======+
+     | result.txt    | Ansibleの実行結果を記録                 | 〇 |      |
+     +---------------+-----------------------------------------+----+------+
+     | xxx.pid       | Ansible-playbbokコ\                     | 〇 |      |
+     |               | マンドのプロセスIDを記録するファイル。  |    |      |
+     |               |                                         |    |      |
+     |               | x\                                      |    |      |
+     |               | xx:Ansible-playbbokコマンドのプロセスID |    |      |
+     +---------------+-----------------------------------------+----+------+
+     | error.log     | 作業実行時にITAがなにかしらのエラ\      | 〇 | 〇   |
+     |               | ーによりエラーメッセージを出力した場合\ |    |      |
+     |               | 、または、Ansible-playbbokコマンドがな\ |    |      |
+     |               | にかとらのエラーによりエラーメッセージ\ |    |      |
+     |               | を出力した場合のエラー出力先ファイル。  |    |      |
+     |               |                                         |    |      |
+     |               | 作業実行確\                             |    |      |
+     |               | 認のエラーログに表示に表示される内容。  |    |      |
+     +---------------+-----------------------------------------+----+------+
+     | exec.log      | Ansible-playbbokが出力した\             | 〇 | 〇   |
+     |               | 実行ログを一部加工したログファイル。作\ |    |      |
+     |               | 業実行確認の実行ログに表示される内容。  |    |      |
+     +---------------+-----------------------------------------+----+------+
+     | exec.log.org  | Ansible-playbbokが出力した実行ログ      | 〇 | 〇   |
+     +---------------+-----------------------------------------+----+------+
+     | I             | 分割された実行ログファイルです。        |    | 〇   |
+     | ta_<mode名>\_ |                                         |    |      |
+     |               | ファイル名の命名規則は :ref:`gen\       |    |      |
+     | execut        | eral_operations_check_operation_stat\   |    |      |
+     | ions_jobtpl\_ | us` の⑥実行ログ表示を参照下さい。       |    |      |
+     |               |                                         |    |      |
+     | <作業番号>_<  |                                         |    |      |
+     | グループ番号> |                                         |    |      |
+     +---------------+-----------------------------------------+----+------+
+     | forced.txt    | 緊急停止をした場合の記録ファイル        | 〇 |      |
+     +---------------+-----------------------------------------+----+------+
+     | user_files    | 実行したplaybook\                       | 〇 | 〇   |
+     |               | でITA独自変数「__workflowdir__」\       |    |      |
+     |               | になにかしらのファイル出力をした場\     |    |      |
+     |               | 合のファイルが記録されるディレクトリ。  |    |      |
+     +---------------+-----------------------------------------+----+------+
+
+  Pioneer結果データに保存されるファイル一覧
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  .. table:: Pioneer結果データの保存されるファイル一覧
+     :align: Left
+     
+     +---------------+-----------------------------------------+----+------+
+     | **ファ\       | **記録内容**                            | A\ | Ans\ |
+     | イル名**      |                                         | ns\| ible\|
+     |               |                                         | ib\| Au\  |
+     |               |                                         | le\| toma\|
+     |               |                                         | Co\| tion\|
+     |               |                                         | re\| Cont\|
+     |               |                                         | の\| roll\|
+     |               |                                         | 場\| erの\|
+     |               |                                         | 合 | 場合 |
+     +===============+=========================================+====+======+
+     | result.txt    | Ansibleの実行結果を記録                 | 〇 |      |
+     +---------------+-----------------------------------------+----+------+
+     | xxx.pid       | Ansible-playbbokコ\                     | 〇 |      |
+     |               | マンドのプロセスIDを記録するファイル。  |    |      |
+     |               |                                         |    |      |
+     |               | x\                                      |    |      |
+     |               | xx:Ansible-playbbokコマンドのプロセスID |    |      |
+     +---------------+-----------------------------------------+----+------+
+     | pioneer.xxx   | Pioneerモジ\                            | 〇 | 〇   |
+     |               | ュールのプロセスIDを記録するファイル。  |    |      |
+     |               |                                         |    |      |
+     |               | xxx: PioneerモジュールのプロセスID      |    |      |
+     +---------------+-----------------------------------------+----+------+
+     | error.log     | 作業実行時にITAがなにかしらのエラ\      | 〇 | 〇   |
+     |               | ーによりエラーメッセージを出力した場合\ |    |      |
+     |               | 、または、Ansible-playbbokコマンドがな\ |    |      |
+     |               | にかとらのエラーによりエラーメッセージ\ |    |      |
+     |               | を出力した場合のエラー出力先ファイル。  |    |      |
+     |               |                                         |    |      |
+     |               | 作業実行確\                             |    |      |
+     |               | 認のエラーログに表示に表示される内容。  |    |      |
+     +---------------+-----------------------------------------+----+------+
+     | exec.log      | Ansible-playbbokが出力した\             | 〇 | 〇   |
+     |               | 実行ログを一部加工したログファイル。作\ |    |      |
+     |               | 業実行確認の実行ログに表示される内容。  |    |      |
+     +---------------+-----------------------------------------+----+------+
+     | exec.log.org  | Ansible-playbbokが出力した実行ログ      | 〇 | 〇   |
+     +---------------+-----------------------------------------+----+------+
+     | I             | 分割された実行ログファイルです。        |    | 〇   |
+     | ta_<mode名>\_ |                                         |    |      |
+     |               | ファイル名の命名規則は :ref:`gene\      |    |      |
+     | execut        | ral_operations_check_operation_sta\     |    |      |
+     | ions_jobtpl\_ | tus` の⑥実行ログ表示を参照下さい。      |    |      |
+     |               |                                         |    |      |
+     | <作業番号>_<  |                                         |    |      |
+     | グループ番号> |                                         |    |      |
+     +---------------+-----------------------------------------+----+------+
+     | forced.txt    | 緊急停止をした場合の記録ファイル        | 〇 |      |
+     +---------------+-----------------------------------------+----+------+
+     | user_files    | 実行したplaybook\                       | 〇 | 〇   |
+     |               | でITA独自変数「__workflowdir__」\       |    |      |
+     |               | になにかしらのファイル出力をした場\     |    |      |
+     |               | 合のファイルが記録されるディレクトリ。  |    |      |
+     +---------------+-----------------------------------------+----+------+
 
 Legacy-Role 結果データに保存されるファイル一覧
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -6575,15 +6659,27 @@ ITA独自変数を利用して作成したファイルの取り扱い
    :height: 5.84593in
    :align: center
 
-#. | Movementをsymphony/conductorから実行している場合、Movement実行前に該当symphony/conductorインスタンス配下のファイルをAnsible Automation ControllerのITA作業用ディレクトリ配下にファイル転送
+#. | Movementをconductorから実行している場合、Movement実行前に該当conductorインスタンス配下のファイルをAnsible Automation ControllerのITA作業用ディレクトリ配下にファイル転送
 #. | Movement実行前に該当Movement配下のファイルをAnsible Automation ControllerのITA作業用ディレクトリにファイル転送
-#. | Movementをsymphony/conductorから実行している場合、Movement実行後にAnsible Automation ControllerのITA作業用ディレクトリの該当Movementで作成したファイルを結果データにファイル転送
-#. | Movement実行後にAnsible Automation ControllerのITA作業用ディレクトリの該当symphony/conductorインスタンス配下に作成したファイルを結果データにファイル転送
+#. | Movementをconductorから実行している場合、Movement実行後にAnsible Automation ControllerのITA作業用ディレクトリの該当Movementで作成したファイルを結果データにファイル転送
+#. | Movement実行後にAnsible Automation ControllerのITA作業用ディレクトリの該当conductorインスタンス配下に作成したファイルを結果データにファイル転送
+
+..
+    #. | Movementをsymphony/conductorから実行している場合、Movement実行前に該当symphony/conductorインスタンス配下のファイルをAnsible Automation ControllerのITA作業用ディレクトリ配下にファイル転送
+    #. | Movement実行前に該当Movement配下のファイルをAnsible Automation ControllerのITA作業用ディレクトリにファイル転送
+    #. | Movementをsymphony/conductorから実行している場合、Movement実行後にAnsible Automation ControllerのITA作業用ディレクトリの該当Movementで作成したファイルを結果データにファイル転送
+    #. | Movement実行後にAnsible Automation ControllerのITA作業用ディレクトリの該当symphony/conductorインスタンス配下に作成したファイルを結果データにファイル転送
+
+
 
 留意事項
 ~~~~~~~~~~
 #. | ファイル名はansible「__loginhostname__」を含めるなどして、Movementに紐づいているターゲットホスト毎に同一ファイル名に出力しないように工夫して下さい。
-#. | symphony/conductorから実行する場合、複数のMovementで同一ファイル名への出力しないよう工夫して下さい。
+#. | conductorから実行する場合、複数のMovementで同一ファイル名への出力しないよう工夫して下さい。
+
+..
+   #. | symphony/conductorから実行する場合、複数のMovementで同一ファイル名への出力しないよう工夫して下さい。
+
 
 .. _general_operations_data_resources_deleted_when_executing:
 実行時データ削除で削除されるデータリソース
@@ -6675,7 +6771,6 @@ ITA独自変数を利用して作成したファイルの取り扱い
    | ディレクトリ/ita-root/repositorys/a\ |             |                 |                 |                      |
    | nsible_driver/<区分>_10桁の作業番号  |             |                 |                 |                      |
    +--------------------------------------+-------------+-----------------+-----------------+----------------------+
-
 
 
 
