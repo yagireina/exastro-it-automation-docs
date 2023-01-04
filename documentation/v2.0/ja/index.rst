@@ -8,9 +8,9 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-==================
-マニュアル(日本語)
-==================
+==========
+マニュアル
+==========
 
 .. raw:: html
 
@@ -28,7 +28,7 @@
    .. create_param/index
    .. ansible-driver/index
    .. rest_api/index
-   .. installation_appendix/index
+   appendix/index
 
 .. raw:: html
 
