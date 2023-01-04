@@ -6277,18 +6277,21 @@ Ansible-LegacyRole投入データ
 .. code-block:: none
 
    all:
-  children:
-    hostgroups:
-      hosts:
-        target_host_1:
-          ansible_ssh_user: keyauth_user
-          ansible_ssh_private_key_file: /exastro/data_relay_storage/ansible_driver/legacy/ns/0000000060/in/ssh_key_files/0000000006-keyauth_user_id_rsa
+     children:
+       hostgroups:
+         hosts:
+           target_host_1:
+             ansible_ssh_user: keyauth_user
+             ansible_ssh_private_key_file: /exastro/data_relay_storage/ansible_driver/legacy/ns/0000000060/in/ssh_key_files/0000000006-keyauth_user_id_rsa
 
     
 ② 投入データを直接実行するコマンド
 ***********************************
 | Ansible-LegacyRole
-| 　　   ansible-playbook (オプション) –i hosts --vault-password-file　パスワードファイル site.yml
+
+.. code-block:: none
+   
+   ansible-playbook (オプション) –i hosts --vault-password-file　パスワードファイル site.yml
 
 .. 
   ② 投入データを直接実行するコマンド
