@@ -1,8 +1,8 @@
 ==========
-コンテナ版
+管理者向け
 ==========
 
 .. toctree::
    :maxdepth: 2
 
-   general_operations
+   platform-api
