@@ -64,6 +64,18 @@ html_theme_path = ['.']
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+html_css_files = [
+    'exastro_documents.css?v=2',
+    'swagger/swagger-ui.css',
+]
+
+html_js_files = [
+    'jquery-3.6.3.min.js',
+    'exastro_documents.js?v=1',
+    'swagger/swagger-ui-bundle.js',
+    'swagger/swagger-ui-standalone-preset.js',
+]
+
 # ソースコードを表示のリンクを非表示
 html_show_sourcelink = False
 
