@@ -7,4 +7,6 @@
 
    organization
    workspace
+   user
+   role
    aac
