@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-    <title>1. Ansible-driver &#8212; Documentation  ドキュメント</title>
+    <title>5.1. Ansible-driver &#8212; Documentation  ドキュメント</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/option.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -124,15 +124,15 @@
 <div id="tableOfContents">
   <div id="tocButton"></div>
   <ul>
-<li><a class="reference internal" href="#">1. Ansible-driver</a><ul>
-<li><a class="reference internal" href="#id1">1.1. はじめに</a></li>
-<li><a class="reference internal" href="#id2">1.2. Ansible driver概要</a><ul>
+<li><a class="reference internal" href="#">5.1. Ansible-driver</a><ul>
+<li><a class="reference internal" href="#id1">5.1.1. はじめに</a></li>
+<li><a class="reference internal" href="#id2">5.1.2. Ansible driver概要</a><ul>
 <li><a class="reference internal" href="#ansible-core">Ansible Coreについて</a></li>
 <li><a class="reference internal" href="#ansible-automation-controller">Ansible Automation Controllerについて</a></li>
 <li><a class="reference internal" href="#id3">Ansible driverについて</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#general-operations-variable-handling-in-ansible-driver">1.3. Ansible driverでの変数取り扱い</a><ul>
+<li><a class="reference internal" href="#general-operations-variable-handling-in-ansible-driver">5.1.3. Ansible driverでの変数取り扱い</a><ul>
 <li><a class="reference internal" href="#id5">変数の種類</a></li>
 <li><a class="reference internal" href="#id6">通常変数</a><ul>
 <li><a class="reference internal" href="#id7">概要</a></li>
@@ -209,15 +209,15 @@
 <li><a class="reference internal" href="#id48">代入値登録による変数の扱い</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id49">1.4. Ansible driver コンソールメニュー構成</a><ul>
+<li><a class="reference internal" href="#id49">5.1.4. Ansible driver コンソールメニュー構成</a><ul>
 <li><a class="reference internal" href="#id50">メニュー/画面一覧</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id51">1.5. Ansible driver利用手順</a><ul>
+<li><a class="reference internal" href="#id51">5.1.5. Ansible driver利用手順</a><ul>
 <li><a class="reference internal" href="#ansible-legacyrole">Ansible-LegacyRole作業フロー</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id52">1.6. Ansible driver機能・操作方法説明</a><ul>
+<li><a class="reference internal" href="#id52">5.1.6. Ansible driver機能・操作方法説明</a><ul>
 <li><a class="reference internal" href="#id53">基本コンソール</a><ul>
 <li><a class="reference internal" href="#general-operations-input-operation-list">オペレーション一覧</a></li>
 </ul>
@@ -247,7 +247,7 @@
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id72">1.7. 構築コード記述方法</a><ul>
+<li><a class="reference internal" href="#id72">5.1.7. 構築コード記述方法</a><ul>
 <li><a class="reference internal" href="#ansible-legacy-role">ロールパッケージ（Ansible-Legacy Role）の記述</a><ul>
 <li><a class="reference internal" href="#id74">マスターPlaybook</a><ul>
 <li><a class="reference internal" href="#id75">① へッダーセクション</a></li>
@@ -279,12 +279,12 @@
 <li><a class="reference internal" href="#ansibleita">Ansible利用ガイドラインITA追加ルール</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id84">1.8. 運用操作</a><ul>
+<li><a class="reference internal" href="#id84">5.1.8. 運用操作</a><ul>
 <li><a class="reference internal" href="#id85">メンテナンス</a></li>
 <li><a class="reference internal" href="#general-operations-about-the-maintenance-method">メンテナンス方法について</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id87">1.9. 付録</a><ul>
+<li><a class="reference internal" href="#id87">5.1.9. 付録</a><ul>
 <li><a class="reference internal" href="#general-operations-the-linkage-between-the-input-data-used-during-ansible-execution-and-ita-menu">Ansible実行時に使用される投入データとITAメニューの紐づけ</a><ul>
 <li><a class="reference internal" href="#id89">Ansible-LegacyRole投入データ</a></li>
 <li><a class="reference internal" href="#id90">投入データを直接実行する方法</a><ul>
@@ -300,11 +300,11 @@
 </li>
 <li><a class="reference internal" href="#general-operations-option-parameter-list">オプションパラメータ一覧</a></li>
 <li><a class="reference internal" href="#ansible-automation-controllerita">Ansible Automation ControllerでITA独自変数を利用する場合の留意事項</a><ul>
-<li><a class="reference internal" href="#ita-1">ITA独自変数を利用して作成したファイルの取り扱い {{#:1 こちらの修正をお願い致します。}}</a></li>
+<li><a class="reference internal" href="#ita-11">ITA独自変数を利用して作成したファイルの取り扱い {{#11: こちらの修正をお願い致します。}}</a></li>
 <li><a class="reference internal" href="#id95">留意事項</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#general-operations-data-resources-deleted-when-executing">実行時データ削除で削除されるデータリソース</a></li>
+<li><a class="reference internal" href="#general-operations-data-resources-deleted-when-executing">実行時データ削除で削除されるデータリソース {{#12: こちらの修正をお願い致します。作業番号についてなど}}</a></li>
 </ul>
 </li>
 </ul>
@@ -322,7 +322,7 @@
   <ul>
     <li><a href="../../../index.html">HOME</a></li>
     
-    <li><span class="section-number">1. </span>Ansible-driver</li>
+    <li><span class="section-number">5.1. </span>Ansible-driver</li>
   </ul>
 </div>
 
@@ -332,15 +332,15 @@
 <div class="body" role="main">
 
   <section id="ansible-driver">
-<h1><span class="section-number">1. </span>Ansible-driver<a class="headerlink" href="#ansible-driver" title="この見出しへのパーマリンク">¶</a></h1>
+<h1><span class="section-number">5.1. </span>Ansible-driver<a class="headerlink" href="#ansible-driver" title="この見出しへのパーマリンク">¶</a></h1>
 <section id="id1">
-<h2><span class="section-number">1.1. </span>はじめに<a class="headerlink" href="#id1" title="この見出しへのパーマリンク">¶</a></h2>
+<h2><span class="section-number">5.1.1. </span>はじめに<a class="headerlink" href="#id1" title="この見出しへのパーマリンク">¶</a></h2>
 <div class="line-block">
 <div class="line">本書では、ITAの機能および操作方法について説明します。</div>
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">1.2. </span>Ansible driver概要<a class="headerlink" href="#id2" title="この見出しへのパーマリンク">¶</a></h2>
+<h2><span class="section-number">5.1.2. </span>Ansible driver概要<a class="headerlink" href="#id2" title="この見出しへのパーマリンク">¶</a></h2>
 <div class="line-block">
 <div class="line">本章ではAnsible、Ansible Automation ControllerおよびAnsible driverについて説明します。</div>
 </div>
@@ -388,7 +388,7 @@
 </section>
 </section>
 <section id="general-operations-variable-handling-in-ansible-driver">
-<span id="id4"></span><h2><span class="section-number">1.3. </span>Ansible driverでの変数取り扱い<a class="headerlink" href="#general-operations-variable-handling-in-ansible-driver" title="この見出しへのパーマリンク">¶</a></h2>
+<span id="id4"></span><h2><span class="section-number">5.1.3. </span>Ansible driverでの変数取り扱い<a class="headerlink" href="#general-operations-variable-handling-in-ansible-driver" title="この見出しへのパーマリンク">¶</a></h2>
 <section id="id5">
 <h3>変数の種類<a class="headerlink" href="#id5" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
@@ -1094,7 +1094,7 @@
 </section>
 </section>
 <section id="id49">
-<h2><span class="section-number">1.4. </span>Ansible driver コンソールメニュー構成<a class="headerlink" href="#id49" title="この見出しへのパーマリンク">¶</a></h2>
+<h2><span class="section-number">5.1.4. </span>Ansible driver コンソールメニュー構成<a class="headerlink" href="#id49" title="この見出しへのパーマリンク">¶</a></h2>
 <div class="line-block">
 <div class="line">本章では、ITAコンソールのメニュー構成について説明します。</div>
 </div>
@@ -1256,7 +1256,7 @@ Controllerにファイル転送するために必要な情報を管理します�
 </section>
 </section>
 <section id="id51">
-<h2><span class="section-number">1.5. </span>Ansible driver利用手順<a class="headerlink" href="#id51" title="この見出しへのパーマリンク">¶</a></h2>
+<h2><span class="section-number">5.1.5. </span>Ansible driver利用手順<a class="headerlink" href="#id51" title="この見出しへのパーマリンク">¶</a></h2>
 <div class="line-block">
 <div class="line">Ansibleコンソールの利用手順について説明します。</div>
 </div>
@@ -1376,7 +1376,7 @@ Controllerにファイル転送するために必要な情報を管理します�
 </section>
 </section>
 <section id="id52">
-<h2><span class="section-number">1.6. </span>Ansible driver機能・操作方法説明<a class="headerlink" href="#id52" title="この見出しへのパーマリンク">¶</a></h2>
+<h2><span class="section-number">5.1.6. </span>Ansible driver機能・操作方法説明<a class="headerlink" href="#id52" title="この見出しへのパーマリンク">¶</a></h2>
 <div class="line-block">
 <div class="line">本章では、Ansible driverで利用する各コンソールの機能について説明します。</div>
 <div class="line">本章に記載の登録画面項目一覧表の内容について説明します。</div>
@@ -1540,7 +1540,7 @@ Controllerにファイル転送するために必要な情報を管理します�
 </td>
 </tr>
 <tr class="row-odd"><td colspan="4"><p>HW機器種別</p></td>
-<td><p>{{#:1 こちらに入る説明の記入をお願い致します。}}</p></td>
+<td><p>{{#1: こちらに入る説明の記入をお願い致します。}}</p></td>
 <td><ul class="simple">
 <li></li>
 </ul>
@@ -1558,7 +1558,7 @@ Controllerにファイル転送するために必要な情報を管理します�
 <td><p>最大長255バイト</p></td>
 </tr>
 <tr class="row-odd"><td colspan="4"><p>DNSホスト名</p></td>
-<td><p>{{#:1 こちらに入る説明の記入をお願い致します。}}</p></td>
+<td><p>{{#2: こちらに入る説明の記入をお願い致します。}}</p></td>
 <td></td>
 <td><p>手動入力</p></td>
 <td><p>最大長255バイト</p></td>
@@ -1884,7 +1884,7 @@ Controllerにファイル転送するために必要な情報を管理します�
 </tr>
 <tr class="row-even"><td colspan="2"><p>実行時データ削除</p></td>
 <td><p>作業実行時にITAとAnsible Automation Controller 内に一時的に生成したデータリソースを作業終了後に削除するかを選択します。
-「削除する」を選択した場合に削除されるデータリソースは「 <a class="reference internal" href="#general-operations-data-resources-deleted-when-executing"><span class="std std-ref">実行時データ削除で削除されるデータリソース</span></a> 」を参照して下さい。</p></td>
+「削除する」を選択した場合に削除されるデータリソースは「 <a class="reference internal" href="#general-operations-data-resources-deleted-when-executing"><span class="std std-ref">実行時データ削除で削除されるデータリソース {{#12: こちらの修正をお願い致します。作業番号についてなど}}</span></a> 」を参照して下さい。</p></td>
 <td><ul class="simple">
 <li></li>
 </ul>
@@ -1920,7 +1920,7 @@ Controllerにファイル転送するために必要な情報を管理します�
 <td></td>
 </tr>
 <tr class="row-odd"><td colspan="3"><p>Ansible-vaultパスワード</p></td>
-<td><p>{{#:1 こちらに入る説明の記入をお願い致します。}}</p></td>
+<td><p>{{#3: こちらに入る説明の記入をお願い致します。}}</p></td>
 <td><ul class="simple">
 <li></li>
 </ul>
@@ -2626,7 +2626,7 @@ _
 </thead>
 <tbody>
 <tr class="row-even"><td><p>変数名</p></td>
-<td><p>{{#:1 こちらに入る説明の記入をお願い致します。}}</p></td>
+<td><p>{{#4: こちらに入る説明の記入をお願い致します。}}</p></td>
 <td><p>○</p></td>
 <td><p>手動入力</p></td>
 <td><p>説明欄記載のとおり</p></td>
@@ -3100,7 +3100,7 @@ _
 <tbody>
 <tr class="row-even"><td colspan="2" rowspan="2"><p>パラメータシート(From)</p></td>
 <td colspan="2"><p>メニューグループ:メニュー:項目</p></td>
-<td><p>{{#:1 こちらに入る説明の記入をお願い致します。}}</p></td>
+<td><p>{{#5: こちらに入る説明の記入をお願い致します。}}</p></td>
 <td><p>○</p></td>
 <td><p>リスト選択</p></td>
 <td><ul class="simple">
@@ -3109,7 +3109,7 @@ _
 </td>
 </tr>
 <tr class="row-odd"><td colspan="2"><p>代入順序</p></td>
-<td><p>{{#:1 こちらに入る説明の記入をお願い致します。}}</p></td>
+<td><p>{{#6: こちらに入る説明の記入をお願い致します。}}</p></td>
 <td></td>
 <td><p>手動入力</p></td>
 <td><p>ブランクまたは、正の整数</p></td>
@@ -3822,31 +3822,6 @@ _
 <li><div class="line-block">
 <div class="line">閲覧画面の項目一覧は以下のとおりです。</div>
 </div>
-<table class="docutils align-left" id="id161">
-<caption><span class="caption-text">閲覧画面項目一覧（作業対象ホスト）</span><a class="headerlink" href="#id161" title="このテーブルへのパーマリンク">¶</a></caption>
-<thead>
-<tr class="row-odd"><th class="head"><p><strong>項目</strong></p></th>
-<th class="head"><p><strong>説明</strong></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>作業No</p></td>
-<td><p>{{#:1 こちらに入る説明の記入をお願い致します。}}</p></td>
-</tr>
-<tr class="row-odd"><td><p>オペレーション</p></td>
-<td><p>オペレーション一覧に登録されているオペレーションが表示されます。</p></td>
-</tr>
-<tr class="row-even"><td><p>Movement名</p></td>
-<td><p>Movement一覧に登録されているMovementが表示されます。</p></td>
-</tr>
-<tr class="row-odd"><td><p>ホスト名</p></td>
-<td><p>機器一覧に登録されているホスト名が表示されます。</p></td>
-</tr>
-<tr class="row-even"><td><p>備考</p></td>
-<td><p>自由記述欄です。</p></td>
-</tr>
-</tbody>
-</table>
 </li>
 </ol>
 </section>
@@ -3856,18 +3831,18 @@ _
 <li><div class="line-block">
 <div class="line">オペレーションに紐付くMovementで利用されるRole内の変数に代入する具体値を閲覧できます。</div>
 </div>
-<figure class="align-default" id="id162">
+<figure class="align-default" id="id161">
 <a class="reference internal image-reference" href="../../../_images/submenu_screen_substitution_value_list.png"><img alt="サブメニュー画面（代入値管理）" src="../../../_images/submenu_screen_substitution_value_list.png" style="width: 800px;" /></a>
 <figcaption>
-<p><span class="caption-text">サブメニュー画面（代入値管理）</span><a class="headerlink" href="#id162" title="この画像へのパーマリンク">¶</a></p>
+<p><span class="caption-text">サブメニュー画面（代入値管理）</span><a class="headerlink" href="#id161" title="この画像へのパーマリンク">¶</a></p>
 </figcaption>
 </figure>
 </li>
 <li><div class="line-block">
 <div class="line">閲覧画面の項目一覧は以下のとおりです。</div>
 </div>
-<table class="docutils align-left" id="id163">
-<caption><span class="caption-text">閲覧画面項目一覧（代入値管理）</span><a class="headerlink" href="#id163" title="このテーブルへのパーマリンク">¶</a></caption>
+<table class="docutils align-left" id="id162">
+<caption><span class="caption-text">閲覧画面項目一覧（代入値管理）</span><a class="headerlink" href="#id162" title="このテーブルへのパーマリンク">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head" colspan="3"><p><strong>項目</strong></p></th>
 <th class="head"><p><strong>説明</strong></p></th>
@@ -3875,7 +3850,7 @@ _
 </thead>
 <tbody>
 <tr class="row-even"><td colspan="3"><p>作業No</p></td>
-<td><p>{{#:1 こちらに入る説明の記入をお願い致します。}}</p></td>
+<td><p>{{#8: こちらに入る説明の記入をお願い致します。}}</p></td>
 </tr>
 <tr class="row-odd"><td colspan="3"><p>オペレーション</p></td>
 <td><p>作業対象ホストに登録されているオペレーションが表示されます。</p></td>
@@ -3921,7 +3896,7 @@ _
 </section>
 </section>
 <section id="id72">
-<h2><span class="section-number">1.7. </span>構築コード記述方法<a class="headerlink" href="#id72" title="この見出しへのパーマリンク">¶</a></h2>
+<h2><span class="section-number">5.1.7. </span>構築コード記述方法<a class="headerlink" href="#id72" title="この見出しへのパーマリンク">¶</a></h2>
 <section id="ansible-legacy-role">
 <h3>ロールパッケージ（Ansible-Legacy Role）の記述<a class="headerlink" href="#ansible-legacy-role" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
@@ -4292,8 +4267,8 @@ _
 <div class="line-block">
 <div class="line">ITA readmeとdefaults変数定義ファイルで変数定義が重なった場合など、以下のルールで処理されます。</div>
 </div>
-<table class="docutils align-left" id="id164">
-<caption><span class="caption-text">変数採用ルール</span><a class="headerlink" href="#id164" title="このテーブルへのパーマリンク">¶</a></caption>
+<table class="docutils align-left" id="id163">
+<caption><span class="caption-text">変数採用ルール</span><a class="headerlink" href="#id163" title="このテーブルへのパーマリンク">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>defaults変数定義ファイル</strong></p></th>
 <th class="head"><p><strong>ITA readme</strong></p></th>
@@ -4319,8 +4294,8 @@ _
 <div class="line"><br /></div>
 <div class="line">また、「 <a class="reference internal" href="#general-operations-substitution-value-list"><span class="std std-ref">代入値管理</span></a> 」に表示するデフォルト値は以下のルールで処理されます。</div>
 </div>
-<table class="docutils align-left" id="id165">
-<caption><span class="caption-text">デフォルト値表示ルール</span><a class="headerlink" href="#id165" title="このテーブルへのパーマリンク">¶</a></caption>
+<table class="docutils align-left" id="id164">
+<caption><span class="caption-text">デフォルト値表示ルール</span><a class="headerlink" href="#id164" title="このテーブルへのパーマリンク">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>defaults変数定義ファイル</strong></p></th>
 <th class="head"><p><strong>ITA readme</strong></p></th>
@@ -4363,8 +4338,8 @@ _
 <div class="line">　ita_translation-table_[ロール名].txt</div>
 <div class="line">　e.g.)</div>
 </div>
-<table class="docutils align-left" id="id166">
-<caption><span class="caption-text"><strong>デフォルト値表示ルール</strong></span><a class="headerlink" href="#id166" title="このテーブルへのパーマリンク">¶</a></caption>
+<table class="docutils align-left" id="id165">
+<caption><span class="caption-text"><strong>デフォルト値表示ルール</strong></span><a class="headerlink" href="#id165" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col style="width: 33.3%" />
 <col style="width: 66.7%" />
@@ -4482,10 +4457,10 @@ _
 <div class="line">前提として、Ansible-Legacy Role（「roles」ディレクトリ）は外部から取得したものとします。</div>
 <div class="line">以下は、「ita_readme」と「読替表」を用いてアップロードから結果確認までを表した全体イメージ図です。</div>
 </div>
-<figure class="align-center" id="id167">
+<figure class="align-center" id="id166">
 <a class="reference internal image-reference" href="../../../_images/image67.png"><img alt="全体イメージ図" src="../../../_images/image67.png" style="width: 6.49606in; height: 4.84121in;" /></a>
 <figcaption>
-<p><span class="caption-text">全体イメージ図</span><a class="headerlink" href="#id167" title="この画像へのパーマリンク">¶</a></p>
+<p><span class="caption-text">全体イメージ図</span><a class="headerlink" href="#id166" title="この画像へのパーマリンク">¶</a></p>
 </figcaption>
 </figure>
 <div class="line-block">
@@ -4562,10 +4537,10 @@ _
 </div>
 </li>
 </ul>
-<figure class="align-center" id="id168">
+<figure class="align-center" id="id167">
 <a class="reference internal image-reference" href="../../../_images/image68.png"><img alt="観点１のイメージ図" src="../../../_images/image68.png" style="width: 6.49606in; height: 4.84593in;" /></a>
 <figcaption>
-<p><span class="caption-text">観点１のイメージ図</span><a class="headerlink" href="#id168" title="この画像へのパーマリンク">¶</a></p>
+<p><span class="caption-text">観点１のイメージ図</span><a class="headerlink" href="#id167" title="この画像へのパーマリンク">¶</a></p>
 </figcaption>
 </figure>
 <ul>
@@ -4578,10 +4553,10 @@ _
 </div>
 </li>
 </ul>
-<figure class="align-center" id="id169">
+<figure class="align-center" id="id168">
 <a class="reference internal image-reference" href="../../../_images/image69.png"><img alt="観点２のイメージ図" src="../../../_images/image69.png" style="width: 6.49606in; height: 4.84593in;" /></a>
 <figcaption>
-<p><span class="caption-text">観点２のイメージ図</span><a class="headerlink" href="#id169" title="この画像へのパーマリンク">¶</a></p>
+<p><span class="caption-text">観点２のイメージ図</span><a class="headerlink" href="#id168" title="この画像へのパーマリンク">¶</a></p>
 </figcaption>
 </figure>
 <ul>
@@ -4592,10 +4567,10 @@ _
 </div>
 </li>
 </ul>
-<figure class="align-center" id="id170">
+<figure class="align-center" id="id169">
 <a class="reference internal image-reference" href="../../../_images/image70.png"><img alt="観点３のイメージ図" src="../../../_images/image70.png" style="width: 6.49606in; height: 4.84593in;" /></a>
 <figcaption>
-<p><span class="caption-text">観点３のイメージ図</span><a class="headerlink" href="#id170" title="この画像へのパーマリンク">¶</a></p>
+<p><span class="caption-text">観点３のイメージ図</span><a class="headerlink" href="#id169" title="この画像へのパーマリンク">¶</a></p>
 </figcaption>
 </figure>
 <ul>
@@ -4605,10 +4580,10 @@ _
 </div>
 </li>
 </ul>
-<figure class="align-center" id="id171">
+<figure class="align-center" id="id170">
 <a class="reference internal image-reference" href="../../../_images/image71.png"><img alt="観点４のイメージ図" src="../../../_images/image71.png" style="width: 6.49606in; height: 4.84121in;" /></a>
 <figcaption>
-<p><span class="caption-text">観点４のイメージ図</span><a class="headerlink" href="#id171" title="この画像へのパーマリンク">¶</a></p>
+<p><span class="caption-text">観点４のイメージ図</span><a class="headerlink" href="#id170" title="この画像へのパーマリンク">¶</a></p>
 </figcaption>
 </figure>
 <ul>
@@ -4623,10 +4598,10 @@ _
 </div>
 </li>
 </ul>
-<figure class="align-center" id="id172">
+<figure class="align-center" id="id171">
 <a class="reference internal image-reference" href="../../../_images/image72.png"><img alt="観点５のイメージ図" src="../../../_images/image72.png" style="width: 6.49606in; height: 4.84593in;" /></a>
 <figcaption>
-<p><span class="caption-text">観点５のイメージ図</span><a class="headerlink" href="#id172" title="この画像へのパーマリンク">¶</a></p>
+<p><span class="caption-text">観点５のイメージ図</span><a class="headerlink" href="#id171" title="この画像へのパーマリンク">¶</a></p>
 </figcaption>
 </figure>
 <ul>
@@ -4643,10 +4618,10 @@ _
 </div>
 </li>
 </ul>
-<figure class="align-center" id="id173">
+<figure class="align-center" id="id172">
 <a class="reference internal image-reference" href="../../../_images/image73.png"><img alt="観点６のイメージ図" src="../../../_images/image73.png" style="width: 6.49606in; height: 4.84121in;" /></a>
 <figcaption>
-<p><span class="caption-text">観点６のイメージ図</span><a class="headerlink" href="#id173" title="この画像へのパーマリンク">¶</a></p>
+<p><span class="caption-text">観点６のイメージ図</span><a class="headerlink" href="#id172" title="この画像へのパーマリンク">¶</a></p>
 </figcaption>
 </figure>
 <ul>
@@ -4667,10 +4642,10 @@ _
 </ol>
 </li>
 </ul>
-<figure class="align-center" id="id174">
+<figure class="align-center" id="id173">
 <a class="reference internal image-reference" href="../../../_images/image74.png"><img alt="観点７のイメージ図" src="../../../_images/image74.png" style="width: 6.49606in; height: 4.23387in;" /></a>
 <figcaption>
-<p><span class="caption-text">観点７のイメージ図</span><a class="headerlink" href="#id174" title="この画像へのパーマリンク">¶</a></p>
+<p><span class="caption-text">観点７のイメージ図</span><a class="headerlink" href="#id173" title="この画像へのパーマリンク">¶</a></p>
 </figcaption>
 </figure>
 <ul>
@@ -4682,10 +4657,10 @@ _
 </div>
 </li>
 </ul>
-<figure class="align-center" id="id175">
+<figure class="align-center" id="id174">
 <a class="reference internal image-reference" href="../../../_images/image75.png"><img alt="観点８のイメージ図" src="../../../_images/image75.png" style="width: 6.49606in; height: 4.84593in;" /></a>
 <figcaption>
-<p><span class="caption-text">観点８のイメージ図</span><a class="headerlink" href="#id175" title="この画像へのパーマリンク">¶</a></p>
+<p><span class="caption-text">観点８のイメージ図</span><a class="headerlink" href="#id174" title="この画像へのパーマリンク">¶</a></p>
 </figcaption>
 </figure>
 <ul>
@@ -4699,10 +4674,10 @@ _
 </div>
 </li>
 </ul>
-<figure class="align-center" id="id176">
+<figure class="align-center" id="id175">
 <a class="reference internal image-reference" href="../../../_images/image76.png"><img alt="観点９のイメージ図" src="../../../_images/image76.png" style="width: 6.49606in; height: 4.84593in;" /></a>
 <figcaption>
-<p><span class="caption-text">観点９のイメージ図</span><a class="headerlink" href="#id176" title="この画像へのパーマリンク">¶</a></p>
+<p><span class="caption-text">観点９のイメージ図</span><a class="headerlink" href="#id175" title="この画像へのパーマリンク">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -4713,8 +4688,8 @@ _
 <div class="line-block">
 <div class="line">変数解析対象の資材をアップロードした場合、アップロードされた資材から変数を取出します。</div>
 </div>
-<table class="docutils align-left" id="id177">
-<caption><span class="caption-text">モード別アップロードした資材の変数の扱い</span><a class="headerlink" href="#id177" title="このテーブルへのパーマリンク">¶</a></caption>
+<table class="docutils align-left" id="id176">
+<caption><span class="caption-text">モード別アップロードした資材の変数の扱い</span><a class="headerlink" href="#id176" title="このテーブルへのパーマリンク">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>メニュー</p></th>
 <th class="head"><p>Legacy Role</p></th>
@@ -4763,7 +4738,7 @@ _
 </section>
 </section>
 <section id="id84">
-<h2><span class="section-number">1.8. </span>運用操作<a class="headerlink" href="#id84" title="この見出しへのパーマリンク">¶</a></h2>
+<h2><span class="section-number">5.1.8. </span>運用操作<a class="headerlink" href="#id84" title="この見出しへのパーマリンク">¶</a></h2>
 <div class="line-block">
 <div class="line">本機能を活用する操作は、クライアントPCのブラウザ画面からのユーザー利用による入力だけでなく、システム運用・保守による操作もあります。用意している運用・保守の操作は次のとおりです。</div>
 </div>
@@ -4866,7 +4841,7 @@ _
 </section>
 </section>
 <section id="id87">
-<h2><span class="section-number">1.9. </span>付録<a class="headerlink" href="#id87" title="この見出しへのパーマリンク">¶</a></h2>
+<h2><span class="section-number">5.1.9. </span>付録<a class="headerlink" href="#id87" title="この見出しへのパーマリンク">¶</a></h2>
 <section id="general-operations-the-linkage-between-the-input-data-used-during-ansible-execution-and-ita-menu">
 <span id="id88"></span><h3>Ansible実行時に使用される投入データとITAメニューの紐づけ<a class="headerlink" href="#general-operations-the-linkage-between-the-input-data-used-during-ansible-execution-and-ita-menu" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
@@ -4878,8 +4853,8 @@ _
 </div>
 <section id="id89">
 <h4>Ansible-LegacyRole投入データ<a class="headerlink" href="#id89" title="この見出しへのパーマリンク">¶</a></h4>
-<table class="docutils align-left" id="id178">
-<caption><span class="caption-text">Ansible-LegacyRole投入データ</span><a class="headerlink" href="#id178" title="このテーブルへのパーマリンク">¶</a></caption>
+<table class="docutils align-left" id="id177">
+<caption><span class="caption-text">Ansible-LegacyRole投入データ</span><a class="headerlink" href="#id177" title="このテーブルへのパーマリンク">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>メニューグループ</p></th>
 <th class="head"><p>メニュー</p></th>
@@ -5051,7 +5026,8 @@ _
 <div class="line">/ベースディレクトリ/ドライバパス/作業番号/out</div>
 <div class="line">ベースディレクトリ　: インターフェース情報=&gt;データリレイストレージパス(Ansible)</div>
 <div class="line">ドライバパス　:  Legacy-role: legacy/rl</div>
-<div class="line">作業番号:　作業実行時の作業番号を右寄せで不足分は0を埋めた10桁の文字列。</div>
+<div class="line">作業番号:　{{#9: 作業番号について下記既存通りなのかご確認お願いします。}}</div>
+<div class="line">　　　　　 作業実行時の作業番号を右寄せで不足分は0を埋めた10桁の文字列。</div>
 <div class="line">　　　　　 作業番号: 12345 =&gt; 0000012345</div>
 </div>
 </li>
@@ -5097,8 +5073,8 @@ _
 </div>
 <section id="legacy-role">
 <h4>Legacy-Role 結果データに保存されるファイル一覧<a class="headerlink" href="#legacy-role" title="この見出しへのパーマリンク">¶</a></h4>
-<table class="docutils align-left" id="id179">
-<caption><span class="caption-text">Legacy-Role結果データの保存されるファイル一覧</span><a class="headerlink" href="#id179" title="このテーブルへのパーマリンク">¶</a></caption>
+<table class="docutils align-left" id="id178">
+<caption><span class="caption-text">Legacy-Role結果データの保存されるファイル一覧</span><a class="headerlink" href="#id178" title="このテーブルへのパーマリンク">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>ファ
 イル名</strong></p></th>
@@ -5191,8 +5167,8 @@ _
 <div class="line">　　以下の表 8.3.1は実行エンジンがAnsible Core以外の場合に、指定可能なオプションパラメータです。</div>
 <div class="line"><br /></div>
 </div>
-<table class="docutils align-left" id="id180">
-<caption><span class="caption-text">実行エンジンがAnsible Core以外の場合に指定可能なオプションパラメータ一覧</span><a class="headerlink" href="#id180" title="このテーブルへのパーマリンク">¶</a></caption>
+<table class="docutils align-left" id="id179">
+<caption><span class="caption-text">実行エンジンがAnsible Core以外の場合に指定可能なオプションパラメータ一覧</span><a class="headerlink" href="#id179" title="このテーブルへのパーマリンク">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>オプションパラメータ</strong></p></th>
 <th class="head"><p><strong>指定方法</strong></p></th>
@@ -5347,7 +5323,6 @@ _fact_cache</p>
 <div class="line"><br /></div>
 <div class="line">　対象のITA独自変数</div>
 <div class="line">　・ __workflowdir__</div>
-<div class="line">　・ __symphony_workflowdir__</div>
 <div class="line">　・ __conductor_workflowdir__</div>
 <div class="line">　・ __movement_status_filepath__</div>
 <div class="line">　・ __parameters_dir_for_epc__</div>
@@ -5356,8 +5331,8 @@ _fact_cache</p>
 <div class="line">　・ __parameters_file_dir__</div>
 <div class="line"><br /></div>
 </div>
-<section id="ita-1">
-<h4>ITA独自変数を利用して作成したファイルの取り扱い {{#:1 こちらの修正をお願い致します。}}<a class="headerlink" href="#ita-1" title="この見出しへのパーマリンク">¶</a></h4>
+<section id="ita-11">
+<h4>ITA独自変数を利用して作成したファイルの取り扱い {{#11: こちらの修正をお願い致します。}}<a class="headerlink" href="#ita-11" title="この見出しへのパーマリンク">¶</a></h4>
 <div class="line-block">
 <div class="line">ITA独自変数を利用して作成したファイルの出力先ディレクトリパスはAnsible Automation ControllerのITA作業用ディレクトリ配下「/var/lib/exastro」に設定されます。Movement実行前に結果データをAnsible Automation ControllerのITA作業用ディレクトリ配下「/var/lib/exastro」にファイル転送します。Movement実行でここに作成されたファイルは、Movement実行後に各Ansible Automation Controllerより結果データに上書きモードでファイル転送します。同一ファイル名でファイルを作成している場合、更新したファイルが結果データに正しく反映されない場合があります。</div>
 </div>
@@ -5398,12 +5373,12 @@ _fact_cache</p>
 </section>
 </section>
 <section id="general-operations-data-resources-deleted-when-executing">
-<span id="id96"></span><h3>実行時データ削除で削除されるデータリソース<a class="headerlink" href="#general-operations-data-resources-deleted-when-executing" title="この見出しへのパーマリンク">¶</a></h3>
+<span id="id96"></span><h3>実行時データ削除で削除されるデータリソース {{#12: こちらの修正をお願い致します。作業番号についてなど}}<a class="headerlink" href="#general-operations-data-resources-deleted-when-executing" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">インターフェース情報の実行時データ削除で「削除する」を選択した場合に、削除されるデータリソースを以下に列挙します。</div>
 </div>
-<table class="docutils align-left" id="id181">
-<caption><span class="caption-text">実行時データ削除で削除されるデータリソース一覧(Ansible Automation Controller側)</span><a class="headerlink" href="#id181" title="このテーブルへのパーマリンク">¶</a></caption>
+<table class="docutils align-left" id="id180">
+<caption><span class="caption-text">実行時データ削除で削除されるデータリソース一覧(Ansible Automation Controller側)</span><a class="headerlink" href="#id180" title="このテーブルへのパーマリンク">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head" rowspan="2"><p>データリソース</p></th>
 <th class="head" rowspan="2"><p>リソースタイプ</p></th>
@@ -5474,8 +5449,8 @@ ions_workflowtpl_10桁の作業番号</p>
 </tr>
 </tbody>
 </table>
-<table class="docutils align-left" id="id182">
-<caption><span class="caption-text">実行時データ削除で削除されるデータリソース一覧(ITA側)</span><a class="headerlink" href="#id182" title="このテーブルへのパーマリンク">¶</a></caption>
+<table class="docutils align-left" id="id181">
+<caption><span class="caption-text">実行時データ削除で削除されるデータリソース一覧(ITA側)</span><a class="headerlink" href="#id181" title="このテーブルへのパーマリンク">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head" rowspan="2"><p>データリソース</p></th>
 <th class="head" rowspan="2"><p>リソースタイプ</p></th>
