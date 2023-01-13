@@ -7885,8 +7885,8 @@ Ansible Automation ControllerでITA独自変数を利用する場合の留意事
 | 　・ __parameter_dir_\_
 | 　・ __parameters_file_dir_\_
 |
-ITA独自変数を利用して作成したファイルの取り扱い{{ ※1 修正のほどお願いいたします。 }}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ITA独自変数を利用して作成したファイルの取り扱い {{#:1 こちらの修正をお願い致します。}}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 | ITA独自変数を利用して作成したファイルの出力先ディレクトリパスはAnsible Automation ControllerのITA作業用ディレクトリ配下「/var/lib/exastro」に設定されます。Movement実行前に結果データをAnsible Automation ControllerのITA作業用ディレクトリ配下「/var/lib/exastro」にファイル転送します。Movement実行でここに作成されたファイルは、Movement実行後に各Ansible Automation Controllerより結果データに上書きモードでファイル転送します。同一ファイル名でファイルを作成している場合、更新したファイルが結果データに正しく反映されない場合があります。
 
 .. figure:: ./general_operations/image_2b_4.png
