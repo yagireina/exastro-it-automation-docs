@@ -19,10 +19,9 @@
 
 .. toctree::
    :maxdepth: 1
-   :numbered: 3
 
-   installation/check
-   platform/check
+   platform_management/check
+   organization_management/check
    it_automation_base/check
    create_param/check
    ansible-driver/check
