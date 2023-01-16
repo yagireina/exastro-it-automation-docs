@@ -541,6 +541,8 @@
           volumeType: hostPath # e.g.) hostPath or AKS
           storageClass: "-" # e.g.) azurefile or - (None)
 
+.. _installation_kubernetes_Keycloak 設定:
+
 5. Keycloak 設定
 ----------------
 
@@ -685,7 +687,7 @@
    +      DB_USER: "認証基盤用ユーザ名"
    +      DB_PASSWORD: "認証基盤用ユーザのパスワード"
 
-6. Exastro IT Automation 用のデータベース設定
+7. Exastro IT Automation 用のデータベース設定
 ---------------------------------------------
 
 .. list-table:: 共通設定 (Exastro IT Automation 用データベース) のオプションパラメータ
@@ -759,7 +761,7 @@
     +      DB_PORT: "外部DBのポート番号"
           DB_DATABASE: "platform"
 
-7. データベース接続アカウントの設定
+8. データベース接続アカウントの設定
 -----------------------------------
 
 | データベース接続のためのアカウント情報を登録します。
@@ -824,7 +826,7 @@
    +      DB_USER: "認証基盤用ユーザ名"
    +      DB_PASSWORD: "認証基盤用ユーザのパスワード"
 
-8. GitLab 連携設定
+9. GitLab 連携設定
 ------------------
 
 | GitLab 連携のためのアカウント情報を登録します。
@@ -853,8 +855,7 @@
       +     GITLAB_ROOT_TOKEN: "GitLabのRoot権限を持ったトークン"
         itaDatabaseDefinition:
           name: ita-database
-
-9. 永続ボリューム - PersistentVolume(pv)の設定例
+10. 永続ボリューム - PersistentVolume(pv)の設定例
 ------------------------------------------------
 
 | データベースのデータ永続化 (クラスタ内コンテナがある場合)、および、ファイルの永続化のために、永続ボリュームを設定する必要があります。
@@ -1074,4 +1075,4 @@ https://exastro-suite-mng.xxxxxxx.japaneast.aksapp.io/auth/
 .. note::
   | ログイン ID とパスワードは、exastro-platform.yaml ファイルで設定した内容となります。
 
-| インストールが完了したら、:doc:`../platform/organization` の作成を行います。
+| インストールが完了したら、:doc:`../manuals/platform_management/organization` の作成を行います。

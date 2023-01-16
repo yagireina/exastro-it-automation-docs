@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-    <title>1.2. インストール方法 (Kubernetes) &#8212; Documentation  ドキュメント</title>
+    <title>インストール方法 (Kubernetes) &#8212; Documentation  ドキュメント</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/option.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -33,8 +33,8 @@
     <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
     <link rel="index" title="索引" href="../../../genindex.html" />
     <link rel="search" title="検索" href="../../../search.html" />
-    <link rel="next" title="2. 共通基盤" href="../platform/index.html" />
-    <link rel="prev" title="1.1. Azure Kubernetes Service" href="aks.html" /> 
+    <link rel="next" title="マニュアル" href="../manuals/index.html" />
+    <link rel="prev" title="Azure Kubernetes Service" href="aks.html" /> 
   </head>
 <body id="page" class="ja">
 
@@ -101,8 +101,8 @@
     </div>
     <div id="toolbarNavigation">
       <ul>
-        <li class="prev"><a href="aks.html" title="前のトピックへ"><span class="section-number">1.1. </span>Azure Kubernetes Service</a></li>
-        <li class="next"><a href="../platform/index.html" title="次のトピックへ"><span class="section-number">2. </span>共通基盤</a></li>
+        <li class="prev"><a href="aks.html" title="前のトピックへ">Azure Kubernetes Service</a></li>
+        <li class="next"><a href="../manuals/index.html" title="次のトピックへ">マニュアル</a></li>
       </ul>
     </div>
   </div>
@@ -116,18 +116,21 @@
     <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Exastro IT Automation Documentation</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html#id1">日本語</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="../index.html">マニュアル</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="index.html">1. インストール</a><ul class="current">
-<li class="toctree-l5"><a class="reference internal" href="aks.html">1.1. Azure Kubernetes Service</a></li>
-<li class="toctree-l5 current"><a class="current reference internal" href="#">1.2. インストール方法 (Kubernetes)</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">インストール</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="aks.html">Azure Kubernetes Service</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">インストール方法 (Kubernetes)</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#id1">はじめに</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id2">前提条件</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id3">インストールの準備</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id8">インストール</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id10">インストール状況確認</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id11">接続確認</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="../platform/index.html">2. 共通基盤</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../api_reference/index.html">6. API リファレンス</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../appendix/index.html">7. 付録</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../manual_design/index.html">ドキュメント記載方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manuals/index.html">マニュアル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../document_design/index.html">ドキュメント記載方法</a></li>
 </ul>
 </li>
 </ul>
@@ -145,25 +148,25 @@
 <div id="tableOfContents">
   <div id="tocButton"></div>
   <ul>
-<li><a class="reference internal" href="#">1.2. インストール方法 (Kubernetes)</a><ul>
-<li><a class="reference internal" href="#id1">1.2.1. はじめに</a></li>
-<li><a class="reference internal" href="#id2">1.2.2. 前提条件</a></li>
-<li><a class="reference internal" href="#id3">1.2.3. インストールの準備</a><ul>
+<li><a class="reference internal" href="#">インストール方法 (Kubernetes)</a><ul>
+<li><a class="reference internal" href="#id1">はじめに</a></li>
+<li><a class="reference internal" href="#id2">前提条件</a></li>
+<li><a class="reference internal" href="#id3">インストールの準備</a><ul>
 <li><a class="reference internal" href="#helm">1. Helm リポジトリの登録</a></li>
 <li><a class="reference internal" href="#id4">2. デフォルト設定値の取得</a></li>
 <li><a class="reference internal" href="#ingress">3. サービス公開の設定 (Ingress の設定)</a></li>
 <li><a class="reference internal" href="#database-setup">4. データベースコンテナの設定</a></li>
 <li><a class="reference internal" href="#keycloak">5. Keycloak 設定</a></li>
 <li><a class="reference internal" href="#id6">6. 認証機能用のデータベース設定</a></li>
-<li><a class="reference internal" href="#exastro-it-automation">6. Exastro IT Automation 用のデータベース設定</a></li>
-<li><a class="reference internal" href="#id7">7. データベース接続アカウントの設定</a></li>
-<li><a class="reference internal" href="#gitlab">8. GitLab 連携設定</a></li>
-<li><a class="reference internal" href="#persistentvolume-pv">9. 永続ボリューム - PersistentVolume(pv)の設定例</a></li>
+<li><a class="reference internal" href="#exastro-it-automation">7. Exastro IT Automation 用のデータベース設定</a></li>
+<li><a class="reference internal" href="#id7">8. データベース接続アカウントの設定</a></li>
+<li><a class="reference internal" href="#gitlab">9. GitLab 連携設定</a></li>
+<li><a class="reference internal" href="#persistentvolume-pv">10. 永続ボリューム - PersistentVolume(pv)の設定例</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id8">1.2.4. インストール</a></li>
-<li><a class="reference internal" href="#id10">1.2.5. インストール状況確認</a></li>
-<li><a class="reference internal" href="#id11">1.2.6. 接続確認</a></li>
+<li><a class="reference internal" href="#id8">インストール</a></li>
+<li><a class="reference internal" href="#id10">インストール状況確認</a></li>
+<li><a class="reference internal" href="#id11">接続確認</a></li>
 </ul>
 </li>
 </ul>
@@ -179,10 +182,9 @@
   <ul>
     <li><a href="../../../index.html">HOME</a></li>
     <li><a href="../../index.html">Exastro IT Automation Documentation</a></li>
-    <li><a href="../index.html">マニュアル</a></li>
-    <li><a href="index.html"><span class="section-number">1. </span>インストール</a></li>
+    <li><a href="index.html">インストール</a></li>
     
-    <li><span class="section-number">1.2. </span>インストール方法 (Kubernetes)</li>
+    <li>インストール方法 (Kubernetes)</li>
   </ul>
 </div>
 
@@ -192,22 +194,22 @@
 <div class="body" role="main">
 
   <section id="kubernetes">
-<h1><span class="section-number">1.2. </span>インストール方法 (Kubernetes)<a class="headerlink" href="#kubernetes" title="この見出しへのパーマリンク">¶</a></h1>
+<h1>インストール方法 (Kubernetes)<a class="headerlink" href="#kubernetes" title="この見出しへのパーマリンク">¶</a></h1>
 <section id="id1">
-<h2><span class="section-number">1.2.1. </span>はじめに<a class="headerlink" href="#id1" title="この見出しへのパーマリンク">¶</a></h2>
+<h2>はじめに<a class="headerlink" href="#id1" title="この見出しへのパーマリンク">¶</a></h2>
 <div class="line-block">
 <div class="line">本章では、Exastro IT Automation を利用する際に必要となる、Exastro Platform および Exastro IT Automation を導入する手順について説明します。</div>
 </div>
 </section>
 <section id="id2">
-<h2><span class="section-number">1.2.2. </span>前提条件<a class="headerlink" href="#id2" title="この見出しへのパーマリンク">¶</a></h2>
+<h2>前提条件<a class="headerlink" href="#id2" title="この見出しへのパーマリンク">¶</a></h2>
 <ul>
 <li><p>クライアント要件</p>
 <div class="line-block">
 <div class="line">動作確認が取れているクライアントアプリケーションのバージョンは下記のとおりです。</div>
 </div>
 <table class="docutils align-default" id="id12">
-<caption><span class="caption-number">表 1.1 </span><span class="caption-text">クライアント要件</span><a class="headerlink" href="#id12" title="このテーブルへのパーマリンク">¶</a></caption>
+<caption><span class="caption-number">表 1 </span><span class="caption-text">クライアント要件</span><a class="headerlink" href="#id12" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col style="width: 50.0%" />
 <col style="width: 50.0%" />
@@ -232,7 +234,7 @@
 <div class="line">動作確認が取れているコンテナ環境の最小要求リソースとバージョンは下記のとおりです。</div>
 </div>
 <table class="docutils align-default" id="id13">
-<caption><span class="caption-number">表 1.2 </span><span class="caption-text">デプロイ環境</span><a class="headerlink" href="#id13" title="このテーブルへのパーマリンク">¶</a></caption>
+<caption><span class="caption-number">表 2 </span><span class="caption-text">デプロイ環境</span><a class="headerlink" href="#id13" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col style="width: 50.0%" />
 <col style="width: 50.0%" />
@@ -288,7 +290,7 @@
 </ul>
 </section>
 <section id="id3">
-<h2><span class="section-number">1.2.3. </span>インストールの準備<a class="headerlink" href="#id3" title="この見出しへのパーマリンク">¶</a></h2>
+<h2>インストールの準備<a class="headerlink" href="#id3" title="この見出しへのパーマリンク">¶</a></h2>
 <section id="helm">
 <h3>1. Helm リポジトリの登録<a class="headerlink" href="#helm" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
@@ -640,7 +642,7 @@ helm<span class="w"> </span>repo<span class="w"> </span>update
 <div class="line">パラメータの詳細は下記のとおりです。</div>
 </div>
 <table class="docutils align-left" id="id14">
-<caption><span class="caption-number">表 1.3 </span><span class="caption-text">Exastro Platform 認証機能のオプションパラメータ</span><a class="headerlink" href="#id14" title="このテーブルへのパーマリンク">¶</a></caption>
+<caption><span class="caption-number">表 3 </span><span class="caption-text">Exastro Platform 認証機能のオプションパラメータ</span><a class="headerlink" href="#id14" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col style="width: 31.2%" />
 <col style="width: 31.2%" />
@@ -726,7 +728,7 @@ helm<span class="w"> </span>repo<span class="w"> </span>update
 <div class="line">パラメータの詳細は下記のとおりです。</div>
 </div>
 <table class="docutils align-left" id="id15">
-<caption><span class="caption-number">表 1.4 </span><span class="caption-text">共通設定 (Exastro 共用データベース) のオプションパラメータ</span><a class="headerlink" href="#id15" title="このテーブルへのパーマリンク">¶</a></caption>
+<caption><span class="caption-number">表 4 </span><span class="caption-text">共通設定 (Exastro 共用データベース) のオプションパラメータ</span><a class="headerlink" href="#id15" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col style="width: 31.2%" />
 <col style="width: 31.2%" />
@@ -818,13 +820,13 @@ helm<span class="w"> </span>repo<span class="w"> </span>update
 </div>
 </section>
 <section id="keycloak">
-<h3>5. Keycloak 設定<a class="headerlink" href="#keycloak" title="この見出しへのパーマリンク">¶</a></h3>
+<span id="installation-kubernetes-keycloak"></span><h3>5. Keycloak 設定<a class="headerlink" href="#keycloak" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">Keycloak 利用時に必要な認証情報やデータベースのアカウント情報を選択します。</div>
 <div class="line">パラメータの詳細は下記のとおりです。</div>
 </div>
 <table class="docutils align-left" id="id16">
-<caption><span class="caption-number">表 1.5 </span><span class="caption-text">共通設定 (Keycloak) のオプションパラメータ</span><a class="headerlink" href="#id16" title="このテーブルへのパーマリンク">¶</a></caption>
+<caption><span class="caption-number">表 5 </span><span class="caption-text">共通設定 (Keycloak) のオプションパラメータ</span><a class="headerlink" href="#id16" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col style="width: 31.2%" />
 <col style="width: 31.2%" />
@@ -911,7 +913,7 @@ helm<span class="w"> </span>repo<span class="w"> </span>update
 <div class="line">パラメータの詳細は下記のとおりです。</div>
 </div>
 <table class="docutils align-left" id="id17">
-<caption><span class="caption-number">表 1.6 </span><span class="caption-text">共通設定 (認証機能用データベース) のオプションパラメータ</span><a class="headerlink" href="#id17" title="このテーブルへのパーマリンク">¶</a></caption>
+<caption><span class="caption-number">表 6 </span><span class="caption-text">共通設定 (認証機能用データベース) のオプションパラメータ</span><a class="headerlink" href="#id17" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col style="width: 31.2%" />
 <col style="width: 31.2%" />
@@ -1003,9 +1005,9 @@ helm<span class="w"> </span>repo<span class="w"> </span>update
 </div>
 </section>
 <section id="exastro-it-automation">
-<h3>6. Exastro IT Automation 用のデータベース設定<a class="headerlink" href="#exastro-it-automation" title="この見出しへのパーマリンク">¶</a></h3>
+<h3>7. Exastro IT Automation 用のデータベース設定<a class="headerlink" href="#exastro-it-automation" title="この見出しへのパーマリンク">¶</a></h3>
 <table class="docutils align-left" id="id18">
-<caption><span class="caption-number">表 1.7 </span><span class="caption-text">共通設定 (Exastro IT Automation 用データベース) のオプションパラメータ</span><a class="headerlink" href="#id18" title="このテーブルへのパーマリンク">¶</a></caption>
+<caption><span class="caption-number">表 7 </span><span class="caption-text">共通設定 (Exastro IT Automation 用データベース) のオプションパラメータ</span><a class="headerlink" href="#id18" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col style="width: 31.2%" />
 <col style="width: 31.2%" />
@@ -1098,7 +1100,7 @@ helm<span class="w"> </span>repo<span class="w"> </span>update
 </div>
 </section>
 <section id="id7">
-<h3>7. データベース接続アカウントの設定<a class="headerlink" href="#id7" title="この見出しへのパーマリンク">¶</a></h3>
+<h3>8. データベース接続アカウントの設定<a class="headerlink" href="#id7" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">データベース接続のためのアカウント情報を登録します。</div>
 </div>
@@ -1168,7 +1170,7 @@ helm<span class="w"> </span>repo<span class="w"> </span>update
 </div>
 </section>
 <section id="gitlab">
-<h3>8. GitLab 連携設定<a class="headerlink" href="#gitlab" title="この見出しへのパーマリンク">¶</a></h3>
+<h3>9. GitLab 連携設定<a class="headerlink" href="#gitlab" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">GitLab 連携のためのアカウント情報を登録します。</div>
 </div>
@@ -1203,7 +1205,7 @@ helm<span class="w"> </span>repo<span class="w"> </span>update
 </ul>
 </section>
 <section id="persistentvolume-pv">
-<h3>9. 永続ボリューム - PersistentVolume(pv)の設定例<a class="headerlink" href="#persistentvolume-pv" title="この見出しへのパーマリンク">¶</a></h3>
+<h3>10. 永続ボリューム - PersistentVolume(pv)の設定例<a class="headerlink" href="#persistentvolume-pv" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">データベースのデータ永続化 (クラスタ内コンテナがある場合)、および、ファイルの永続化のために、永続ボリュームを設定する必要があります。</div>
 </div>
@@ -1328,7 +1330,7 @@ pv-ita-common<span class="w">   </span>10Gi<span class="w">       </span>RWX<spa
 </section>
 </section>
 <section id="id8">
-<span id="id9"></span><h2><span class="section-number">1.2.4. </span>インストール<a class="headerlink" href="#id8" title="この見出しへのパーマリンク">¶</a></h2>
+<span id="id9"></span><h2>インストール<a class="headerlink" href="#id8" title="この見出しへのパーマリンク">¶</a></h2>
 <ol class="arabic">
 <li><p>Namespace (名前空間) の作成</p>
 <ul>
@@ -1357,7 +1359,7 @@ helm<span class="w"> </span>install<span class="w"> </span>exastro-it-automation
 </ol>
 </section>
 <section id="id10">
-<h2><span class="section-number">1.2.5. </span>インストール状況確認<a class="headerlink" href="#id10" title="この見出しへのパーマリンク">¶</a></h2>
+<h2>インストール状況確認<a class="headerlink" href="#id10" title="この見出しへのパーマリンク">¶</a></h2>
 <ol class="arabic">
 <li><p>Pod状態確認</p>
 <ul>
@@ -1421,7 +1423,7 @@ ita-web-server-785cc9447-hwggj<span class="w">                           </span>
 </div>
 </section>
 <section id="id11">
-<h2><span class="section-number">1.2.6. </span>接続確認<a class="headerlink" href="#id11" title="この見出しへのパーマリンク">¶</a></h2>
+<h2>接続確認<a class="headerlink" href="#id11" title="この見出しへのパーマリンク">¶</a></h2>
 <div class="line-block">
 <div class="line">ブラウザより、Ingress で登録した管理者側のホスト名で設定した URL を使って設定画面に入れることを確認します。</div>
 </div>
@@ -1439,7 +1441,7 @@ ita-web-server-785cc9447-hwggj<span class="w">                           </span>
 </div>
 </div>
 <div class="line-block">
-<div class="line">インストールが完了したら、<a class="reference internal" href="../platform/organization.html"><span class="doc">Organization (オーガナイゼーション)</span></a> の作成を行います。</div>
+<div class="line">インストールが完了したら、<a class="reference internal" href="../manuals/platform_management/organization.html"><span class="doc">Organization (オーガナイゼーション)</span></a> の作成を行います。</div>
 </div>
 </section>
 </section>
@@ -1450,8 +1452,8 @@ ita-web-server-785cc9447-hwggj<span class="w">                           </span>
 
 <div id="articleNavigation">
   <ul>
-    <li class="prev"><a href="aks.html" title="前のトピックへ"><span>前のトピックへ</span><span class="section-number">1.1. </span>Azure Kubernetes Service</a></li>
-    <li class="next"><a href="../platform/index.html" title="次のトピックへ"><span>次のトピックへ</span><span class="section-number">2. </span>共通基盤</a></li>
+    <li class="prev"><a href="aks.html" title="前のトピックへ"><span>前のトピックへ</span>Azure Kubernetes Service</a></li>
+    <li class="next"><a href="../manuals/index.html" title="次のトピックへ"><span>次のトピックへ</span>マニュアル</a></li>
   </ul>
 </div>
 

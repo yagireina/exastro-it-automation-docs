@@ -13,8 +13,9 @@ Exastro IT Automation Documentation
 .. toctree::
    :maxdepth: 1
 
-   ja/index
-   ja/manual_design/index
+   ja/installation/index
+   ja/manuals/index
+   ja/document_design/index
 
 .. English
 .. =======
