@@ -19,11 +19,10 @@
 
 .. toctree::
    :maxdepth: 1
-   :numbered: 3
 
-   installation/index
-   platform/index
-   .. designing_this_manual/index
+   platform_management/index
+   organization_management/index
+   .. authentication/index
    .. it_automation_base/index
    .. create_param/index
    .. ansible-driver/index

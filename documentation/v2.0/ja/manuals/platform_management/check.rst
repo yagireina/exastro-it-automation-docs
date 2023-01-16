@@ -1,12 +1,9 @@
 ========
-共通基盤
+全体管理
 ========
 
 .. toctree::
    :maxdepth: 2
+   :numbered: 3
 
    organization
-   workspace
-   user
-   role
-   aac
