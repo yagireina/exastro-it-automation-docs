@@ -440,7 +440,7 @@
 
 
 | Azure におけるドメイン名の確認方法については :ref:`aks-dns` を確認してください。
-| 下記は、AKS の Ingress Controller を使用する際の例を記載しております。
+| 下記は、AKS の Ingress Controller を使用する際の例を記載しています。
 
 -  exastro-platform.yaml
 
@@ -517,11 +517,11 @@
      - | :program:`"-"` (デフォルト): ストレージクラスを指定しない。
        | :program:`ストレージクラス名`: クラウドプロバイダなどから提供されるストレージクラス名を指定。
 
-| 下記は、データベースコンテナを使用する際の例を記載しております。
+| 下記は、データベースコンテナを使用する際の例を記載しています。
 
 .. danger::
    | 永続データはクラスタ内にあるノード上のローカルディスク(hostPath)に保存されますが、本番利用の際には外部ストレージを利用してください。
-   | 物理的にノードが置き換わった場合データが消失します。
+   | ノードの増減などによりデータベースコンテナが稼働するノードが変更になった場合、データが消失します。
 
 .. code:: diff
 
@@ -568,7 +568,7 @@
      - "keycloak"
    * - global.keycloakDefinition.secret.KEYCLOAK_USER
      - | Keycloak のマスターレルムにおける管理権限を持ったユーザ名を指定。
-       | 指定したユーザが作成される。
+       | 指定した Keycloak ユーザが作成される。
      - 必須
      - 任意の文字列
    * - global.keycloakDefinition.secret.KEYCLOAK_PASSWORD
@@ -576,7 +576,8 @@
      - 必須
      - 任意の文字列
    * - global.keycloakDefinition.secret.KEYCLOAK_DB_USER
-     - Keycloak が使用するデータベースユーザ
+     - | Keycloak が使用するデータベースユーザ
+       | 指定した DB ユーザが作成される。
      - 必須
      - 任意の文字列
    * - global.keycloakDefinition.secret.KEYCLOAK_DB_PASSWORD
@@ -584,7 +585,7 @@
      - 必須
      - 任意の文字列
 
-| 下記は、Keycloak コンテナを使用する際の例を記載しております。
+| 下記は、Keycloak コンテナを使用する際の例を記載しています。
 
 .. code:: diff
 
@@ -607,16 +608,22 @@
    -      KEYCLOAK_PASSWORD: ""
    -      KEYCLOAK_DB_USER: ""
    -      KEYCLOAK_DB_PASSWORD: ""
-   +      KEYCLOAK_USER: "Keycloakログインユーザ"
-   +      KEYCLOAK_PASSWORD: "Keycloakログインパスワード"
+   +      KEYCLOAK_USER: "Keycloak管理ユーザ"
+   +      KEYCLOAK_PASSWORD: "Keycloak管理ユーザのパスワード"
    +      KEYCLOAK_DB_USER: "Keycloak用DBユーザ"
-   +      KEYCLOAK_DB_PASSWORD: "Keycloak用DBパスワード"
+   +      KEYCLOAK_DB_PASSWORD: "Keycloak用DBユーザのパスワード"
 
 6. 認証機能用のデータベース設定
 -------------------------------
 
 | 認証機能情報やデータベースのアカウント情報を選択します。
 | パラメータの詳細は下記のとおりです。
+
+.. warning::
+  | :command:`DB_ADMIN_USER` で指定するDBの管理ユーザには、データベースとユーザを作成する権限が必要です。
+
+.. warning::
+  | 認証情報などはすべて平文で問題ありません。(Base64エンコードは不要)
 
 .. list-table:: 共通設定 (認証機能用データベース) のオプションパラメータ
    :widths: 25 25 10 20
@@ -655,7 +662,8 @@
      - 必須
      - 管理権限を持つDBユーザ名のパスワード
    * - global.authDatabaseDefinition.secret.DB_USER
-     - 認証機能用データベースに作成するDBユーザ名
+     - | Exastro IT Automation 用データベースに作成するDBユーザ名。
+       | 指定した DB ユーザが作成される。
      - 必須
      - 任意の文字列
    * - global.authDatabaseDefinition.secret.DB_PASSWORD
@@ -663,7 +671,7 @@
      - 必須
      - 任意の文字列
 
-| 下記は、データベースコンテナを使用する際の例を記載しております。
+| 下記は、認証機能用のデータベースの設定例を記載しています。
 
 .. code:: diff
 
@@ -682,13 +690,22 @@
    -      DB_ADMIN_PASSWORD: ""
    -      DB_USER: ""
    -      DB_PASSWORD: ""
-   +      DB_ADMIN_USER: "DBの管理ユーザ名"
-   +      DB_ADMIN_PASSWORD: "DBの管理ユーザのパスワード"
-   +      DB_USER: "認証基盤用ユーザ名"
-   +      DB_PASSWORD: "認証基盤用ユーザのパスワード"
+   +      DB_ADMIN_USER: "認証基盤用DBの管理ユーザ名"
+   +      DB_ADMIN_PASSWORD: "認証基盤用DBの管理ユーザのパスワード"
+   +      DB_USER: "認証基盤用DBのユーザ名"
+   +      DB_PASSWORD: "認証基盤用DBのユーザのパスワード"
 
 7. Exastro IT Automation 用のデータベース設定
 ---------------------------------------------
+
+| Exastro IT Automation 用データベース接続のためのアカウント情報を登録します。
+| パラメータの詳細は下記のとおりです。
+
+.. warning::
+  | :command:`DB_ADMIN_USER` で指定するDBの管理ユーザには、データベースとユーザを作成する権限が必要です。
+
+.. warning::
+  | 認証情報などはすべて平文で問題ありません。(Base64エンコードは不要)
 
 .. list-table:: 共通設定 (Exastro IT Automation 用データベース) のオプションパラメータ
    :widths: 25 25 10 20
@@ -728,7 +745,8 @@
      - 必須
      - 管理権限を持つDBユーザ名のパスワード
    * - global.itaDatabaseDefinition.secret.DB_USER
-     - Exastro IT Automation 用データベースに作成するDBユーザ名
+     - | Exastro IT Automation 用データベースに作成するDBユーザ名。
+       | 指定した DB ユーザが作成される。
      - 必須
      - 任意の文字列
    * - global.itaDatabaseDefinition.secret.DB_PASSWORD
@@ -736,7 +754,7 @@
      - 必須
      - 任意の文字列
 
-| 下記は、データベースコンテナを使用する際の例を記載しております。
+| 下記は、Exastro IT Automation 用のデータベースの設定例を記載しています。
 
 .. code:: diff
 
@@ -753,225 +771,197 @@
    -      DB_PASSWORD: ""
    +      DB_ADMIN_USER: "DBの管理ユーザ名"
    +      DB_ADMIN_PASSWORD: "DBの管理ユーザのパスワード"
-   +      DB_USER: "認証基盤用ユーザ名"
-   +      DB_PASSWORD: "認証基盤用ユーザのパスワード"
+   +      DB_USER: "ITA用ユーザ名"
+   +      DB_PASSWORD: "ITA用ユーザのパスワード"
     -      DB_HOST: "mariadb.exastro-platform.svc"
     -      DB_PORT: "3306"
     +      DB_HOST: "外部DBの接続先"
     +      DB_PORT: "外部DBのポート番号"
           DB_DATABASE: "platform"
 
-8. データベース接続アカウントの設定
------------------------------------
-
-| データベース接続のためのアカウント情報を登録します。
-
-.. warning::
-  | アカウントには、データベースを作成する権限が必要です。
-
-.. warning::
-  | 認証情報などはすべて平文で問題ありません。(Base64エンコードは不要)
-
-.. code:: diff
-
-   # exastro-platform.yaml
-   global:
-       authDatabaseDefinition:
-       name: auth-database
-       enabled: true
-       config:
-           DB_VENDOR: "mariadb"
-           DB_HOST: "mariadb.exastro-platform.svc"
-           DB_PORT: "3306"
-           DB_DATABASE: "platform"
-       secret:
-   -      DB_ADMIN_USER: ""
-   -      DB_ADMIN_PASSWORD: ""
-   -      DB_USER: ""
-   -      DB_PASSWORD: ""
-   +      DB_ADMIN_USER: "DBの管理ユーザ名"
-   +      DB_ADMIN_PASSWORD: "DBの管理ユーザのパスワード"
-   +      DB_USER: "認証基盤用ユーザ名"
-   +      DB_PASSWORD: "認証基盤用ユーザのパスワード"
-       databaseDefinition:
-       name: mariadb
-       enabled: true
-       secret:
-   -      MARIADB_ROOT_PASSWORD: ""
-   +      MARIADB_ROOT_PASSWORD: "DBのルートパスワード"
-       persistence:
-           enabled: true
-           reinstall: false
-           accessMode: ReadWriteOnce
-
-.. code:: diff
-
-   # exastro-it-automation.yaml
-   global:
-       itaDatabaseDefinition:
-       name: ita-database
-       enabled: true
-       config:
-           DB_VENDOR: "mariadb"
-           DB_HOST: "mariadb.exastro-platform.svc"
-           DB_PORT: "3306"
-           DB_DATABASE: "ITA_DB"
-       secret:
-   -      DB_ADMIN_USER: ""
-   -      DB_ADMIN_PASSWORD: ""
-   -      DB_USER: ""
-   -      DB_PASSWORD: ""
-   +      DB_ADMIN_USER: "DBの管理ユーザ名"
-   +      DB_ADMIN_PASSWORD: "DBの管理ユーザのパスワード"
-   +      DB_USER: "認証基盤用ユーザ名"
-   +      DB_PASSWORD: "認証基盤用ユーザのパスワード"
-
-9. GitLab 連携設定
+8. GitLab 連携設定
 ------------------
 
 | GitLab 連携のためのアカウント情報を登録します。
 
+.. list-table:: 共通設定 (GitLab) のオプションパラメータ
+   :widths: 25 25 10 20
+   :header-rows: 1
+   :align: left
+
+   * - パラメータ
+     - 説明
+     - 変更
+     - デフォルト値・選択可能な設定値
+   * - global.gitlabDefinition.enabled
+     - | GitLab のデプロイ要否
+       | ※現在このパラメータは使用していません。
+     - 可 (無効)
+     - true
+   * - global.gitlabDefinition.config.GITLAB_PROTOCOL
+     - GitLab エンドポイントのプロトコル
+     - 可
+     - http
+   * - global.gitlabDefinition.config.GITLAB_HOST
+     - GitLab エンドポイントへのホスト名、もしくは、FQDN
+     - 可
+     - gitlab.exastro-platform.svc
+   * - global.gitlabDefinition.config.GITLAB_PORT
+     - GitLab エンドポイントのポート番号
+     - 可
+     - 80
+   * - global.gitlabDefinition.secret.GITLAB_ROOT_TOKEN
+     - GitLab の root 権限アカウントのアクセストークン
+     - 必須
+     - アクセエストークン(平文)
+
 .. warning::
-  | アカウントには、GitLab のアカウントを作成する権限が必要です。
+  | GITLAB_ROOT_TOKEN は下記の権限スコープが割り当てられたトークンが必要です。
+  | ・api
+  | ・write_repository
+  | ・sudo
 
--  exastro-it-automation.yaml (Exastro IT Automation) の修正箇所
+| 下記は、GitLab 連携の設定例を記載しています。
 
-   .. code:: diff
+.. code:: diff
 
-      # exastro-it-automation.yaml
-      global:
-        gitlabDefinition:
-          name: gitlab
-          enabled: true
-          config:
-      -     GITLAB_PROTOCOL: "http"
-      -     GITLAB_HOST: "gitlab.exastro-platform.svc"
-      -     GITLAB_PORT: "80"
-      +     GITLAB_PROTOCOL: "接続プロトコル http or https"
-      +     GITLAB_HOST: "接続先"
-      +     GITLAB_PORT: "接続ポート"
-          secret:
-      -     GITLAB_ROOT_TOKEN: ""
-      +     GITLAB_ROOT_TOKEN: "GitLabのRoot権限を持ったトークン"
-        itaDatabaseDefinition:
-          name: ita-database
-10. 永続ボリューム - PersistentVolume(pv)の設定例
+    # exastro-it-automation.yaml
+    global:
+      gitlabDefinition:
+        name: gitlab
+        enabled: true
+        config:
+    -     GITLAB_PROTOCOL: "http"
+    -     GITLAB_HOST: "gitlab.exastro-platform.svc"
+    -     GITLAB_PORT: "80"
+    +     GITLAB_PROTOCOL: "接続プロトコル http or https"
+    +     GITLAB_HOST: "接続先"
+    +     GITLAB_PORT: "接続ポート"
+        secret:
+    -     GITLAB_ROOT_TOKEN: ""
+    +     GITLAB_ROOT_TOKEN: "GitLabのRoot権限を持ったトークン"
+      itaDatabaseDefinition:
+        name: ita-database
+
+9. 永続ボリューム - PersistentVolume(pv)の設定例
 ------------------------------------------------
 
 | データベースのデータ永続化 (クラスタ内コンテナがある場合)、および、ファイルの永続化のために、永続ボリュームを設定する必要があります。
 
-- マネージドディスクを使用する場合 (本番向け)
+マネージドディスクを使用する場合 (本番向け)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+| Azure のストレージを利用する場合、下記のように StorageClass を定義することで利用が可能です。
+| 詳細は、 `Azure Kubernetes Service (AKS) でのアプリケーションのストレージ オプション <https://learn.microsoft.com/ja-jp/azure/aks/concepts-storage#storage-classes>`_ を参照してください。
+| ※以下を適用した際は、values.yaml ファイルの値も合わせて修正する必要があります。
 
-  | Azure のストレージを利用する場合、下記のように StorageClass を定義することで利用が可能です。
-  | ※以下を適用した際は、values.yaml ファイルの値も合わせて修正する必要があります。
+-  storage-class-exastro-suite.yaml
 
-  -  storage-class-exastro-suite.yaml
+   .. code:: yaml
 
-     .. code:: yaml
+      apiVersion: storage.k8s.io/v1
+      kind: StorageClass
+      metadata:
+        name: exastro-suite-azurefile-csi-nfs
+      provisioner: file.csi.azure.com
+      allowVolumeExpansion: true
+      parameters:
+        protocol: nfs
+      mountOptions:
+        - nconnect=8
 
-        apiVersion: storage.k8s.io/v1
-        kind: StorageClass
-        metadata:
-          name: exastro-suite-azurefile-csi-nfs
-        provisioner: file.csi.azure.com
-        allowVolumeExpansion: true
-        parameters:
-          protocol: nfs
-        mountOptions:
-          - nconnect=8
+-  exastro-platform.yaml (helm valuesファイル)
 
-  -  exastro-platform.yaml (helm valuesファイル)
+   .. code:: diff
 
-     .. code:: diff
+      global:
+        databaseDefinition:
+          persistence:
+            enabled: true
+            reinstall: false
+            accessMode: ReadWriteOnce
+            size: 20Gi
+            volumeType: hostPath # e.g.) hostPath or AKS
+      -      storageClass: "-" # e.g.) azurefile or - (None)
+      +      storageClass: "exastro-suite-azurefile-csi-nfs" # e.g.) azurefile or - (None)
 
-        global:
-          databaseDefinition:
-            persistence:
-              enabled: true
-              reinstall: false
-              accessMode: ReadWriteOnce
-              size: 20Gi
-              volumeType: hostPath # e.g.) hostPath or AKS
-       -      storageClass: "-" # e.g.) azurefile or - (None)
-       +      storageClass: "exastro-suite-azurefile-csi-nfs" # e.g.) azurefile or - (None)
+-  exastro-it-automation.yaml (helm valuesファイル)
 
-  -  exastro-it-automation.yaml (helm valuesファイル)
+   .. code:: diff
 
-     .. code:: diff
+      global:
+        itaGlobalDefinition:
+          persistence:
+            enabled: true
+            accessMode: ReadWriteMany
+            size: 10Gi
+            volumeType: hostPath # e.g.) hostPath or AKS
+      -      storageClass: "-" # e.g.) azurefile or - (None)
+      +      storageClass: "azurefile" # e.g.) azurefile or - (None)
 
-        global:
-          itaGlobalDefinition:
-            persistence:
-              enabled: true
-              accessMode: ReadWriteMany
-              size: 10Gi
-              volumeType: hostPath # e.g.) hostPath or AKS
-       -      storageClass: "-" # e.g.) azurefile or - (None)
-       +      storageClass: "azurefile" # e.g.) azurefile or - (None)
+Kubernetes ノードのディレクトリを利用する場合 (テスト・検証向け)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- Kubernetes ノードのディレクトリを利用する場合 (テスト・検証向け)
+| 設定方法は各サーバやサービスなどによって異なりますが、ここでは hostPath を使用した例を記載します。
+| ※マネージドサービスを利用する場合は、後続の例を参照してください。
 
-  | 設定方法は各サーバやサービスなどによって異なりますが、ここでは hostPath を使用した例を記載します。
-  | ※マネージドサービスを利用する場合は、後続の例を参照してください。
+.. danger::
+    | データの永続化自体は可能ですが、コンピュートノードの増減や変更によりデータが消えてしまう可能性があるため本番環境では使用しないでください。
+    | また、Azure で構築した AKS クラスタは、クラスタを停止すると AKS クラスターの Node が解放されるため、保存していた情報は消えてしまいます。そのため、Node が停止しないように注意が必要となります。
 
-  .. danger::
-     | データの永続化自体は可能ですが、コンピュートノードの増減や変更によりデータが消えてしまう可能性があるため本番環境では使用しないでください。
-     | また、Azure で構築した AKS クラスタは、クラスタを停止すると AKS クラスターの Node が解放されるため、保存していた情報は消えてしまいます。そのため、Node が停止しないように注意が必要となります。
+-  pv-database.yaml (データベース用ボリューム)
 
-  -  pv-database.yaml (データベース用ボリューム)
+   .. code:: yaml
 
-     .. code:: yaml
+      # pv-database.yaml
+      apiVersion: v1
+      kind: PersistentVolume
+      metadata:
+        name: pv-database
+      spec:
+        capacity:
+          storage: 20Gi
+        accessModes:
+          - ReadWriteOnce
+        persistentVolumeReclaimPolicy: Retain
+        hostPath:
+          path: /var/data/exastro-suite/exastro-platform/database
+          type: DirectoryOrCreate
 
-        # pv-database.yaml
-        apiVersion: v1
-        kind: PersistentVolume
-        metadata:
-          name: pv-database
-        spec:
-          capacity:
-            storage: 20Gi
-          accessModes:
-            - ReadWriteOnce
-          persistentVolumeReclaimPolicy: Retain
-          hostPath:
-            path: /var/data/exastro-suite/exastro-platform/database
-            type: DirectoryOrCreate
+-  pv-ita-common.yaml (ファイル用ボリューム)
 
-  -  pv-ita-common.yaml (ファイル用ボリューム)
+   .. code:: yaml
 
-     .. code:: yaml
+      # pv-ita-common.yaml
+      apiVersion: v1
+      kind: PersistentVolume
+      metadata:
+        name: pv-ita-common
+      spec:
+        capacity:
+          storage: 10Gi
+        accessModes:
+          - ReadWriteMany
+        persistentVolumeReclaimPolicy: Retain
+        hostPath:
+          path: /var/data/exastro-suite/exastro-it-automation/ita-common
+          type: DirectoryOrCreate
 
-        # pv-ita-common.yaml
-        apiVersion: v1
-        kind: PersistentVolume
-        metadata:
-          name: pv-ita-common
-        spec:
-          capacity:
-            storage: 10Gi
-          accessModes:
-            - ReadWriteMany
-          persistentVolumeReclaimPolicy: Retain
-          hostPath:
-            path: /var/data/exastro-suite/exastro-it-automation/ita-common
-            type: DirectoryOrCreate
+-  PersistentVolume の作成
 
-  -  PersistentVolume の作成
+   .. code:: bash
 
-     .. code:: bash
+      # pv-database.yaml
+      kubectl apply -f pv-database.yaml
 
-        # pv-database.yaml
-        kubectl apply -f pv-database.yaml
+      # pv-ita-common.yaml
+      kubectl apply -f pv-ita-common.yaml
 
-        # pv-ita-common.yaml
-        kubectl apply -f pv-ita-common.yaml
+      # 確認
+      kubectl get pv
 
-        # 確認
-        kubectl get pv
-
-        NAME            CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM   STORAGECLASS   REASON   AGE
-        pv-database     20Gi       RWO            Retain           Available                                   19s
-        pv-ita-common   10Gi       RWX            Retain           Available                                   9s
+      NAME            CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM   STORAGECLASS   REASON   AGE
+      pv-database     20Gi       RWO            Retain           Available                                   19s
+      pv-ita-common   10Gi       RWX            Retain           Available                                   9s
 
 .. _インストール-1:
 

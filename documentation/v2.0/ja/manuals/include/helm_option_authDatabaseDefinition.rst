@@ -45,7 +45,8 @@
      - 必須
      - 管理権限を持つDBユーザ名のパスワード
    * - global.authDatabaseDefinition.secret.DB_USER
-     - 認証機能用データベースに作成するDBユーザ名
+     - | 認証機能用データベースに作成するDBユーザ名。
+       | 指定した DB ユーザが作成される。
      - 必須
      - 任意の文字列
    * - global.authDatabaseDefinition.secret.DB_PASSWORD

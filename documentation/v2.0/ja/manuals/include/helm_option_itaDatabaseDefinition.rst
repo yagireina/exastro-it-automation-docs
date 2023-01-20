@@ -45,7 +45,8 @@
      - 必須
      - 管理権限を持つDBユーザ名のパスワード
    * - global.itaDatabaseDefinition.secret.DB_USER
-     - Exastro IT Automation 用データベースに作成するDBユーザ名
+     - | Exastro IT Automation 用データベースに作成するDBユーザ名。
+       | 指定した DB ユーザが作成される。
      - 必須
      - 任意の文字列
    * - global.itaDatabaseDefinition.secret.DB_PASSWORD
