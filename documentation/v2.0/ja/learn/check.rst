@@ -8,26 +8,24 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-==========
-マニュアル
-==========
+=====
+Learn
+=====
 
 .. raw:: html
 
    </div>
-   <div id="multiColumnIndex">
+   <div id="homeIndex">
 
 .. toctree::
    :maxdepth: 1
 
-   platform_management/check
-   organization_management/check
-   it_automation_base/check
-   create_param/check
-   ansible-driver/check
-   api_reference/index
-   appendix/index
+   .. rbac/check
+   .. host_group_management_and_menu_creation/check
+   .. ansible-driver/check
+   .. conductor/check
 
 .. raw:: html
 
    </div>
+

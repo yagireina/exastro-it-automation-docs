@@ -9,25 +9,23 @@
    contain the root `toctree` directive.
 
 ==========
-マニュアル
+Learn
 ==========
 
 .. raw:: html
 
    </div>
-   <div id="multiColumnIndex">
+   <div id="homeIndex">
 
 .. toctree::
    :maxdepth: 1
 
-   platform_management/check
-   organization_management/check
-   it_automation_base/check
-   create_param/check
-   ansible-driver/check
-   api_reference/index
-   appendix/index
+   .. rbac/index
+   .. host_group_management_and_menu_creation/index
+   .. ansible-driver/index
+   .. conductor/index
 
 .. raw:: html
 
    </div>
+
