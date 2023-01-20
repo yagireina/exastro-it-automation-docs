@@ -1041,7 +1041,8 @@ span.highlighted {
 
 /* Index */
 
-#homeIndex {
+#homeIndex,
+#multiColumnIndex {
   margin-top: -45px;
   max-width: 1200px;
   padding: 24px 16px;
@@ -1108,7 +1109,8 @@ span.highlighted {
 }
 
 
-#article #homeIndex {
+#article #homeIndex,
+#article #multiColumnIndex {
   margin-top: -45px;
   max-width: 1200px;
   padding: 24px 16px;
@@ -1984,7 +1986,52 @@ span.highlighted {
   font-weight: bold;
 }
 
-#article #homeIndex li a:hover {
+#article #homeIndex:f li a:hover {
+  background-image: linear-gradient(#F2F2F2, #FFF);
+  color: #333;
+}
+
+#article #multiColumnIndex ul {
+  margin: 0;
+  padding: 0;
+}
+
+#article #multiColumnIndex div.toctree-wrapper.compound>ul {
+  display: grid;
+}
+
+#article #multiColumnIndex li {
+  margin-top: 8px;
+}
+
+#article #multiColumnIndex li>a {
+  font-size: 1.1em
+}
+
+#article #multiColumnIndex li li {
+    padding: 0;
+    border: 4px solid #002b62;
+    list-style: none;
+    height: 100px;
+    width: 200px;
+    float: left;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+#article #multiColumnIndex li li a {
+  color: #444;
+  line-height: 1.7;
+  font-weight: bold;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px
+}
+
+#article #multiColumnIndex li li:hover {
   background-image: linear-gradient(#F2F2F2, #FFF);
   color: #333;
 }
