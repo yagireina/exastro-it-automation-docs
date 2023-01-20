@@ -52,7 +52,7 @@
      - "keycloak"
    * - global.keycloakDefinition.secret.KEYCLOAK_USER
      - | Keycloak のマスターレルムにおける管理権限を持ったユーザ名を指定。
-       | 指定したユーザが作成される。
+       | 指定した Keycloak ユーザが作成される。
      - 必須
      - 任意の文字列
    * - global.keycloakDefinition.secret.KEYCLOAK_PASSWORD
@@ -60,7 +60,8 @@
      - 必須
      - 任意の文字列
    * - global.keycloakDefinition.secret.KEYCLOAK_DB_USER
-     - Keycloak が使用するデータベースユーザ
+     - | Keycloak が使用するデータベースユーザ。
+       | 指定した DB ユーザが作成される。
      - 必須
      - 任意の文字列
    * - global.keycloakDefinition.secret.KEYCLOAK_DB_PASSWORD
