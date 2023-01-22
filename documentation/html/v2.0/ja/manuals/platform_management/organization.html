@@ -123,10 +123,10 @@
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="../organization_management/index.html">オーガナイゼーション管理</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../api_reference/index.html">API リファレンス</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../appendix/index.html">付録</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/index.html">リファレンス</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../document_design/index.html">ドキュメント記載方法</a></li>
 </ul>
 </li>
@@ -555,25 +555,25 @@ vi<span class="w"> </span>./exastro-platform/test/tools/create-organization.conf
 </ol>
 <ul>
 <li><p>コマンド</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>./exastro-platform/test/tools/create-organization.sh
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>./exastro-platform/test/tools/create-organization.sh
 </pre></div>
 </div>
 </li>
 <li><p>コマンド実行後に入力 (入力例)</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Please enter the organization information to be created
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="no">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">organization</span><span class="w"> </span><span class="n">information</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">created</span>
 
-organization id : org001 # オーガナイゼーションIDを入力します
-organization name : organization001 # オーガナイゼーション名を入力します
-organization manager&#39;s username : org-manager # オーガナイゼーション管理者のユーザ名（ログインするときのID）を入力します
-organization manager&#39;s email : # オーガナイゼーション管理者のE-mailアドレスを入力します
-organization manager&#39;s first name : # オーガナイゼーション管理者の名を入力します
-organization manager&#39;s last name : # オーガナイゼーション管理者の姓を入力します
-organization manager&#39;s initial password : # オーガナイゼーション管理者の初期パスワードを入力します
+<span class="n">organization</span><span class="w"> </span><span class="nb">id</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">org001</span><span class="w"> </span><span class="c1"># オーガナイゼーションIDを入力します</span>
+<span class="n">organization</span><span class="w"> </span><span class="nb">name</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">organization001</span><span class="w"> </span><span class="c1"># オーガナイゼーション名を入力します</span>
+<span class="n">organization</span><span class="w"> </span><span class="n">manager</span><span class="s1">&#39;s username : org-manager # オーガナイゼーション管理者のユーザ名（ログインするときのID）を入力します</span>
+<span class="s1">organization manager&#39;</span><span class="n">s</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="c1"># オーガナイゼーション管理者のE-mailアドレスを入力します</span>
+<span class="n">organization</span><span class="w"> </span><span class="n">manager</span><span class="s1">&#39;s first name : # オーガナイゼーション管理者の名を入力します</span>
+<span class="s1">organization manager&#39;</span><span class="n">s</span><span class="w"> </span><span class="n">last</span><span class="w"> </span><span class="nb">name</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="c1"># オーガナイゼーション管理者の姓を入力します</span>
+<span class="n">organization</span><span class="w"> </span><span class="n">manager</span><span class="s1">&#39;s initial password : # オーガナイゼーション管理者の初期パスワードを入力します</span>
 
-your username : INPUT-YOUR-USERNAME # Platform管理者のユーザ名を入力します
-your password : INPUT-USER-PASSWORD # Platform管理者のパスワードを入力します
+<span class="s1">your username : INPUT-YOUR-USERNAME # Platform管理者のユーザ名を入力します</span>
+<span class="s1">your password : INPUT-USER-PASSWORD # Platform管理者のパスワードを入力します</span>
 
-Create an organization, are you sure? (Y/other) : Y # &quot;Y&quot;を入力すると実行します
+<span class="s1">Create an organization, are you sure? (Y/other) : Y # &quot;Y&quot;を入力すると実行します</span>
 </pre></div>
 </div>
 </li>
@@ -808,6 +808,7 @@ curl<span class="w"> </span>-k<span class="w"> </span>-X<span class="w"> </span>
 </div><!-- End #footer -->
 
 <div id="overlay"></div>
+<div id="grayBack"></div>
 
 </div><!-- End #container -->
   </body>

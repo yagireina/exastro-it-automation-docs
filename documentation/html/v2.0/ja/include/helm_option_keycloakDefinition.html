@@ -132,7 +132,6 @@
 <div id="contents">
 <main class="divInner">
 
- 
  <div id="breadcrumbs">
   <ul>
     <li><a href="../../../index.html">HOME</a></li>
@@ -140,7 +139,6 @@
     <li>&lt;no title&gt;</li>
   </ul>
 </div>
-
 
 <div id="article">
 <article class="divInner">
@@ -223,7 +221,7 @@
 <tr class="row-even"><td><p>global.keycloakDefinition.secret.KEYCLOAK_USER</p></td>
 <td><div class="line-block">
 <div class="line">Keycloak のマスターレルムにおける管理権限を持ったユーザ名を指定。</div>
-<div class="line">指定したユーザが作成される。</div>
+<div class="line">指定した Keycloak ユーザが作成される。</div>
 </div>
 </td>
 <td><p>必須</p></td>
@@ -235,7 +233,11 @@
 <td><p>任意の文字列</p></td>
 </tr>
 <tr class="row-even"><td><p>global.keycloakDefinition.secret.KEYCLOAK_DB_USER</p></td>
-<td><p>Keycloak が使用するデータベースユーザ</p></td>
+<td><div class="line-block">
+<div class="line">Keycloak が使用するデータベースユーザ。</div>
+<div class="line">指定した DB ユーザが作成される。</div>
+</div>
+</td>
 <td><p>必須</p></td>
 <td><p>任意の文字列</p></td>
 </tr>
@@ -272,6 +274,7 @@
 </div><!-- End #footer -->
 
 <div id="overlay"></div>
+<div id="grayBack"></div>
 
 </div><!-- End #container -->
   </body>
