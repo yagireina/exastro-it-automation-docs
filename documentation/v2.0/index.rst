@@ -15,6 +15,7 @@ Exastro IT Automation Documentation
 
    ja/installation/index
    ja/manuals/index
+   ja/reference/index
    ja/document_design/index
 
 .. English
