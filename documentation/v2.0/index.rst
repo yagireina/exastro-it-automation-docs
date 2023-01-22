@@ -5,13 +5,13 @@ Exastro IT Automation Documentation
 .. raw:: html
 
    </div>
-   <div id="homeIndex">
+   <div id="multiColumnIndex">
    
 日本語
 ======
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    ja/installation/index
    ja/manuals/index
