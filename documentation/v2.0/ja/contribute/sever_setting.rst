@@ -2,25 +2,39 @@
 開発サーバ構築
 ==============
 
-**はじめに**
-============
-
-本手順はOpenStackのITA2.0開発環境ベースイメージを使えない場合の開発環境のベースイメージ部分を作りこむ手順となります
-一部手順は後日記入となってますが、そちらについてはネット等で調べて実施ください
-
-また、\ **本手順実施後**\ に\ `/ExastroPlatform/開発環境/構築手順 </ExastroPlatform/開発環境/構築手順>`__\ を実施してください
-
-**手順**
+はじめに
 ========
 
-証明書の複製
-------------
+| 本手順は、開発サーバの構築方法について紹介します。
 
-::
 
-   cd /usr/share/pki/ca-trust-source/anchors
-   ls *
-   cp ZscalerRootCertificate.cer UserRootCertificate.crt
+前提条件
+========
+
+| 動作確認が取れている開発環境の最小要求リソースとバージョンは下記のとおりです。
+
+.. csv-table:: デプロイ環境
+ :header: リソース種別, 要求リソース
+ :widths: 20, 20
+
+ CPU,4 Cores (3.0 GHz)
+ Memory, 8GB
+ Storage (Container image size),10GB
+ OS, AlmaLinux 8.x
+
+
+
+構築手順
+========
+
+ルート証明書の設置
+------------------
+
+| ルート証明書が必要な環境では、証明書を :file:`/usr/share/pki/ca-trust-source/anchors/UserRootCertificate.crt` として設置します。
+
+.. code-block:: bash
+
+   cp -pir YOUR_ORGANIZATION_CERTIFICATION.cer /usr/share/pki/ca-trust-source/anchors/UserRootCertificate.crt
 
 dockerインストール
 ------------------
@@ -85,8 +99,8 @@ docker設定
 
       cat > /etc/systemd/system/docker.service.d/http-proxy.conf <<EOF
       [Service]
-      Environment="HTTP_PROXY=http://proxygate2.nic.nec.co.jp:8080" 
-      Environment="HTTPS_PROXY=http://proxygate2.nic.nec.co.jp:8080" 
+      Environment="HTTP_PROXY=http://your.proxy:8080" 
+      Environment="HTTPS_PROXY=http://your.proxy:8080" 
       Environment="NO_PROXY=localhost,127.0.0.1,${MyIP},10.96.0.0/12,10.244.0.0/16"
       EOF
 
@@ -120,31 +134,6 @@ nfs-utilsをインストール(mountに必要)
 ::
 
    dnf -y install nfs-utils
-
-talismanrcのmount
------------------
-
-以下のフォルダを作成
-
-.. code:: bash
-
-   sudo mkdir /mnt/mainte
-
-.. code:: bash
-
-   sudo vi /etc/fstab
-
-以下を追記
-
-::
-
-   10.197.19.188:/ky/share/mainte/ /mnt/mainte nfs defaults 0 0
-
-設定を反映
-
-.. code:: bash
-
-   sudo mount -a
 
 almalinuxユーザ作成
 -------------------
