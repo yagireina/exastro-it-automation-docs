@@ -15,6 +15,7 @@ Exastro IT Automation Documentation
 
    ja/installation/check
    ja/manuals/check
+   ja/reference/check
    ja/document_design/index
 
 

@@ -7,5 +7,7 @@
    :numbered: 3
 
    workspace
+   user
+   role
 
    
