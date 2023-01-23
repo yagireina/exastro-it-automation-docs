@@ -14,7 +14,7 @@
 
 | Exastro IT Automation の機能を利用するためには、必ずワークスペースの作成が必要となり、ワークスペース数をプラン設定で指定する必要があります。
 |
-| ※ ワークスペースについては :doc:`/v2.0/ja/manuals/organization_management/workspace` を参照ください。
+| ※ ワークスペースについては :doc:`../../manuals/organization_management/workspace` を参照ください。
 | 
 | {{#1 想像で書いているところが多い部分です。プランとは何であるかご教示いただきたいです。}}
 
@@ -24,7 +24,7 @@
 
 -  例 １月まで「最大ワークスペース数＝５のプラン」、２月から「最大ワークスペース数＝３のプラン」に変更
 
-.. figure:: ../../../../images/ja/diagram_chart/manuals/operation_and_system_movement_num.png
+.. figure:: /images/ja/diagram_chart/manuals/operation_and_system_movement_num.png
     :alt: 運用とシステムの動き
 
 
@@ -68,7 +68,7 @@
 | プランを登録する流れは以下の通りとなります。
 
 
-.. image:: ../../../../images/ja/diagram_chart/manuals/plan_setting_flow.png
+.. image:: /images/ja/diagram_chart/manuals/plan_setting_flow.png
    :width: 6.68819in
    :height: 3.35972in
    :align: center
