@@ -15,13 +15,13 @@ Exastro IT Automation ログ一覧
     _ | ログの説明
   * _ 1
     _ | devcontainer-platform-api-1、
-    _ | %(asctime)s %(levelname)s (%(userid)s) %(pathname)s(%(lineno)d) %(message)s
-      | %(asctime)s		ログ出力日時
-      | %(levelname)s	メッセージレベル(DEBUG, INFO, WARNING, ERROR, CRITICAL)
-      | %(userid)s		アクセスしたユーザー（None時は指定なし）
-      | %(pathname)s	ログ出力元のソース
-      | %(lineno)d		ログ出力元の行
-      | %(message)s		メッセージ
+    _ | %（asctime）s %（levelname）s （%（userid）s） %（pathname）s（%（lineno）d） %（message）s
+      | %（asctime）s		ログ出力日時
+      | %（levelname）s	メッセージレベル（DEBUG, INFO, WARNING, ERROR, CRITICAL）
+      | %（userid）s		アクセスしたユーザー（None時は指定なし）
+      | %（pathname）s	ログ出力元のソース
+      | %（lineno）d		ログ出力元の行
+      | %（message）s		メッセージ
   * _ 2
     _ devcontainer-platform-job-1
     _ 上記の【devcontainer-platform-api-1】と同じフォーマット
