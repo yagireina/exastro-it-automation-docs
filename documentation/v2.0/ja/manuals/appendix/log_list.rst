@@ -73,3 +73,4 @@ Exastro IT Automation ログ一覧
       | %n		改行
   * _ 7
     _ 
+    _ 
