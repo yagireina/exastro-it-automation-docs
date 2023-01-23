@@ -2,17 +2,17 @@
 クイックスタート
 ================
 
-1.はじめに
-===========
+はじめに
+=========
+
 | 本書は、はじめて IT Automation（以下ITAと記載）に触れるユーザが、ITAのインタフェースをスムーズに体感できるクイックスタートの手順書としてご活用できます。
 | システム構築においてよくあるLinuxサーバのパッケージのインストール作業を通して、構築対象サーバごとの作業とパッケージ管理を自動化・一元管理化を行い、
 | 従来のシステム構築とは異なるITAを使用した効率的なシステム構築を体感できます。
-|
-|
 
 
 .. figure::  ../../../images/learn/quickstart/common/overview1.png
       :alt: ITAでできること
+      :align: left
       :width: 700px
       
 
@@ -25,10 +25,12 @@
 
 .. figure::  ../../../images/learn/quickstart/common/overview2.png
     :alt: ITAの機能範囲
+    :align: left
     :width: 700px
    
 本シナリオと作業範囲の位置づけ
 ------------------------------
+
 | 本シナリオではAnsibleドライバを使用し、Linuxサーバ構築で実施するyumパッケージのインストール作業を構築対象サーバごとにパラメータ管理し、
 | 構築作業の自動化を行う内容となっています。
 
@@ -36,6 +38,7 @@
 
 ..  figure:: ../../../images/learn/quickstart/common/workenvironment.png
     :alt: 作業環境
+    :align: left
     :width: 700px
     
 - 使用するシステム
@@ -53,6 +56,7 @@
 
 .. figure:: ../../../images/learn/quickstart/common/executionimage1.png
     :alt: 実行イメージ①
+    :align: left
     :width: 700px
     
 
@@ -62,6 +66,7 @@
 
 .. figure:: ../../../images/learn/quickstart/common/executionimage2.png
     :alt: 実行イメージ②
+    :align: left
     :width: 700px
     
  
@@ -100,47 +105,60 @@
 
     
 
-2. 画面説明
-===========
-2.1 Webコンソール画面(ログイン)
--------------------------------
+画面説明
+=========
+
+Webコンソール画面(ログイン)
+---------------------------
+
 | ITAのインストールが完了しURLへアクセスすると、ログイン画面が表示されます。
-| ※インストール手順については” IT Automation # オンラインインストール”をご参照ください。
-
-.. figure:: ../../../images/learn/quickstart/login&mainmenu/v1.0_login.png
-    :alt: ログイン
-    :width: 700px
-    
-
-2.2 画面説明(メインメニュー)
-----------------------------
-| 基本的な名称は以下の通りです。
+| ※インストール手順については” IT Automation オンラインインストールをご参照ください。
 
 .. figure:: ../../../images/learn/quickstart/login&mainmenu/v1.0_mainmenu1.png
     :alt: ログイン
+    :align: left
     :width: 700px
     
+ 画面説明(メインメニュー)
+-------------------------
+
+| **画面は以下のように表示されます。**
+| メイングループ、メインメニュー
+
+.. figure:: ../../../images/learn/quickstart/login&mainmenu/v1.0_mainmenu1.png
+    :alt: ログイン
+    :align: left
+    :width: 700px
+    
+| サブメニュー概略①
 
 .. figure::  ../../../images/learn/quickstart/login&mainmenu/v1.0_mainmenu2.png
     :alt: ログイン
+    :align: left
     :width: 700px
    
+| サブメニュー概略②
 
 .. figure::  ../../../images/learn/quickstart/login&mainmenu/v1.0_mainmenu3.png
     :alt: ログイン
+    :align: left
     :width: 700px
 
 
-3. 実行前準備
-=============
-3.1 Playbookをアップロードしてジョブ(Movement)に紐付け 
-------------------------------------------------------
-| :menuselection:`●Playbookの準備`
+実行前準備
+==========
+
+Playbookをアップロードしてジョブ(Movement)に紐付け 
+--------------------------------------------------
+
+Playbookの準備
+^^^^^^^^^^^^^^
+
 | 最初に今回利用するPlaybookの作成をします。
-| お好みのエディタを使用してymlを作成し自身のローカルフォルダに保存してください。
-
+| お好みのエディタを使用してymlを作成し自身のローカルフォルダに保存してください。  
+   
 -  yum_package_install.yml
-
+ 
    .. code:: yaml
 
     - name: install the latest version of packages
@@ -149,25 +167,27 @@
         state: latest
       with_items:
         - "{{ VAR_packages }}
-   
+      
 .. warning::
   | 文字コードは ”UTF-8 BOMなし” 、改行コードは ”LF” 、 Linuxマシンを登録拡張子は ”yml” 形式です。
   | また、インデントにご注意ください。
 
+   
+| Movement一覧へ新規Movementを登録
 
-- Movement一覧へ新規Movementを登録
 
 | 次にMovementの登録を行っていきます。
-| ①メインメニューより、「Ansible-Legacy」メニューグループ >>「Movement一覧」メニューをクリックします。
-| ②「登録開始」ボタンをクリックします。
-| ③各項目へ下表のように入力し、登録をクリックしてください。
+
+#. メインメニューより、「Ansible-Legacy」メニューグループ >>「Movement一覧」メニューをクリックします。
+#. 「登録開始」ボタンをクリックします。
+#. 各項目へ下表のように入力し、登録をクリックしてください。
 
 .. figure:: ../../../images/learn/quickstart/preparation/v1.0_legacy_movement_register.png
     :alt: Movement登録
+    :width: 700px
     :align: left
-    :scale: 20%
+   
     
-
 .. list-table:: Movement一覧
    :widths: 10 10 20
    :header-rows: 1
@@ -180,23 +200,17 @@
      - IP
      - -vvv
     
-.. raw:: html
 
-   <div style="clear:both;"></div>
-
-
-- 「Playbook素材集」へ新規Playbookを登録
+「Playbook素材集」へ新規Playbookを登録
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 | 次に作成したPlaybookの登録を行います。
-| ①「Ansible-Legacy」メニューグループ >>「Playbook素材集」メニューをクリックします。
-| ②登録開始をクリックし、各項目へ下表のように入力し登録をクリックしてください。
+#. 「Ansible-Legacy」メニューグループ >>「Playbook素材集」メニューをクリックします。
+#. 登録開始をクリックし、各項目へ下表のように入力し登録をクリックしてください。
 
 .. figure::   ../../../images/learn/quickstart/preparation/v1.0_legacy_playbook_register1.png
     :alt: Playbook登録
     :align: left
-    :scale: 20%
-
     
-
 .. list-table:: Playbook素材集
    :widths: 10  20
    :header-rows: 1
@@ -207,61 +221,65 @@
    * - yum_package_install 
      - yum_package_install.yml
 
-.. raw:: html
 
-   <div style="clear:both;"></div>
-     
-
-  
-    
 | 次に登録したPlaybookをMovementに紐付けます。
-| :menuselection:`●「Movement-Playbook紐付」への登録` 
-| ①「Ansible-Legacy」メニューグループ >>「Movement-Playbook紐付」メニューをクリックします。
-| ②各項目へ下表のように入力、選択し登録をクリックしてください。
 
-.. figure::   ../../../images/learn/quickstart/preparation/v1.0_legacy_playbook_register2.png
-    :alt: Movement-Playbook紐づけ登録
-    :width: 700px
+「Movement-Playbook紐付」への登録
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+#. |「Ansible-Legacy」メニューグループ >>「Movement-Playbook紐付」メニューをクリックします。
+#. | 各項目へ下表のように入力、選択し登録をクリックしてください。
 
-.. list-table:: Movement-Playbook紐付
-   :widths: 10 10 20
-   :header-rows: 1
-   :align: left
-
-   * - Movement
-     - Playbook素材
-     - インクルード順序
-   * - パッケージインストール
-     - yum_package_install
-     - 1
-
-
+    .. figure::   ../../../images/learn/quickstart/preparation/v1.0_legacy_playbook_register2.png
+        :alt: Movement-Playbook紐づけ登録
+        :align: left
+        :width: 500px
+    
+    
+    .. list-table:: Movement-Playbook紐付
+       :widths: 10 10 20
+       :header-rows: 1
+       :align: left
+    
+       * - Movement
+         - Playbook素材
+         - インクルード順序
+       * - パッケージインストール
+         - yum_package_install
+         - 1
+    
+    
      
-3.2 ジョブ(Movement)をジョブフロー(Conductor)に組込み
------------------------------------------------------
-- 「Conductor」を作成する
+ジョブ(Movement)をジョブフロー(Conductor)に組込み
+--------------------------------------------------
+
+「Conductor」を作成する
+^^^^^^^^^^^^^^^^^^^^^^^
+
 | 次にMovementをConductorに組み込んでいきます。
-| ①「Conductor」メニューグループ >>「Conductorクラス編集」メニューをクリックします。
-| ②下記の通りConducor名に「パッケージインストール」と入力、しMovementを移動、連結させ登録をクリックしてください。
+#. 「Conductor」メニューグループ >>「Conductorクラス編集」メニューをクリックします。
+#. 下記の通りConducor名に「パッケージインストール」と入力、しMovementを移動、連結させ登録をクリックしてください。
 
 .. figure::   ../../../images/learn/quickstart/preparation/v1.0_conductor_edit.gif
     :alt: Conductor作成
-    :width: 700px
+    :align: left
+    :width: 500px
     
 
-3.3 CMDBにパラメータシートを設定
---------------------------------
-- パラメータシートを作成する
+ CMDBにパラメータシートを設定
+-----------------------------
+
+パラメータシートを作成する
+**************************
+
 | 次にパラメーターシートの作成を行います。
-| ①「メニュー作成」メニューグループ >>「メニュー定義・作成」メニューをクリックします。
-| ②各項目へ下表のように入力、選択して下さい。
+#. 「メニュー作成」メニューグループ >>「メニュー定義・作成」メニューをクリックします。
+#. 各項目へ下表のように入力、選択して下さい。
 
 .. figure::   ../../../images/learn/quickstart/preparation/v1.0_menu_create1.gif
     :alt: パラメータシート作成1
-    :width: 700px
-
-
+    :align: left
+    :width: 500px
 
 .. list-table:: パラメータシートの作成
    :widths: 10 10 10 5
@@ -282,7 +300,8 @@
 
 .. figure::   ../../../images/learn/quickstart/preparation/v1.0_menu_create2.png
     :alt: パラメータシート作成2
-    :width: 700px
+    :align: left
+    :width: 500px
 
 
 .. list-table:: パラメータシートの作成
@@ -317,13 +336,15 @@
 
 .. figure::   ../../../images/learn/quickstart/preparation/v1.0_menu_create3.gif
     :alt: パラメータシート作成2
+    :align: left
     :width: 700px
 
 
 
-3.4 パラメータシートの項目とPlaybookの変数の紐付け
---------------------------------------------------
-- 「代入値自動登録設定」作成 
+パラメータシートの項目とPlaybookの変数の紐付け
+----------------------------------------------
+「代入値自動登録設定」作成 
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 | 最後に代入値自動登録を行います。
 | 「Ansible-Legacy」メニューグループ >>「代入値自動登録設定」メニューをクリックします。
 | 各項目へ下表のように入力、選択して下さい。
@@ -331,9 +352,9 @@
 
 .. figure::   ../../../images/learn/quickstart/preparation/v1.0_substitution_value_automatic_registration1.png
     :alt: パラメータシート作成2
-    :width: 700px
+    :align: left
+    :width: 500px
     
-
 
 .. list-table:: 代入値自動登録設定
    :widths: 10 10 3 7 7 3
@@ -402,23 +423,25 @@
 
 .. figure::   ../../../images/learn/quickstart/preparation/v1.0_substitution_value_automatic_registration2.png
     :alt: 代入値自動登録確認
+    :align: left
     :width: 700px
     
 
 
-1. 実行操作(1回目)
-==================
-4.1 機器一覧にターゲットとなるLinuxマシンを登録
------------------------------------------------
+ 実行操作(1回目)
+================
+
+機器一覧にターゲットとなるLinuxマシンを登録
+--------------------------------------------
 - 「機器一覧」へ新規ターゲットホストの登録
-| ①最初に機器一覧へ今回パッケージをインストールするターゲットホストを登録します。
-| ②「基本コンソール」メニューグループ >>「機器一覧」メニューをクリックします。
-| ③各項目へ下表のように入力して下さい。
+#. 最初に機器一覧へ今回パッケージをインストールするターゲットホストを登録します。
+#. 「基本コンソール」メニューグループ >>「機器一覧」メニューをクリックします。
+#. 各項目へ下表のように入力して下さい。
 
 .. figure::   ../../../images/learn/quickstart/execution/v1.0_devicelist1.png
     :alt: 機器一覧登録
     :align: left
-    :scale: 30%
+    :width: 500px
 
 .. list-table:: 機器一覧
    :widths: 10 10 10
@@ -431,11 +454,7 @@
    * - SV
      - (任意のホスト名)
      - (任意のIPアドレス)
-    
-.. raw:: html
-
-   <div style="clear:both;"></div>
-
+  
 
 - 「機器一覧」へ新規ターゲットホストの登録
 | スクロールバーを右にスライドし各項目へ下表のように入力して下さい。
@@ -443,7 +462,7 @@
 .. figure::   ../../../images/learn/quickstart/execution/v1.0_devicelist2.png
     :alt: 機器一覧登録
     :align: left
-    :scale: 30%
+    :width: 500px
 
 .. list-table:: 機器一覧
    :widths: 10 10 10
@@ -457,18 +476,13 @@
      - ●
      - (任意のパスワード)
      
-.. raw:: html
-
-   <div style="clear:both;"></div>
-     
- 
 
 | 最後の項目へ下表のように選択し登録をクリックして下さい。
 
 .. figure::   ../../../images/learn/quickstart/execution/v1.0_devicelist3.png
     :alt: 機器一覧登録
     :align: left
-    :scale: 30%
+    :width: 500px
 
 .. list-table:: 機器一覧
    :widths: 10 
@@ -478,25 +492,23 @@
    * - Legacy/Role利用情報認証方式
    * - パスワード認証
    
-.. raw:: html
-
-   <div style="clear:both;"></div>
 |
 .. note::
   | Ansible-Legacyを実行するための必須入力項目は以下の6項目です。
   | [ホスト名][IPアドレス][ログインユーザID][ログインパスワード管理][ログインパスワード][認証方式]
 
-4.2 作業名(Operation)の登録
----------------------------
-- 「オペレーション一覧」へ新規オペレーション名を登録` 
+作業名(Operation)の登録
+----------------------
+「オペレーション一覧」へ新規オペレーション名を登録
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 | 次にオペレーション名を登録していきます。
-| ①「基本コンソール」メニューグループ >>「オペレーション一覧」メニューをクリック
-| ②各項目へ入力、選択が完了したら登録をクリックして下さい。
+#. 「基本コンソール」メニューグループ >>「オペレーション一覧」メニューをクリック
+#. 各項目へ入力、選択が完了したら登録をクリックして下さい。
 
 .. figure::   ../../../images/learn/quickstart/execution/v1.0_operation_registration.png
     :alt: operation
     :align: left
-    :scale: 20%
+    :width: 500px
     
 
 .. list-table:: オペレーション登録
@@ -509,22 +521,19 @@
    * - オペレーション1
      - (任意の実行予定日時)
  
-.. raw:: html
 
-  <div style="clear:both;"></div>   
- 
-|
-|
 
-4.3 パラメータシートにデータを登録
-----------------------------------
-- 「インストールパッケージ一覧」へ新規データを登録` 
+パラメータシートにデータを登録
+------------------------------
+「インストールパッケージ一覧」へ新規データを登録
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 | 次に実行前準備で用意したインストールパッケージ一覧(パラーメータシート)にデータを入力していきます。
-| ①「入力用」メニューグループ >>「インストールパッケージ一覧」メニューをクリックします。
-| ②各項目へ入力、選択が完了したら登録をクリックして下さい。
+#. 「入力用」メニューグループ >>「インストールパッケージ一覧」メニューをクリックします。
+#.  ②各項目へ入力、選択が完了したら登録をクリックして下さい。
 
 .. figure::   ../../../images/learn/quickstart/execution/v1.0_dataregistration1.png
     :alt: パラメータシートにデータを登録
+    :align: left
     :width: 700px
 
 
@@ -549,28 +558,34 @@
      -  \*
       
     
-- 「インストールパッケージ一覧」への登録`
+「インストールパッケージ一覧」への登録
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 | 実行前準備の代入値自動登録設定の時と同様、表示フィルタを開き「フィルタ」ボタンをクリックして登録したデータを確認してください。
 
 .. figure::   ../../../images/learn/quickstart/execution/v1.0_dataregistration2.png
     :alt: インストールパッケージ一覧への登録
-    :width: 700px
+    :align: left
+    :width: 500px
 
 
 
-4.4 ジョブフロー(Conductor)の実行
----------------------------------
+ ジョブフロー(Conductor)の実行
+------------------------------
 -  Conductorの実行`
 | いよいよ実行を行っていきます。
-| ①「Conductor」メニューグループ >>「Conductor作業実行」メニューをクリックします。
-| ②実行する「Conductor」と「オペレーション」を選択し実行をクリックして下さい。
+
+#. 「Conductor」メニューグループ >>「Conductor作業実行」メニューをクリックします。
+#. 実行する「Conductor」と「オペレーション」を選択し実行をクリックして下さい。
 
 .. figure::   ../../../images/learn/quickstart/execution/v1.0_conductor1.png
     :alt: Conductor実行
-    :width: 700px
+    :align: left
+    :width: 500px
 
 
--  実行結果確認
+実行結果確認
+^^^^^^^^^^^^^
 | 実行すると「Conductor作業確認」メニュー画面に切替わり、実行ステータスやログが表示されます。
 
 .. figure::   ../../../images/learn/quickstart/execution/v1.0_conductor2.png
@@ -586,18 +601,24 @@
 
 
 
-4.5 実行結果の確認
-------------------
-- 実行ログの確認
+実行結果の確認
+--------------
+
+実行ログの確認
+^^^^^^^^^^^^^^
+
+
 | 詳細画面の進行状況(実行ログ)でAnsibleの実行ログを確認していきます。
 
 .. figure::   ../../../images/learn/quickstart/execution/v1.0_executionresult1.png
     :alt: 実行結果の確認
-    :width: 700px
+    :align: left
+    :width: 500px
 
 | httpd,php,perl,pythonをインストールされているか実行ログから確認して下さい。
 
-- 進行状況(実行ログ)の一部の例
+進行状況(実行ログ)の一部の例
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
@@ -633,8 +654,9 @@
  
 
 
-4.5 実行結果の確認
-------------------
+実行結果の確認
+--------------
+
 | ターゲットマシンでもパッケージがインストールできていることを確認して下さい。
 
 .. code-block:: bash
@@ -649,19 +671,23 @@
  httpd.x86_64                    2.4.6-97.el7.centos                     @updates
 
 
-1. 実行操作(2回目)
-==================
-5.1 作業名(Operation)の登録
----------------------------
--  「オペレーション一覧」へ新規オペレーション名
+実行操作(2回目)
+===============
+
+作業名(Operation)の登録
+-----------------------
+
+「オペレーション一覧」へ新規オペレーション名
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 | ここからは1回目のオペレーション名登録以降の作業と同様になります。
-| ①「基本コンソール」メニューグループ >>「オペレーション一覧」メニューをクリックします。
-| ②各項目へ入力、選択が完了したら登録をクリックして下さい。
+#. 「基本コンソール」メニューグループ >>「オペレーション一覧」メニューをクリックします。
+#. 各項目へ入力、選択が完了したら登録をクリックして下さい。
 
 .. figure::   ../../../images/learn/quickstart/execution2/v1.0_operation2.png
     :alt: Operation登録
     :align: left
-    :scale: 20%
+    :scale: 500px
 
 
 .. list-table:: オペレーション登録
@@ -674,21 +700,18 @@
    * - オペレーション2
      - (任意の実行予定日時)
 
-.. raw:: html
+パラメータシートにデータを登録
+-------------------------------
 
-  <div style="clear:both;"></div> 
-|
-|
-
-5.2 パラメータシートにデータを登録
-----------------------------------
-| :menuselection:`● 「インストールパッケージ一覧」新規データを登録`
-| ①「入力用」メニューグループ >>「インストールパッケージ一覧」メニューをクリックします。
-| ②各項目へ入力、選択が完了したら登録をクリックして下さい。
+「インストールパッケージ一覧」新規データを登録
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#. 「入力用」メニューグループ >>「インストールパッケージ一覧」メニューをクリックします。
+#. 各項目へ入力、選択が完了したら登録をクリックして下さい。
 | ※1回目とインストールするパッケージが異なっているので注意して下さい。
 
 .. figure::   ../../../images/learn/quickstart/execution2/v1.0_dataregistration3.png
     :alt: Operation登録
+    :align: left
     :width: 700px
 
 
@@ -712,22 +735,25 @@
      -  \*
      -  \*
 
-5.3 Conductorの実行
--------------------
--  2回目の実行も行っていきます。`
+Conductorの実行
+---------------
+
+| 2回目の実行も行っていきます
 | 「Conductor」メニューグループ >>「Conductor作業実行」メニューをクリックします。
 | 実行する「Conductor」と「オペレーション」を選択し実行をクリックして下さい。
 
 .. figure::   ../../../images/learn/quickstart/execution2/v1.0_conductor4.png
     :alt: Conducorの実行
+    :aflign: left
     :width: 700px
 
 
-- 作業結果の確認`
+| **作業結果の確認**
 | 実行すると「Conductor作業確認」メニュー画面に切替わり、実行ステータスやログが表示されます。
 
 .. figure::   ../../../images/learn/quickstart/execution/v1.0_conductor2.png
     :alt: Conducorの実行
+    :align: left
     :width: 700px
 
 .. note::
@@ -739,11 +765,12 @@
     :alt: 作業結果確認
     :width: 700px
 
-5.4 実行結果の確認
-------------------
+実行結果の確認
+--------------
+
 | 詳細画面の進行状況(実行ログ)でAnsibleの実行ログを確認します。
 
-- 実行ログの確認
+| **実行ログの確認**
 | 新たにMariaDBのインストールと他のパッケージとの依存関係の解決、他の4つのパッケージ(httpd,php,perl,python)の
 | バージョンアップが行われていることを確認して下さい。
 
@@ -782,33 +809,39 @@
   ""]} 
 
 
-1. CMDBパラメータの履歴確認
-===========================
-6.1 作業実行と履歴管理
-----------------------
--  履歴管理と本シナリオのポイント`
+CMDBパラメータの履歴確認
+========================
+
+作業実行と履歴管理
+------------------
+
+| **履歴管理と本シナリオのポイント**
 | ITAはCMDBに「誰が・いつ・何をしたのか？」を履歴管理し、その時の時点でシステムのパラメータはどうなっているのかを抽出できる機能があります。
 | パラメータの履歴管理をすることにより、設計者や運用者がストレスなくシステム更改を行うことができます。
 
 .. figure:: ../../../images/learn/quickstart/Historycheck_CMDB_parameters/v1.0_checkhistory1.png
     :alt: 履歴確認
+    :align: left
     :width: 700px
     
-6.2 CMDBパラメータの履歴を確認する
-----------------------------------
-- 履歴確認
+CMDBパラメータの履歴を確認する
+------------------------------
+
+| **履歴確認**
 | 実際にパラメータが管理できているかどうか確認をしていきます。
 | 「参照用」メニューグループ >>「インストールパッケージ一覧」メニューをクリックします。
 |  まずは基準日付を入力せずにフィルタをかけます。
 
 .. figure:: ../../../images/learn/quickstart/Historycheck_CMDB_parameters/v1.0_checkhistory2.png
     :alt: 履歴確認
+    :align: left
     :width: 700px
 
 | 次に2回目の実行を行った基準日時より前の日付を入力してフィルタをかけます。
 
 .. figure:: ../../../images/learn/quickstart/Historycheck_CMDB_parameters/v1.0_checkhistory3.png
     :alt: 履歴確認
+    :align: left
     :width: 700px
 
 | 最後に1回目の実行を行った基準日時より前の日付を入力してフィルタをかけます。
@@ -822,7 +855,7 @@ A. 付録
 =======
 参考① 【Ansible-Legacy】単体実行
 ---------------------------------
-- ● 作業実行`
+| **作業実行**
 | Ansible-Legacyは「作業実行」メニューがあり、Movementごとに個別実行や、ドライランが可能です。
 
 .. figure:: ../../../images/learn/quickstart/reference/v1.0_singleexecution.png
@@ -833,11 +866,12 @@ A. 付録
 
 参考② 【Ansible-Legacy】実行確認
 ---------------------------------
--  作業結果確認
+| **作業結果確認**
 | 実行(またはドライラン)すると画面が切替わり、実行ステータスやログが表示されます。
 
 .. figure:: ../../../images/learn/quickstart/reference/v1.0_executionconfirmation.png
     :alt: 実行確認
+    :align: left
     :width: 700px
 
 | クイックスタートは、以上となります。

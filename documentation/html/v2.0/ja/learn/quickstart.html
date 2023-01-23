@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-    <title>クイックスタート &#8212; Documentation  ドキュメント</title>
+    <title>1. クイックスタート &#8212; Documentation  ドキュメント</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/option.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -124,53 +124,50 @@
 <div id="tableOfContents">
   <div id="tocButton"></div>
   <ul>
-<li><a class="reference internal" href="#">クイックスタート</a><ul>
-<li><a class="reference internal" href="#id2">1.はじめに</a><ul>
-<li><a class="reference internal" href="#ita">本クイックスタートで体感できる主なITA機能の範囲</a></li>
-<li><a class="reference internal" href="#id3">本シナリオと作業範囲の位置づけ</a><ul>
+<li><a class="reference internal" href="#">1. クイックスタート</a><ul>
+<li><a class="reference internal" href="#id2">1.1. はじめに</a><ul>
+<li><a class="reference internal" href="#ita">1.1.1. 本クイックスタートで体感できる主なITA機能の範囲</a></li>
+<li><a class="reference internal" href="#id3">1.1.2. 本シナリオと作業範囲の位置づけ</a><ul>
 <li><a class="reference internal" href="#id4">シナリオ実行イメージ</a></li>
 <li><a class="reference internal" href="#ansible-legacy">インストール後からAnsible-Legacyを実行するまでのシナリオ</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id5">各種用語の説明</a></li>
+<li><a class="reference internal" href="#id5">1.1.3. 各種用語の説明</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id6">2. 画面説明</a><ul>
-<li><a class="reference internal" href="#web">2.1 Webコンソール画面(ログイン)</a></li>
-<li><a class="reference internal" href="#id7">2.2 画面説明(メインメニュー)</a></li>
+<li><a class="reference internal" href="#id6">1.2. 画面説明</a><ul>
+<li><a class="reference internal" href="#web">1.2.1. Webコンソール画面(ログイン)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id8">3. 実行前準備</a><ul>
-<li><a class="reference internal" href="#playbook-movement">3.1 Playbookをアップロードしてジョブ(Movement)に紐付け</a></li>
-<li><a class="reference internal" href="#movement-conductor">3.2 ジョブ(Movement)をジョブフロー(Conductor)に組込み</a></li>
-<li><a class="reference internal" href="#cmdb">3.3 CMDBにパラメータシートを設定</a></li>
-<li><a class="reference internal" href="#playbook">3.4 パラメータシートの項目とPlaybookの変数の紐付け</a></li>
+<li><a class="reference internal" href="#id7">1.3. 実行前準備</a><ul>
+<li><a class="reference internal" href="#playbook-movement">1.3.1. Playbookをアップロードしてジョブ(Movement)に紐付け</a></li>
+<li><a class="reference internal" href="#movement-conductor">1.3.2. ジョブ(Movement)をジョブフロー(Conductor)に組込み</a><ul>
+<li><a class="reference internal" href="#id10">パラメータシートを作成する</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id9">1. 実行操作(1回目)</a><ul>
-<li><a class="reference internal" href="#linux">4.1 機器一覧にターゲットとなるLinuxマシンを登録</a></li>
-<li><a class="reference internal" href="#operation">4.2 作業名(Operation)の登録</a></li>
-<li><a class="reference internal" href="#id10">4.3 パラメータシートにデータを登録</a></li>
-<li><a class="reference internal" href="#conductor">4.4 ジョブフロー(Conductor)の実行</a></li>
-<li><a class="reference internal" href="#id11">4.5 実行結果の確認</a></li>
-<li><a class="reference internal" href="#id12">4.5 実行結果の確認</a></li>
+<li><a class="reference internal" href="#playbook">1.3.3. パラメータシートの項目とPlaybookの変数の紐付け</a></li>
+<li><a class="reference internal" href="#linux">1.3.4. 機器一覧にターゲットとなるLinuxマシンを登録</a></li>
+<li><a class="reference internal" href="#operation">1.3.5. 作業名(Operation)の登録</a></li>
+<li><a class="reference internal" href="#id11">1.3.6. パラメータシートにデータを登録</a></li>
+<li><a class="reference internal" href="#id12">1.3.7. 実行結果の確認</a></li>
+<li><a class="reference internal" href="#id13">1.3.8. 実行結果の確認</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id13">1. 実行操作(2回目)</a><ul>
-<li><a class="reference internal" href="#id14">5.1 作業名(Operation)の登録</a></li>
-<li><a class="reference internal" href="#id15">5.2 パラメータシートにデータを登録</a></li>
-<li><a class="reference internal" href="#id16">5.3 Conductorの実行</a></li>
-<li><a class="reference internal" href="#id17">5.4 実行結果の確認</a></li>
+<li><a class="reference internal" href="#id14">1.4. 実行操作(2回目)</a><ul>
+<li><a class="reference internal" href="#id15">1.4.1. 作業名(Operation)の登録</a></li>
+<li><a class="reference internal" href="#id16">1.4.2. パラメータシートにデータを登録</a></li>
+<li><a class="reference internal" href="#conductor">1.4.3. Conductorの実行</a></li>
+<li><a class="reference internal" href="#id17">1.4.4. 実行結果の確認</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id18">1. CMDBパラメータの履歴確認</a><ul>
-<li><a class="reference internal" href="#id19">6.1 作業実行と履歴管理</a></li>
-<li><a class="reference internal" href="#id20">6.2 CMDBパラメータの履歴を確認する</a></li>
+<li><a class="reference internal" href="#cmdb">1.5. CMDBパラメータの履歴確認</a><ul>
+<li><a class="reference internal" href="#id18">1.5.1. 作業実行と履歴管理</a></li>
+<li><a class="reference internal" href="#id19">1.5.2. CMDBパラメータの履歴を確認する</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#a">A. 付録</a><ul>
-<li><a class="reference internal" href="#id21">参考① 【Ansible-Legacy】単体実行</a></li>
-<li><a class="reference internal" href="#id22">参考② 【Ansible-Legacy】実行確認</a></li>
+<li><a class="reference internal" href="#a">1.6. A. 付録</a><ul>
+<li><a class="reference internal" href="#id20">1.6.1. 参考① 【Ansible-Legacy】単体実行</a></li>
+<li><a class="reference internal" href="#id21">1.6.2. 参考② 【Ansible-Legacy】実行確認</a></li>
 </ul>
 </li>
 </ul>
@@ -187,7 +184,7 @@
   <ul>
     <li><a href="../../../index.html">HOME</a></li>
     
-    <li>クイックスタート</li>
+    <li><span class="section-number">1. </span>クイックスタート</li>
   </ul>
 </div>
 
@@ -196,32 +193,30 @@
 <div class="body" role="main">
 
   <section id="id1">
-<h1>クイックスタート<a class="headerlink" href="#id1" title="この見出しへのパーマリンク">¶</a></h1>
+<h1><span class="section-number">1. </span>クイックスタート<a class="headerlink" href="#id1" title="この見出しへのパーマリンク">¶</a></h1>
 <section id="id2">
-<h2>1.はじめに<a class="headerlink" href="#id2" title="この見出しへのパーマリンク">¶</a></h2>
+<h2><span class="section-number">1.1. </span>はじめに<a class="headerlink" href="#id2" title="この見出しへのパーマリンク">¶</a></h2>
 <div class="line-block">
 <div class="line">本書は、はじめて IT Automation（以下ITAと記載）に触れるユーザが、ITAのインタフェースをスムーズに体感できるクイックスタートの手順書としてご活用できます。</div>
 <div class="line">システム構築においてよくあるLinuxサーバのパッケージのインストール作業を通して、構築対象サーバごとの作業とパッケージ管理を自動化・一元管理化を行い、</div>
 <div class="line">従来のシステム構築とは異なるITAを使用した効率的なシステム構築を体感できます。</div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
 </div>
-<figure class="align-default">
+<figure class="align-left">
 <a class="reference internal image-reference" href="../../../_images/overview1.png"><img alt="ITAでできること" src="../../../_images/overview1.png" style="width: 700px;" /></a>
 </figure>
 <section id="ita">
-<h3>本クイックスタートで体感できる主なITA機能の範囲<a class="headerlink" href="#ita" title="この見出しへのパーマリンク">¶</a></h3>
+<h3><span class="section-number">1.1.1. </span>本クイックスタートで体感できる主なITA機能の範囲<a class="headerlink" href="#ita" title="この見出しへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>自動化ソフトウェア(Ansible)との連携</p></li>
 <li><p>パラメータ管理(メニュー作成・登録・履歴管理等)</p></li>
 <li><p>変数紐付け(代入値自動登録)</p></li>
 </ul>
-<figure class="align-default">
+<figure class="align-left">
 <a class="reference internal image-reference" href="../../../_images/overview2.png"><img alt="ITAの機能範囲" src="../../../_images/overview2.png" style="width: 700px;" /></a>
 </figure>
 </section>
 <section id="id3">
-<h3>本シナリオと作業範囲の位置づけ<a class="headerlink" href="#id3" title="この見出しへのパーマリンク">¶</a></h3>
+<h3><span class="section-number">1.1.2. </span>本シナリオと作業範囲の位置づけ<a class="headerlink" href="#id3" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">本シナリオではAnsibleドライバを使用し、Linuxサーバ構築で実施するyumパッケージのインストール作業を構築対象サーバごとにパラメータ管理し、</div>
 <div class="line">構築作業の自動化を行う内容となっています。</div>
@@ -229,7 +224,7 @@
 <ul class="simple">
 <li><p>作業環境</p></li>
 </ul>
-<figure class="align-default">
+<figure class="align-left">
 <a class="reference internal image-reference" href="../../../_images/workenvironment.png"><img alt="作業環境" src="../../../_images/workenvironment.png" style="width: 700px;" /></a>
 </figure>
 <ul class="simple">
@@ -245,7 +240,7 @@
 </ul>
 <section id="id4">
 <h4>シナリオ実行イメージ<a class="headerlink" href="#id4" title="この見出しへのパーマリンク">¶</a></h4>
-<figure class="align-default">
+<figure class="align-left">
 <a class="reference internal image-reference" href="../../../_images/executionimage1.png"><img alt="実行イメージ①" src="../../../_images/executionimage1.png" style="width: 700px;" /></a>
 </figure>
 </section>
@@ -254,15 +249,15 @@
 <div class="line-block">
 <div class="line">シナリオと、開発者(実行前準備)／作業者(実行操作)の作業範囲については以下の通りです。</div>
 </div>
-<figure class="align-default">
+<figure class="align-left">
 <a class="reference internal image-reference" href="../../../_images/executionimage2.png"><img alt="実行イメージ②" src="../../../_images/executionimage2.png" style="width: 700px;" /></a>
 </figure>
 </section>
 </section>
 <section id="id5">
-<h3>各種用語の説明<a class="headerlink" href="#id5" title="この見出しへのパーマリンク">¶</a></h3>
-<table class="docutils align-left" id="id23">
-<caption><span class="caption-text">本シナリオに登場する主な用語</span><a class="headerlink" href="#id23" title="このテーブルへのパーマリンク">¶</a></caption>
+<h3><span class="section-number">1.1.3. </span>各種用語の説明<a class="headerlink" href="#id5" title="この見出しへのパーマリンク">¶</a></h3>
+<table class="docutils align-left" id="id22">
+<caption><span class="caption-text">本シナリオに登場する主な用語</span><a class="headerlink" href="#id22" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col style="width: 33.3%" />
 <col style="width: 66.7%" />
@@ -314,39 +309,46 @@
 </section>
 </section>
 <section id="id6">
-<h2>2. 画面説明<a class="headerlink" href="#id6" title="この見出しへのパーマリンク">¶</a></h2>
+<h2><span class="section-number">1.2. </span>画面説明<a class="headerlink" href="#id6" title="この見出しへのパーマリンク">¶</a></h2>
 <section id="web">
-<h3>2.1 Webコンソール画面(ログイン)<a class="headerlink" href="#web" title="この見出しへのパーマリンク">¶</a></h3>
+<h3><span class="section-number">1.2.1. </span>Webコンソール画面(ログイン)<a class="headerlink" href="#web" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">ITAのインストールが完了しURLへアクセスすると、ログイン画面が表示されます。</div>
-<div class="line">※インストール手順については” IT Automation # オンラインインストール”をご参照ください。</div>
+<div class="line">※インストール手順については” IT Automation オンラインインストールをご参照ください。</div>
 </div>
-<figure class="align-default">
-<a class="reference internal image-reference" href="../../../_images/v1.0_login.png"><img alt="ログイン" src="../../../_images/v1.0_login.png" style="width: 700px;" /></a>
+<figure class="align-default" id="id23">
+<img alt="images/learn/quickstart/login&amp;mainmenu/v1.0_mainmenu1.png:alt:ログイン:align:left:width:700px" src="images/learn/quickstart/login&amp;mainmenu/v1.0_mainmenu1.png:alt:ログイン:align:left:width:700px" />
+<figcaption>
+<p><span class="caption-text">画面説明(メインメニュー)</span><a class="headerlink" href="#id23" title="この画像へのパーマリンク">¶</a></p>
+</figcaption>
 </figure>
-</section>
-<section id="id7">
-<h3>2.2 画面説明(メインメニュー)<a class="headerlink" href="#id7" title="この見出しへのパーマリンク">¶</a></h3>
+<hr class="docutils" />
 <div class="line-block">
-<div class="line">基本的な名称は以下の通りです。</div>
+<div class="line"><strong>画面は以下のように表示されます。</strong></div>
+<div class="line">メイングループ、メインメニュー</div>
 </div>
-<figure class="align-default">
+<figure class="align-left">
 <a class="reference internal image-reference" href="../../../_images/v1.0_mainmenu1.png"><img alt="ログイン" src="../../../_images/v1.0_mainmenu1.png" style="width: 700px;" /></a>
 </figure>
-<figure class="align-default">
+<div class="line-block">
+<div class="line">サブメニュー概略①</div>
+</div>
+<figure class="align-left">
 <a class="reference internal image-reference" href="../../../_images/v1.0_mainmenu2.png"><img alt="ログイン" src="../../../_images/v1.0_mainmenu2.png" style="width: 700px;" /></a>
 </figure>
-<figure class="align-default">
+<div class="line-block">
+<div class="line">サブメニュー概略②</div>
+</div>
+<figure class="align-left">
 <a class="reference internal image-reference" href="../../../_images/v1.0_mainmenu3.png"><img alt="ログイン" src="../../../_images/v1.0_mainmenu3.png" style="width: 700px;" /></a>
 </figure>
 </section>
 </section>
-<section id="id8">
-<h2>3. 実行前準備<a class="headerlink" href="#id8" title="この見出しへのパーマリンク">¶</a></h2>
+<section id="id7">
+<h2><span class="section-number">1.3. </span>実行前準備<a class="headerlink" href="#id7" title="この見出しへのパーマリンク">¶</a></h2>
 <section id="playbook-movement">
-<h3>3.1 Playbookをアップロードしてジョブ(Movement)に紐付け<a class="headerlink" href="#playbook-movement" title="この見出しへのパーマリンク">¶</a></h3>
+<h3><span class="section-number">1.3.1. </span>Playbookをアップロードしてジョブ(Movement)に紐付け<a class="headerlink" href="#playbook-movement" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
-<div class="line"><span class="menuselection">●Playbookの準備</span></div>
 <div class="line">最初に今回利用するPlaybookの作成をします。</div>
 <div class="line">お好みのエディタを使用してymlを作成し自身のローカルフォルダに保存してください。</div>
 </div>
@@ -369,17 +371,19 @@
 <div class="line">また、インデントにご注意ください。</div>
 </div>
 </div>
-<ul class="simple">
-<li><p>Movement一覧へ新規Movementを登録</p></li>
-</ul>
+<div class="line-block">
+<div class="line">Movement一覧へ新規Movementを登録</div>
+</div>
 <div class="line-block">
 <div class="line">次にMovementの登録を行っていきます。</div>
-<div class="line">①メインメニューより、「Ansible-Legacy」メニューグループ &gt;&gt;「Movement一覧」メニューをクリックします。</div>
-<div class="line">②「登録開始」ボタンをクリックします。</div>
-<div class="line">③各項目へ下表のように入力し、登録をクリックしてください。</div>
 </div>
+<ol class="arabic simple">
+<li><p>メインメニューより、「Ansible-Legacy」メニューグループ &gt;&gt;「Movement一覧」メニューをクリックします。</p></li>
+<li><p>「登録開始」ボタンをクリックします。</p></li>
+<li><p>各項目へ下表のように入力し、登録をクリックしてください。</p></li>
+</ol>
 <figure class="align-left">
-<a class="reference internal image-reference" href="../../../_images/v1.0_legacy_movement_register.png"><img alt="Movement登録" src="../../../_images/v1.0_legacy_movement_register.png" style="width: 635.0px; height: 219.20000000000002px;" /></a>
+<a class="reference internal image-reference" href="../../../_images/v1.0_legacy_movement_register.png"><img alt="Movement登録" src="../../../_images/v1.0_legacy_movement_register.png" style="width: 700px;" /></a>
 </figure>
 <table class="docutils align-left" id="id24">
 <caption><span class="caption-text">Movement一覧</span><a class="headerlink" href="#id24" title="このテーブルへのパーマリンク">¶</a></caption>
@@ -401,16 +405,15 @@
 </tr>
 </tbody>
 </table>
-<div style="clear:both;"></div><ul class="simple">
-<li><p>「Playbook素材集」へ新規Playbookを登録</p></li>
-</ul>
 <div class="line-block">
 <div class="line">次に作成したPlaybookの登録を行います。</div>
-<div class="line">①「Ansible-Legacy」メニューグループ &gt;&gt;「Playbook素材集」メニューをクリックします。</div>
-<div class="line">②登録開始をクリックし、各項目へ下表のように入力し登録をクリックしてください。</div>
 </div>
+<ol class="arabic simple">
+<li><p>「Ansible-Legacy」メニューグループ &gt;&gt;「Playbook素材集」メニューをクリックします。</p></li>
+<li><p>登録開始をクリックし、各項目へ下表のように入力し登録をクリックしてください。</p></li>
+</ol>
 <figure class="align-left">
-<a class="reference internal image-reference" href="../../../_images/v1.0_legacy_playbook_register1.png"><img alt="Playbook登録" src="../../../_images/v1.0_legacy_playbook_register1.png" style="width: 573.2px; height: 329.20000000000005px;" /></a>
+<img alt="Playbook登録" src="../../../_images/v1.0_legacy_playbook_register1.png" />
 </figure>
 <table class="docutils align-left" id="id25">
 <caption><span class="caption-text">Playbook素材集</span><a class="headerlink" href="#id25" title="このテーブルへのパーマリンク">¶</a></caption>
@@ -429,14 +432,17 @@
 </tr>
 </tbody>
 </table>
-<div style="clear:both;"></div><div class="line-block">
+<div class="line-block">
 <div class="line">次に登録したPlaybookをMovementに紐付けます。</div>
-<div class="line"><span class="menuselection">●「Movement-Playbook紐付」への登録</span></div>
-<div class="line">①「Ansible-Legacy」メニューグループ &gt;&gt;「Movement-Playbook紐付」メニューをクリックします。</div>
-<div class="line">②各項目へ下表のように入力、選択し登録をクリックしてください。</div>
 </div>
-<figure class="align-default">
-<a class="reference internal image-reference" href="../../../_images/v1.0_legacy_playbook_register2.png"><img alt="Movement-Playbook紐づけ登録" src="../../../_images/v1.0_legacy_playbook_register2.png" style="width: 700px;" /></a>
+<ol class="arabic">
+<li><p><a href="#id8"><span class="problematic" id="id9">|</span></a>「Ansible-Legacy」メニューグループ &gt;&gt;「Movement-Playbook紐付」メニューをクリックします。</p></li>
+<li><div class="line-block">
+<div class="line">各項目へ下表のように入力、選択し登録をクリックしてください。</div>
+</div>
+<blockquote>
+<div><figure class="align-left">
+<a class="reference internal image-reference" href="../../../_images/v1.0_legacy_playbook_register2.png"><img alt="Movement-Playbook紐づけ登録" src="../../../_images/v1.0_legacy_playbook_register2.png" style="width: 500px;" /></a>
 </figure>
 <table class="docutils align-left" id="id26">
 <caption><span class="caption-text">Movement-Playbook紐付</span><a class="headerlink" href="#id26" title="このテーブルへのパーマリンク">¶</a></caption>
@@ -458,36 +464,40 @@
 </tr>
 </tbody>
 </table>
+</div></blockquote>
+</li>
+</ol>
 </section>
 <section id="movement-conductor">
-<h3>3.2 ジョブ(Movement)をジョブフロー(Conductor)に組込み<a class="headerlink" href="#movement-conductor" title="この見出しへのパーマリンク">¶</a></h3>
-<ul class="simple">
-<li><p>「Conductor」を作成する</p></li>
-</ul>
+<h3><span class="section-number">1.3.2. </span>ジョブ(Movement)をジョブフロー(Conductor)に組込み<a class="headerlink" href="#movement-conductor" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">次にMovementをConductorに組み込んでいきます。</div>
-<div class="line">①「Conductor」メニューグループ &gt;&gt;「Conductorクラス編集」メニューをクリックします。</div>
-<div class="line">②下記の通りConducor名に「パッケージインストール」と入力、しMovementを移動、連結させ登録をクリックしてください。</div>
 </div>
-<figure class="align-default">
-<a class="reference internal image-reference" href="../../../_images/v1.0_conductor_edit.gif"><img alt="Conductor作成" src="../../../_images/v1.0_conductor_edit.gif" style="width: 700px;" /></a>
+<ol class="arabic simple">
+<li><p>「Conductor」メニューグループ &gt;&gt;「Conductorクラス編集」メニューをクリックします。</p></li>
+<li><p>下記の通りConducor名に「パッケージインストール」と入力、しMovementを移動、連結させ登録をクリックしてください。</p></li>
+</ol>
+<figure class="align-default" id="id27">
+<img alt="images/learn/quickstart/preparation/v1.0_conductor_edit.gif:alt:Conductor作成:align:left:width:500px" src="images/learn/quickstart/preparation/v1.0_conductor_edit.gif:alt:Conductor作成:align:left:width:500px" />
+<figcaption>
+<p><span class="caption-text">CMDBにパラメータシートを設定</span><a class="headerlink" href="#id27" title="この画像へのパーマリンク">¶</a></p>
+</figcaption>
 </figure>
-</section>
-<section id="cmdb">
-<h3>3.3 CMDBにパラメータシートを設定<a class="headerlink" href="#cmdb" title="この見出しへのパーマリンク">¶</a></h3>
-<ul class="simple">
-<li><p>パラメータシートを作成する</p></li>
-</ul>
+<hr class="docutils" />
+<section id="id10">
+<h4>パラメータシートを作成する<a class="headerlink" href="#id10" title="この見出しへのパーマリンク">¶</a></h4>
 <div class="line-block">
 <div class="line">次にパラメーターシートの作成を行います。</div>
-<div class="line">①「メニュー作成」メニューグループ &gt;&gt;「メニュー定義・作成」メニューをクリックします。</div>
-<div class="line">②各項目へ下表のように入力、選択して下さい。</div>
 </div>
-<figure class="align-default">
-<a class="reference internal image-reference" href="../../../_images/v1.0_menu_create1.gif"><img alt="パラメータシート作成1" src="../../../_images/v1.0_menu_create1.gif" style="width: 700px;" /></a>
+<ol class="arabic simple">
+<li><p>「メニュー作成」メニューグループ &gt;&gt;「メニュー定義・作成」メニューをクリックします。</p></li>
+<li><p>各項目へ下表のように入力、選択して下さい。</p></li>
+</ol>
+<figure class="align-left">
+<a class="reference internal image-reference" href="../../../_images/v1.0_menu_create1.gif"><img alt="パラメータシート作成1" src="../../../_images/v1.0_menu_create1.gif" style="width: 500px;" /></a>
 </figure>
-<table class="docutils align-left" id="id27">
-<caption><span class="caption-text">パラメータシートの作成</span><a class="headerlink" href="#id27" title="このテーブルへのパーマリンク">¶</a></caption>
+<table class="docutils align-left" id="id28">
+<caption><span class="caption-text">パラメータシートの作成</span><a class="headerlink" href="#id28" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col style="width: 28.6%" />
 <col style="width: 28.6%" />
@@ -512,11 +522,11 @@
 <div class="line-block">
 <div class="line">項目を追加し、各項目へ下表のように入力、選択して下さい。</div>
 </div>
-<figure class="align-default">
-<a class="reference internal image-reference" href="../../../_images/v1.0_menu_create2.png"><img alt="パラメータシート作成2" src="../../../_images/v1.0_menu_create2.png" style="width: 700px;" /></a>
+<figure class="align-left">
+<a class="reference internal image-reference" href="../../../_images/v1.0_menu_create2.png"><img alt="パラメータシート作成2" src="../../../_images/v1.0_menu_create2.png" style="width: 500px;" /></a>
 </figure>
-<table class="docutils align-left" id="id28">
-<caption><span class="caption-text">パラメータシートの作成</span><a class="headerlink" href="#id28" title="このテーブルへのパーマリンク">¶</a></caption>
+<table class="docutils align-left" id="id29">
+<caption><span class="caption-text">パラメータシートの作成</span><a class="headerlink" href="#id29" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col style="width: 25.0%" />
 <col style="width: 25.0%" />
@@ -561,26 +571,24 @@
 <div class="line-block">
 <div class="line">項目の移動が完了できたら作成をクリックして下さい。</div>
 </div>
-<figure class="align-default">
+<figure class="align-left">
 <a class="reference internal image-reference" href="../../../_images/v1.0_menu_create3.gif"><img alt="パラメータシート作成2" src="../../../_images/v1.0_menu_create3.gif" style="width: 700px;" /></a>
 </figure>
 </section>
+</section>
 <section id="playbook">
-<h3>3.4 パラメータシートの項目とPlaybookの変数の紐付け<a class="headerlink" href="#playbook" title="この見出しへのパーマリンク">¶</a></h3>
-<ul class="simple">
-<li><p>「代入値自動登録設定」作成</p></li>
-</ul>
+<h3><span class="section-number">1.3.3. </span>パラメータシートの項目とPlaybookの変数の紐付け<a class="headerlink" href="#playbook" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">最後に代入値自動登録を行います。</div>
 <div class="line">「Ansible-Legacy」メニューグループ &gt;&gt;「代入値自動登録設定」メニューをクリックします。</div>
 <div class="line">各項目へ下表のように入力、選択して下さい。</div>
 <div class="line">各項目へ入力、選択が完了したら登録をクリックして下さい。</div>
 </div>
-<figure class="align-default">
-<a class="reference internal image-reference" href="../../../_images/v1.0_substitution_value_automatic_registration1.png"><img alt="パラメータシート作成2" src="../../../_images/v1.0_substitution_value_automatic_registration1.png" style="width: 700px;" /></a>
+<figure class="align-left">
+<a class="reference internal image-reference" href="../../../_images/v1.0_substitution_value_automatic_registration1.png"><img alt="パラメータシート作成2" src="../../../_images/v1.0_substitution_value_automatic_registration1.png" style="width: 500px;" /></a>
 </figure>
-<table class="docutils align-left" id="id29">
-<caption><span class="caption-text">代入値自動登録設定</span><a class="headerlink" href="#id29" title="このテーブルへのパーマリンク">¶</a></caption>
+<table class="docutils align-left" id="id30">
+<caption><span class="caption-text">代入値自動登録設定</span><a class="headerlink" href="#id30" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col style="width: 25.0%" />
 <col style="width: 25.0%" />
@@ -669,28 +677,29 @@
 <div class="line">表示フィルタで5件のデータが登録できているかの確認を行って下さい。</div>
 <div class="line">ここまでで実行準備は終了になります。</div>
 </div>
-<figure class="align-default">
-<a class="reference internal image-reference" href="../../../_images/v1.0_substitution_value_automatic_registration2.png"><img alt="代入値自動登録確認" src="../../../_images/v1.0_substitution_value_automatic_registration2.png" style="width: 700px;" /></a>
+<figure class="align-default" id="id31">
+<img alt="images/learn/quickstart/preparation/v1.0_substitution_value_automatic_registration2.png:alt:代入値自動登録確認:align:left:width:700px" src="images/learn/quickstart/preparation/v1.0_substitution_value_automatic_registration2.png:alt:代入値自動登録確認:align:left:width:700px" />
+<figcaption>
+<p><span class="caption-text">実行操作(1回目)</span><a class="headerlink" href="#id31" title="この画像へのパーマリンク">¶</a></p>
+</figcaption>
 </figure>
 </section>
-</section>
-<section id="id9">
-<h2>1. 実行操作(1回目)<a class="headerlink" href="#id9" title="この見出しへのパーマリンク">¶</a></h2>
+<hr class="docutils" />
 <section id="linux">
-<h3>4.1 機器一覧にターゲットとなるLinuxマシンを登録<a class="headerlink" href="#linux" title="この見出しへのパーマリンク">¶</a></h3>
+<h3><span class="section-number">1.3.4. </span>機器一覧にターゲットとなるLinuxマシンを登録<a class="headerlink" href="#linux" title="この見出しへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li><p>「機器一覧」へ新規ターゲットホストの登録</p></li>
 </ul>
-<div class="line-block">
-<div class="line">①最初に機器一覧へ今回パッケージをインストールするターゲットホストを登録します。</div>
-<div class="line">②「基本コンソール」メニューグループ &gt;&gt;「機器一覧」メニューをクリックします。</div>
-<div class="line">③各項目へ下表のように入力して下さい。</div>
-</div>
+<ol class="arabic simple">
+<li><p>最初に機器一覧へ今回パッケージをインストールするターゲットホストを登録します。</p></li>
+<li><p>「基本コンソール」メニューグループ &gt;&gt;「機器一覧」メニューをクリックします。</p></li>
+<li><p>各項目へ下表のように入力して下さい。</p></li>
+</ol>
 <figure class="align-left">
-<a class="reference internal image-reference" href="../../../_images/v1.0_devicelist1.png"><img alt="機器一覧登録" src="../../../_images/v1.0_devicelist1.png" style="width: 652.5px; height: 462.9px;" /></a>
+<a class="reference internal image-reference" href="../../../_images/v1.0_devicelist1.png"><img alt="機器一覧登録" src="../../../_images/v1.0_devicelist1.png" style="width: 500px;" /></a>
 </figure>
-<table class="docutils align-left" id="id30">
-<caption><span class="caption-text">機器一覧</span><a class="headerlink" href="#id30" title="このテーブルへのパーマリンク">¶</a></caption>
+<table class="docutils align-left" id="id32">
+<caption><span class="caption-text">機器一覧</span><a class="headerlink" href="#id32" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col style="width: 33.3%" />
 <col style="width: 33.3%" />
@@ -709,17 +718,17 @@
 </tr>
 </tbody>
 </table>
-<div style="clear:both;"></div><ul class="simple">
+<ul class="simple">
 <li><p>「機器一覧」へ新規ターゲットホストの登録</p></li>
 </ul>
 <div class="line-block">
 <div class="line">スクロールバーを右にスライドし各項目へ下表のように入力して下さい。</div>
 </div>
 <figure class="align-left">
-<a class="reference internal image-reference" href="../../../_images/v1.0_devicelist2.png"><img alt="機器一覧登録" src="../../../_images/v1.0_devicelist2.png" style="width: 660.0px; height: 470.7px;" /></a>
+<a class="reference internal image-reference" href="../../../_images/v1.0_devicelist2.png"><img alt="機器一覧登録" src="../../../_images/v1.0_devicelist2.png" style="width: 500px;" /></a>
 </figure>
-<table class="docutils align-left" id="id31">
-<caption><span class="caption-text">機器一覧</span><a class="headerlink" href="#id31" title="このテーブルへのパーマリンク">¶</a></caption>
+<table class="docutils align-left" id="id33">
+<caption><span class="caption-text">機器一覧</span><a class="headerlink" href="#id33" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col style="width: 33.3%" />
 <col style="width: 33.3%" />
@@ -738,14 +747,14 @@
 </tr>
 </tbody>
 </table>
-<div style="clear:both;"></div><div class="line-block">
+<div class="line-block">
 <div class="line">最後の項目へ下表のように選択し登録をクリックして下さい。</div>
 </div>
 <figure class="align-left">
-<a class="reference internal image-reference" href="../../../_images/v1.0_devicelist3.png"><img alt="機器一覧登録" src="../../../_images/v1.0_devicelist3.png" style="width: 670.1999999999999px; height: 473.7px;" /></a>
+<a class="reference internal image-reference" href="../../../_images/v1.0_devicelist3.png"><img alt="機器一覧登録" src="../../../_images/v1.0_devicelist3.png" style="width: 500px;" /></a>
 </figure>
-<table class="docutils align-left" id="id32">
-<caption><span class="caption-text">機器一覧</span><a class="headerlink" href="#id32" title="このテーブルへのパーマリンク">¶</a></caption>
+<table class="docutils align-left" id="id34">
+<caption><span class="caption-text">機器一覧</span><a class="headerlink" href="#id34" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col style="width: 100.0%" />
 </colgroup>
@@ -758,7 +767,7 @@
 </tr>
 </tbody>
 </table>
-<div style="clear:both;"></div><div class="line-block">
+<div class="line-block">
 <div class="line"><br /></div>
 </div>
 <div class="admonition note">
@@ -770,20 +779,19 @@
 </div>
 </section>
 <section id="operation">
-<h3>4.2 作業名(Operation)の登録<a class="headerlink" href="#operation" title="この見出しへのパーマリンク">¶</a></h3>
-<ul class="simple">
-<li><p>「オペレーション一覧」へ新規オペレーション名を登録`</p></li>
-</ul>
+<h3><span class="section-number">1.3.5. </span>作業名(Operation)の登録<a class="headerlink" href="#operation" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">次にオペレーション名を登録していきます。</div>
-<div class="line">①「基本コンソール」メニューグループ &gt;&gt;「オペレーション一覧」メニューをクリック</div>
-<div class="line">②各項目へ入力、選択が完了したら登録をクリックして下さい。</div>
 </div>
+<ol class="arabic simple">
+<li><p>「基本コンソール」メニューグループ &gt;&gt;「オペレーション一覧」メニューをクリック</p></li>
+<li><p>各項目へ入力、選択が完了したら登録をクリックして下さい。</p></li>
+</ol>
 <figure class="align-left">
-<a class="reference internal image-reference" href="../../../_images/v1.0_operation_registration.png"><img alt="operation" src="../../../_images/v1.0_operation_registration.png" style="width: 446.40000000000003px; height: 303.2px;" /></a>
+<a class="reference internal image-reference" href="../../../_images/v1.0_operation_registration.png"><img alt="operation" src="../../../_images/v1.0_operation_registration.png" style="width: 500px;" /></a>
 </figure>
-<table class="docutils align-left" id="id33">
-<caption><span class="caption-text">オペレーション登録</span><a class="headerlink" href="#id33" title="このテーブルへのパーマリンク">¶</a></caption>
+<table class="docutils align-left" id="id35">
+<caption><span class="caption-text">オペレーション登録</span><a class="headerlink" href="#id35" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col style="width: 50.0%" />
 <col style="width: 50.0%" />
@@ -799,26 +807,21 @@
 </tr>
 </tbody>
 </table>
-<div style="clear:both;"></div><div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-</div>
 </section>
-<section id="id10">
-<h3>4.3 パラメータシートにデータを登録<a class="headerlink" href="#id10" title="この見出しへのパーマリンク">¶</a></h3>
-<ul class="simple">
-<li><p>「インストールパッケージ一覧」へ新規データを登録`</p></li>
-</ul>
+<section id="id11">
+<h3><span class="section-number">1.3.6. </span>パラメータシートにデータを登録<a class="headerlink" href="#id11" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">次に実行前準備で用意したインストールパッケージ一覧(パラーメータシート)にデータを入力していきます。</div>
-<div class="line">①「入力用」メニューグループ &gt;&gt;「インストールパッケージ一覧」メニューをクリックします。</div>
-<div class="line">②各項目へ入力、選択が完了したら登録をクリックして下さい。</div>
 </div>
-<figure class="align-default">
+<ol class="arabic simple">
+<li><p>「入力用」メニューグループ &gt;&gt;「インストールパッケージ一覧」メニューをクリックします。</p></li>
+<li><p>②各項目へ入力、選択が完了したら登録をクリックして下さい。</p></li>
+</ol>
+<figure class="align-left">
 <a class="reference internal image-reference" href="../../../_images/v1.0_dataregistration1.png"><img alt="パラメータシートにデータを登録" src="../../../_images/v1.0_dataregistration1.png" style="width: 700px;" /></a>
 </figure>
-<table class="docutils align-left" id="id34">
-<caption><span class="caption-text">入力用登録</span><a class="headerlink" href="#id34" title="このテーブルへのパーマリンク">¶</a></caption>
+<table class="docutils align-left" id="id36">
+<caption><span class="caption-text">入力用登録</span><a class="headerlink" href="#id36" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col style="width: 22.2%" />
 <col style="width: 22.2%" />
@@ -849,32 +852,22 @@
 </tr>
 </tbody>
 </table>
-<ul class="simple">
-<li><p>「インストールパッケージ一覧」への登録`</p></li>
-</ul>
 <div class="line-block">
 <div class="line">実行前準備の代入値自動登録設定の時と同様、表示フィルタを開き「フィルタ」ボタンをクリックして登録したデータを確認してください。</div>
 </div>
-<figure class="align-default">
-<a class="reference internal image-reference" href="../../../_images/v1.0_dataregistration2.png"><img alt="インストールパッケージ一覧への登録" src="../../../_images/v1.0_dataregistration2.png" style="width: 700px;" /></a>
+<figure class="align-default" id="id37">
+<img alt="images/learn/quickstart/execution/v1.0_dataregistration2.png:alt:インストールパッケージ一覧への登録:align:left:width:500px" src="images/learn/quickstart/execution/v1.0_dataregistration2.png:alt:インストールパッケージ一覧への登録:align:left:width:500px" />
+<figcaption>
+<p><span class="caption-text">ジョブフロー(Conductor)の実行</span><a class="headerlink" href="#id37" title="この画像へのパーマリンク">¶</a></p>
+</figcaption>
 </figure>
-</section>
-<section id="conductor">
-<h3>4.4 ジョブフロー(Conductor)の実行<a class="headerlink" href="#conductor" title="この見出しへのパーマリンク">¶</a></h3>
-<ul class="simple">
-<li><p>Conductorの実行`</p></li>
-</ul>
-<div class="line-block">
-<div class="line">いよいよ実行を行っていきます。</div>
-<div class="line">①「Conductor」メニューグループ &gt;&gt;「Conductor作業実行」メニューをクリックします。</div>
-<div class="line">②実行する「Conductor」と「オペレーション」を選択し実行をクリックして下さい。</div>
-</div>
-<figure class="align-default">
-<a class="reference internal image-reference" href="../../../_images/v1.0_conductor1.png"><img alt="Conductor実行" src="../../../_images/v1.0_conductor1.png" style="width: 700px;" /></a>
+<ol class="arabic simple">
+<li><p>「Conductor」メニューグループ &gt;&gt;「Conductor作業実行」メニューをクリックします。</p></li>
+<li><p>実行する「Conductor」と「オペレーション」を選択し実行をクリックして下さい。</p></li>
+</ol>
+<figure class="align-left">
+<a class="reference internal image-reference" href="../../../_images/v1.0_conductor1.png"><img alt="Conductor実行" src="../../../_images/v1.0_conductor1.png" style="width: 500px;" /></a>
 </figure>
-<ul class="simple">
-<li><p>実行結果確認</p></li>
-</ul>
 <div class="line-block">
 <div class="line">実行すると「Conductor作業確認」メニュー画面に切替わり、実行ステータスやログが表示されます。</div>
 </div>
@@ -888,23 +881,17 @@
 <a class="reference internal image-reference" href="../../../_images/v1.0_conductor3.png"><img alt="実行結果の確認" src="../../../_images/v1.0_conductor3.png" style="width: 700px;" /></a>
 </figure>
 </section>
-<section id="id11">
-<h3>4.5 実行結果の確認<a class="headerlink" href="#id11" title="この見出しへのパーマリンク">¶</a></h3>
-<ul class="simple">
-<li><p>実行ログの確認</p></li>
-</ul>
+<section id="id12">
+<h3><span class="section-number">1.3.7. </span>実行結果の確認<a class="headerlink" href="#id12" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">詳細画面の進行状況(実行ログ)でAnsibleの実行ログを確認していきます。</div>
 </div>
-<figure class="align-default">
-<a class="reference internal image-reference" href="../../../_images/v1.0_executionresult1.png"><img alt="実行結果の確認" src="../../../_images/v1.0_executionresult1.png" style="width: 700px;" /></a>
+<figure class="align-left">
+<a class="reference internal image-reference" href="../../../_images/v1.0_executionresult1.png"><img alt="実行結果の確認" src="../../../_images/v1.0_executionresult1.png" style="width: 500px;" /></a>
 </figure>
 <div class="line-block">
 <div class="line">httpd,php,perl,pythonをインストールされているか実行ログから確認して下さい。</div>
 </div>
-<ul class="simple">
-<li><p>進行状況(実行ログ)の一部の例</p></li>
-</ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>～～～～～～～～～～～～～～～～～～～～～～～～省略～～～～～～～～～～～～～～～～～～～～～～～
 Installed:
 
@@ -937,8 +924,8 @@ Complete!
 </pre></div>
 </div>
 </section>
-<section id="id12">
-<h3>4.5 実行結果の確認<a class="headerlink" href="#id12" title="この見出しへのパーマリンク">¶</a></h3>
+<section id="id13">
+<h3><span class="section-number">1.3.8. </span>実行結果の確認<a class="headerlink" href="#id13" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">ターゲットマシンでもパッケージがインストールできていることを確認して下さい。</div>
 </div>
@@ -954,23 +941,19 @@ httpd.x86_64<span class="w">                    </span><span class="m">2</span>.
 </div>
 </section>
 </section>
-<section id="id13">
-<h2>1. 実行操作(2回目)<a class="headerlink" href="#id13" title="この見出しへのパーマリンク">¶</a></h2>
 <section id="id14">
-<h3>5.1 作業名(Operation)の登録<a class="headerlink" href="#id14" title="この見出しへのパーマリンク">¶</a></h3>
-<ul class="simple">
-<li><p>「オペレーション一覧」へ新規オペレーション名</p></li>
-</ul>
+<h2><span class="section-number">1.4. </span>実行操作(2回目)<a class="headerlink" href="#id14" title="この見出しへのパーマリンク">¶</a></h2>
+<section id="id15">
+<h3><span class="section-number">1.4.1. </span>作業名(Operation)の登録<a class="headerlink" href="#id15" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">ここからは1回目のオペレーション名登録以降の作業と同様になります。</div>
-<div class="line">①「基本コンソール」メニューグループ &gt;&gt;「オペレーション一覧」メニューをクリックします。</div>
-<div class="line">②各項目へ入力、選択が完了したら登録をクリックして下さい。</div>
 </div>
-<figure class="align-left">
-<a class="reference internal image-reference" href="../../../_images/v1.0_operation2.png"><img alt="Operation登録" src="../../../_images/v1.0_operation2.png" style="width: 434.40000000000003px; height: 310.40000000000003px;" /></a>
-</figure>
-<table class="docutils align-left" id="id35">
-<caption><span class="caption-text">オペレーション登録</span><a class="headerlink" href="#id35" title="このテーブルへのパーマリンク">¶</a></caption>
+<ol class="arabic simple">
+<li><p>「基本コンソール」メニューグループ &gt;&gt;「オペレーション一覧」メニューをクリックします。</p></li>
+<li><p>各項目へ入力、選択が完了したら登録をクリックして下さい。</p></li>
+</ol>
+<table class="docutils align-left" id="id38">
+<caption><span class="caption-text">オペレーション登録</span><a class="headerlink" href="#id38" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col style="width: 50.0%" />
 <col style="width: 50.0%" />
@@ -986,24 +969,19 @@ httpd.x86_64<span class="w">                    </span><span class="m">2</span>.
 </tr>
 </tbody>
 </table>
-<div style="clear:both;"></div><div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-</div>
 </section>
-<section id="id15">
-<h3>5.2 パラメータシートにデータを登録<a class="headerlink" href="#id15" title="この見出しへのパーマリンク">¶</a></h3>
-<div class="line-block">
-<div class="line"><span class="menuselection">● 「インストールパッケージ一覧」新規データを登録</span></div>
-<div class="line">①「入力用」メニューグループ &gt;&gt;「インストールパッケージ一覧」メニューをクリックします。</div>
-<div class="line">②各項目へ入力、選択が完了したら登録をクリックして下さい。</div>
-<div class="line">※1回目とインストールするパッケージが異なっているので注意して下さい。</div>
-</div>
-<figure class="align-default">
+<section id="id16">
+<h3><span class="section-number">1.4.2. </span>パラメータシートにデータを登録<a class="headerlink" href="#id16" title="この見出しへのパーマリンク">¶</a></h3>
+<ol class="arabic simple">
+<li><p>「入力用」メニューグループ &gt;&gt;「インストールパッケージ一覧」メニューをクリックします。</p></li>
+</ol>
+<p>#. 各項目へ入力、選択が完了したら登録をクリックして下さい。
+| ※1回目とインストールするパッケージが異なっているので注意して下さい。</p>
+<figure class="align-left">
 <a class="reference internal image-reference" href="../../../_images/v1.0_dataregistration3.png"><img alt="Operation登録" src="../../../_images/v1.0_dataregistration3.png" style="width: 700px;" /></a>
 </figure>
-<table class="docutils align-left" id="id36">
-<caption><span class="caption-text">入力用登録</span><a class="headerlink" href="#id36" title="このテーブルへのパーマリンク">¶</a></caption>
+<table class="docutils align-left" id="id39">
+<caption><span class="caption-text">入力用登録</span><a class="headerlink" href="#id39" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col style="width: 22.2%" />
 <col style="width: 22.2%" />
@@ -1035,25 +1013,18 @@ httpd.x86_64<span class="w">                    </span><span class="m">2</span>.
 </tbody>
 </table>
 </section>
-<section id="id16">
-<h3>5.3 Conductorの実行<a class="headerlink" href="#id16" title="この見出しへのパーマリンク">¶</a></h3>
-<ul class="simple">
-<li><p>2回目の実行も行っていきます。`</p></li>
-</ul>
+<section id="conductor">
+<h3><span class="section-number">1.4.3. </span>Conductorの実行<a class="headerlink" href="#conductor" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
+<div class="line">2回目の実行も行っていきます</div>
 <div class="line">「Conductor」メニューグループ &gt;&gt;「Conductor作業実行」メニューをクリックします。</div>
 <div class="line">実行する「Conductor」と「オペレーション」を選択し実行をクリックして下さい。</div>
 </div>
-<figure class="align-default">
-<a class="reference internal image-reference" href="../../../_images/v1.0_conductor4.png"><img alt="Conducorの実行" src="../../../_images/v1.0_conductor4.png" style="width: 700px;" /></a>
-</figure>
-<ul class="simple">
-<li><p>作業結果の確認`</p></li>
-</ul>
 <div class="line-block">
+<div class="line"><strong>作業結果の確認</strong></div>
 <div class="line">実行すると「Conductor作業確認」メニュー画面に切替わり、実行ステータスやログが表示されます。</div>
 </div>
-<figure class="align-default">
+<figure class="align-left">
 <a class="reference internal image-reference" href="../../../_images/v1.0_conductor2.png"><img alt="Conducorの実行" src="../../../_images/v1.0_conductor2.png" style="width: 700px;" /></a>
 </figure>
 <div class="admonition note">
@@ -1070,14 +1041,12 @@ httpd.x86_64<span class="w">                    </span><span class="m">2</span>.
 </figure>
 </section>
 <section id="id17">
-<h3>5.4 実行結果の確認<a class="headerlink" href="#id17" title="この見出しへのパーマリンク">¶</a></h3>
+<h3><span class="section-number">1.4.4. </span>実行結果の確認<a class="headerlink" href="#id17" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
 <div class="line">詳細画面の進行状況(実行ログ)でAnsibleの実行ログを確認します。</div>
 </div>
-<ul class="simple">
-<li><p>実行ログの確認</p></li>
-</ul>
 <div class="line-block">
+<div class="line"><strong>実行ログの確認</strong></div>
 <div class="line">新たにMariaDBのインストールと他のパッケージとの依存関係の解決、他の4つのパッケージ(httpd,php,perl,python)の</div>
 <div class="line">バージョンアップが行われていることを確認して下さい。</div>
 </div>
@@ -1116,40 +1085,36 @@ Complete!
 </div>
 </section>
 </section>
+<section id="cmdb">
+<h2><span class="section-number">1.5. </span>CMDBパラメータの履歴確認<a class="headerlink" href="#cmdb" title="この見出しへのパーマリンク">¶</a></h2>
 <section id="id18">
-<h2>1. CMDBパラメータの履歴確認<a class="headerlink" href="#id18" title="この見出しへのパーマリンク">¶</a></h2>
-<section id="id19">
-<h3>6.1 作業実行と履歴管理<a class="headerlink" href="#id19" title="この見出しへのパーマリンク">¶</a></h3>
-<ul class="simple">
-<li><p>履歴管理と本シナリオのポイント`</p></li>
-</ul>
+<h3><span class="section-number">1.5.1. </span>作業実行と履歴管理<a class="headerlink" href="#id18" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
+<div class="line"><strong>履歴管理と本シナリオのポイント</strong></div>
 <div class="line">ITAはCMDBに「誰が・いつ・何をしたのか？」を履歴管理し、その時の時点でシステムのパラメータはどうなっているのかを抽出できる機能があります。</div>
 <div class="line">パラメータの履歴管理をすることにより、設計者や運用者がストレスなくシステム更改を行うことができます。</div>
 </div>
-<figure class="align-default">
+<figure class="align-left">
 <a class="reference internal image-reference" href="../../../_images/v1.0_checkhistory1.png"><img alt="履歴確認" src="../../../_images/v1.0_checkhistory1.png" style="width: 700px;" /></a>
 </figure>
 </section>
-<section id="id20">
-<h3>6.2 CMDBパラメータの履歴を確認する<a class="headerlink" href="#id20" title="この見出しへのパーマリンク">¶</a></h3>
-<ul class="simple">
-<li><p>履歴確認</p></li>
-</ul>
+<section id="id19">
+<h3><span class="section-number">1.5.2. </span>CMDBパラメータの履歴を確認する<a class="headerlink" href="#id19" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
+<div class="line"><strong>履歴確認</strong></div>
 <div class="line">実際にパラメータが管理できているかどうか確認をしていきます。</div>
 <div class="line">「参照用」メニューグループ &gt;&gt;「インストールパッケージ一覧」メニューをクリックします。</div>
 <div class="line-block">
 <div class="line">まずは基準日付を入力せずにフィルタをかけます。</div>
 </div>
 </div>
-<figure class="align-default">
+<figure class="align-left">
 <a class="reference internal image-reference" href="../../../_images/v1.0_checkhistory2.png"><img alt="履歴確認" src="../../../_images/v1.0_checkhistory2.png" style="width: 700px;" /></a>
 </figure>
 <div class="line-block">
 <div class="line">次に2回目の実行を行った基準日時より前の日付を入力してフィルタをかけます。</div>
 </div>
-<figure class="align-default">
+<figure class="align-left">
 <a class="reference internal image-reference" href="../../../_images/v1.0_checkhistory3.png"><img alt="履歴確認" src="../../../_images/v1.0_checkhistory3.png" style="width: 700px;" /></a>
 </figure>
 <div class="line-block">
@@ -1161,28 +1126,24 @@ Complete!
 </section>
 </section>
 <section id="a">
-<h2>A. 付録<a class="headerlink" href="#a" title="この見出しへのパーマリンク">¶</a></h2>
-<section id="id21">
-<h3>参考① 【Ansible-Legacy】単体実行<a class="headerlink" href="#id21" title="この見出しへのパーマリンク">¶</a></h3>
-<ul class="simple">
-<li><p>● 作業実行`</p></li>
-</ul>
+<h2><span class="section-number">1.6. </span>A. 付録<a class="headerlink" href="#a" title="この見出しへのパーマリンク">¶</a></h2>
+<section id="id20">
+<h3><span class="section-number">1.6.1. </span>参考① 【Ansible-Legacy】単体実行<a class="headerlink" href="#id20" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
+<div class="line"><strong>作業実行</strong></div>
 <div class="line">Ansible-Legacyは「作業実行」メニューがあり、Movementごとに個別実行や、ドライランが可能です。</div>
 </div>
 <figure class="align-default">
 <a class="reference internal image-reference" href="../../../_images/v1.0_singleexecution.png"><img alt="単体実行" src="../../../_images/v1.0_singleexecution.png" style="width: 700px;" /></a>
 </figure>
 </section>
-<section id="id22">
-<h3>参考② 【Ansible-Legacy】実行確認<a class="headerlink" href="#id22" title="この見出しへのパーマリンク">¶</a></h3>
-<ul class="simple">
-<li><p>作業結果確認</p></li>
-</ul>
+<section id="id21">
+<h3><span class="section-number">1.6.2. </span>参考② 【Ansible-Legacy】実行確認<a class="headerlink" href="#id21" title="この見出しへのパーマリンク">¶</a></h3>
 <div class="line-block">
+<div class="line"><strong>作業結果確認</strong></div>
 <div class="line">実行(またはドライラン)すると画面が切替わり、実行ステータスやログが表示されます。</div>
 </div>
-<figure class="align-default">
+<figure class="align-left">
 <a class="reference internal image-reference" href="../../../_images/v1.0_executionconfirmation.png"><img alt="実行確認" src="../../../_images/v1.0_executionconfirmation.png" style="width: 700px;" /></a>
 </figure>
 <div class="line-block">
