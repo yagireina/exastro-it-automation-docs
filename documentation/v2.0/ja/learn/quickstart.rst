@@ -184,8 +184,9 @@ Playbookの準備
 
 .. figure:: ../../../images/learn/quickstart/preparation/v1.0_legacy_movement_register.png
     :alt: Movement登録
-    :width: 700px
     :align: left
+    :width: 700px
+    
    
     
 .. list-table:: Movement一覧
@@ -227,8 +228,8 @@ Playbookの準備
 「Movement-Playbook紐付」への登録
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. |「Ansible-Legacy」メニューグループ >>「Movement-Playbook紐付」メニューをクリックします。
-#. | 各項目へ下表のように入力、選択し登録をクリックしてください。
+#. 「Ansible-Legacy」メニューグループ >>「Movement-Playbook紐付」メニューをクリックします。
+#.  各項目へ下表のように入力、選択し登録をクリックしてください。
 
     .. figure::   ../../../images/learn/quickstart/preparation/v1.0_legacy_playbook_register2.png
         :alt: Movement-Playbook紐づけ登録
@@ -590,6 +591,7 @@ Playbookの準備
 
 .. figure::   ../../../images/learn/quickstart/execution/v1.0_conductor2.png
     :alt: 実行結果の確認
+    :align: left
     :width: 700px
 
 
@@ -597,6 +599,7 @@ Playbookの準備
 
 .. figure::   ../../../images/learn/quickstart/execution/v1.0_conductor3.png
     :alt: 実行結果の確認
+    :align: left
     :width: 700px
 
 
@@ -763,6 +766,7 @@ Conductorの実行
 
 .. figure::   ../../../images/learn/quickstart/execution2/v1.0_conductor5.png
     :alt: 作業結果確認
+    :align: left
     :width: 700px
 
 実行結果の確認
@@ -776,6 +780,7 @@ Conductorの実行
 
 .. figure::   ../../../images/learn/quickstart/execution2/v1.0_exectuionresult2.png
     :alt: Conducorの実行
+    :aligin: left
     :width: 700px
 
 | 新たにMariaDBのインストールと他のパッケージとの依存関係の解決、他の4つのパッケージ(httpd,php,perl,python)のバージョンアップが行われていることを確認して下さい。
@@ -848,6 +853,7 @@ CMDBパラメータの履歴を確認する
 
 .. figure:: ../../../images/learn/quickstart/Historycheck_CMDB_parameters/v1.0_checkhistory4.png
     :alt: 履歴確認
+    :align: left
     :width: 700px
 
 
@@ -860,6 +866,7 @@ A. 付録
 
 .. figure:: ../../../images/learn/quickstart/reference/v1.0_singleexecution.png
     :alt: 単体実行
+    :align: left
     :width: 700px
 
 
