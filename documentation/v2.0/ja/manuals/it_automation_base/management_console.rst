@@ -801,14 +801,14 @@ BackYard処理説明
    | 送信依頼ファイル記述例
    #. | **フリー型例**： テンプレートID = 001
 
-      .. figure:: ./management_console/image203.png
+      .. figure:: /images/ja/management_console/png/フリー型例.png
          :width: 5in
          :align: center
          :alt: template_list example
 
          sysmail_001_20160401_0001.txt
 
-      .. figure:: ./management_console/image204.png
+      .. figure:: /images/ja/management_console/png/送信されたメール（フリー型）.png
          :width: 5in
          :align: center
          :alt: template_list example
@@ -818,14 +818,14 @@ BackYard処理説明
 
    #. | **セーフ型例**： テンプレートID = 002
 
-      .. figure:: ./management_console/image205.png
+      .. figure:: /images/ja/management_console/png/セーフ型例.png
          :width: 5in
          :align: center
          :alt: template_list example
 
       .. note:: | メールアドレスはテンプレートリストファイルに指定
 
-      .. figure:: ./management_console/image206.png
+      .. figure:: /images/ja/management_console/png/送信されたメール（セーフ型）.png
          :width: 5in
          :align: center
          :alt: template_list example
@@ -835,21 +835,21 @@ BackYard処理説明
 
    #. | **フリーフォーマット型**： テンプレートID = 004
 
-      .. figure:: ./management_console/image207.png
+      .. figure:: /images/ja/management_console/png/フォーマット型例.png
          :width: 5in
          :align: center
          :alt: template_list example
 
          sysmail_004_20160401_0001.txt
 
-      .. figure:: ./management_console/image208.png
+      .. figure:: /images/ja/management_console/png/送信されたメール（フォーマット型）.png
          :width: 5in
          :align: center
          :alt: template_list example
 
          送信されたメール： テンプレートリストから置換されたか所（青字）
 
-      .. figure:: ./management_console/image209.png
+      .. figure:: /images/ja/management_console/png/動作イメージ（フォーマット型）.png
          :width: 5in
          :align: center
          :alt: template_list example
