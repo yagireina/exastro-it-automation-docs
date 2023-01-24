@@ -6,7 +6,7 @@ Exastro IT Automation ログ一覧
 
 
 .. list-table::  ログ一覧
-  :widths 20 20 40
+  :widths 10 10 20
   : header-rows: 1
   :align: left
 
@@ -29,7 +29,7 @@ Exastro IT Automation ログ一覧
     _ | devcontainer-platform-web-1
     _ | LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined \
       | LogFormat "%h %l %u %t \"%r\" %>s %b" common \ 
-    _ | <IfModule logio_module> \
+      | <IfModule logio_module> \
       | # You need to enable mod_logio.c to use %I and %O \
       | LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio \
       | </IfModule>
@@ -58,14 +58,15 @@ Exastro IT Automation ログ一覧
   * _ 5
     _ devcontainer-platform-db-1
     _ | mariadbのログに準拠している。
-      |（DBについては、使用するデータベースのログフォーマットとなる。）
+      | （DBについては、使用するデータベースのログフォーマットとなる。）
       | 設定もデータベースによるが、デフォルトでmariadbを立ち上げた際は
       | エラーログが出力される。
   * _ 6
     _ devcontainer-keycloak-1
-    _ | %d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] (%t) %s%e%n
+    _ | %d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] （%t） %s%e%n
+      | 情報は以下の通り。
       | %d{yyyy-MM-dd HH:mm:ss,SSS}		ログ出力日時
-      | %-5p	エラーレベル(DEBUG, INFO, WARN, ERROR)
+      | %-5p	エラーレベル（DEBUG, INFO, WARN, ERROR）
       | %c		ログ カテゴリ名
       | %t		スレッド名
       | %s		簡単なメッセージ
