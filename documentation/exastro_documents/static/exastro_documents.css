@@ -2131,6 +2131,11 @@ span.highlighted {
    margin: 0 0 8px;
  }
 
+ #swaggerBody .swagger-ui img {
+  max-width: 200px;
+  content: url(/_static/img/exastro.png);
+ }
+
  @media screen and (max-width: 1850px) {
 
   #tableOfContents {
