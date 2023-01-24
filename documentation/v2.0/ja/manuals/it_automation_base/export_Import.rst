@@ -772,72 +772,72 @@ Excel一括エクスポート・インポート管理
 |                                                                      |
 +----------------------------------------------------------------------+
 
-.. |image1| image:: media/image1.png
+.. |image1| image:: export_Import/image1.png
    :width: 8.24645in
    :height: 11.7091in
 .. |\\\abkfs04.nsl.ad.nec.co.jp\a06006-01\30_Exastro_IT-Automation\3_全社展開チーム(サ事開本)\FY2019_1-上期\81_Exastro正式素材集(ロゴ等)\PNG\Exastro_mark+type_1.png| image:: media/image2.png
    :width: 3.35079in
    :height: 0.78565in
-.. |image2| image:: media/image3.emf
+.. |image2| image:: export_Import/image3.emf
    :width: 1.53125in
    :height: 0.34375in
-.. |image3| image:: media/image30.emf
+.. |image3| image:: export_Import/image30.emf
    :width: 1.53125in
    :height: 0.34375in
-.. |image4| image:: media/image4.png
+.. |image4| image:: export_Import/image4.png
    :width: 6.09386in
    :height: 2.2602in
-.. |image5| image:: media/image5.png
+.. |image5| image:: export_Import/image5.png
    :width: 6.83194in
    :height: 0.1625in
-.. |image6| image:: media/image6.png
+.. |image6| image:: export_Import/image6.png
    :width: 6.07463in
    :height: 2.9954in
-.. |image7| image:: media/image7.png
+.. |image7| image:: export_Import/image7.png
    :width: 6.37389in
    :height: 1.26011in
-.. |image8| image:: media/image8.png
+.. |image8| image:: export_Import/image8.png
    :width: 5.97385in
    :height: 1.47346in
-.. |image9| image:: media/image5.png
+.. |image9| image:: export_Import/image5.png
    :width: 6.35821in
    :height: 0.15144in
-.. |image10| image:: media/image9.png
+.. |image10| image:: export_Import/image9.png
    :width: 5.48047in
    :height: 2.56689in
-.. |image11| image:: media/image10.png
+.. |image11| image:: export_Import/image10.png
    :width: 5.38958in
    :height: 1.32545in
-.. |image12| image:: media/image11.png
+.. |image12| image:: export_Import/image11.png
    :width: 5.78717in
    :height: 1.43346in
-.. |image13| image:: media/image12.png
+.. |image13| image:: export_Import/image12.png
    :width: 6.36522in
    :height: 2.68402in
-.. |image14| image:: media/image13.png
+.. |image14| image:: export_Import/image13.png
    :width: 6.04052in
    :height: 2.44688in
-.. |image15| image:: media/image5.png
+.. |image15| image:: export_Import/image5.png
    :width: 6.83194in
    :height: 0.1625in
-.. |image16| image:: media/image14.png
+.. |image16| image:: export_Import/image14.png
    :width: 6.0625in
    :height: 2.58604in
-.. |image17| image:: media/image15.png
+.. |image17| image:: export_Import/image15.png
    :width: 6.69236in
    :height: 1.47292in
-.. |image18| image:: media/image16.png
+.. |image18| image:: export_Import/image16.png
    :width: 4.26087in
    :height: 0.87791in
-.. |image19| image:: media/image17.png
+.. |image19| image:: export_Import/image17.png
    :width: 6.06719in
    :height: 1.58014in
-.. |image20| image:: media/image18.png
+.. |image20| image:: export_Import/image18.png
    :width: 6.5339in
    :height: 2.88692in
-.. |image21| image:: media/image19.png
+.. |image21| image:: export_Import/image19.png
    :width: 5.94718in
    :height: 1.51346in
-.. |image22| image:: media/image20.png
+.. |image22| image:: export_Import/image20.png
    :width: 6.26721in
    :height: 2.62023in
