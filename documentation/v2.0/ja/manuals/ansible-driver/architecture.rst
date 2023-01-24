@@ -72,21 +72,24 @@ ITA_システム構成/環境構築ガイド Ansible-driver編
    :alt: オールインワン構成イメージ
    :width: 8.69236in
    :height: 4.92847in
+   :align: center
 
 Ansible Automation Controller 構成イメージ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. figure:: ./architecture/AAC_diagram.png
    :alt: Ansible Automation Controller 構成イメージ
-   :width: 10.69236in
+   :width: 9.69236in
    :height: 4.92847in
+   :align: center
 
 Ansible Automation Controller + AEE 構成イメージ 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. figure:: ./architecture/AAC_diagram_AEE.png
    :alt: Ansible Automation Controller 構成イメージ + AEE 
-   :width: 11.69236in
-   :height: 4.23472in
+   :width: 10.69236in
+   :height: 5.23472in
+   :align: center
 
 
 
@@ -248,7 +251,8 @@ Ansible Automation Controller
 Playbook連携
 ========================================================
 
-| ITAとAnsible Core 及びAnsible Automation Controller間のPlaybook連携について説明します。
+| ITAとAnsible Core 及びAn
+sible Automation Controller間のPlaybook連携について説明します。
 
 .. figure:: ./architecture/image2a_1.png
    :alt: ITAとAnsible Core間のPlaybook連携図
