@@ -5,7 +5,7 @@ Exastro IT Automation ログ一覧
 | Exastro IT Automationの各コンテナの出力メッセージに関するログについては以下の通りです。
 
 
-.. list-table:: リストテーブルサンプル
+.. list-table:: ログ一覧
    :widths: 10 10 20
    :header-rows: 1
    :align: left
