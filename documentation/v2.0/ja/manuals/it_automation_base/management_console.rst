@@ -69,7 +69,7 @@ ITA管理コンソールについて
 | 各メニュー右上のユーザー名表示部分をクリックし、 \ :guilabel:`ログアウト`\  をクリックするとシステムからログアウトします。
 | ログアウト後はログイン画面に遷移します。
 
-.. figure:: ./management_console/login_login_info.gif
+.. figure:: /images/ja/management_console/gif/ITAログイン画面.gif
    :alt: ITAログイン画面
    :width: 800px
    :align: center
