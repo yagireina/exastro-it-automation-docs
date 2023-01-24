@@ -1326,6 +1326,13 @@ span.highlighted {
   border-bottom: solid 1px #ffa500;
 }
 
+#article ul.simple>li>p>a,
+#article ol.simple>li>p>a {
+  text-decoration: none;
+  color: #333;
+}
+
+
 #article li li {
   font-weight: normal;
 }
@@ -1764,10 +1771,16 @@ span.highlighted {
 
 #article table {
   margin: 12px;
+  display: inline-table;
 }
 
 #article figure {
   padding: 12px;
+  display: inline-grid;
+}
+
+#article figure>a {
+  text-align: center;
 }
 
 #article img.align-left,
@@ -1776,11 +1789,13 @@ span.highlighted {
   clear: left;
   /* float: left; */
   margin-right: 1em;
+  display: inline-grid;
 }
 
 #article img.align-right,
 #article figure.align-right,
 #article object.align-right {
+  display: inline-grid;
   clear: right;
   float: right;
   margin-left: 1em;
@@ -1789,14 +1804,14 @@ span.highlighted {
 #article img.align-center,
 #article figure.align-center,
 #article object.align-center {
-  display: block;
+  display: inline-grid;
   margin-left: auto;
   margin-right: auto;
 }
 
 #article img.align-default,
 #article figure.align-default {
-  display: block;
+  display: inline-grid;
   margin-left: auto;
   margin-right: auto;
 }
@@ -1810,7 +1825,7 @@ span.highlighted {
 }
 
 #article .align-default {
-  text-align: center;
+  text-align: left;
 }
 
 #article .align-right {
