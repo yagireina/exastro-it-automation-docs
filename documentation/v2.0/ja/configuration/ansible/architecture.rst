@@ -72,7 +72,6 @@ ITA_システム構成/環境構築ガイド Ansible-driver編
    :alt: オールインワン構成イメージ
    :width: 8.69236in
    :height: 4.92847in
-   :align: center
 
 Ansible Automation Controller 構成イメージ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
