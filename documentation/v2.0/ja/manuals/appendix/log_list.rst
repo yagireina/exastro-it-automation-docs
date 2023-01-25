@@ -9,6 +9,7 @@ Exastro IT Automation ログ一覧
    :widths: 10 10 20
    :header-rows: 1
    :align: left
+
    * - No
      - ログの種類
      - | ログの説明
@@ -90,4 +91,37 @@ Exastro IT Automation ログ一覧
    * - 11
      - | devcontainer-ita-mariadb
      - | mariadbのログに準拠している。
-       | 
+   * - 12
+     - | devcontainer-ita-by-ansible-legacy-role-vars-listup-1
+     - | 日付 ログレベル フリーエリア
+       | 初期設定の状態ではログを見ることができない※1
+   * - 13
+     - | devcontainer-ita-by-menu-create
+     - | 日付 ログレベル フリーエリア
+       | 初期設定の状態ではログを見ることができない※1
+   * - 14
+     - | devcontainer-ita-by-ansible-execute
+     - | 日付 ログレベル フリーエリア
+       | 初期設定の状態ではログを見ることができない※1
+   * - 15
+     - | devcontainer-ita-by-ansible-towermaster-sync-1
+     - | 日付 ログレベル フリーエリア
+       | 初期設定の状態ではログを見ることができない※1
+
+
+.. code_block::
+
+
+
+
+.. list-table:: devcontainer-platform-api-1
+   :widths: 10 10 20
+   :header-rows: 1
+   :align: left
+
+
+
+
+
+| ※1
+コンテナごとにリスト作成に変更
