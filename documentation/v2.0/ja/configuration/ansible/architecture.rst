@@ -81,15 +81,13 @@ Ansible Automation Controller 構成イメージ
    :alt: Ansible Automation Controller 構成イメージ
    :width: 9.69236in
    :height: 4.92847in
-   :align: center
 
 Ansible Automation Controller + AEE 構成イメージ 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. figure:: ./architecture/AAC_diagram_AEE.png
    :alt: Ansible Automation Controller 構成イメージ + AEE 
    :width: 10.69236in
-   :height: 5.23472in
-   :align: center
+   :height: 5.2347
 
 
 
