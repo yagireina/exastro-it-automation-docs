@@ -125,7 +125,7 @@ Conductor一覧
 
    | 「一覧」サブメニューの :guilabel:`詳細` をクリックすると、 :ref:`conductor_editandexcute` 画面へ遷移出来ます。
 
-.. figure:: ./conductor/conductor-list.gif
+.. figure:: /images/ja/Conductor/gif/conductor-list.gif
    :width: 800px
    :alt: 「Conductor一覧」メニュー
 
@@ -166,7 +166,7 @@ Conductor編集/作業実行
 
 * 選択したNodeにより、画面右上（詳細情報）に表示される内容が変わります。
   
-.. figure:: ./conductor/conductor_main.png
+.. figure:: /images/ja/Conductor/png/conductor_main.png
    :width: 800px
    :alt: Conductor編集/作業実行メニュー画面(編集モード)
 
@@ -270,35 +270,35 @@ Node一覧
 * Nodeにおける制約事項は以下の通りです。
 
   * 登録/更新を行うには、全てのNodeのIN/OUTが接続されている必要があります。
-  .. figure:: ./conductor/image17.png
+  .. figure:: /images/ja/Conductor/png//image173.png
       :width: 600px
       :alt: Node制約事項（正常例：Parallel branch）
 
       Node制約事項（正常例：Parallel branch）
 
   * Parallel mergeを使用する場合、Parallel branchを使用している必要があります。
-  .. figure:: ./conductor/image18.png
+  .. figure:: /images/ja/Conductor/png//image182.png
      :width: 600px
      :alt: Node制約事項（NG例：Parallel branch）
 
      Node制約事項（NG例：Parallel branch）
 
   * Conditional branch で分岐されたフローについてParallel mergeでマージする事はできません。
-  .. figure:: ./conductor/image19.png
+  .. figure:: /images/ja/Conductor/png/image192.png
      :width: 600px
      :alt: Node制約事項（NG例：Conditional branch）
 
      Node制約事項（NG例：Conditional branch）
 
   * Parallel branch、Conditional branch、Parallel merge、Conductor pauseについて、連続して同じ種類のNodeを接続する事はできません。
-  .. figure:: ./conductor/image20.png
+  .. figure:: /images/ja/Conductor/png/image203.png
      :width: 600px
      :alt: Node制約事項（NG例：連続使用）
 
      Node制約事項（NG例：連続使用）
 
   * Conductor callについて、更新中のConductorをConductor callで指定し、更新することはできません。
-  .. figure:: ./conductor/image21.png
+  .. figure:: /images/ja/Conductor/png/image214.png
      :width: 600px
      :alt: Node制約事項（NG例：Conductor call）
 
@@ -666,7 +666,7 @@ Node一覧
      * Nodeを複数選択する方法については、ドラッグアンドドロップでの範囲選択の他、「shift」キーをクリックしながらの選択が可能です。
      * タブ内の項目は以下の通りです。
      
-     .. figure:: ./conductor/align-nodes.gif
+     .. figure:: /images/ja/Conductor/gif/align-nodes.gif
         :width: 800px
         :alt: Nodeの整列
 
@@ -781,7 +781,7 @@ Node一覧
 
 | 「Conductor一覧」メニューから遷移した場合や、登録が完了した場合は、以下の画面が表示されます。
 
-.. figure:: ./conductor/view_mode.png
+.. figure:: /images/ja/Conductor/png/view_mode.png
    :width: 800px
    :alt: 「Conductor編集/作業実行」メニュー（「閲覧」モード）
 
@@ -810,7 +810,7 @@ Node一覧
 
 | 閲覧モードにて :guilabel:`編集` をクリックした場合は、以下の画面が表示されます。
 
-.. figure:: ./conductor/update_mode.png
+.. figure:: /images/ja/Conductor/png/update_mode.png
    :width: 800px
    :alt: 「Conductor編集/作業実行」メニュー（「更新」モード）
 
@@ -882,7 +882,7 @@ Conductor作業実行について
         - ○
         - ボタン
 
-.. figure:: ./conductor/excute_conductor.gif
+.. figure::/images/ja/Conductor/gif/excute_conductor.gif
    :width: 800px
 
 .. tip:: | **オペレーションの指定について**
@@ -918,7 +918,7 @@ Conductor作業一覧
    
    | ※Conductorが階層構造になっている場合は、末端のMovementも対象になります。
 
-.. figure:: ./conductor/conductor_job_list.png
+.. figure:: /images/ja/Conductor/png/conductor_job_list.png
    :width: 800px
    :alt: 「Conductor作業一覧」メニュー
    
@@ -933,7 +933,7 @@ Conductor作業確認
 *  実行中以降のステータスになっている実行状況サークルをクリックすると、各ドライバの「作業状態確認」メニューに遷移し作業実行状況の詳細を確認することが可能です。
 *  | 「 :ref:`conductor_conductor_job_list` 」の :guilabel:`詳細` をクリックすると、選択したConductor作業の処理状況をモニター表示します。状況に応じて「予約取消」、「停止解除」や「緊急停止」の投入が可能です。
    | ※「Movement」、「Conductor Call」のNodeについては、Node選択後に、画面右側に表示される :guilabel:`作業情報確認` からも「作業状態確認」メニューに遷移出来ます。
-.. figure:: ./conductor/job_detail.gif
+.. figure:: /images/ja/Conductor/gif/job_detail.gif
    :width: 800px
    :alt: 作業状態確認
 
@@ -973,13 +973,13 @@ Conductor作業確認
         - ボタン
         - 予約日時が設定されていて、かつ未実行の場合に表示される。
 
-.. figure:: ./conductor/conductor_pause.png
+.. figure:: /images/ja/Conductor/png/conductor_pause.png
    :width: 800px
    :alt: Conductor実行中/Conductor Pause状態画面
 
    Conductor実行中/Conductor Pause状態画面
    
-.. figure:: ./conductor/reserved_conductor.png
+.. figure:: /images/ja/Conductor/png/reserved_conductor.png
    :width: 800px
    :alt: 日時予約されたConductor実行画面（未実行）
 
@@ -1167,7 +1167,7 @@ Conductor通知先定義設定例
    +-----------------------+--------------------------------------------------+
 |
 
-.. figure:: ./conductor/image56.png
+.. figure:: /images/ja/Conductor/png/image562.png
    :width: 600px
    :alt: Teams通知表示例
 
@@ -1221,7 +1221,7 @@ Conductor通知先定義設定例
    +--------------------+-------------------------------------------------+
 
 
-.. figure:: ./conductor/image57.png
+.. figure:: /images/ja/Conductor/png/image572.png
    :width: 600px
    :alt: Slack通知表示例
 
@@ -1548,34 +1548,34 @@ Conductor通知先定義設定例
                                                                          
    )                                                                     
 
-.. |image1| image:: ./conductor/image7.png
+.. |image1| image:: /images/ja/Conductor/png/Node一覧表/Startimage7.png
    :width: 1.1811in
    :height: 0.4086in
-.. |image2| image:: ./conductor/image8.png
+.. |image2| image:: /images/ja/Conductor/png/Node一覧表/Endmage8.png
    :width: 1.1811in
    :height: 0.4086in
-.. |image3| image:: ./conductor/image9.png
+.. |image3| image:: /images/ja/Conductor/png/Node一覧表/Pauseimage9.png
    :width: 1.1811in
    :height: 0.31287in
-.. |image4| image:: ./conductor/node_conductor_call.png
+.. |image4| image:: /images/ja/Conductor/png/Node一覧表/node_conductor_call.png
    :width: 1.22047in
    :height: 0.34259in
-.. |image5| image:: ./conductor/image11.png
+.. |image5| image:: /images/ja/Conductor/png/Node一覧表/CCimage11.png
    :width: 1.1811in
    :height: 0.30743in
-.. |image6| image:: ./conductor/image12.png
+.. |image6| image:: /images/ja/Conductor/png/Node一覧表/CBimage12.png
    :width: 1.1811in
    :height: 0.67068in
-.. |image7| image:: ./conductor/image13.png
+.. |image7| image:: /images/ja/Conductor/png/Node一覧表/image13.png
    :width: 1.1811in
    :height: 0.9765in
-.. |image8| image:: ./conductor/image14.png
+.. |image8| image:: /images/ja/Conductor/png/Node一覧表/image14.png
    :width: 1.1811in
    :height: 0.67667in
-.. |image9| image:: ./conductor/image15.png
+.. |image9| image:: /images/ja/Conductor/png/Node一覧表/image15.png
    :width: 1.12963in
    :height: 0.59834in
-.. |image10| image:: ./conductor/node_movement_alr.png
+.. |image10| image:: /images/ja/Conductor/png/Node一覧表/Movementimage16.png
    :width: 1.1811in
    :height: 1.49864in
 .. |image11| image:: ./conductor/image37.png
