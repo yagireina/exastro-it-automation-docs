@@ -6,12 +6,16 @@ Exastro IT Automation ログ一覧
 | Exastro IT Automationの各コンテナの出力メッセージに関するログについて。
 | コンテナごとにログの例と文字列の意味を以下に記載します。
 
-.. code-block::
+
+platform-job
+============
+
+.. code-block:: 
 
     %(asctime)s %(levelname)s (%(userid)s) %(pathname)s(%(lineno)d) %(message)s
     例：2023/01/11 11:27:05.976995 INFO (None) /app/platform_init.py(88) platform initialize setting start
 
-.. list-table:: platform-job
+.. list-table:: 
    :widths: 10 15 15 20
    :header-rows: 1
    :align: left
@@ -20,33 +24,41 @@ Exastro IT Automation ログ一覧
      -  フォーマットの意味
      -  ログの例
      -  備考
-   * -  %(asctime)s
+   * -  %\(asctime\)s
      -  ログ出力日時
      -  2023/01/11 11:27:05.976995
      -    
-   * -  %(levelname)s
+   * -  %\(levelname\)s
      -  メッセージレベル
      -  INFO
      -  DEBUG, INFO, WARNING, ERROR, CRITICAL が出力される。
-   * -  (%(userid)s)
+   * -  \(%\(userid\)s\)
      -  アクセスユーザー（Noneは指定なし）
      -  （None）
      -    
-   * -  %(pathname)s
+   * -  %\(pathname\)s
      -  ログ出力元のソース
      -  /app/platform_init.py
      -    
-   * -  (%(lineno)d)
+   * -  \(%\(lineno\)d\)
      -  ログ出力元の行
      -  \(88\)
      -   
-   * -  %(message)s
+   * -  %\(message\)s
      -  メッセージ
      -  platform initialize setting start
      -  
 
-.. list-table:: platform-api
-   :widths: 10 10 20 20
+
+platform-api
+============
+
+.. code-block:: 
+
+    %(asctime)s %(levelname)s (%(userid)s) %(pathname)s(%(lineno)d) %(message)s
+    例：2023/01/06 10:15:47.537174 INFO (2d6aabce-04c7-4938-a616-fa283cd6693) /app/common_library/common/api_keycloak_roles.py(372) Get keycloak user list for each role. realm_name=org3, client_id=743c50ae-7656-40d2-9ac1-b6cc6e39d15c, role_name=_workspace-1-admin
+.. list-table:: 
+   :widths: 10 15 15 20
    :header-rows: 1
    :align: left
 
@@ -54,27 +66,27 @@ Exastro IT Automation ログ一覧
      - | フォーマットの意味
      - | ログの例
      - | 備考
-   * - | %(asctime)s
+   * - | %\(asctime\)s
      - | ログ出力日時
-     - | 2023/01/11 11:27:05.976995
+     - | 2023/01/06 10:15:47.537174
      - |
-   * - | %(levelname)s
+   * - | %\(levelname\)s
      - | メッセージレベル
      - | INFO
      - | DEBUG, INFO, WARNING, ERROR, CRITICAL が出力される。
-   * - | (%(userid)s)
+   * - | \(%\(userid\)s\)
      - | アクセスユーザー（Noneは指定なし）
-     - | （None）
+     - | \(2d6aabce-04c7-4938-a616-fa283cd6693\)
      - |
-   * - | %(pathname)s
+   * - | %\(pathname\)s
      - | ログ出力元のソース
-     - | /app/platform_init.py
+     - | /app/common_library/common/api_keycloak_roles.py
      - |
-   * - | (%(lineno)d)
+   * - | \(%\(lineno\)d\)
      - | ログ出力元の行
-     - | (88)
+     - | \(372\)
      - |
-   * - | %(message)s
+   * - | %\(message\)s
      - | メッセージ
      - | platform initialize setting start
      - |

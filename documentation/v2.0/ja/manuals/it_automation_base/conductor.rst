@@ -1551,7 +1551,7 @@ Conductor通知先定義設定例
 .. |image1| image:: /images/ja/Conductor/png/Node一覧表/Startimage7.png
    :width: 1.1811in
    :height: 0.4086in
-.. |image2| image:: /images/ja/Conductor/png/Node一覧表/Endmage8.png
+.. |image2| image:: /images/ja/Conductor/png/Node一覧表/Endimage8.png
    :width: 1.1811in
    :height: 0.4086in
 .. |image3| image:: /images/ja/Conductor/png/Node一覧表/Pauseimage9.png
@@ -1578,35 +1578,27 @@ Conductor通知先定義設定例
 .. |image10| image:: /images/ja/Conductor/png/Node一覧表/Movementimage16.png
    :width: 1.1811in
    :height: 1.49864in
-.. |image11| image:: ./conductor/image37.png
+.. |image11| image:: /images/ja/Conductor/png/Nodeタブpng/LeftAlignimage372.png
    :width: 0.3937in
    :height: 0.3937in
-.. |image12| image:: ./conductor/image38.png
+.. |image12| image:: /images/ja/Conductor/png/Nodeタブpng/LRCenterAlignimage382.png
    :width: 0.3937in
    :height: 0.43032in
-.. |image13| image:: ./conductor/image39.png
+.. |image13| image:: /images/ja/Conductor/png/Nodeタブpng/RightAlignimage392.png
    :width: 0.3937in
    :height: 0.41045in
-.. |image14| image:: ./conductor/image40.png
+.. |image14| image:: /images/ja/Conductor/png/Nodeタブpng/UpperAlignimage402.png
    :width: 0.3937in
    :height: 0.38532in
-.. |image15| image:: ./conductor/image41.png
+.. |image15| image:: /images/ja/Conductor/png/Nodeタブpng/UBCenterAlignimage412.png
    :width: 0.3937in
    :height: 0.41082in
-.. |image16| image:: ./conductor/image42.png
+.. |image16| image:: /images/ja/Conductor/png/Nodeタブpng/BottomAlignimage422.png
    :width: 0.3937in
    :height: 0.40276in
-.. |image17| image:: ./conductor/image43.png
+.. |image17| image:: /images/ja/Conductor/png/Nodeタブpng/LREqualSpaceimage432.png
    :width: 0.37391in
    :height: 0.39758in
-.. |image18| image:: ./conductor/image44.png
+.. |image18| image:: /images/ja/Conductor/png/Nodeタブpng/UBEqualSpaceimage442.png
    :width: 0.3937in
    :height: 0.40298in
-.. |image19| image:: ./conductor/image48.png
-   :width: 5.50714in
-   :height: 7.70067in
-.. |image20| image:: ./conductor/image48.png
-   :width: 5.50714in
-   :height: 7.70067in
-.. |nodeRule1| image:: ./conductor/image17.png
-   :width: 600px
