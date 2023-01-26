@@ -57,6 +57,7 @@ platform-api
 
     %(asctime)s %(levelname)s (%(userid)s) %(pathname)s(%(lineno)d) %(message)s
     例：2023/01/06 10:15:47.537174 INFO (2d6aabce-04c7-4938-a616-fa283cd6693) /app/common_library/common/api_keycloak_roles.py(372) Get keycloak user list for each role. realm_name=org3, client_id=743c50ae-7656-40d2-9ac1-b6cc6e39d15c, role_name=_workspace-1-admin
+
 .. list-table:: 
    :widths: 10 15 15 20
    :header-rows: 1
@@ -91,3 +92,91 @@ platform-api
      - | platform initialize setting start
      - |
 
+platform-web
+============
+
+
+.. code-block::
+
+    LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined \
+    LogFormat "%h %l %u %t \"%r\" %>s %b" common \ 
+    <IfModule logio_module> \
+      # You need to enable mod_logio.c to use %I and %O \
+      LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio \
+    </IfModule>
+
+.. list-table:: commonでログ保存を指定した場合
+   :widths: 10 15 15 20
+   :header-rows: 1
+   :align: left
+
+   * - | フォーマット文字列
+     - | フォーマットの意味
+     - | ログの例
+     - | 備考
+   * - | %h
+     - | アクセス元のホスト名
+     - | クライアントの識別子
+     - | 認証ユーザ名
+     - |
+   * - | %l
+     - | クライアントの識別子
+     - | 
+     - |
+   * - | &u
+     - | 認証ユーザ名
+     - |
+     - |
+   * - | %t
+     - | リクエストを受け付けた時刻
+     - |
+     - |
+   * - | \%r\
+     - | リクエストの最初の行
+     - |
+     - |
+   * - |%>s
+     - | 最後のレスポンスのステータス
+     - |
+     - |
+   * - | %b
+     - | 送信されたバイト数
+     - |
+     - |
+  
+.. list-table:: combinedフォーマットでログ保存を指定した場合
+   :widths: 10 15 15 20
+   :header-rows: 1
+   :align: left
+
+   * - | フォーマット文字列
+     - | フォーマットの意味
+     - | ログの例
+     - | 備考
+   * - | \%{Referer}i\
+     - | リファラー
+     - |
+     - |
+   * - | \%{User-Agent}i\
+     - | User Agent
+     - |
+     - |
+
+
+.. list-table:: combinedioフォーマットでログ保存を指定した場合
+   :widths: 10 15 15 20
+   :header-rows: 1
+   :align: left
+
+   * - | フォーマット文字列
+     - | フォーマットの意味
+     - | ログの例
+     - | 備考
+   * - | &I
+     - | 受け取ったバイト数
+     - |
+     - |
+   * - | %O
+     - | 送信したバイト
+     - |
+     - |
