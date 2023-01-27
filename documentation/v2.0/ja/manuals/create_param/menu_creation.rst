@@ -289,7 +289,6 @@
 
    .. figure:: /images/ja/menu_creation/gif/menu_add_item.gif
       :width: 5.90486in
-
       :height: 1.59306in
       :align: center
       :alt: 項目追加
@@ -909,7 +908,7 @@
 | 「メニュー定義・作成」メニューでメニュー(パラメータシート/データシート)を新規作成した後は、作成したメニューの編集や初期化、作成したメニューをテンプレートとして流用する形で新規作成することが可能です。
 - | 閲覧画面
 
-  .. figure:: /images/ja/menu_creation/pif/menu_after_creation.gif
+  .. figure:: /images/ja/menu_creation/gif/menu_after_creation.gif
      :width: 6.08396in
      :height: 1.41856in
      :align: center
