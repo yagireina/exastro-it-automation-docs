@@ -586,7 +586,7 @@ ITA管理コンソールについて
 
    | 「Web表示最大行数」と「Web表示前確認行数」には次のような関係があります。
 
-   .. figure:: /images/ja/diagram_chart/manuals/Web表示最大行数の処理概要.png
+   .. figure:: /images/ja/diagram/Web表示最大行数の処理概要.png
       :alt:  Web表示最大行数の処理概要
       :align: center
       :width: 5in
@@ -712,7 +712,7 @@ BackYard処理説明
    | メールテンプレートで使用する変数数や送信先アドレスなどをリストするファイルです。
    | このリストを元に送信処理が行われます。
    |
-   .. figure:: /images/ja/diagram_chart/manuals/テンプレートリスト記述例.png
+   .. figure:: /images/ja/diagram/テンプレートリスト記述例.png
       :width: 5in
       :align: center
       :alt: template_list example
@@ -751,14 +751,14 @@ BackYard処理説明
    | メール本文と、可変部分があれば置換用の変数（%%001%% ～ %%999%%）を記述します。
    | 変数は、テンプレートリストファイルに指定した「置き換え文言数」分の連番にします。
 
-   .. figure:: /images/ja/diagram_chart/manuals/テンプレート例OK.png
+   .. figure:: /images/ja/diagram/テンプレート例OK.png
       :width: 5in
       :align: center
       :alt: template_list example
 
       テンプレート記述例 [OK]
 
-   .. figure:: /images/ja/diagram_chart/manuals/テンプテート例ＮＧ.png
+   .. figure:: /images/ja/diagram/テンプテート例ＮＧ.png
       :width: 5in
       :align: center
       :alt: template_list example
@@ -801,14 +801,14 @@ BackYard処理説明
    | 送信依頼ファイル記述例
    #. | **フリー型例**： テンプレートID = 001
 
-      .. figure:: /images/ja/diagram_chart/manuals/フリー型例.png
+      .. figure:: /images/ja/diagram/フリー型例.png
          :width: 5in
          :align: center
          :alt: template_list example
 
          sysmail_001_20160401_0001.txt
 
-      .. figure:: /images/ja/diagram_chart/manuals/送信されたメール（フリー型）.png
+      .. figure:: /images/ja/diagram/送信されたメール（フリー型）.png
          :width: 5in
          :align: center
          :alt: template_list example
@@ -817,14 +817,14 @@ BackYard処理説明
 
    #. | **セーフ型例**： テンプレートID = 002
 
-      .. figure:: /images/ja/diagram_chart/manuals/セーフ型例.png
+      .. figure:: /images/ja/diagram/セーフ型例.png
          :width: 5in
          :align: center
          :alt: template_list example
 
       .. note:: | メールアドレスはテンプレートリストファイルに指定
 
-      .. figure:: /images/ja/diagram_chart/manuals/送信されたメール（セーフ型）.png
+      .. figure:: /images/ja/diagram/送信されたメール（セーフ型）.png
          :width: 5in
          :align: center
          :alt: template_list example
@@ -834,21 +834,21 @@ BackYard処理説明
 
    #. | **フリーフォーマット型**： テンプレートID = 004
 
-      .. figure:: /images/ja/diagram_chart/manuals/フォーマット型例.png
+      .. figure:: /images/ja/diagram/フォーマット型例.png
          :width: 5in
          :align: center
          :alt: template_list example
 
          sysmail_004_20160401_0001.txt
 
-      .. figure:: /images/ja/diagram_chart/manuals/送信されたメール（フォーマット型）.png
+      .. figure:: /images/ja/diagram/送信されたメール（フォーマット型）.png
          :width: 5in
          :align: center
          :alt: template_list example
 
          送信されたメール： テンプレートリストから置換されたか所（青字）
 
-      .. figure:: /images/ja/diagram_chart/manuals/動作イメージ（フォーマット型）.png
+      .. figure:: /images/ja/diagram/動作イメージ（フォーマット型）.png
          :width: 5in
          :align: center
          :alt: template_list example
