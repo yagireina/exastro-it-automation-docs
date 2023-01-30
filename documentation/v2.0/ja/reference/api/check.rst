@@ -5,6 +5,6 @@ API
 .. toctree::
    :maxdepth: 2
 
-   operator/index
+   operator/check
    system_manager/index
    developer/index
