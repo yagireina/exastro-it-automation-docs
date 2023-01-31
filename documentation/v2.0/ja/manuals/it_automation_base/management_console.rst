@@ -69,7 +69,7 @@ ITA管理コンソールについて
 | 各メニュー右上のユーザー名表示部分をクリックし、 \ :guilabel:`ログアウト`\  をクリックするとシステムからログアウトします。
 | ログアウト後はログイン画面に遷移します。
 
-.. figure:: /images/ja/usecase/manuals/ITA_login.gif
+.. figure:: /images/ja//manuals/platform/login/ITA_login.gif
    :alt: ITAログイン画面
    :width: 800px
    :align: center
@@ -86,7 +86,7 @@ ITA管理コンソールについて
 | パネルをクリックすることで指定のメニューグループのメインメニューへ遷移出来ます。
 | インストールしたドライバのみが表示されます。
 
-.. figure:: /images/ja/usecase/manuals/main_menu.gif
+.. figure:: /images/ja/basic_console/operation/main_menu.gif
    :alt: メインメニュー
    :width: 800px
    :align: center
@@ -97,7 +97,7 @@ ITA管理コンソールについて
 | ITAシステムが提供する各メニュー画面は基本的に同じ要素で構成されています。
 | その構成要素は次の通りです。
 
-.. figure:: /images/ja/usecase/manuals/画面構成.png
+.. figure:: /images/ja/diagram/画面構成.png
    :alt: 画面構成
    :align: center
    :width: 800px
@@ -139,7 +139,7 @@ ITA管理コンソールについて
   | 登録内容は各メニューによって異なりますので、各利用手順マニュアルを参照して下さい。
   | エクセル形式、JSON形式のファイルを使用する一括登録については「\ :ref:`management_console_download_all_and_edit_file_uploads`\ 」をご確認下さい。
 
-  .. figure:: /images/ja/usecase/manuals/menu_register.gif
+  .. figure:: /images/ja/management_console/menu_group_list/menu_register.gif
      :alt: メインメニュー
      :width: 800px
      :align: center
@@ -177,7 +177,7 @@ ITA管理コンソールについて
   | 検索条件、検索項目はメニューごとに異なります。ここでは共通機能について説明します。
   | 「一覧」タブ内右上の \ :guilabel:`フィルタ|開く/閉じる`\  をクリックすることで表示／非表示の切替が可能です。
 
-  .. figure:: /images/ja/usecase/manuals/表示フィルタ画面.gif
+  .. figure:: /images/ja/management_console/menu_group_list/表示フィルタ画面.gif
      :alt: 表示フィルタ画面
      :align: center
      :width: 800px
@@ -207,7 +207,7 @@ ITA管理コンソールについて
   | 登録されている項目の更新を行います。
   | 編集内容は各メニューによって異なりますので、各利用手順マニュアルを参照して下さい。
 
-  .. figure:: /images/ja/usecase/manuals/menu_update.gif
+  .. figure:: /images/ja/management_console/menu_group_list/menu_update.gif
      :alt: 編集の操作
      :align: center
      :width: 800px
@@ -240,7 +240,7 @@ ITA管理コンソールについて
      | 登録/編集画面に遷移したら \ :guilabel:`複製`\  をクリックします。
   #. | 対象項目の値を反映した状態の新規登録用レコードが表示されます。
 
-  .. figure:: /images/ja/usecase/manuals/menu_copy.gif
+  .. figure:: /images/ja/management_console/menu_group_list/menu_copy.gif
      :alt: 編集の操作
      :align: center
      :width: 800px
@@ -259,7 +259,7 @@ ITA管理コンソールについて
      | もしくは、「一覧」タブの対象項目の \ :guilabel:`…`\  > \ :guilabel:`履歴`\  を順にクリックすると変更履歴を表示することが出来ます。
   #. | 変更実施日時が新しい順に一覧表示され、前回との変更箇所がオレンジ色太文字で表示されます。
 
-  .. figure:: /images/ja/usecase/manuals/変更履歴操作.gif
+  .. figure:: /images/ja/management_console/menu_group_list/変更履歴操作.gif
      :alt: 変更履歴の操作
      :width: 800px
      :align: center
@@ -296,7 +296,7 @@ ITA管理コンソールについて
   #. | 入力用メニューグループ>マスタ001メニューからパラメータ「マスタ」の値を編集し「mas1-3」で更新を行います。
   #. | 入力用メニューグループ>ぱらむ001メニューから先ほど登録した対象の「ぱらむA」を編集し、更新を行います。
 
-     .. figure:: /images/ja/usecase/manuals/プルダウン選択を含んだ変更履歴の操作.gif
+     .. figure:: /images/ja/management_console/menu_group_list/プルダウン選択を含んだ変更履歴の操作.gif
         :alt: プルダウン選択を含んだ変更履歴の操作
         :align: center
         :width: 800px
@@ -307,7 +307,7 @@ ITA管理コンソールについて
 
   #. | 以下のような結果になります。
 
-  .. figure:: /images/ja/usecase/manuals/マスタ001変更履歴.png
+  .. figure:: /images/ja/management_console/menu_group_list/マスタ001変更履歴.png
      :alt:  データシート「マスタ001」の変更履歴
      :align: center
      :width: 5in
@@ -327,7 +327,7 @@ ITA管理コンソールについて
 | 各メニュー画面に登録されている情報を一括してエクセル形式またはJSON形式でダウンロードすることが出来ます。
 | また、同じ形式のファイルで、一括して情報を登録することが出来ます。
 
-.. figure:: /images/ja/usecase/manuals/file_all_register.gif
+.. figure:: /images/ja/usecase/management_console/menu_group_list/file_all_register.gif
    :alt: ファイル一括登録の操作
    :align: center
    :width: 800px
