@@ -9,5 +9,5 @@
    workspace
    user
    role
-   aac
+   aap
    organization_settings
