@@ -18,8 +18,8 @@
 インストール方法 (Kubernetes)
 =============================
 
-はじめに
-========
+目的
+====
 
 | 本章では、Exastro IT Automation を利用する際に必要となる、Exastro Platform および Exastro IT Automation を導入する手順について説明します。
 
@@ -167,8 +167,8 @@
          DB_ADMIN_PASSWORD: ""
          DB_USER: ""
          DB_PASSWORD: ""
-     authGlobalDefinition:
-       name: auth-global
+     pfGlobalDefinition:
+       name: pf-global
        enabled: true
        image:
          registry: "docker.io"
@@ -227,8 +227,8 @@
          ITA_API_ADMIN_PROTOCOL: "http"
          ITA_API_ADMIN_HOST: "ita-api-admin"
          ITA_API_ADMIN_PORT: "8080"
-     authDatabaseDefinition:
-       name: auth-database
+     pfDatabaseDefinition:
+       name: pf-database
        enabled: true
        config:
          DB_VENDOR: "mariadb"
@@ -383,6 +383,7 @@
          tag: "1.3.0-beta1"
    
      mariadb:
+       enabled: true
        image:
          repository: "mariadb"
          tag: "10.9"
@@ -396,6 +397,7 @@
            cpu: "4"
    
      keycloak:
+       enabled: true
        image:
          repository: "exastro/keycloak"
          tag: "1.3.0-beta1"
@@ -633,14 +635,14 @@
 
           | データベースの接続情報を設定します。
 
-          .. include:: ../include/helm_option_authDatabaseDefinition.rst
+          .. include:: ../include/helm_option_pfDatabaseDefinition.rst
 
           .. code-block:: diff
             :caption: exastro.yaml
             :linenos:
             :lineno-start: 112
 
-              authDatabaseDefinition:
+              pfDatabaseDefinition:
                 name: auth-database
                 enabled: true
                 config:
@@ -668,10 +670,9 @@
           .. code-block:: diff
             :caption: exastro.yaml
             :linenos:
-            :lineno-start: 125
+            :lineno-start: 267
 
-              databaseDefinition:
-                name: mariadb
+              mariadb:
             -   enabled: true
             +   enabled: false
 
@@ -782,14 +783,14 @@
 
           | Exastro 共通基盤のコンテナがデータベースに接続できるようにするために、「1.  データベースコンテナの設定」で作成した root アカウントのパスワードを設定します。
 
-          .. include:: ../include/helm_option_authDatabaseDefinition.rst
+          .. include:: ../include/helm_option_pfDatabaseDefinition.rst
 
           .. code-block:: diff
             :caption: exastro.yaml
             :linenos:
             :lineno-start: 112
 
-              authDatabaseDefinition:
+              pfDatabaseDefinition:
                 name: auth-database
                 enabled: true
                 config:
@@ -888,14 +889,14 @@
 
     | アプリケーションが利用・作成する DB ユーザを設定します。
 
-    .. include:: ../include/helm_option_authDatabaseDefinition.rst
+    .. include:: ../include/helm_option_pfDatabaseDefinition.rst
 
     .. code-block:: diff
       :caption: exastro.yaml
       :linenos:
       :lineno-start: 112
 
-        authDatabaseDefinition:
+        pfDatabaseDefinition:
           name: auth-database
           enabled: true
           config:
