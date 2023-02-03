@@ -2215,7 +2215,12 @@ span.highlighted {
 }
 
 #article #multiColumnIndex div.toctree-wrapper.compound>ul {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#article #multiColumnIndex .toctree-wrapper li:first-child {
+  padding-top: 0;
 }
 
 #article #multiColumnIndex li {
