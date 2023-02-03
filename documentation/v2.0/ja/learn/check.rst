@@ -20,6 +20,7 @@ Learn
 .. toctree::
    :maxdepth: 1
 
+   quickstart
    .. rbac/check
    .. host_group_management_and_menu_creation/check
    .. ansible-driver/check

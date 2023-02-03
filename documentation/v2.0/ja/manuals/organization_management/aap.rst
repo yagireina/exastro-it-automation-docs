@@ -65,7 +65,7 @@ Ansible Automation Controller の登録
             # Exastro Platform への接続のための設定情報を登録
             vi ./exastro-platform/tools/api-auth.conf
 
-         | 例えば、:ref:`サービス公開の設定 (Ingress の設定)<ingress_setting>` をした場合は下記のようになります。
+         | 例えば、:ref:`サービス公開の設定 (Ingress の設定) <ingress_setting>` をした場合は下記のようになります。
 
          .. code-block:: diff
             :caption: api-auth.conf
