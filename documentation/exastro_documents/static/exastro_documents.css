@@ -1838,6 +1838,10 @@ span.highlighted {
 
 #article details summary {
   margin-bottom: 12px;
+  font-size: larger;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 /* #article li *:last-child,
