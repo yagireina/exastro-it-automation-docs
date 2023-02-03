@@ -564,7 +564,7 @@ Organization (オーガナイゼーション)
          | BASIC 認証を行うために、Exastro Platform 管理者の認証情報を :kbd:`BASE64_BASIC` に設定する必要があります。
 
       | また、Exastro Platform の管理用 URL 情報を :kbd:`BASE_URL` に設定する必要があります。
-      | 例えば、:ref:`サービス公開の設定 (Ingress の設定) <ingress_setting>` をした場合は下記のようになります。
+      | 例えば、 :ref:`サービス公開の設定 (Ingress の設定) <ingress_setting>` をした場合は下記のようになります。
 
       .. code-block:: bash
 
