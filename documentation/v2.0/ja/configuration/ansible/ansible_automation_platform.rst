@@ -95,18 +95,18 @@ Ansible Automation Controller (ハイブリッドパターン)
        | [ポート番号　※2] 
      - 主な用途
    * - ①
-     - 
+     - ITAシステム
      - Hybrid ノード
      - | http(s)
        | [80(443)/tcp]
      - {{#4: 用途説明文の記載をお願いします。}}
    * - ②
-     - 
+     - ITAシステム
      - Hybrid ノード
      - ssh [22/tcp]
      - {{#5: 用途説明文の記載をお願いします。}}
    * - ③
-     -  
+     - ITAシステム
      - Git
      - | http(s)
        | [80(443)/tcp]
@@ -154,18 +154,18 @@ Ansible Automation Controller (実行ノード分離)
        | [ポート番号　※2] 
      - 主な用途
    * - ①
-     - 
+     - ITAシステム
      - Controle ノード
      - | http(s)
        | [80(443)/tcp]
      - {{#8: 用途説明文の記載をお願いします。}}
    * - ②
-     - 
+     - ITAシステム
      - Controle ノード
      - ssh [22/tcp]
      - {{#9: 用途説明文の記載をお願いします。}}
    * - ③
-     - 
+     - ITAシステム
      - Git
      - | http(s)
        | [80(443)/tcp]
@@ -345,7 +345,8 @@ organization追加時の作業
 
 | organization用の組織を作成します。
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
- 
+
+
 #. | :menuselection:`アクセス --> 組織` の :guilabel:`追加` ボタンをクリックします。
 #. | 該当項目を入力し、 :guilabel:`保存` ボタンをクリックしてください。
    | 必須項目及び設定値については下記の表を参照してください。
@@ -364,6 +365,7 @@ organization追加時の作業
    * - インスタンスグループ
      - ※未選択のままにする
      - 「:ref:`connection_instance` 」で設定
+
 
 .. _make_application:
 
@@ -410,6 +412,7 @@ organization追加時の作業
 #. | :menuselection:`アクセス --> ユーザー` の :guilabel:`追加` ボタンをクリックしてください。
 #. | 該当項目を入力し、 :guilabel:`保存` ボタンをクリックしてください。
    | 必須項目及び設定値については下記の表を参照してください。
+
 
 .. list-table:: 
    :widths: 35 80 80
