@@ -99,8 +99,8 @@ platform-api
 
 
 
-platform-web
-============
+platform-web・ita-web-server
+============================
 
 | デフォルトのapacheログ形式になっています。
 | 設定内容は以下の通りです。
@@ -264,6 +264,7 @@ keycloak
 platform-db
 ===========
 
+
 | DBについては使用するデータベースのログフォーマットとなります。
 | 設定もDBによりますが、デフォルトでmariadbを立ち上げた際はエラーログが出力されます。
 | 詳細は下記URLをご参照ください。
@@ -273,3 +274,77 @@ platform-db
 
 ita-api-organization
 ====================
+
+.. code-block:: 
+   
+   形式：%(asctime)s %(levelname)s  <フリーログ>
+   例　：[2023-01-19 12:18:25,940][INFO] AppLog instance(stdAppLogger) is created
+
+
+.. list-table:: 
+   :widths: 10 15 20 20
+   :header-rows: 1
+   :align: left
+
+   * - | フォーマット文字列
+     - | フォーマットの意味
+     - | ログの例
+     - | 備考
+   * - | %(asctime)s
+     - | 日付
+     - | [2023-01-19 12:18:25,940]
+     - |
+   * - | %(levelname)s
+     - | ログレベル
+     - | INFO
+     - | ERROR, INFO, DEBUG が基本的なログレベル
+   * - | <フリーログ>
+     - | 任意
+     - | AppLog instance(stdAppLogger) is created
+     - | ログによって形式が変わります。
+
+
+
+ita-api-admin
+=============
+
+.. code-block:: 
+
+  形式： %(asctime)s %(levelname)s (%(userid)s) <フリーログ>
+  例　：[2023-01-05 18:05:22,875][INFO] [USER_ID:efb59f05-6f31-47d6-b28e-0f9ee236534e] [ts=2023-01-05T09:05:22.756Z][api-start]url: POST:http://ita-api-admin:8070/api/organizations/org1/ita/
+
+
+.. list-table:: 
+   :widths: 10 15 20 20
+   :header-rows: 1
+   :align: left
+
+   * - | フォーマット文字列
+     - | フォーマットの意味
+     - | ログの例
+     - | 備考
+   * - | .. list-table:: 
+   :widths: 10 15 20 20
+   :header-rows: 1
+   :align: left
+
+   * - | フォーマット文字列
+     - | フォーマットの意味
+     - | ログの例
+     - | 備考
+   * - | %(asctime)s
+     - | 日付
+     - |[2023-01-05 18:05:22,875]
+     - |
+   * - | %(levelname)s
+     - | ログレベル
+     - | INFO
+     - |
+   * - | (%(userid)s)
+     - | ユーザーID
+     - | [USER_ID:efb59f05-6f31-47d6-b28e-0f9ee236534e]
+     - |
+   * - | <フリーログ>
+     - | 
+     - |
+     - |
