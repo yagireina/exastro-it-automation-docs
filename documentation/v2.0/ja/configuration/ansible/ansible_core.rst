@@ -4,7 +4,9 @@ Ansible Core
 
 はじめに
 ========================================================
-| 本書では、Exastro IT Automation（以下、ITAとも記載する）でAnsibleオプション機能（以下、Ansible driver）として運用する為のAnsible Coreを実行エンジンとしたシステム構成と環境構築について説明します。
+| Exastro IT Automation（以下、ITAとも記載する）でAnsibleオプション機能（以下、Ansible driver）として運用する為のシステム構成と環境構築について説明します。
+| 本書ではそのうちAnsible Coreを実行エンジンとしたシステム構成と環境構築について説明します。
+|
 | Ansible Automation Platform による構成を行う場合は、「 :doc:`./ansible_automation_platform` 」をご覧ください。
 |
 | ITA Ansible driverを利用するにあたっては、ITA基本機能が構築済であることが前提です。
