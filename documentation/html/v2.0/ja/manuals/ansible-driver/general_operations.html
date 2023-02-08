@@ -3508,7 +3508,7 @@ _
 <li><div class="line-block">
 <div class="line"><strong>実行ログ表示</strong></div>
 <div class="line">Ansible Automation Controllerで実行した場合、構築対象機器の機器一覧のユーザー・パスワード・インスタンスグルーブなのどの項目値でグループ化された構築対象機器の単位でPlaybookが実行され、ansibleの実行ログが分割されます。</div>
-<div class="line">さらに、Movement一覧のオプションパラメータでジョブスライス数を指定するすることによりグループ化された構築対象機器をさらにジョブスライス数で分割しplaybookが実行され、ansibleの実行ログも分割されます。</div>
+<div class="line">さらに、Movement一覧のオプションパラメータでジョブスライス数を指定することによりグループ化された構築対象機器をさらにジョブスライス数で分割しplaybookが実行され、ansibleの実行ログも分割されます。</div>
 <div class="line">実行ログが分割された場合、表示ログファイルのプルダウンが表示され、表示したいログファイルを選択する事ができます。</div>
 </div>
 <div class="line-block">
@@ -3528,7 +3528,7 @@ _
 </thead>
 <tbody>
 <tr class="row-even"><td><p>mode名</p></td>
-<td><p>実行したモード名 legacy/pioneer/legacy_role</p></td>
+<td><p>実行したモード名 legacy_role</p></td>
 </tr>
 <tr class="row-odd"><td><p>作業番号</p></td>
 <td><p>作業管理メニューの作業実行No</p></td>
@@ -4311,105 +4311,6 @@ _
 </table>
 <div class="line-block">
 <div class="line">なお、取出すタイミングは 自動プロセスの起動周期 に依存します。</div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">注釈</p>
-<div class="line-block">
-<div class="line">● 変数名の一意管理</div>
-<div class="line">取出した変数名は、モード毎に全資材で一意管理されます。</div>
-<div class="line">デフォルト変数定義ファイルで変数構造を定義するため、ロールを跨って同じ変数名を使用しているが変数構造が違う場合にアップロードでエラーとなります。</div>
-<div class="line">具体的には通常変数と多段変数や多段変数同士で多段構造が違う場合、同じ変数名を使用しているとアップロードでエラーとなります。</div>
-<div class="line"><br /></div>
-<div class="line">Key : 具体値</div>
-<div class="line">Key : 配列変数</div>
-<div class="line">「ロール+Key」に対して、値のチェックをしています。</div>
-<div class="line">値が異なるロールパッケージ間で、同じ「ロール+Key」を使用している際に、具体値と配列変数の両方が同時に使われている、もしくは配列変数の中のメンバー変数の構成が異なる場合にエラーとなります</div>
-<div class="line">具体例として、エラーとなる具体例は下記の通りです。</div>
-</div>
-<div class="line-block">
-<div class="line">Exp)</div>
-</div>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>No.</p></th>
-<th class="head"><p>パターン</p></th>
-<th class="head"><p>ロールパッケージ</p></th>
-<th class="head"><p>ロール</p></th>
-<th class="head"><p>defaults/main.yml</p></th>
-<th class="head"><p>ロール + キー</p></th>
-<th class="head"><p>ロールパッケージ</p></th>
-<th class="head"><p>結果</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td rowspan="2"><p>1</p></td>
-<td rowspan="2"><p>具体値と配列変数の両方が同時に使用されている場合</p></td>
-<td><p>package_A</p></td>
-<td><p>role1</p></td>
-<td><div class="line-block">
-<div class="line">VAR_SAMPLE:</div>
-</div>
-<div class="line-block">
-<div class="line">- { VAR_001: &quot;aaaa&quot; , VAR_002:&quot;bbbb&quot; }</div>
-</div>
-</td>
-<td><p>role1 + VAR_SAMPLE:</p></td>
-<td><p>サンプル01</p></td>
-<td rowspan="2"><p>NG</p></td>
-</tr>
-<tr class="row-odd"><td><p>package_B</p></td>
-<td><p>role1</p></td>
-<td><div class="line-block">
-<div class="line">VAR_SAMPLE:</div>
-</div>
-<div class="line-block">
-<div class="line">- { VAR_003: &quot;aaaa&quot; , VAR_004:&quot;bbbb&quot; }</div>
-</div>
-</td>
-<td><p>role1 + VAR_SAMPLE:</p></td>
-<td><p>サンプル02</p></td>
-</tr>
-<tr class="row-even"><td rowspan="2"><p>2</p></td>
-<td rowspan="2"><p>配列変数の中のメンバー変数の構造が異なる場合</p></td>
-<td><p>package_A</p></td>
-<td><p>role2</p></td>
-<td><div class="line-block">
-<div class="line">VAR_SAMPLE:</div>
-</div>
-<div class="line-block">
-<div class="line">- { VAR_001: &quot;aaaa&quot; , VAR_002:&quot;bbbb&quot; }</div>
-</div>
-</td>
-<td><p>role2 + VAR_SAMPLE:</p></td>
-<td><p>サンプル01</p></td>
-<td rowspan="2"><p>NG</p></td>
-</tr>
-<tr class="row-odd"><td><p>package_B</p></td>
-<td><p>role2</p></td>
-<td><div class="line-block">
-<div class="line">VAR_SAMPLE: aaaa</div>
-</div>
-</td>
-<td><p>role2 + VAR_SAMPLE:</p></td>
-<td><p>サンプル02</p></td>
-</tr>
-<tr class="row-even"><td rowspan="2"><p>3</p></td>
-<td rowspan="2"><p>上記以外</p></td>
-<td><p>package_A</p></td>
-<td><p>role3</p></td>
-<td></td>
-<td><p>role3 + VAR_SAMPLE:</p></td>
-<td></td>
-<td rowspan="2"><p>OK</p></td>
-</tr>
-<tr class="row-odd"><td><p>package_B</p></td>
-<td><p>role3</p></td>
-<td></td>
-<td><p>role3 + VAR_SAMPLE:</p></td>
-<td></td>
-</tr>
-</tbody>
-</table>
 </div>
 </section>
 </section>
