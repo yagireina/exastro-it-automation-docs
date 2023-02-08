@@ -39,7 +39,7 @@
    * - | %(levelname)s
      - | ログレベル
      - | INFO
-     - |
+     - | 
    * - | (%(userid)s)
      - | ユーザーID
      - | [USER_ID:efb59f05-6f31-47d6-b28e-0f9ee236534e]
@@ -47,8 +47,9 @@
    * - | <フリーログ>
      - | 決まった値はなし
      - | [ts=2023-01-05T09:05:22.756Z][api-start]url: POST:http://ita-api-admin:8070/api/organizations/org1/ita/
-     - | ログによって形式が変わります。
+     - | ログによって形式が異なります。
 
+| 上記の形式に当てはまらないログのコンテナは以下に記載があります。
 
 
 platform-job・platform-api
@@ -79,9 +80,9 @@ platform-job・platform-api
      -  2023/01/11 11:27:05.976995
      -    
    * -  %\(levelname\)s
-     -  メッセージレベル
+     -  ログレベル
      -  INFO
-     -  DEBUG, INFO, WARNING, ERROR, CRITICAL が出力される。
+     -  DEBUG, INFO, WARNING, ERROR, CRITICAL のいずれかが出力される。
    * -  \(%\(userid\)s\)
      -  アクセスユーザー（Noneは指定なし）
      -  （None）
@@ -250,7 +251,7 @@ keycloak
      - | 2023-01-12 09:21:49,040
      - |
    * - | %-5p
-     - | エラーレベル（DEBUG, INFO, WARN, ERROR）
+     - | ログレベル
      - | INFO
      - |
    * - | \[%c\]
@@ -274,6 +275,7 @@ keycloak
      - |
      - | 
 
+
 | keycloakのログの詳細については以下のURLをご参照ください。
 | https://www.keycloak.org/server/logging
 
@@ -286,7 +288,6 @@ platform-db
 | 設定もDBによりますが、デフォルトでmariadbを立ち上げた際はエラーログが出力されます。
 | 詳細は下記URLをご参照ください。
 | https://mariadb.com/kb/en/error-log/
-
 
 
 ita-api-organization
@@ -324,7 +325,7 @@ ita-api-organization
    * - | <フリーログ>
      - | 決まった値はなし
      - | AppLog instance(stdAppLogger) is created
-     - | ログによって形式が変わります。
+     - | ログによって形式が異なります。
 
 
 
@@ -353,12 +354,12 @@ ita-api-admin
      - | 備考
    * - | %(asctime)s
      - | 日付
-     - |[2023-01-05 18:05:22,875]
+     - | [2023-01-05 18:05:22,875]
      - |
    * - | %(levelname)s
      - | ログレベル
      - | INFO
-     - |
+     - | 
    * - | (%(userid)s)
      - | ユーザーID
      - | [USER_ID:efb59f05-6f31-47d6-b28e-0f9ee236534e]
@@ -366,5 +367,5 @@ ita-api-admin
    * - | <フリーログ>
      - | 決まった値はなし
      - | [ts=2023-01-05T09:05:22.756Z][api-start]url: POST:http://ita-api-admin:8070/api/organizations/org1/ita/
-     - | ログによって形式が変わります。
+     - | ログによって形式が異なります。
 
