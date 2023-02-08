@@ -249,7 +249,9 @@ Playbook連携
      - 〇
    * - Ansible Automation Platformと連携するGitへのユーザーの準備
      - 〇
-   * - Exastro IT Automation 連携 
+   * - organization追加時の作業
+     - 〇
+   * - workspace追加時の作業
      - 〇
    * - Proxy設定 
      - △
@@ -335,18 +337,15 @@ Ansible Automation Platformと連携するGitへのユーザーの準備
 
 
 
-Exastro IT Automation 連携
---------------------------
-
-| Ansible Automation Platformに認証アプリケーションをあらかじめ登録しておく必要があります。
 
 organization追加時の作業
-^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------
+
 
 .. _platform_make_organization:
 
 1. 組織作成
-************************************
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | organization用の組織を作成します。
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
@@ -375,7 +374,7 @@ organization追加時の作業
 .. _make_application:
 
 2. アプリケーション登録
-**************************************************
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | 接続トークン払出用のアプリケーション登録をします。
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
@@ -409,7 +408,7 @@ organization追加時の作業
 .. _platform_architecture_user:
 
 3. ユーザー作成
-**************************************************
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | organization用のユーザーを作成します。
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
@@ -446,7 +445,7 @@ organization追加時の作業
 .. _platform_organization_roles:
 
 4. ロール設定
-**************************************************
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | organization用ユーザーに紐づける組織に対してロールを設定します。
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
@@ -457,33 +456,16 @@ organization追加時の作業
 
    #. | リソースタイプの追加 では 「組織」 を選択し、:guilabel:`Next` ボタンをクリックしてください。
    #. | リストの項目の選択 では 「 :ref:`platform_make_organization` 」 で作成した組織 を選択し、:guilabel:`Next` ボタンをクリックしてください。
+      | ※「 :ref:`platform_make_organization` 」で作成した組織以外のロールは付与しないで下さい。 
    #. | 適用するロールの選択 では 「管理者」と「メンバー」の２つのロールを選択し、:guilabel:`保存` ボタンをクリックしてください
-      | ※ロール内容に設定した該当組織のロールが表示されていることを確認してください。
-
-.. list-table:: 
-   :widths: 70 60 60
-   :header-rows: 1
-   :align: left
-
-   * - ユーザー権限の追加手順
-     - 設定値
-     - 備考
-   * - ① リソースタイプの追加
-     - 「組織」を選択
-     - 
-   * - ② リストの項目の選択
-     - 「 :ref:`platform_make_organization` 」で作成した組織を選択する
-     - ※「 :ref:`platform_make_organization` 」で作成した組織以外のロールは付与しないで下さい。
-   * - ③ 適用するロールの選択
-     - 「管理者」と「メンバー」の２つのロールを選択
-     - 
+      | ロール内容に設定した該当組織のロールが表示されていることを確認してください。
 
 
 
 .. _platform_output_token:
 
 5. 認証トークン払出
-**************************************************
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Ansible Automation Platform は「 :ref:`platform_architecture_user` 」で作成したユーザーでログインしてください。
 
@@ -507,22 +489,24 @@ organization追加時の作業
      - 
 
 workspace追加時の作業
-^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------
+
 
 .. _platform_ansible_execution_environment:
 
-1. Ansible Execution Environment を組み込む
-*************************************************************
-
+1. Ansible Execution Environment (以下、Ansible ee とも表記) を組み込む
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. インスタンスを組み込む
+　→にして説明一文いれて、インスタンス（Ansible ee）を組み込んでください。
 
 2. インスタンスグループ作成
-*********************************************************************************
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-| ※先ほど組み込んだ Ansible Execution Environment を追加するインスタンスグループが既にある場合、次の 「 :ref:`_platform_add_insetance` 」の手順に進んでください。
+| ※先ほど組み込んだ Ansible ee を追加するインスタンスグループが既にある場合、次の 「 :ref:`platform_add_insetance` 」の手順に進んでください。
 
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
 
-#. | :menuselection:`管理 --> インスタンスグループ` の 「 :ref:`platform_ansible_execution_environment` 」で組み込んだ Ansible Execution Environment を追加するインスタンスグループ選択してください。
+#. | :menuselection:`管理 --> インスタンスグループ` の 「 :ref:`platform_ansible_execution_environment` 」で組み込んだ Ansible ee を追加するインスタンスグループ選択してください。
 #. | 該当項目を入力し、 :guilabel:`保存` ボタンを押下する。
    | 必須項目及び設定値については下記の表を参照してください。
 
@@ -541,21 +525,21 @@ workspace追加時の作業
 
 .. _platform_add_insetance:
 
-3. インスタンスグループにインスタンス( Ansible Execution Environment )を追加
-**********************************************************************************************
+3. インスタンスグループにインスタンス ( Ansible ee ) を追加
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-| インスタンスグループに「 :ref:`platform_ansible_execution_environment` 」で組み込んだ Ansible Execution Environment を追加します。
+| インスタンスグループに「 :ref:`platform_ansible_execution_environment` 」で組み込んだ Ansible ee を追加します。
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
 
-#. | :menuselection:`管理 --> インスタンスグループ` より、「 :ref:`platform_ansible_execution_environment` 」で組み込んだ Ansible Execution Environment を追加するインスタンスグループ名をクリックしてください。
+#. | :menuselection:`管理 --> インスタンスグループ` より、「 :ref:`platform_ansible_execution_environment` 」で組み込んだ Ansible ee を追加するインスタンスグループ名をクリックしてください。
 #. | インスタンスグループの詳細画面に遷移されるため、:menuselection:`インスタンス` タブを選択し、:guilabel:`関連付け` ボタンをクリックしてください。
-#. | インスタンスの選択の画面に遷移され、「 :ref:`platform_ansible_execution_environment` 」で組み込んだインスタンス( Ansible Execution Environment )が表示されるので選択し、:guilabel:`保存` ボタンをクリックしてください。
+#. | インスタンスの選択の画面に遷移され、「 :ref:`platform_ansible_execution_environment` 」で組み込んだインスタンス( Ansible ee )が表示されるので選択し、:guilabel:`保存` ボタンをクリックしてください。
 
 
 .. _platform_connection_instance:
 
 4. 組織とインスタンスグループの紐づけ
-**********************************************************************************************
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | 「 :ref:`platform_make_organization` 」で作成した組織と上記で使用したインスタンスグループを紐づけます。
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
@@ -567,12 +551,13 @@ workspace追加時の作業
 
 
 5. Exastro IT Automation に認証トークンと組織を登録
-***********************************************************************************************************************************************************************
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | 「利用手順マニュアル_Ansible-driver」の「 :ref:`general_operations_interface_information` 」を参照し、:menuselection:`Ansible共通 --> インターフェース情報` に「 :ref:`platform_output_token` 」で作成した認証トークンと「 :ref:`platform_make_organization` 」で作成した組織の登録を行ってください。
-
+|
 
 .. warning:: | 組織名を登録する際は、認証トークンを登録してから1分程度経過後(※)、インターフェース情報を再表示し、「 :ref:`platform_make_organization` 」で作成した組織名を選択してください。
+
   ※ バックヤードで各認証トークンに対応したユーザーに紐づいている組織を収集し、プルダウンに表示しているため。
 
 
@@ -616,28 +601,26 @@ workspace追加時の作業
     | Ansible Automation Platformのログインに使用するユーザーでログインしておく必要があります。
     | 生成されたトークンは、Ansible共通コンソールのインタフェース情報の接続トークンに設定する必要があります。「利用手順マニュアル_Ansible-driver」の「 :ref:`general_operations_interface_information` 」を参照し、登録を行ってください。
 
+
 Proxyの設定
 -------------
 
 | Ansible Automation Platformの設定に応じて作業実行時などにRedhat社の所定のサイトより実行環境のコンテナイメージのダウンロードが行われます。
 | ブラウザよりAnsible Automation Platformにログインし、「設定」→「ジョブ」→「追加の環境変数」に下記の環境変数を設定します。
 
-- | https_proxy
-- | http_proxy
-- | no_proxy
-- | HTTPS_PROXY
-- | HTTP_PROXY
-- | NO_PROXY
+-  https_proxy
+-  http_proxy
+-  no_proxy
+-  HTTPS_PROXY
+-  HTTP_PROXY
+-  NO_PROXY
 
-|
 
 .. figure:: /images/ja/diagram/proxy_settings.png
    :width: 6.09896in
    :height: 2.68264in
 
 
-|
-|
 
 .. warning::
   | Ansible Automation PlatformがProxy環境下にある場合、Ansible Automation PlatformにProxy設定が必要です。Proxyの設定がされていない状態で作業実行を行った場合、エラー原因が取得できない場合があります。
