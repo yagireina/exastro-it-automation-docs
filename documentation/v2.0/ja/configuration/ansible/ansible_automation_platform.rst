@@ -4,11 +4,13 @@ Ansible Automation Platform
 
 はじめに
 ========================================================
-| 本書では、Exastro IT Automation（以下、ITAとも記載する）でAnsibleオプション機能（以下、Ansible driver）として運用する為のAnsible Automation Platformを実行エンジンとしたシステム構成と環境構築について説明します。
+| Exastro IT Automation（以下、ITAとも記載する）でAnsibleオプション機能（以下、Ansible driver）として運用する為のシステム構成と環境構築について説明します。
+| 本書ではそのうちAnsible Automation Controller を実行エンジンとしたシステム構成と環境構築について説明します。
+|
 | Ansible Core による構成を行う場合は、「 :doc:`./ansible_core` 」をご覧ください。
 | 
 | ITA Ansible driverを利用するにあたっては、ITA基本機能が構築済であることが前提です。
-| ITA基本機能の構築に関しては、「 :doc:`../../manuals/it_automation_base/architecture` 」をご覧ください。
+| ITA基本機能の構築に関しては、「 :doc:`../../installation/kubernetes` 」をご覧ください。
 
 機能
 ========================================================
@@ -21,7 +23,7 @@ Ansible Automation Platform
    | No | 機能名                          | 用途                           | WEBコンテンツ                    | Backyardコンテンツ                  |
    +====+=================================+================================+==================================+=====================================+
    | 1  | Ansible driver                  | ITAからAnsible Core かAnsible\ | 〇                               | 〇                                  |
-   |    |                                 | Automation Platform\           |                                  |                                     |
+   |    |                                 | Automation Controller\         |                                  |                                     |
    |    |                                 | を介してサーバ、ストレージ、\  |                                  |                                     |
    |    |                                 | ネットワーク機器の構成管理を\  |                                  |                                     |
    |    |                                 | 行う                           |                                  |                                     |
@@ -50,9 +52,6 @@ Ansible Automation Platform
 | ※ITAシステムは省略した構成図を記載します。
 
 
-
-
-
 .. list-table:: システム構成パターン
    :widths: 5 50 80 25
    :header-rows: 1
@@ -74,126 +73,132 @@ Ansible Automation Platform
 
 |
 
+.. tabs::
 
-Ansible Automation Controller (ハイブリッドパターン)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   .. tab:: Ansible Automation Platform (ハイブリッドパターン)
 
-.. figure:: /images/ja/diagram/aac.png
-    :alt: Ansible Automation Platform 
-    :width: 1200px
+      Ansible Automation Platform (ハイブリッドパターン)を下記に記載します。
 
-.. list-table:: システム通信要件
-   :widths: 10 20 20 40 100
-   :header-rows: 1
-   :align: left
+      .. figure:: /images/ja/diagram/aac.png
+         :alt: Ansible Automation Platform (ハイブリッドパターン)
+         :width: 1000px
 
-   * - | 通信番号
-       | ※1 
-     - FROM
-     - TO
-     - | プロトコル
-       | [ポート番号　※2] 
-     - 主な用途
-   * - ①
-     - ITAシステム
-     - Hybrid ノード
-     - | http(s)
-       | [80(443)/tcp]
-     - {{#4: 用途説明文の記載をお願いします。}}
-   * - ②
-     - ITAシステム
-     - Hybrid ノード
-     - ssh [22/tcp]
-     - {{#5: 用途説明文の記載をお願いします。}}
-   * - ③
-     - ITAシステム
-     - Git
-     - | http(s)
-       | [80(443)/tcp]
-     - {{#6: 用途説明文の記載をお願いします。}}
-   * - ④
-     - Hybrid ノード
-     - 対象機器
-     - | Any
-       | (ssh [22/tcp] telnet [23/tcp] 等 ※3）
-     - 自動構成の対象機器へのコマンド実行
-   * - ⑤
-     - Hybrid ノード
-     - Git
-     - | http(s)
-       | [80(443)/tcp]
-     - {{#7: 用途説明文の記載をお願いします。}}
-
-| ※1「2.1システム構成」の構成イメージに上記番号と紐づく通信番号を記載。
-| ※2 ポート番号は標準的なポート番号を記載。
-| ※3 代表的な例を記載。Ansibleモジュールにより利用プロトコルが異なる。
+         Ansible Automation Platform (ハイブリッドパターン)
 
 
-Ansible Automation Controller (実行ノード分離)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. figure:: /images/ja/diagram/aac_execution.png
-    :alt: Ansible Automation Controller (実行ノード分離)
-    :width: 1400px
-
+      .. list-table:: システム通信要件
+         :widths: 10 20 20 40 100
+         :header-rows: 1
+         :align: left
+      
+         * - | 通信番号
+             | ※1 
+           - FROM
+           - TO
+           - | プロトコル
+             | [ポート番号　※2] 
+           - 主な用途
+         * - ①
+           - ITAシステム
+           - Hybrid ノード
+           - | http(s)
+             | [80(443)/tcp]
+           - {{#3: 用途説明文の記載をお願いします。}}
+         * - ②
+           - ITAシステム
+           - Hybrid ノード
+           - ssh [22/tcp]
+           - {{#4: 用途説明文の記載をお願いします。}}
+         * - ③
+           - ITAシステム
+           - Git
+           - | http(s)
+             | [80(443)/tcp]
+           - {{#5: 用途説明文の記載をお願いします。}}
+         * - ④
+           - Hybrid ノード
+           - 対象機器
+           - | Any
+             | (ssh [22/tcp] telnet [23/tcp] 等 ※3）
+           - 自動構成の対象機器へのコマンド実行
+         * - ⑤
+           - Hybrid ノード
+           - Git
+           - | http(s)
+             | [80(443)/tcp]
+           - {{#6: 用途説明文の記載をお願いします。}}
+      
+      | ※1 Ansible Automation Platform の構成イメージの番号と紐づく通信番号を記載。
+      | ※2 ポート番号は標準的なポート番号を記載。
+      | ※3 代表的な例を記載。Ansibleモジュールにより利用プロトコルが異なる。
+      
 
 
 
+   .. tab:: Ansible Automation Platform (実行ノード分離)
 
+      Ansible Automation Platform (実行ノード分離)を下記に記載します。
 
+      .. figure:: /images/ja/diagram/aac_execution.png
+        :alt: Ansible Automation Platform (実行ノード分離)
+        :width: 1400px
 
-.. list-table:: システム通信要件
-   :widths: 10 20 20 40 100
-   :header-rows: 1
-   :align: left
+        Ansible Automation Platform (実行ノード分離)
 
-   * - | 通信番号
-       | ※1 
-     - FROM
-     - TO
-     - | プロトコル
-       | [ポート番号　※2] 
-     - 主な用途
-   * - ①
-     - ITAシステム
-     - Controle ノード
-     - | http(s)
-       | [80(443)/tcp]
-     - {{#8: 用途説明文の記載をお願いします。}}
-   * - ②
-     - ITAシステム
-     - Controle ノード
-     - ssh [22/tcp]
-     - {{#9: 用途説明文の記載をお願いします。}}
-   * - ③
-     - ITAシステム
-     - Git
-     - | http(s)
-       | [80(443)/tcp]
-     - {{#10: 用途説明文の記載をお願いします。}}
-   * - ④
-     - Controle ノード
-     - 対象機器
-     - | Any
-       | (ssh [22/tcp] telnet [23/tcp] 等 ※3）
-     - 自動構成の対象機器へのコマンド実行
-   * - ⑤
-     - Controle ノード
-     - Git
-     - | http(s)
-       | [80(443)/tcp]
-     - {{#11: 用途説明文の記載をお願いします。}}
+      |
 
-| ※1「2.1システム構成」の構成イメージに上記番号と紐づく通信番号を記載。
-| ※2 ポート番号は標準的なポート番号を記載。
-| ※3 代表的な例を記載。Ansibleモジュールにより利用プロトコルが異なる。
-  
-
+      .. list-table:: システム通信要件
+         :widths: 10 20 20 40 100
+         :header-rows: 1
+         :align: left
+      
+         * - | 通信番号
+             | ※1 
+           - FROM
+           - TO
+           - | プロトコル
+             | [ポート番号　※2] 
+           - 主な用途
+         * - ①
+           - ITAシステム
+           - Controle ノード
+           - | http(s)
+             | [80(443)/tcp]
+           - {{#7: 用途説明文の記載をお願いします。}}
+         * - ②
+           - ITAシステム
+           - Controle ノード
+           - ssh [22/tcp]
+           - {{#8: 用途説明文の記載をお願いします。}}
+         * - ③
+           - ITAシステム
+           - Git
+           - | http(s)
+             | [80(443)/tcp]
+           - {{#9: 用途説明文の記載をお願いします。}}
+         * - ④
+           - Controle ノード
+           - 対象機器
+           - | Any
+             | (ssh [22/tcp] telnet [23/tcp] 等 ※3）
+           - 自動構成の対象機器へのコマンド実行
+         * - ⑤
+           - Controle ノード
+           - Git
+           - | http(s)
+             | [80(443)/tcp]
+           - {{#10: 用途説明文の記載をお願いします。}}
+      
+      | ※1 Ansible Automation Controller (実行ノード分離) の構成イメージに上記番号と紐づく通信番号を記載。
+      | ※2 ポート番号は標準的なポート番号を記載。
+      | ※3 代表的な例を記載。Ansibleモジュールにより利用プロトコルが異なる。
+   
 
 
 システム要件
 ========================================================
 
-| Ansible driver はITAシステムのシステム要件に準拠するため、「 :doc:`../../manuals/it_automation_base/architecture` 」を参照してください。
+| Ansible driver はITAシステムのシステム要件に準拠するため、「 :doc:`../../installation/kubernetes` 」を参照してください。
 | ここではAnsible Automation Platformの要件を記載します。
 
 
@@ -338,7 +343,7 @@ Exastro IT Automation 連携
 organization追加時の作業
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _make_organization:
+.. _platform_make_organization:
 
 1. 組織作成
 ************************************
@@ -364,7 +369,7 @@ organization追加時の作業
      - 
    * - インスタンスグループ
      - ※未選択のままにする
-     - 「:ref:`connection_instance` 」で設定
+     - 「:ref:`platform_connection_instance` 」で設定
 
 
 .. _make_application:
@@ -389,9 +394,9 @@ organization追加時の作業
      - 備考
    * - 名前
      - 任意の名称
-     - 「 :ref:`output_token` 」で使用する
+     - 「 :ref:`platform_output_token` 」で使用する
    * - 組織
-     - 「 :ref:`make_organization` 」で作成した組織を選択する
+     - 「 :ref:`platform_make_organization` 」で作成した組織を選択する
      - 
    * - 認証付与タイプ
      - リソース所有者のパスワードベースを選択
@@ -401,7 +406,7 @@ organization追加時の作業
      - 
 
 
-.. _architecture_user:
+.. _platform_architecture_user:
 
 3. ユーザー作成
 **************************************************
@@ -435,10 +440,10 @@ organization追加時の作業
      - 標準ユーザーを選択
      - 
    * - 組織
-     - 「 :ref:`make_organization` 」で作成した組織を選択する
+     - 「 :ref:`platform_make_organization` 」で作成した組織を選択する
      - 
 
-.. _organization_roles:
+.. _platform_organization_roles:
 
 4. ロール設定
 **************************************************
@@ -446,12 +451,12 @@ organization追加時の作業
 | organization用ユーザーに紐づける組織に対してロールを設定します。
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
  
-#. | :menuselection:`アクセス --> ユーザー` より「 :ref:`architecture_user` 」で作成したユーザー名をクリックしてください。
+#. | :menuselection:`アクセス --> ユーザー` より「 :ref:`platform_architecture_user` 」で作成したユーザー名をクリックしてください。
 #. | ユーザーの詳細画面に遷移されるため、:menuselection:`ロール` タブを選択し、:guilabel:`追加` ボタンをクリックしてください。
 #. | 下記表の通りにユーザー権限の追加をしてください。
 
    #. | リソースタイプの追加 では 「組織」 を選択し、:guilabel:`Next` ボタンをクリックしてください。
-   #. | リストの項目の選択 では 「:ref:`make_organization` 」 で作成した組織 を選択し、:guilabel:`Next` ボタンをクリックしてください。
+   #. | リストの項目の選択 では 「 :ref:`platform_make_organization` 」 で作成した組織 を選択し、:guilabel:`Next` ボタンをクリックしてください。
    #. | 適用するロールの選択 では 「管理者」と「メンバー」の２つのロールを選択し、:guilabel:`保存` ボタンをクリックしてください
       | ※ロール内容に設定した該当組織のロールが表示されていることを確認してください。
 
@@ -467,20 +472,20 @@ organization追加時の作業
      - 「組織」を選択
      - 
    * - ② リストの項目の選択
-     - 「 :ref:`make_organization` 」で作成した組織を選択する
-     - ※「 :ref:`make_organization` 」で作成した組織以外のロールは付与しないで下さい。
+     - 「 :ref:`platform_make_organization` 」で作成した組織を選択する
+     - ※「 :ref:`platform_make_organization` 」で作成した組織以外のロールは付与しないで下さい。
    * - ③ 適用するロールの選択
      - 「管理者」と「メンバー」の２つのロールを選択
      - 
 
 
 
-.. _output_token:
+.. _platform_output_token:
 
 5. 認証トークン払出
 **************************************************
 
-| Ansible Automation Platform は「 :ref:`architecture_user` 」で作成したユーザーでログインしてください。
+| Ansible Automation Platform は「 :ref:`platform_architecture_user` 」で作成したユーザーでログインしてください。
 
 #. | :menuselection:`アクセス --> ユーザー` の :guilabel:`追加` ボタンを押下する。
 #. | 該当項目を入力し、 :guilabel:`保存` ボタンを押下する。
@@ -504,7 +509,7 @@ organization追加時の作業
 workspace追加時の作業
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _ansible_execution_environment:
+.. _platform_ansible_execution_environment:
 
 1. Ansible Execution Environment を組み込む
 *************************************************************
@@ -513,11 +518,11 @@ workspace追加時の作業
 2. インスタンスグループ作成
 *********************************************************************************
 
-| ※先ほど組み込んだ Ansible Execution Environment を追加するインスタンスグループが既にある場合、次の 「:ref:`_add_insetance`」の手順に進んでください。
+| ※先ほど組み込んだ Ansible Execution Environment を追加するインスタンスグループが既にある場合、次の 「 :ref:`_platform_add_insetance` 」の手順に進んでください。
 
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
 
-#. | :menuselection:`管理 --> インスタンスグループ` の 「 :ref:`ansible_execution_environment` 」で組み込んだ Ansible Execution Environment を追加するインスタンスグループ選択してください。
+#. | :menuselection:`管理 --> インスタンスグループ` の 「 :ref:`platform_ansible_execution_environment` 」で組み込んだ Ansible Execution Environment を追加するインスタンスグループ選択してください。
 #. | 該当項目を入力し、 :guilabel:`保存` ボタンを押下する。
    | 必須項目及び設定値については下記の表を参照してください。
 
@@ -533,42 +538,45 @@ workspace追加時の作業
      - 任意の名称
      - 命名規則については下記をご参照ください
 
-.. _add_insetance:
+
+.. _platform_add_insetance:
 
 3. インスタンスグループにインスタンス( Ansible Execution Environment )を追加
 **********************************************************************************************
 
-| インスタンスグループに「 :ref:`ansible_execution_environment` 」で組み込んだ Ansible Execution Environment を追加します。
+| インスタンスグループに「 :ref:`platform_ansible_execution_environment` 」で組み込んだ Ansible Execution Environment を追加します。
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
 
-#. | :menuselection:`管理 --> インスタンスグループ` より、「 :ref:`ansible_execution_environment` 」で組み込んだ Ansible Execution Environment を追加するインスタンスグループ名をクリックしてください。
+#. | :menuselection:`管理 --> インスタンスグループ` より、「 :ref:`platform_ansible_execution_environment` 」で組み込んだ Ansible Execution Environment を追加するインスタンスグループ名をクリックしてください。
 #. | インスタンスグループの詳細画面に遷移されるため、:menuselection:`インスタンス` タブを選択し、:guilabel:`関連付け` ボタンをクリックしてください。
-#. | インスタンスの選択の画面に遷移され、「 :ref:`ansible_execution_environment` 」で組み込んだインスタンス( Ansible Execution Environment )が表示されるので選択し、:guilabel:`保存` ボタンをクリックしてください。
+#. | インスタンスの選択の画面に遷移され、「 :ref:`platform_ansible_execution_environment` 」で組み込んだインスタンス( Ansible Execution Environment )が表示されるので選択し、:guilabel:`保存` ボタンをクリックしてください。
 
-.. _connection_instance:
+
+.. _platform_connection_instance:
 
 4. 組織とインスタンスグループの紐づけ
 **********************************************************************************************
 
-| 「 :ref:`make_organization` 」で作成した組織と上記で使用したインスタンスグループを紐づけます。
+| 「 :ref:`platform_make_organization` 」で作成した組織と上記で使用したインスタンスグループを紐づけます。
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
 
-#. | :menuselection:`アクセス --> 組織` より、「 :ref:`make_organization` 」で作成した組織名をクリックしてください。
+#. | :menuselection:`アクセス --> 組織` より、「 :ref:`platform_make_organization` 」で作成した組織名をクリックしてください。
 #. | 詳細画面に遷移されるため、:guilabel:`編集` ボタンをクリックしてください。
 #. | 詳細の編集の画面に遷移されるため、インスタンスグループに上記で使用したインスタンスグループを選択し、:guilabel:`保存` ボタンをクリックしてください。
    | ※複数選択可能
 
+
 5. Exastro IT Automation に認証トークンと組織を登録
 ***********************************************************************************************************************************************************************
 
-| 「利用手順マニュアル_Ansible-driver」の「 :ref:`general_operations_interface_information` 」を参照し、:menuselection:`Ansible共通 --> インターフェース情報` に「 :ref:`output_token` 」で作成した認証トークンと「 :ref:`make_organization` 」で作成した組織の登録を行ってください。
+| 「利用手順マニュアル_Ansible-driver」の「 :ref:`general_operations_interface_information` 」を参照し、:menuselection:`Ansible共通 --> インターフェース情報` に「 :ref:`platform_output_token` 」で作成した認証トークンと「 :ref:`platform_make_organization` 」で作成した組織の登録を行ってください。
 
 
-.. warning:: | 組織名を登録する際は、認証トークンを登録してから1分程度経過後(※)、インターフェース情報を再表示し、「 :ref:`make_organization` 」で作成した組織名を選択してください。
+.. warning:: | 組織名を登録する際は、認証トークンを登録してから1分程度経過後(※)、インターフェース情報を再表示し、「 :ref:`platform_make_organization` 」で作成した組織名を選択してください。
   ※ バックヤードで各認証トークンに対応したユーザーに紐づいている組織を収集し、プルダウンに表示しているため。
 
 
-.. note:: | 「 :ref:`organization_roles` 」で作成したユーザーに複数の組織のロールを付与されていた場合、ランダムに選択された組織をデフォルト値とします。
+.. note:: | 「 :ref:`platform_organization_roles` 」で作成したユーザーに複数の組織のロールを付与されていた場合、ランダムに選択された組織をデフォルト値とします。
 
 ..
   .. list-table:: Ansible Automation Platform 必要リソース一覧
@@ -662,3 +670,118 @@ Proxyの設定
     umask 0022
     pip install --upgrade pexpect
     deactivate
+
+..
+  Ansible Automation Platform (ハイブリッドパターン)
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+  .. figure:: /images/ja/diagram/aac.png
+      :alt: Ansible Automation Platform (ハイブリッドパターン)
+      :width: 1200px
+  
+      Ansible Automation Platform (ハイブリッドパターン)
+  
+  
+  .. list-table:: システム通信要件
+     :widths: 10 20 20 40 100
+     :header-rows: 1
+     :align: left
+  
+     * - | 通信番号
+         | ※1 
+       - FROM
+       - TO
+       - | プロトコル
+         | [ポート番号　※2] 
+       - 主な用途
+     * - ①
+       - ITAシステム
+       - Hybrid ノード
+       - | http(s)
+         | [80(443)/tcp]
+       - {{#3: 用途説明文の記載をお願いします。}}
+     * - ②
+       - ITAシステム
+       - Hybrid ノード
+       - ssh [22/tcp]
+       - {{#4: 用途説明文の記載をお願いします。}}
+     * - ③
+       - ITAシステム
+       - Git
+       - | http(s)
+         | [80(443)/tcp]
+       - {{#5: 用途説明文の記載をお願いします。}}
+     * - ④
+       - Hybrid ノード
+       - 対象機器
+       - | Any
+         | (ssh [22/tcp] telnet [23/tcp] 等 ※3）
+       - 自動構成の対象機器へのコマンド実行
+     * - ⑤
+       - Hybrid ノード
+       - Git
+       - | http(s)
+         | [80(443)/tcp]
+       - {{#6: 用途説明文の記載をお願いします。}}
+  
+  | ※1 Ansible Automation Platform の構成イメージの番号と紐づく通信番号を記載。
+  | ※2 ポート番号は標準的なポート番号を記載。
+  | ※3 代表的な例を記載。Ansibleモジュールにより利用プロトコルが異なる。
+  
+  
+  Ansible Automation Platform (実行ノード分離)
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  .. figure:: /images/ja/diagram/aac_execution.png
+      :alt: Ansible Automation Platform (実行ノード分離)
+      :width: 1400px
+  
+      Ansible Automation Platform (実行ノード分離)
+  
+  
+  .. list-table:: システム通信要件
+     :widths: 10 20 20 40 100
+     :header-rows: 1
+     :align: left
+  
+     * - | 通信番号
+         | ※1 
+       - FROM
+       - TO
+       - | プロトコル
+         | [ポート番号　※2] 
+       - 主な用途
+     * - ①
+       - ITAシステム
+       - Controle ノード
+       - | http(s)
+         | [80(443)/tcp]
+       - {{#7: 用途説明文の記載をお願いします。}}
+     * - ②
+       - ITAシステム
+       - Controle ノード
+       - ssh [22/tcp]
+       - {{#8: 用途説明文の記載をお願いします。}}
+     * - ③
+       - ITAシステム
+       - Git
+       - | http(s)
+         | [80(443)/tcp]
+       - {{#9: 用途説明文の記載をお願いします。}}
+     * - ④
+       - Controle ノード
+       - 対象機器
+       - | Any
+         | (ssh [22/tcp] telnet [23/tcp] 等 ※3）
+       - 自動構成の対象機器へのコマンド実行
+     * - ⑤
+       - Controle ノード
+       - Git
+       - | http(s)
+         | [80(443)/tcp]
+       - {{#10: 用途説明文の記載をお願いします。}}
+  
+  | ※1 Ansible Automation Controller (実行ノード分離) の構成イメージに上記番号と紐づく通信番号を記載。
+  | ※2 ポート番号は標準的なポート番号を記載。
+  | ※3 代表的な例を記載。Ansibleモジュールにより利用プロトコルが異なる。
+  
+  
