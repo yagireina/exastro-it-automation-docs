@@ -22,9 +22,8 @@
 
    platform_management/index
    organization_management/index
-   .. authentication/index
-   .. it_automation_base/index
-   .. create_param/index
+   it_automation_base/index
+   create_param/index
    .. ansible-driver/index
    maintenance/index
 
