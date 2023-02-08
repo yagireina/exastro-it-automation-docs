@@ -183,6 +183,13 @@
                     runAsGroup: 1000
                     runAsNonRoot: true
                     runAsUser: 1000
+                  volumeMounts:
+                  - mountPath: /storage
+                    name: volume-ita-backup-storage
+                volumes:
+                - name: volume-ita-backup-storage
+                  persistentVolumeClaim:
+                    claimName: pvc-ita-global
                 restartPolicy: Always
                 securityContext: {}
                 serviceAccount: default
@@ -264,6 +271,13 @@
                     runAsGroup: 1000
                     runAsNonRoot: true
                     runAsUser: 1000
+                  volumeMounts:
+                  - mountPath: /storage
+                    name: volume-ita-backup-storage
+                volumes:
+                - name: volume-ita-backup-storage
+                  persistentVolumeClaim:
+                    claimName: pvc-ita-global
                 restartPolicy: Always
                 securityContext: {}
                 serviceAccount: default
@@ -342,7 +356,14 @@
                 serviceAccountName: default
               _EOF_
 
-          | バックアップを取得します。
+          | データベースのバックアップを取得します。
+
+          .. code-block:: bash
+             :caption: コマンド
+
+              kubectl exec -it ita-db-backup -- sh -c 'mysqldump -h ${DB_HOST} -P ${DB_PORT} -u ${DB_ADMIN_USER} -p${DB_ADMIN_PASSWORD} --all-databases --add-drop-table' | gzip > mysqldump_ita-db_`date +"%Y%m%d-%H%M%S"`.sql.gz
+
+          | ファイルのバックアップを取得します。
 
           .. code-block:: bash
              :caption: コマンド
@@ -536,6 +557,13 @@
                     runAsGroup: 1000
                     runAsNonRoot: true
                     runAsUser: 1000
+                  volumeMounts:
+                  - mountPath: /storage
+                    name: volume-ita-backup-storage
+                volumes:
+                - name: volume-ita-backup-storage
+                  persistentVolumeClaim:
+                    claimName: pvc-ita-global
                 restartPolicy: Always
                 securityContext: {}
                 serviceAccount: default
@@ -617,6 +645,13 @@
                     runAsGroup: 1000
                     runAsNonRoot: true
                     runAsUser: 1000
+                  volumeMounts:
+                  - mountPath: /storage
+                    name: volume-ita-backup-storage
+                volumes:
+                - name: volume-ita-backup-storage
+                  persistentVolumeClaim:
+                    claimName: pvc-ita-global
                 restartPolicy: Always
                 securityContext: {}
                 serviceAccount: default
