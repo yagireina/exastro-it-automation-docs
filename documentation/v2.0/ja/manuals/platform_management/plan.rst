@@ -436,7 +436,7 @@
   
   | 例はオーガナイゼーションID:org1、リソースプランID:plan-standardを例として説明します。
   | 
-  | add-org1-plan.jsonにコピーした例） 
+  | （add-org1-plan.jsonにコピーした例）
 
 
   .. code-block:: bash
@@ -555,7 +555,7 @@
 
      ./get-organization-plan-list.sh
 
-- コマンド実行後に入力
+- コマンド実行後に入力（入力例）
  
   .. code-block:: bash
 
@@ -617,7 +617,7 @@
 
      ./delete-organization-plan.sh
 
-- コマンド実行後に入力
+- コマンド実行後に入力（入力例）
  
   .. code-block:: bash
 
@@ -692,7 +692,7 @@
 
     ./get-usage-list.sh
 
-- コマンド実行後に入力
+- コマンド実行後に入力（入力例）
  
   .. code-block:: bash
 
