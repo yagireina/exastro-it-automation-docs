@@ -2,16 +2,13 @@
 ログ一覧
 ========
 
-
 | Exastro IT Automationの各コンテナの出力メッセージに関するログについて。
 | 各コンテナのログの例と文字列の意味を以下に記載します。
-
-
 
 一般的なログ
 ============
 
-| 基本的なログは以下の形式となっています。
+| 一般的なログは以下の形式となっています。
 
 .. code-block::
    :caption: 形式
@@ -36,21 +33,18 @@
      - | 日付
      - | [2023-01-05 18:05:22,875]
      - |
-   * - | %(levelname)s
+   * - | [%(levelname)s]
      - | ログレベル
-     - | INFO
+     - | [INFO]
      - | 
-   * - | (%(userid)s)
+   * - | [%(userid)s]
      - | ユーザーID
      - | [USER_ID:efb59f05-6f31-47d6-b28e-0f9ee236534e]
      - |
    * - | <フリーログ>
      - | 決まった値はなし
-     - | [ts=2023-01-05T09:05:22.756Z][api-start]url: POST:http://ita-api-admin:8070/api/organizations/org1/ita/
+     - | AppLog instance(stdAppLogger) is created
      - | ログによって形式が異なります。
-
-| 上記の形式に当てはまらないログのコンテナは以下に記載があります。
-
 
 platform-job・platform-api
 ==========================
@@ -99,7 +93,6 @@ platform-job・platform-api
      -  メッセージ
      -  platform initialize setting start
      -  
-
 
 platform-web・ita-web-server
 ============================
@@ -167,7 +160,6 @@ platform-web・ita-web-server
      - | 9817
      - |
   
-
 | combinedフォーマットは、commonフォーマットに以下の項目が追加されています。
 
 .. list-table:: combinedフォーマットでログ保存を指定した場合
@@ -208,8 +200,6 @@ platform-web・ita-web-server
      - | - 
      - |
 
-
-
 platform-auth
 =============
 
@@ -221,7 +211,6 @@ platform-auth
 
    [-] - 10.244.0.1 - - [08/Feb/2023:10:22:20 +0900] "GET /auth/resources/b3h1e/common/keycloak/node_modules/patternfly/dist/fonts/OpenSans-Light-webfont.woff2 HTTP/1.1" 200 63180 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
 
-
 keycloak
 ========
 
@@ -230,12 +219,10 @@ keycloak
 
    %d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] (%t) %s%e%n
 
-
 .. code-block:: 
-  :caption: 例
+   :caption: 例
 
    2023-01-12 09:21:49,040 INFO  [org.keycloak.events] (default task-13) type=INTROSPECT_TOKEN, realmId=org3, clientId=system-org3-auth, userId=null, ipAddress=172.18.0.14, client_auth_method=client-secret
-
 
 .. list-table:: 
    :widths: 15 15 20 20
@@ -264,31 +251,27 @@ keycloak
      - |
    * - | %s
      - | 簡単なメッセージ
-     - |  
+     - | - 
      - |
    * - | %e
      - | 例外
-     - |
+     - | -
      - |
    * - | %n
      - | 改行
-     - |
+     - | -
      - | 
-
 
 | keycloakのログの詳細については以下のURLをご参照ください。
 | https://www.keycloak.org/server/logging
 
-
 platform-db
 ===========
-
 
 | DBについては使用するデータベースのログフォーマットとなります。
 | 設定もDBによりますが、デフォルトでmariadbを立ち上げた際はエラーログが出力されます。
 | 詳細は下記URLをご参照ください。
 | https://mariadb.com/kb/en/error-log/
-
 
 ita-api-organization
 ====================
@@ -298,12 +281,10 @@ ita-api-organization
    
    [%(asctime)s] [%(levelname)s]  <フリーログ>
 
-
 .. code-block::
   :caption: 例   
    
    [2023-01-19 12:18:25,940][INFO] AppLog instance(stdAppLogger) is created
-
 
 .. list-table:: 
    :widths: 15 15 20 20
@@ -327,8 +308,6 @@ ita-api-organization
      - | AppLog instance(stdAppLogger) is created
      - | ログによって形式が異なります。
 
-
-
 ita-api-admin
 =============
 
@@ -342,7 +321,6 @@ ita-api-admin
   
   [2023-01-05 18:05:22,875][INFO] [USER_ID:efb59f05-6f31-47d6-b28e-0f9ee236534e] [ts=2023-01-05T09:05:22.756Z][api-start]url: POST:http://ita-api-admin:8070/api/organizations/org1/ita/
 
-
 .. list-table:: 
    :widths: 15 15 20 20
    :header-rows: 1
@@ -352,15 +330,15 @@ ita-api-admin
      - | フォーマットの意味
      - | ログの例
      - | 備考
-   * - | %(asctime)s
+   * - | [%(asctime)s]
      - | 日付
      - | [2023-01-05 18:05:22,875]
      - |
-   * - | %(levelname)s
+   * - | [%(levelname)s]
      - | ログレベル
-     - | INFO
+     - | [INFO]
      - | 
-   * - | (%(userid)s)
+   * - | [%(userid)s]
      - | ユーザーID
      - | [USER_ID:efb59f05-6f31-47d6-b28e-0f9ee236534e]
      - |
@@ -368,4 +346,3 @@ ita-api-admin
      - | 決まった値はなし
      - | [ts=2023-01-05T09:05:22.756Z][api-start]url: POST:http://ita-api-admin:8070/api/organizations/org1/ita/
      - | ログによって形式が異なります。
-
