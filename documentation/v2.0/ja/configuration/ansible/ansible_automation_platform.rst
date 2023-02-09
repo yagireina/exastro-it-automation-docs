@@ -34,6 +34,7 @@ Ansible Automation Platform
    |    |                                 |                                |                                  |                                     |
    +----+---------------------------------+--------------------------------+----------------------------------+-------------------------------------+
 
+
 システム構成
 ========================================================
 
@@ -295,26 +296,32 @@ ITA作業用ディレクトリの公開
    :height: 2.4375in
 
 
-Ansible Automation Platformへのファイル転送ユーザーの準備
+Ansible Automation Platform へのファイル転送ユーザーの準備
 -------------------------------------------------------------
 
-| ITAからAnsible Automation Platformのプロジェクトを生成する際、Ansible Automation PLatformの下記ディレクトリにPlaybook一式をファイル転送します。ファイル転送するLinuxユーザーを準備してください。
+| {{#11: Git連携する箇所がインターフェース情報にない(Gitとの連携方法) }}
+|
+| ITAからAnsible Automation Platformのプロジェクトを生成する際、Ansible Automation Platform の下記ディレクトリにPlaybook一式をファイル転送します。ファイル転送するLinuxユーザーを準備してください。
 |
 | ・SCM管理ディレクトリ(/var/lib/awx/projects)
 | 　※Ansible Tower3.xの場合にLinuxユーザーでPlaybook一式をファイル転送します。
 | ・ITA作業用ディレクトリ(/var/lib/exastro)
 
 | Linuxユーザーは、Ansible Automation Pltformインストール時に生成されるawxユーザーにパスワードを設定し使用することを強く推奨します。また、awxユーザー以外のユーザーを用意し使用する場合、SCM管理パス(/var/lib/awx/projects)のパーミッションの変更はRedhatのサポート対象外となりますのでご注意ください。
-| 準備したLinuxユーザーは、ITAシステムに登録する必要があります。「利用手順マニュアル_Ansible-driver」の「Ansible Automation Platformホスト一覧」を参照し、登録を行ってください。
+| 準備したLinuxユーザーは、ITAシステムに登録する必要があります。「利用手順マニュアル_Ansible-driver」の「 :ref:`general_operations_ansible_automation_controlller_hosts` 」を参照し、登録を行ってください。
 
 
 Ansible Automation Platformと連携するGitへのユーザーの準備
 --------------------------------------------------------------
+
+| {{#12: Git連携する箇所がAnsible Automation Controller情報にない(Gitとの連携方法) }}
+|
 | ITAからAnsible Automation Platformのプロジェクトを生成する際のSCMタイプをGitにしています。
 | 連携先のGitリポジトリは、Ansible driverのバックヤード機能がインストールされているホストに作成されます。Ansible Automation Platformから、このGitリポジトリにssh鍵認証で接続するLinuxユーザーを準備してください。
 |
-| 準備したLinuxユーザーは、ITAシステムに登録する必要があります。「利用手順マニュアル_Ansible-driver」の「インターフェース情報」の「SCM管理 Git連携先情報」を参照し、登録を行ってください。
-| 尚、ITAインストーラを使用してITAインストールまたはV1.10.0以降へのバージョンアップをした場合、Gitリポジトリに接続するLinuxユーザーと鍵ファイルを生成し、「インターフェース情報」の「SCM管理 Git連携先情報」の「ユーザー」、「ssh秘密鍵ファイル」を初期設定しているため、個別に作成は不要です。「ホスト名」にAnsible driverのバックヤード機能がインストールされているホスト名（またはIPアドレス）を設定してください。
+| 準備したLinuxユーザーは、ITAシステムに登録する必要があります。「利用手順マニュアル_Ansible-driver」の「 :ref:`general_operations_interface_information` 」の「SCM管理 Git連携先情報」を参照し、登録を行ってください。
+| 尚、ITAインストーラを使用してITAインストールまたはV1.10.0以降へのバージョンアップをした場合、Gitリポジトリに接続するLinuxユーザーと鍵ファイルを生成し、「インターフェース情報」の「SCM管理 Git連携先情報」の「ユーザー」、「ssh秘密鍵ファイル」を初期設定しているため、個別に作成は不要です。
+| 「ホスト名」にAnsible driverのバックヤード機能がインストールされているホスト名（またはIPアドレス）を設定してください。
 |
 | 別のユーザーを使用する場合は、Linuxユーザーと鍵ファイルを生成し「インターフェース情報」の「SCM管理 Git連携先情報」を更新してください。
 | 
@@ -341,7 +348,6 @@ Ansible Automation Platformと連携するGitへのユーザーの準備
 organization追加時の作業
 --------------------------
 
-
 .. _platform_make_organization:
 
 1. 組織作成
@@ -349,10 +355,11 @@ organization追加時の作業
 
 | organization用の組織を作成します。
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
-
+|
 
 #. | :menuselection:`アクセス --> 組織` の :guilabel:`追加` ボタンをクリックします。
 #. | 該当項目を入力し、 :guilabel:`保存` ボタンをクリックしてください。
+   |
    | 必須項目及び設定値については下記の表を参照してください。
 
 .. list-table:: 
@@ -378,9 +385,11 @@ organization追加時の作業
 
 | 接続トークン払出用のアプリケーション登録をします。
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
- 
+|
+
 #. | :menuselection:`管理 --> アプリケーション` の :guilabel:`追加` ボタンをクリックしてください。
 #. | 該当項目を入力し、 :guilabel:`保存` ボタンをクリックしてください。
+   |
    | 必須項目及び設定値については下記の表を参照してください。
 
 .. list-table:: 
@@ -412,9 +421,11 @@ organization追加時の作業
 
 | organization用のユーザーを作成します。
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
- 
+|
+
 #. | :menuselection:`アクセス --> ユーザー` の :guilabel:`追加` ボタンをクリックしてください。
 #. | 該当項目を入力し、 :guilabel:`保存` ボタンをクリックしてください。
+   |
    | 必須項目及び設定値については下記の表を参照してください。
 
 
@@ -449,14 +460,15 @@ organization追加時の作業
 
 | organization用ユーザーに紐づける組織に対してロールを設定します。
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
- 
+|
+
 #. | :menuselection:`アクセス --> ユーザー` より「 :ref:`platform_architecture_user` 」で作成したユーザー名をクリックしてください。
 #. | ユーザーの詳細画面に遷移されるため、:menuselection:`ロール` タブを選択し、:guilabel:`追加` ボタンをクリックしてください。
 #. | 下記表の通りにユーザー権限の追加をしてください。
 
    #. | リソースタイプの追加 では 「組織」 を選択し、:guilabel:`Next` ボタンをクリックしてください。
    #. | リストの項目の選択 では 「 :ref:`platform_make_organization` 」 で作成した組織 を選択し、:guilabel:`Next` ボタンをクリックしてください。
-      | ※「 :ref:`platform_make_organization` 」で作成した組織以外のロールは付与しないで下さい。 
+      | ※「 :ref:`platform_make_organization` 」で作成した組織以外のロールは付与しないでください。 
    #. | 適用するロールの選択 では 「管理者」と「メンバー」の２つのロールを選択し、:guilabel:`保存` ボタンをクリックしてください
       | ロール内容に設定した該当組織のロールが表示されていることを確認してください。
 
@@ -468,9 +480,11 @@ organization追加時の作業
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Ansible Automation Platform は「 :ref:`platform_architecture_user` 」で作成したユーザーでログインしてください。
+|
 
 #. | :menuselection:`アクセス --> ユーザー` の :guilabel:`追加` ボタンを押下する。
 #. | 該当項目を入力し、 :guilabel:`保存` ボタンを押下する。
+   |
    | 必須項目及び設定値については下記の表を参照してください。
 
 .. list-table:: 
@@ -494,20 +508,23 @@ workspace追加時の作業
 
 .. _platform_ansible_execution_environment:
 
-1. Ansible Execution Environment (以下、Ansible ee とも表記) を組み込む
+1. インスタンスを組み込む
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. インスタンスを組み込む
-　→にして説明一文いれて、インスタンス（Ansible ee）を組み込んでください。
+
+| インスタンスであるAnsible Execution Environment (以下、Ansible ee とも表記) を組み込んてください。
+
 
 2. インスタンスグループ作成
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-| ※先ほど組み込んだ Ansible ee を追加するインスタンスグループが既にある場合、次の 「 :ref:`platform_add_insetance` 」の手順に進んでください。
+| ※ 組み込んだ インスタンス (Ansible ee) を追加するインスタンスグループが既にある場合、次の 「 :ref:`platform_add_insetance` 」の手順に進んでください。
 
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
+|
 
-#. | :menuselection:`管理 --> インスタンスグループ` の 「 :ref:`platform_ansible_execution_environment` 」で組み込んだ Ansible ee を追加するインスタンスグループ選択してください。
+#. | :menuselection:`管理 --> インスタンスグループ` の 「 :ref:`platform_ansible_execution_environment` 」で組み込んだ Ansible ee を追加するインスタンスグループを選択してください。
 #. | 該当項目を入力し、 :guilabel:`保存` ボタンを押下する。
+   |
    | 必須項目及び設定値については下記の表を参照してください。
 
 .. list-table:: 
@@ -525,15 +542,16 @@ workspace追加時の作業
 
 .. _platform_add_insetance:
 
-3. インスタンスグループにインスタンス ( Ansible ee ) を追加
+3. インスタンスグループにインスタンスを追加
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | インスタンスグループに「 :ref:`platform_ansible_execution_environment` 」で組み込んだ Ansible ee を追加します。
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
+|
 
 #. | :menuselection:`管理 --> インスタンスグループ` より、「 :ref:`platform_ansible_execution_environment` 」で組み込んだ Ansible ee を追加するインスタンスグループ名をクリックしてください。
 #. | インスタンスグループの詳細画面に遷移されるため、:menuselection:`インスタンス` タブを選択し、:guilabel:`関連付け` ボタンをクリックしてください。
-#. | インスタンスの選択の画面に遷移され、「 :ref:`platform_ansible_execution_environment` 」で組み込んだインスタンス( Ansible ee )が表示されるので選択し、:guilabel:`保存` ボタンをクリックしてください。
+#. | インスタンスの選択の画面に遷移され、組み込んだインスタンス( Ansible ee )が表示されるので選択し、:guilabel:`保存` ボタンをクリックしてください。
 
 
 .. _platform_connection_instance:
@@ -543,6 +561,7 @@ workspace追加時の作業
 
 | 「 :ref:`platform_make_organization` 」で作成した組織と上記で使用したインスタンスグループを紐づけます。
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
+|
 
 #. | :menuselection:`アクセス --> 組織` より、「 :ref:`platform_make_organization` 」で作成した組織名をクリックしてください。
 #. | 詳細画面に遷移されるため、:guilabel:`編集` ボタンをクリックしてください。
