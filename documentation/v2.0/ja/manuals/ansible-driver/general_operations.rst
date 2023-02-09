@@ -64,7 +64,7 @@ Ansible driverについて
    | 製品部門などが提供するRoleパッケージを用いて、製品のインストール、環境構築などを行う際に使われることを想定します。
 
 
-| また、Ansible driverは、Playbook中の変数を画面から設定することができます。詳細は本書「 :ref:`general_operations_variable_handling_in_ansible_driver` 」をご参照してください。
+| また、Ansible driverは、Playbook中の変数を画面から設定することができます。詳細は本書「 :ref:`general_operations_variable_handling_in_ansible_driver` 」を参照してください。
 
 .. _general_operations_variable_handling_in_ansible_driver:
 
@@ -1299,7 +1299,7 @@ Ansible driver機能・操作方法説明
 ~~~~~~~~~~~~~~~~~~
 
 | :menuselection:`基本コンソール-->オペレーション一覧` では、オーケストレータで実行する作業対象ホストに対するオペレーションを管理します。作業はITA基本コンソール内メニューより選択します。
-| 登録方法の詳細は、関連マニュアルの :doc:`../it_automation_base/basic_console` をご参照してください。
+| 登録方法の詳細は、関連マニュアルの :doc:`../it_automation_base/basic_console` を参照してください。
 
 .. figure:: /images/ja/basic_console/operation_list/register.png
    :width: 800px
