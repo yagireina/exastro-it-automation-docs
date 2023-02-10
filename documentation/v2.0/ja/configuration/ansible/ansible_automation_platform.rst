@@ -129,22 +129,22 @@ Ansible Automation Platform
              | [80(443)/tcp]
            - {{#6: 用途説明文の記載をお願いします。}}
       
-      | ※1 Ansible Automation Platform の構成イメージの番号と紐づく通信番号を記載。
+      | ※1 Ansible Automation Platform (ハイブリッドパターン)の構成イメージの番号と紐づく通信番号を記載。
       | ※2 ポート番号は標準的なポート番号を記載。
       | ※3 代表的な例を記載。Ansibleモジュールにより利用プロトコルが異なる。
       
 
 
 
-   .. tab:: Ansible Automation Platform (実行ノード分離)
+   .. tab:: Ansible Automation Platform (実行ノード分離パターン)
 
-      Ansible Automation Platform (実行ノード分離)を下記に記載します。
+      Ansible Automation Platform (実行ノード分離パターン)を下記に記載します。
 
       .. figure:: /images/ja/diagram/aac_execution.png
-        :alt: Ansible Automation Platform (実行ノード分離)
+        :alt: Ansible Automation Platform (実行ノード分離パターン)
         :width: 1400px
 
-        Ansible Automation Platform (実行ノード分離)
+        Ansible Automation Platform (実行ノード分離パターン)
 
       |
 
@@ -190,7 +190,7 @@ Ansible Automation Platform
              | [80(443)/tcp]
            - {{#10: 用途説明文の記載をお願いします。}}
       
-      | ※1 Ansible Automation Controller (実行ノード分離) の構成イメージに上記番号と紐づく通信番号を記載。
+      | ※1 Ansible Automation Controller (実行ノード分離パターン)の構成イメージに上記番号と紐づく通信番号を記載。
       | ※2 ポート番号は標準的なポート番号を記載。
       | ※3 代表的な例を記載。Ansibleモジュールにより利用プロトコルが異なる。
    
@@ -470,7 +470,6 @@ organization追加時の作業
    #. | リストの項目の選択 では 「 :ref:`platform_make_organization` 」 で作成した組織 を選択し、:guilabel:`Next` ボタンをクリックしてください。
       | ※「 :ref:`platform_make_organization` 」で作成した組織以外のロールは付与しないでください。 
    #. | 適用するロールの選択 では 「管理者」と「メンバー」の２つのロールを選択し、:guilabel:`保存` ボタンをクリックしてください
-      | ロール内容に設定した該当組織のロールが表示されていることを確認してください。
 
 
 
@@ -569,7 +568,7 @@ workspace追加時の作業
    | ※複数選択可能
 
 
-5. Exastro IT Automation に認証トークンと組織を登録
+5. ITA に認証トークンと組織を登録
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | 「利用手順マニュアル_Ansible-driver」の「 :ref:`general_operations_interface_information` 」を参照し、:menuselection:`Ansible共通 --> インターフェース情報` に「 :ref:`platform_output_token` 」で作成した認証トークンと「 :ref:`platform_make_organization` 」で作成した組織の登録を行ってください。
