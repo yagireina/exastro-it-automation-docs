@@ -302,7 +302,7 @@ Ansible Automation Platform へのファイル転送ユーザーの準備
 | ・ITA作業用ディレクトリ(/var/lib/exastro)
 
 | {{#11: 準備したLinuxユーザーを登録する箇所がインターフェース情報にない }}
-| Linuxユーザーは、Ansible Automation Pltformインストール時に生成されるawxユーザーにパスワードを設定し使用することを強く推奨します。また、awxユーザー以外のユーザーを用意し使用する場合、SCM管理パス(/var/lib/awx/projects)のパーミッションの変更はRedhatのサポート対象外となりますのでご注意ください。
+| Linuxユーザーは、Ansible Automation Platformインストール時に生成されるawxユーザーにパスワードを設定し使用することを強く推奨します。また、awxユーザー以外のユーザーを用意し使用する場合、SCM管理パス(/var/lib/awx/projects)のパーミッションの変更はRedhatのサポート対象外となりますのでご注意ください。
 | 準備したLinuxユーザーは、ITAシステムに登録する必要があります。「 :ref:`general_operations_ansible_automation_controlller_hosts` 」を参照し、登録を行ってください。
 
 
