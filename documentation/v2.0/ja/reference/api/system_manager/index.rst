@@ -1,9 +1,11 @@
-==========
-管理者向け
-==========
+==================
+システム管理者向け
+==================
 
 .. toctree::
-   :maxdepth: 2
-
+   :maxdepth: 1
+   
+   ..certification
+   
    platform-api
    ita-api-admin
