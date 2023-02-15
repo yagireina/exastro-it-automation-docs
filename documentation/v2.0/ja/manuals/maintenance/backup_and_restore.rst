@@ -27,32 +27,34 @@
 概要
 ====
 
-| バックアップ対象となるデータは下記の3つです。
+| バックアップ・リストア対象となるデータは下記の3つです。
 
-- バックアップ対象
+- バックアップ・リストア対象
 
   - Exastro Platform のデータベース
   - Exastro IT Automation のデータベース
   - Exastro IT Automation の共有ファイル
 
-| これらのデータを :command:`kubectl` コマンドを利用してインストールします。
+| これらのデータを :command:`kubectl` コマンドを利用してバックアップ・リストアします。
 
 | 作業の流れは、まず、ユーザからのデータの書き込みを制限するために、リバースプロキシを停止します。
 | 次に、バックヤード処理を停止したら、データのバックアップを実施します。
 | 最後に、作業前の数に Pod 数を戻します。
 
+| リストアの際の作業も同様の流れになります。
+
 .. danger::
   | 本手順では、サービスの停止が発生します。
-
-.. _check_replica_count_backup:
 
 バックアップ
 ============
 
-レプリカ数の確認
+.. _check_replica_count_backup:
+
+Pod 起動数の確認
 ----------------
 
-| 作業前のレプリカ数の確認をし、状態を記録します。
+| 作業前の Pod 起動数の確認をし、状態を記録します。
 
 .. code-block:: bash
   :caption: コマンド
@@ -67,7 +69,7 @@
 リバースプロキシの停止
 ----------------------
 
-| リバースプロキシ (platform-auth) のレプリカ数を 0 に変更し、エンドユーザーからのアクセスを制限します。
+| リバースプロキシ (platform-auth) の Pod 起動数を 0 に変更し、エンドユーザーからのアクセスを制限します。
 
 .. code-block:: bash
   :caption: コマンド
@@ -77,7 +79,7 @@
 バックヤード処理の停止
 ----------------------
 
-| バックヤード処理 (ita-by-\*\*\*) のレプリカ数を 0 に変更し、データベースの更新を停止します。
+| バックヤード処理 (ita-by-\*\*\*) の Pod 起動数を 0 に変更し、データベースの更新を停止します。
 
 .. code-block:: bash
   :caption: コマンド
@@ -122,293 +124,169 @@ Pod 起動数の確認
 
 | Exastro システム内で、Exastro Platform と Exastro IT Automation でデータベースを共有するか、分離するかによって手順が異なります。
 
-.. tabs::
 
-  .. group-tab:: データベースを共有
+#. メンテナンス用コンテナの作成
 
-      1. メンテナンス用コンテナを作成します。
+   | バックアップ作業用コンテナの作成をします。
 
-      | Exastro Platform のデータベース(Exastro IT Automation と共有)を :command:`mysqldump` を使ってバックアップします。
+   .. code-block:: bash
+      :caption: コマンド
+      :linenos:
 
-      .. code-block:: bash
-          :caption: コマンド
-          :linenos:
+      cat <<_EOF_ | kubectl apply -f - -n exastro
+      apiVersion: v1
+      kind: Pod
+      metadata:
+        name: exastro-maintenance
+        namespace: exastro
+      spec:
+        containers:
+        - command:
+          - sh
+          - -c
+          args:
+          - |
+            #!/bin/bash
+            sleep 3600
+          env:
+          - name: PF_DB_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                key: DB_DATABASE
+                name: platform-params-pf-database
+          - name: PF_DB_HOST
+            valueFrom:
+              configMapKeyRef:
+                key: DB_HOST
+                name: platform-params-pf-database
+          - name: PF_DB_PORT
+            valueFrom:
+              configMapKeyRef:
+                key: DB_PORT
+                name: platform-params-pf-database
+          - name: PF_DB_ADMIN_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: DB_ADMIN_PASSWORD
+                name: platform-secret-pf-database
+          - name: PF_DB_ADMIN_USER
+            valueFrom:
+              secretKeyRef:
+                key: DB_ADMIN_USER
+                name: platform-secret-pf-database
+          - name: ITA_DB_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                key: DB_DATABASE
+                name: ita-params-ita-database
+          - name: ITA_DB_HOST
+            valueFrom:
+              configMapKeyRef:
+                key: DB_HOST
+                name: ita-params-ita-database
+          - name: ITA_DB_PORT
+            valueFrom:
+              configMapKeyRef:
+                key: DB_PORT
+                name: ita-params-ita-database
+          - name: ITA_STORAGEPATH
+            valueFrom:
+              configMapKeyRef:
+                key: STORAGEPATH
+                name: ita-params-ita-global
+          - name: ITA_DB_ADMIN_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: DB_ADMIN_PASSWORD
+                name: ita-secret-ita-database
+          - name: ITA_DB_ADMIN_USER
+            valueFrom:
+              secretKeyRef:
+                key: DB_ADMIN_USER
+                name: ita-secret-ita-database
+          image: mariadb:10.9
+          imagePullPolicy: IfNotPresent
+          name: exastro-maintenance
+          resources: {}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: false
+            runAsGroup: 1000
+            runAsNonRoot: true
+            runAsUser: 1000
+          volumeMounts:
+          - mountPath: /storage
+            name: volume-ita-backup-storage
+        volumes:
+        - name: volume-ita-backup-storage
+          persistentVolumeClaim:
+            claimName: pvc-ita-global
+        restartPolicy: Always
+        securityContext: {}
+        serviceAccount: default
+        serviceAccountName: default
+      _EOF_
 
-          cat <<_EOF_ | kubectl apply -f - -n exastro
-          apiVersion: v1
-          kind: Pod
-          metadata:
-            name: platform-db-backup
-            namespace: exastro
-          spec:
-            containers:
-            - command:
-              - sh
-              - -c
-              args:
-              - |
-                #!/bin/bash
-                sleep 3600
-              env:
-              - name: DB_DATABASE
-                valueFrom:
-                  configMapKeyRef:
-                    key: DB_DATABASE
-                    name: platform-params-pf-database
-              - name: DB_HOST
-                valueFrom:
-                  configMapKeyRef:
-                    key: DB_HOST
-                    name: platform-params-pf-database
-              - name: DB_PORT
-                valueFrom:
-                  configMapKeyRef:
-                    key: DB_PORT
-                    name: platform-params-pf-database
-              - name: STORAGEPATH
-                valueFrom:
-                  configMapKeyRef:
-                    key: STORAGEPATH
-                    name: ita-params-ita-global
-              - name: DB_ADMIN_PASSWORD
-                valueFrom:
-                  secretKeyRef:
-                    key: DB_ADMIN_PASSWORD
-                    name: platform-secret-pf-database
-              - name: DB_ADMIN_USER
-                valueFrom:
-                  secretKeyRef:
-                    key: DB_ADMIN_USER
-                    name: platform-secret-pf-database
-              image: mariadb:10.9
-              imagePullPolicy: IfNotPresent
-              name: platform-db-backup
-              resources: {}
-              securityContext:
-                allowPrivilegeEscalation: false
-                readOnlyRootFilesystem: false
-                runAsGroup: 1000
-                runAsNonRoot: true
-                runAsUser: 1000
-              volumeMounts:
-              - mountPath: /storage
-                name: volume-ita-backup-storage
-            volumes:
-            - name: volume-ita-backup-storage
-              persistentVolumeClaim:
-                claimName: pvc-ita-global
-            restartPolicy: Always
-            securityContext: {}
-            serviceAccount: default
-            serviceAccountName: default
-          _EOF_
+#. データベースのバックアップ取得
 
-      2. データベースのバックアップを取得します。
+   | データベースに対して :command:`mysqldump` バックアップを取得します。
+   | Exastro Platform と Exastro IT Automation でデータベースサーバを共有するか、分離するかによって手順が異なります。
 
-      .. code-block:: bash
-          :caption: コマンド
+   .. tabs::
 
-          kubectl exec -it platform-db-backup -n exastro -- sh -c 'mysqldump -h ${DB_HOST} -P ${DB_PORT} -u ${DB_ADMIN_USER} -p${DB_ADMIN_PASSWORD} --all-databases --add-drop-table' | gzip > mysqldump_platform-db_`date +"%Y%m%d-%H%M%S"`.sql.gz
+      .. group-tab:: データベースサーバを共有
 
-      3. ファイルのバックアップを取得します。
+          .. code-block:: bash
+             :caption: Exastro 用データベースバックアップコマンド
 
-      .. code-block:: bash
-          :caption: コマンド
+             # アプリケーション
+             kubectl exec -it exastro-maintenance -n exastro -- sh -c 'mysqldump -h ${PF_DB_HOST} -P ${PF_DB_PORT} -u ${PF_DB_ADMIN_USER} -p${PF_DB_ADMIN_PASSWORD} --all-databases --add-drop-table' | gzip > exastro_mysqldump_platform_db_`date +"%Y%m%d-%H%M%S"`.sql.gz
 
-          kubectl exec -i platform-db-backup -n exastro -- sh -c 'tar zcvf - ${STORAGEPATH}' > exastro_storage_backup_`date +"%Y%m%d-%H%M%S"`.tar.gz
+             # ユーザ
+             kubectl exec -it exastro-maintenance -n exastro -- sh -c 'mysqldump -h ${PF_DB_HOST} -P ${PF_DB_PORT} -u ${PF_DB_ADMIN_USER} -p${PF_DB_ADMIN_PASSWORD} --allow-keywords mysql' | gzip > exastro_mysqldump_platform_user_`date +"%Y%m%d-%H%M%S"`.sql.gz
 
-      4. 作業用に起動した Pod を削除します。
+      .. group-tab:: データベースサーバを分離
 
-      .. code-block:: bash
-          :caption: コマンド
+          .. code-block:: bash
+             :caption: Exastro Platform 用データベースバックアップコマンド
 
-          kubectl delete pod platform-db-backup -n exastro
+             # アプリケーション
+             kubectl exec -it exastro-maintenance -n exastro -- sh -c 'mysqldump -h ${PF_DB_HOST} -P ${PF_DB_PORT} -u ${PF_DB_ADMIN_USER} -p${PF_DB_ADMIN_PASSWORD} --all-databases --add-drop-table' | gzip > exastro_mysqldump_platform_db_`date +"%Y%m%d-%H%M%S"`.sql.gz
 
-  .. group-tab:: データベースを分離
+             # ユーザ
+             kubectl exec -it exastro-maintenance -n exastro -- sh -c 'mysqldump -h ${PF_DB_HOST} -P ${PF_DB_PORT} -u ${PF_DB_ADMIN_USER} -p${PF_DB_ADMIN_PASSWORD} --allow-keywords mysql' | gzip > exastro_mysqldump_platform_user_`date +"%Y%m%d-%H%M%S"`.sql.gz
 
-      | Exastro Platform のデータベースを :command:`mysqldump` を使ってバックアップします。
+          .. code-block:: bash
+             :caption: Exastro IT Automation 用データベースバックアップコマンド
 
-      1. メンテナンス用コンテナを作成します。
+             # アプリケーション
+             kubectl exec -it exastro-maintenance -n exastro -- sh -c 'mysqldump -h ${ITA_DB_HOST} -P ${ITA_DB_PORT} -u ${ITA_DB_ADMIN_USER} -p${ITA_DB_ADMIN_PASSWORD} --all-databases --add-drop-table' | gzip > exastro_mysqldump_ita_db_`date +"%Y%m%d-%H%M%S"`.sql.gz
 
-      .. code-block:: bash
-          :caption: コマンド
-          :linenos:
+             # ユーザ
+             kubectl exec -it exastro-maintenance -n exastro -- sh -c 'mysqldump -h ${ITA_DB_HOST} -P ${ITA_DB_PORT} -u ${ITA_DB_ADMIN_USER} -p${ITA_DB_ADMIN_PASSWORD} --allow-keywords mysql' | gzip > exastro_mysqldump_ita_user_`date +"%Y%m%d-%H%M%S"`.sql.gz
 
-          cat <<_EOF_ | kubectl apply -f - -n exastro
-          apiVersion: v1
-          kind: Pod
-          metadata:
-            name: platform-db-backup
-            namespace: exastro
-          spec:
-            containers:
-            - command:
-              - sh
-              - -c
-              args:
-              - |
-                #!/bin/bash
-                sleep 3600
-              env:
-              - name: DB_DATABASE
-                valueFrom:
-                  configMapKeyRef:
-                    key: DB_DATABASE
-                    name: platform-params-pf-database
-              - name: DB_HOST
-                valueFrom:
-                  configMapKeyRef:
-                    key: DB_HOST
-                    name: platform-params-pf-database
-              - name: DB_PORT
-                valueFrom:
-                  configMapKeyRef:
-                    key: DB_PORT
-                    name: platform-params-pf-database
-              - name: STORAGEPATH
-                valueFrom:
-                  configMapKeyRef:
-                    key: STORAGEPATH
-                    name: ita-params-ita-global
-              - name: DB_ADMIN_PASSWORD
-                valueFrom:
-                  secretKeyRef:
-                    key: DB_ADMIN_PASSWORD
-                    name: platform-secret-pf-database
-              - name: DB_ADMIN_USER
-                valueFrom:
-                  secretKeyRef:
-                    key: DB_ADMIN_USER
-                    name: platform-secret-pf-database
-              image: mariadb:10.9
-              imagePullPolicy: IfNotPresent
-              name: platform-db-backup
-              resources: {}
-              securityContext:
-                allowPrivilegeEscalation: false
-                readOnlyRootFilesystem: false
-                runAsGroup: 1000
-                runAsNonRoot: true
-                runAsUser: 1000
-              volumeMounts:
-              - mountPath: /storage
-                name: volume-ita-backup-storage
-            volumes:
-            - name: volume-ita-backup-storage
-              persistentVolumeClaim:
-                claimName: pvc-ita-global
-            restartPolicy: Always
-            securityContext: {}
-            serviceAccount: default
-            serviceAccountName: default
-          _EOF_
+#. ファイルのバックアップ取得
 
-      2. Exastro Platform のデータベースのバックアップを取得します。
+   | Exastro IT Automation のファイルのバックアップを取得します。
 
-      .. code-block:: bash
-          :caption: 実行結果
+   .. code-block:: bash
+      :caption: コマンド
 
-          kubectl exec -it platform-db-backup -n exastro -- sh -c 'mysqldump -h ${DB_HOST} -P ${DB_PORT} -u ${DB_ADMIN_USER} -p${DB_ADMIN_PASSWORD} --all-databases --add-drop-table' | gzip > mysqldump_platform-db_`date +"%Y%m%d-%H%M%S"`.sql.gz
+      kubectl exec -i exastro-maintenance -n exastro -- sh -c 'tar zcvf - ${STORAGEPATH}' > exastro_storage_backup_ita_`date +"%Y%m%d-%H%M%S"`.tar.gz
 
-      3. ファイルのバックアップを取得します。
+#. メンテナンス用コンテナの削除
 
-      .. code-block:: bash
-          :caption: コマンド
+   | バックアップ作業用コンテナの作成をします。
 
-          kubectl exec -i platform-db-backup -n exastro -- sh -c 'tar zcvf - ${STORAGEPATH}' > exastro_storage_backup_`date +"%Y%m%d-%H%M%S"`.tar.gz
+   .. code-block:: bash
+      :caption: コマンド
 
-
-      4. メンテナンス用コンテナを作成します。
-
-      | Exastro IT Automation のデータベースを :command:`mysqldump` を使ってバックアップします。
-
-      .. code-block:: bash
-          :caption: コマンド
-          :linenos:
-
-          cat <<_EOF_ | kubectl apply -f - -n exastro
-          apiVersion: v1
-          kind: Pod
-          metadata:
-            name: ita-db-backup
-            namespace: exastro
-          spec:
-            containers:
-            - command:
-              - sh
-              - -c
-              args:
-              - |
-                #!/bin/bash
-                sleep 3600
-              env:
-              - name: DB_DATABASE
-                valueFrom:
-                  configMapKeyRef:
-                    key: DB_DATABASE
-                    name: ita-params-ita-database
-              - name: DB_HOST
-                valueFrom:
-                  configMapKeyRef:
-                    key: DB_HOST
-                    name: ita-params-ita-database
-              - name: DB_PORT
-                valueFrom:
-                  configMapKeyRef:
-                    key: DB_PORT
-                    name: ita-params-ita-database
-              - name: DB_ADMIN_PASSWORD
-                valueFrom:
-                  secretKeyRef:
-                    key: DB_ADMIN_PASSWORD
-                    name: ita-secret-ita-database
-              - name: DB_ADMIN_USER
-                valueFrom:
-                  secretKeyRef:
-                    key: DB_ADMIN_USER
-                    name: ita-secret-ita-database
-              image: mariadb:10.9
-              imagePullPolicy: IfNotPresent
-              name: ita-db-backup
-              resources: {}
-              securityContext:
-                allowPrivilegeEscalation: false
-                readOnlyRootFilesystem: false
-                runAsGroup: 1000
-                runAsNonRoot: true
-                runAsUser: 1000
-            restartPolicy: Always
-            securityContext: {}
-            serviceAccount: default
-            serviceAccountName: default
-          _EOF_
-
-      5. Exastro IT Automation のデータベースのバックアップを取得します。
-
-      .. code-block:: bash
-          :caption: コマンド
-
-          kubectl exec -it ita-db-backup -n exastro -- sh -c 'mysqldump -h ${DB_HOST} -P ${DB_PORT} -u ${DB_ADMIN_USER} -p${DB_ADMIN_PASSWORD} --all-databases --add-drop-table' | gzip > mysqldump_ita-db_`date +"%Y%m%d-%H%M%S"`.sql.gz
-
-      6. ファイルのバックアップを取得します。
-
-      .. code-block:: bash
-          :caption: コマンド
-
-          kubectl exec -it ita-db-backup -n exastro -- sh -c 'mysqldump -h ${DB_HOST} -P ${DB_PORT} -u ${DB_ADMIN_USER} -p${DB_ADMIN_PASSWORD} --all-databases --add-drop-table' | gzip > mysqldump_ita-db_`date +"%Y%m%d-%H%M%S"`.sql.gz
-
-      7. 作業用に起動した Pod を削除します。
-
-      .. code-block:: bash
-        :caption: コマンド
-
-        kubectl delete pod platform-db-backup -n exastro
-        kubectl delete pod ita-db-backup -n exastro
+      kubectl delete pod exastro-maintenance -n exastro
 
 サービス再開
 ------------
 
-:ref:`check_replica_count_backup` で取得した各 Deployment のレプリカ数を元に戻します。
+:ref:`check_replica_count_backup` で取得した各 Deployment の Pod 起動数を元に戻します。
 
 
 .. code-block::
@@ -451,15 +329,15 @@ Pod 起動数の再確認
   platform-auth-5b57bc57bd                            1         1         1       6d22h
 
 
-.. _check_replica_count_restore:
-
 リストア
 ========
 
-レプリカ数の確認
+.. _check_replica_count_restore:
+
+Pod 起動数の確認
 ----------------
 
-| 作業前のレプリカ数の確認をし、状態を記録します。
+| 作業前の Pod 起動数の確認をし、状態を記録します。
 
 .. code-block:: bash
   :caption: コマンド
@@ -474,7 +352,7 @@ Pod 起動数の再確認
 リバースプロキシの停止
 ----------------------
 
-| リバースプロキシ (platform-auth) のレプリカ数を 0 に変更し、エンドユーザーからのアクセスを制限します。
+| リバースプロキシ (platform-auth) の Pod 起動数を 0 に変更し、エンドユーザーからのアクセスを制限します。
 
 .. code-block:: bash
   :caption: コマンド
@@ -484,7 +362,7 @@ Pod 起動数の再確認
 バックヤード処理の停止
 ----------------------
 
-| バックヤード処理 (ita-by-\*\*\*) のレプリカ数を 0 に変更し、データベースの更新を停止します。
+| バックヤード処理 (ita-by-\*\*\*) の Pod 起動数を 0 に変更し、データベースの更新を停止します。
 
 .. code-block:: bash
   :caption: コマンド
@@ -529,279 +407,168 @@ Pod 起動数の確認
 
 | Exastro システム内で、Exastro Platform と Exastro IT Automation でデータベースを共有するか、分離するかによって手順が異なります。
 
-.. tabs::
+#. メンテナンス用コンテナの作成
 
-  .. group-tab:: データベースを共有
+   | リストア作業用コンテナの作成をします。
 
-      1. メンテナンス用コンテナを作成します。
+   .. code-block:: bash
+      :caption: コマンド
+      :linenos:
 
-      | Exastro Platform のデータベース(Exastro IT Automation と共有)を :command:`mysql` を使ってリストアします。
+      cat <<_EOF_ | kubectl apply -f - -n exastro
+      apiVersion: v1
+      kind: Pod
+      metadata:
+        name: exastro-maintenance
+        namespace: exastro
+      spec:
+        containers:
+        - command:
+          - sh
+          - -c
+          args:
+          - |
+            #!/bin/bash
+            sleep 3600
+          env:
+          - name: PF_DB_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                key: DB_DATABASE
+                name: platform-params-pf-database
+          - name: PF_DB_HOST
+            valueFrom:
+              configMapKeyRef:
+                key: DB_HOST
+                name: platform-params-pf-database
+          - name: PF_DB_PORT
+            valueFrom:
+              configMapKeyRef:
+                key: DB_PORT
+                name: platform-params-pf-database
+          - name: PF_DB_ADMIN_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: DB_ADMIN_PASSWORD
+                name: platform-secret-pf-database
+          - name: PF_DB_ADMIN_USER
+            valueFrom:
+              secretKeyRef:
+                key: DB_ADMIN_USER
+                name: platform-secret-pf-database
+          - name: ITA_DB_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                key: DB_DATABASE
+                name: ita-params-ita-database
+          - name: ITA_DB_HOST
+            valueFrom:
+              configMapKeyRef:
+                key: DB_HOST
+                name: ita-params-ita-database
+          - name: ITA_DB_PORT
+            valueFrom:
+              configMapKeyRef:
+                key: DB_PORT
+                name: ita-params-ita-database
+          - name: ITA_STORAGEPATH
+            valueFrom:
+              configMapKeyRef:
+                key: STORAGEPATH
+                name: ita-params-ita-global
+          - name: ITA_DB_ADMIN_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: DB_ADMIN_PASSWORD
+                name: ita-secret-ita-database
+          - name: ITA_DB_ADMIN_USER
+            valueFrom:
+              secretKeyRef:
+                key: DB_ADMIN_USER
+                name: ita-secret-ita-database
+          image: mariadb:10.9
+          imagePullPolicy: IfNotPresent
+          name: exastro-maintenance
+          resources: {}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: false
+            runAsGroup: 1000
+            runAsNonRoot: true
+            runAsUser: 1000
+          volumeMounts:
+          - mountPath: /storage
+            name: volume-ita-backup-storage
+        volumes:
+        - name: volume-ita-backup-storage
+          persistentVolumeClaim:
+            claimName: pvc-ita-global
+        restartPolicy: Always
+        securityContext: {}
+        serviceAccount: default
+        serviceAccountName: default
+      _EOF_
 
-      .. code-block:: bash
-          :caption: コマンド
-          :linenos:
+#. データベースのリストア実施
 
-          cat <<_EOF_ | kubectl apply -f - -n exastro
-          apiVersion: v1
-          kind: Pod
-          metadata:
-            name: platform-db-backup
-            namespace: exastro
-          spec:
-            containers:
-            - command:
-              - sh
-              - -c
-              args:
-              - |
-                #!/bin/bash
-                sleep 3600
-              env:
-              - name: DB_DATABASE
-                valueFrom:
-                  configMapKeyRef:
-                    key: DB_DATABASE
-                    name: platform-params-pf-database
-              - name: DB_HOST
-                valueFrom:
-                  configMapKeyRef:
-                    key: DB_HOST
-                    name: platform-params-pf-database
-              - name: DB_PORT
-                valueFrom:
-                  configMapKeyRef:
-                    key: DB_PORT
-                    name: platform-params-pf-database
-              - name: STORAGEPATH
-                valueFrom:
-                  configMapKeyRef:
-                    key: STORAGEPATH
-                    name: ita-params-ita-global
-              - name: DB_ADMIN_PASSWORD
-                valueFrom:
-                  secretKeyRef:
-                    key: DB_ADMIN_PASSWORD
-                    name: platform-secret-pf-database
-              - name: DB_ADMIN_USER
-                valueFrom:
-                  secretKeyRef:
-                    key: DB_ADMIN_USER
-                    name: platform-secret-pf-database
-              image: mariadb:10.9
-              imagePullPolicy: IfNotPresent
-              name: platform-db-backup
-              resources: {}
-              securityContext:
-                allowPrivilegeEscalation: false
-                readOnlyRootFilesystem: false
-                runAsGroup: 1000
-                runAsNonRoot: true
-                runAsUser: 1000
-              volumeMounts:
-              - mountPath: /storage
-                name: volume-ita-backup-storage
-            volumes:
-            - name: volume-ita-backup-storage
-              persistentVolumeClaim:
-                claimName: pvc-ita-global
-            restartPolicy: Always
-            securityContext: {}
-            serviceAccount: default
-            serviceAccountName: default
-          _EOF_
+   | データベースに対して :command:`mysqldump` リストアを実施します。
+   | Exastro Platform と Exastro IT Automation でデータベースサーバを共有するか、分離するかによって手順が異なります。
 
-      2. データベースのリストアを実施します。
+   .. tabs::
 
-      .. code-block:: bash
-        :caption: コマンド
+      .. group-tab:: データベースサーバを共有
 
-        gzip -dc mysqldump_platform-db_YYYYMMDD-HHmmss.sql.gz | kubectl exec -i platform-db-backup -n exastro -- sh -c 'mysql -h ${DB_HOST} -P ${DB_PORT} -u ${DB_ADMIN_USER} -p${DB_ADMIN_PASSWORD}'
+          .. code-block:: bash
+             :caption: Exastro 用データベースリストアコマンド
 
-      3. ファイルのリストアを実施します。
+             # ユーザ
+             gzip -dc exastro_mysqldump_platform_user_YYYYMMDD-HHmmss.sql.gz | kubectl exec -i exastro-maintenance -n exastro -- sh -c 'mysql -h ${PF_DB_HOST} -P ${PF_DB_PORT} -u ${PF_DB_ADMIN_USER} -p${PF_DB_ADMIN_PASSWORD}'
 
-      .. code-block:: bash
-        :caption: コマンド
+             # アプリケーション
+             gzip -dc exastro_mysqldump_platform_db_YYYYMMDD-HHmmss.sql.gz | kubectl exec -i exastro-maintenance -n exastro -- sh -c 'mysql -h ${PF_DB_HOST} -P ${PF_DB_PORT} -u ${PF_DB_ADMIN_USER} -p${PF_DB_ADMIN_PASSWORD}'
 
-        kubectl exec -i platform-db-backup -n exastro -- sh -c 'tar zxvf - -C  ${STORAGEPATH}' < exastro_storage_backup_YYYYMMDD-HHmmss.tar.gz
+      .. group-tab:: データベースサーバを分離
 
-      4. 作業用に起動した Pod を削除します。
+          .. code-block:: bash
+             :caption: Exastro Platform 用データベースリストアコマンド
 
-      .. code-block:: bash
-        :caption: コマンド
+             # ユーザ
+             gzip -dc exastro_mysqldump_platform_user_YYYYMMDD-HHmmss.sql.gz | kubectl exec -i exastro-maintenance -n exastro -- sh -c 'mysql -h ${PF_DB_HOST} -P ${PF_DB_PORT} -u ${PF_DB_ADMIN_USER} -p${PF_DB_ADMIN_PASSWORD}'
 
-        kubectl delete pod platform-db-backup -n exastro
+             # アプリケーション
+             gzip -dc exastro_mysqldump_platform_db_YYYYMMDD-HHmmss.sql.gz | kubectl exec -i exastro-maintenance -n exastro -- sh -c 'mysql -h ${PF_DB_HOST} -P ${PF_DB_PORT} -u ${PF_DB_ADMIN_USER} -p${PF_DB_ADMIN_PASSWORD}'
 
-  .. group-tab:: データベースを分離
+          .. code-block:: bash
+             :caption: Exastro IT Automation 用データベースリストアコマンド
 
-      1. メンテナンス用コンテナを作成します。
+             # ユーザ
+             gzip -dc exastro_mysqldump_ita_user_YYYYMMDD-HHmmss.sql.gz | kubectl exec -i exastro-maintenance -n exastro -- sh -c 'mysql -h ${ITA_DB_HOST} -P ${ITA_DB_PORT} -u ${ITA_DB_ADMIN_USER} -p${ITA_DB_ADMIN_PASSWORD}'
 
-      | Exastro Platform のデータベースを :command:`mysql` を使ってリストアします。
+             # アプリケーション
+             gzip -dc exastro_mysqldump_ita_db_YYYYMMDD-HHmmss.sql.gz | kubectl exec -i exastro-maintenance -n exastro -- sh -c 'mysql -h ${ITA_DB_HOST} -P ${ITA_DB_PORT} -u ${ITA_DB_ADMIN_USER} -p${ITA_DB_ADMIN_PASSWORD}'
 
+#. ファイルのリストア実施
 
-      .. code-block:: bash
-          :caption: コマンド
-          :linenos:
+   | Exastro IT Automation のファイルのバックアップを取得します。
 
-          cat <<_EOF_ | kubectl apply -f - -n exastro
-          apiVersion: v1
-          kind: Pod
-          metadata:
-            name: platform-db-backup
-            namespace: exastro
-          spec:
-            containers:
-            - command:
-              - sh
-              - -c
-              args:
-              - |
-                #!/bin/bash
-                sleep 3600
-              env:
-              - name: DB_DATABASE
-                valueFrom:
-                  configMapKeyRef:
-                    key: DB_DATABASE
-                    name: platform-params-pf-database
-              - name: DB_HOST
-                valueFrom:
-                  configMapKeyRef:
-                    key: DB_HOST
-                    name: platform-params-pf-database
-              - name: DB_PORT
-                valueFrom:
-                  configMapKeyRef:
-                    key: DB_PORT
-                    name: platform-params-pf-database
-              - name: STORAGEPATH
-                valueFrom:
-                  configMapKeyRef:
-                    key: STORAGEPATH
-                    name: ita-params-ita-global
-              - name: DB_ADMIN_PASSWORD
-                valueFrom:
-                  secretKeyRef:
-                    key: DB_ADMIN_PASSWORD
-                    name: platform-secret-pf-database
-              - name: DB_ADMIN_USER
-                valueFrom:
-                  secretKeyRef:
-                    key: DB_ADMIN_USER
-                    name: platform-secret-pf-database
-              image: mariadb:10.9
-              imagePullPolicy: IfNotPresent
-              name: platform-db-backup
-              resources: {}
-              securityContext:
-                allowPrivilegeEscalation: false
-                readOnlyRootFilesystem: false
-                runAsGroup: 1000
-                runAsNonRoot: true
-                runAsUser: 1000
-              volumeMounts:
-              - mountPath: /storage
-                name: volume-ita-backup-storage
-            volumes:
-            - name: volume-ita-backup-storage
-              persistentVolumeClaim:
-                claimName: pvc-ita-global
-            restartPolicy: Always
-            securityContext: {}
-            serviceAccount: default
-            serviceAccountName: default
-          _EOF_
+   .. code-block:: bash
+      :caption: コマンド
 
-      2. データベースをリストアします。
+      kubectl exec -i exastro-maintenance -n exastro -- sh -c 'tar zxvf - -C  ${STORAGEPATH}' < exastro_storage_backup_ita_YYYYMMDD-HHmmss.tar.gz
 
-      .. code-block:: bash
-          :caption: 実行結果
+#. メンテナンス用コンテナの削除
 
-          gzip -dc mysqldump_platform-db_YYYYMMDD-HHmmss.sql.gz | kubectl exec -i platform-db-backup -n exastro -- sh -c 'mysql -h ${DB_HOST} -P ${DB_PORT} -u ${DB_ADMIN_USER} -p${DB_ADMIN_PASSWORD}'
+   | バックアップ作業用コンテナの作成をします。
 
-      3. ファイルをリストアします。
+   .. code-block:: bash
+      :caption: コマンド
 
-      .. code-block:: bash
-          :caption: 実行結果
-
-          kubectl exec -i platform-db-backup -n exastro -- sh -c 'tar zxvf - -C  ${STORAGEPATH}' < exastro_storage_backup_YYYYMMDD-HHmmss.tar.gz
-
-      4. メンテナンス用コンテナを作成します。
-
-      | Exastro IT Automation のデータベースを :command:`mysql` を使ってリストアします。
-
-      .. code-block:: bash
-          :caption: コマンド
-          :linenos:
-
-          cat <<_EOF_ | kubectl apply -f - -n exastro
-          apiVersion: v1
-          kind: Pod
-          metadata:
-            name: ita-db-backup
-            namespace: exastro
-          spec:
-            containers:
-            - command:
-              - sh
-              - -c
-              args:
-              - |
-                #!/bin/bash
-                sleep 3600
-              env:
-              - name: DB_DATABASE
-                valueFrom:
-                  configMapKeyRef:
-                    key: DB_DATABASE
-                    name: ita-params-ita-database
-              - name: DB_HOST
-                valueFrom:
-                  configMapKeyRef:
-                    key: DB_HOST
-                    name: ita-params-ita-database
-              - name: DB_PORT
-                valueFrom:
-                  configMapKeyRef:
-                    key: DB_PORT
-                    name: ita-params-ita-database
-              - name: DB_ADMIN_PASSWORD
-                valueFrom:
-                  secretKeyRef:
-                    key: DB_ADMIN_PASSWORD
-                    name: ita-secret-ita-database
-              - name: DB_ADMIN_USER
-                valueFrom:
-                  secretKeyRef:
-                    key: DB_ADMIN_USER
-                    name: ita-secret-ita-database
-              image: mariadb:10.9
-              imagePullPolicy: IfNotPresent
-              name: ita-db-backup
-              resources: {}
-              securityContext:
-                allowPrivilegeEscalation: false
-                readOnlyRootFilesystem: false
-                runAsGroup: 1000
-                runAsNonRoot: true
-                runAsUser: 1000
-            restartPolicy: Always
-            securityContext: {}
-            serviceAccount: default
-            serviceAccountName: default
-          _EOF_
-
-      5. 作業用に起動した Pod を削除します。
-
-      .. code-block:: bash
-        :caption: コマンド
-
-        kubectl delete pod platform-db-backup -n exastro
-        kubectl delete pod ita-db-backup -n exastro
+      kubectl delete pod exastro-maintenance -n exastro
 
 サービス再開
 ------------
 
-:ref:`check_replica_count_restore` で取得した各 Deployment のレプリカ数を元に戻します。
+:ref:`check_replica_count_restore` で取得した各 Deployment の Pod 起動数を元に戻します。
 
 
 .. code-block::
