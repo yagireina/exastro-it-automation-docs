@@ -46,7 +46,7 @@
      - | AppLog instance(stdAppLogger) is created
      - | ログによって形式が異なります。
 
-platform-job・platform-api
+platform-migtration・platform-api
 ==========================
 
 .. code-block:: 
@@ -240,23 +240,23 @@ keycloak
    * - | %-5p
      - | ログレベル
      - | INFO
-     - |
+     - | DEBUG, INFO, WARN, ERROR のいずれかが出力される。
    * - | \[%c\]
      - | ログ　カテゴリ名
      - | \[org.keycloak.events\]
-     - |
+     - | 
    * - | \(%t\)
      - | スレッド名
      - | \(default task-13\)
-     - |
+     - | 
    * - | %s
      - | 簡単なメッセージ
      - | - 
-     - |
+     - | 
    * - | %e
      - | 例外
      - | -
-     - |
+     - | 
    * - | %n
      - | 改行
      - | -
@@ -302,7 +302,7 @@ ita-api-organization
    * - | %(levelname)s
      - | ログレベル
      - | INFO
-     - | ERROR, INFO, DEBUG が基本的なログレベル
+     - | ERROR, INFO, DEBUG がのいずれかが出力される。
    * - | <フリーログ>
      - | 決まった値はなし
      - | AppLog instance(stdAppLogger) is created
