@@ -1811,7 +1811,7 @@ Module素材の記入例と登録例を「 4.1 Terraform作業フロー」のフ
       .. figure:: /images/ja/terraform-driver/common/tuple.png
          :alt: tuple型
          :align: left
-         :width: 50  
+         :width: 500px  
 
    #. | map型
    
