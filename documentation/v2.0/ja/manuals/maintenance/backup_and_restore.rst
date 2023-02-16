@@ -49,75 +49,10 @@
 バックアップ
 ============
 
-.. _check_replica_count_backup:
+サービス停止
+------------
 
-Pod 起動数の確認
-----------------
-
-| 作業前の Pod 起動数の確認をし、状態を記録します。
-
-.. code-block:: bash
-  :caption: コマンド
-
-  RS_AE=`kubectl get deploy ita-by-ansible-execute -o jsonpath='{@.spec.replicas}{"\n"}' -n exastro`
-  RS_ALRV=`kubectl get deploy ita-by-ansible-legacy-role-vars-listup -o jsonpath='{@.spec.replicas}{"\n"}' -n exastro`
-  RS_ATS=`kubectl get deploy ita-by-ansible-towermaster-sync -o jsonpath='{@.spec.replicas}{"\n"}' -n exastro`
-  RS_CS=`kubectl get deploy ita-by-conductor-synchronize -o jsonpath='{@.spec.replicas}{"\n"}' -n exastro`
-  RS_MC=`kubectl get deploy ita-by-menu-create -o jsonpath='{@.spec.replicas}{"\n"}' -n exastro`
-  RS_PA=`kubectl get deploy platform-auth -o jsonpath='{@.spec.replicas}{"\n"}' -n exastro`
-
-リバースプロキシの停止
-----------------------
-
-| リバースプロキシ (platform-auth) の Pod 起動数を 0 に変更し、エンドユーザーからのアクセスを制限します。
-
-.. code-block:: bash
-  :caption: コマンド
-
-  kubectl scale deployment platform-auth -n exastro --replicas=0
-
-バックヤード処理の停止
-----------------------
-
-| バックヤード処理 (ita-by-\*\*\*) の Pod 起動数を 0 に変更し、データベースの更新を停止します。
-
-.. code-block:: bash
-  :caption: コマンド
-  :linenos:
-
-  kubectl scale deployment ita-by-ansible-execute -n exastro --replicas=0
-  kubectl scale deployment ita-by-ansible-legacy-role-vars-listup -n exastro --replicas=0
-  kubectl scale deployment ita-by-ansible-towermaster-sync -n exastro --replicas=0
-  kubectl scale deployment ita-by-conductor-synchronize -n exastro --replicas=0
-  kubectl scale deployment ita-by-menu-create -n exastro --replicas=0
-
-Pod 起動数の確認
-----------------
-
-| 上記で停止した対象の Pod 数が 0 になっていることを確認
-
-.. code-block:: bash
-  :caption: コマンド
-
-  kubectl get replicaset -n exastro
-
-.. code-block:: bash
-  :caption: 実行結果
-
-  NAME                                                DESIRED   CURRENT   READY   AGE
-  mariadb-67dd78cc76                                  1         1         1       6d22h
-  platform-web-9f9d486fd                              1         1         1       6d22h
-  ita-api-admin-85b7d8f977                            1         1         1       6d22h
-  ita-web-server-7dbf6fd6ff                           1         1         1       6d22h
-  ita-api-organization-5c5f4b86cb                     1         1         1       6d22h
-  platform-api-8655864fbf                             1         1         1       6d22h
-  keycloak-7f7cdccb6b                                 1         1         1       6d22h
-  platform-auth-5b57bc57bd                            0         0         0       6d22h
-  ita-by-ansible-execute-6cd6d4d5fd                   0         0         0       6d22h
-  ita-by-ansible-legacy-role-vars-listup-67dbf5586f   0         0         0       6d22h
-  ita-by-ansible-towermaster-sync-5674448c55          0         0         0       6d22h
-  ita-by-conductor-synchronize-9dc6cfbdf              0         0         0       6d22h
-  ita-by-menu-create-7fccfc7f57                       0         0         0       6d22h
+.. include:: ../../include/stop_service_k8s.rst
 
 バックアップ
 ------------
@@ -286,47 +221,7 @@ Pod 起動数の確認
 サービス再開
 ------------
 
-:ref:`check_replica_count_backup` で取得した各 Deployment の Pod 起動数を元に戻します。
-
-
-.. code-block::
-  :caption: コマンド
-  :linenos:
-
-  kubectl scale deployment ita-by-ansible-execute -n exastro --replicas=${RS_AE}
-  kubectl scale deployment ita-by-ansible-legacy-role-vars-listup -n exastro --replicas=${RS_ALRV}
-  kubectl scale deployment ita-by-ansible-towermaster-sync -n exastro --replicas=${RS_ATS}
-  kubectl scale deployment ita-by-conductor-synchronize -n exastro --replicas=${RS_CS}
-  kubectl scale deployment ita-by-menu-create -n exastro --replicas=${RS_MC}
-  kubectl scale deployment platform-auth -n exastro --replicas=${RS_PA}
-
-Pod 起動数の再確認
-------------------
-
-| 上記で起動した対象の Pod 数が元に戻りすべて :kbd:`READY` になっていることを確認
-
-.. code-block:: bash
-  :caption: コマンド
-
-  kubectl get replicaset -n exastro
-
-.. code-block:: bash
-  :caption: 実行結果
-
-  NAME                                                DESIRED   CURRENT   READY   AGE
-  mariadb-67dd78cc76                                  1         1         1       6d22h
-  platform-web-9f9d486fd                              1         1         1       6d22h
-  ita-api-admin-85b7d8f977                            1         1         1       6d22h
-  ita-web-server-7dbf6fd6ff                           1         1         1       6d22h
-  ita-api-organization-5c5f4b86cb                     1         1         1       6d22h
-  platform-api-8655864fbf                             1         1         1       6d22h
-  keycloak-7f7cdccb6b                                 1         1         1       6d22h
-  ita-by-ansible-execute-6cd6d4d5fd                   1         1         1       6d22h
-  ita-by-ansible-legacy-role-vars-listup-67dbf5586f   1         1         1       6d22h
-  ita-by-ansible-towermaster-sync-5674448c55          1         1         1       6d22h
-  ita-by-conductor-synchronize-9dc6cfbdf              1         1         1       6d22h
-  ita-by-menu-create-7fccfc7f57                       1         1         1       6d22h
-  platform-auth-5b57bc57bd                            1         1         1       6d22h
+.. include:: ../../include/start_service_k8s.rst
 
 
 リストア
@@ -334,73 +229,10 @@ Pod 起動数の再確認
 
 .. _check_replica_count_restore:
 
-Pod 起動数の確認
-----------------
+サービス停止
+------------
 
-| 作業前の Pod 起動数の確認をし、状態を記録します。
-
-.. code-block:: bash
-  :caption: コマンド
-
-  RS_AE=`kubectl get deploy ita-by-ansible-execute -o jsonpath='{@.spec.replicas}{"\n"}' -n exastro`
-  RS_ALRV=`kubectl get deploy ita-by-ansible-legacy-role-vars-listup -o jsonpath='{@.spec.replicas}{"\n"}' -n exastro`
-  RS_ATS=`kubectl get deploy ita-by-ansible-towermaster-sync -o jsonpath='{@.spec.replicas}{"\n"}' -n exastro`
-  RS_CS=`kubectl get deploy ita-by-conductor-synchronize -o jsonpath='{@.spec.replicas}{"\n"}' -n exastro`
-  RS_MC=`kubectl get deploy ita-by-menu-create -o jsonpath='{@.spec.replicas}{"\n"}' -n exastro`
-  RS_PA=`kubectl get deploy platform-auth -o jsonpath='{@.spec.replicas}{"\n"}' -n exastro`
-
-リバースプロキシの停止
-----------------------
-
-| リバースプロキシ (platform-auth) の Pod 起動数を 0 に変更し、エンドユーザーからのアクセスを制限します。
-
-.. code-block:: bash
-  :caption: コマンド
-
-  kubectl scale deployment platform-auth -n exastro --replicas=0
-
-バックヤード処理の停止
-----------------------
-
-| バックヤード処理 (ita-by-\*\*\*) の Pod 起動数を 0 に変更し、データベースの更新を停止します。
-
-.. code-block:: bash
-  :caption: コマンド
-  :linenos:
-
-  kubectl scale deployment ita-by-ansible-execute -n exastro --replicas=0
-  kubectl scale deployment ita-by-ansible-legacy-role-vars-listup -n exastro --replicas=0
-  kubectl scale deployment ita-by-ansible-towermaster-sync -n exastro --replicas=0
-  kubectl scale deployment ita-by-conductor-synchronize -n exastro --replicas=0
-  kubectl scale deployment ita-by-menu-create -n exastro --replicas=0
-
-Pod 起動数の確認
-----------------
-
-| 上記で停止した対象の Pod 数が0になっていることを確認
-
-.. code-block:: bash
-  :caption: コマンド
-
-  kubectl get replicaset -n exastro
-
-.. code-block:: bash
-  :caption: 実行結果
-
-  NAME                                                DESIRED   CURRENT   READY   AGE
-  mariadb-67dd78cc76                                  1         1         1       6d22h
-  platform-web-9f9d486fd                              1         1         1       6d22h
-  ita-api-admin-85b7d8f977                            1         1         1       6d22h
-  ita-web-server-7dbf6fd6ff                           1         1         1       6d22h
-  ita-api-organization-5c5f4b86cb                     1         1         1       6d22h
-  platform-api-8655864fbf                             1         1         1       6d22h
-  keycloak-7f7cdccb6b                                 1         1         1       6d22h
-  platform-auth-5b57bc57bd                            0         0         0       6d22h
-  ita-by-ansible-execute-6cd6d4d5fd                   0         0         0       6d22h
-  ita-by-ansible-legacy-role-vars-listup-67dbf5586f   0         0         0       6d22h
-  ita-by-ansible-towermaster-sync-5674448c55          0         0         0       6d22h
-  ita-by-conductor-synchronize-9dc6cfbdf              0         0         0       6d22h
-  ita-by-menu-create-7fccfc7f57                       0         0         0       6d22h
+.. include:: ../../include/stop_service_k8s.rst
 
 リストア
 --------
@@ -568,44 +400,4 @@ Pod 起動数の確認
 サービス再開
 ------------
 
-:ref:`check_replica_count_restore` で取得した各 Deployment の Pod 起動数を元に戻します。
-
-
-.. code-block::
-  :caption: コマンド
-  :linenos:
-
-  kubectl scale deployment ita-by-ansible-execute -n exastro --replicas=${RS_AE}
-  kubectl scale deployment ita-by-ansible-legacy-role-vars-listup -n exastro --replicas=${RS_ALRV}
-  kubectl scale deployment ita-by-ansible-towermaster-sync -n exastro --replicas=${RS_ATS}
-  kubectl scale deployment ita-by-conductor-synchronize -n exastro --replicas=${RS_CS}
-  kubectl scale deployment ita-by-menu-create -n exastro --replicas=${RS_MC}
-  kubectl scale deployment platform-auth -n exastro --replicas=${RS_PA}
-
-Pod 起動数の再確認
-------------------
-
-| 上記で起動した対象の Pod 数が元に戻りすべて :kbd:`READY` になっていることを確認
-
-.. code-block:: bash
-  :caption: コマンド
-
-  kubectl get replicaset -n exastro
-
-.. code-block:: bash
-  :caption: 実行結果
-
-  NAME                                                DESIRED   CURRENT   READY   AGE
-  mariadb-67dd78cc76                                  1         1         1       6d22h
-  platform-web-9f9d486fd                              1         1         1       6d22h
-  ita-api-admin-85b7d8f977                            1         1         1       6d22h
-  ita-web-server-7dbf6fd6ff                           1         1         1       6d22h
-  ita-api-organization-5c5f4b86cb                     1         1         1       6d22h
-  platform-api-8655864fbf                             1         1         1       6d22h
-  keycloak-7f7cdccb6b                                 1         1         1       6d22h
-  ita-by-ansible-execute-6cd6d4d5fd                   1         1         1       6d22h
-  ita-by-ansible-legacy-role-vars-listup-67dbf5586f   1         1         1       6d22h
-  ita-by-ansible-towermaster-sync-5674448c55          1         1         1       6d22h
-  ita-by-conductor-synchronize-9dc6cfbdf              1         1         1       6d22h
-  ita-by-menu-create-7fccfc7f57                       1         1         1       6d22h
-  platform-auth-5b57bc57bd                            1         1         1       6d22h
+.. include:: ../../include/start_service_k8s.rst
