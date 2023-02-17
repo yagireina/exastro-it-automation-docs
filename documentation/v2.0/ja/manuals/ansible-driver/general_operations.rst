@@ -4951,7 +4951,7 @@ Movement-ロール紐付
 #. | 閲覧画面の項目一覧は以下のとおりです。
    
 
-   .. list-table:: Ansible Backyard必要Linuxコマンド
+   .. list-table:: 閲覧画面項目一覧（作業対象ホスト）
       :widths: 45 120 
       :header-rows: 1
       :align: left
