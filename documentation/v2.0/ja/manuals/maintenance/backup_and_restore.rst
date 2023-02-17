@@ -25,59 +25,10 @@
 - | 作業環境のサーバで充分なディスクの空き容量があること
 
 
-暗号キーのバックアップ
-----------------------
+暗号化キーのバックアップ
+------------------------
 
 .. include:: ../../include/backup_encrypt_key_k8s.rst
-  
-
-| 取得したキーを exastro.yaml の 「ENCRYPT_KEY」に格納してください。
-
-- | Exastro IT Automation ENCRYPT_KEY
-  
-.. code-block:: bash
-
-  itaGlobalDefinition:
-    name: ita-global
-    enabled: true
-    image:
-      registry: "docker.io"
-      organization: exastro
-      package: exastro-it-automation
-    config:
-      DEFAULT_LANGUAGE: "ja"
-      LANGUAGE: "en"
-      CONTAINER_BASE: "kubernetes"
-      TZ: "Asia/Tokyo"
-      STORAGEPATH: "/storage/"
-    secret:
-      ENCRYPT_KEY: ""　# 取得した Exastro IT Automation ENCRYPT_KEY を入力
-
-- | Exastro Platform ENCRYPT_KEY
-  
-.. code-block:: bash
-  
-  pfGlobalDefinition:
-    name: pf-global
-    enabled: true
-    image:
-      registry: "docker.io"
-      organization: exastro
-      package: exastro-platform
-    config:
-      DEFAULT_LANGUAGE: "ja"
-      LANGUAGE: "en"
-      TZ: "Asia/Tokyo"
-      PYTHONIOENCODING: utf-8
-      PLATFORM_API_PROTOCOL: "http"
-      PLATFORM_API_HOST: "platform-api"
-      PLATFORM_API_PORT: "8000"
-      PLATFORM_WEB_PROTOCOL: "http"
-      PLATFORM_WEB_HOST: "platform-web"
-      PLATFORM_WEB_PORT: "8000"
-    secret:
-      ENCRYPT_KEY: ""  # 取得した Exastro Platform ENCRYPT_KEY を入力
-
 
 概要
 ====
