@@ -2,8 +2,7 @@
 ログ一覧
 ========
 
-| Exastro IT Automationの各コンテナの出力メッセージに関するログについて。
-| 各コンテナのログの例と文字列の意味を以下に記載します。
+| Exastro IT Automation の各コンテナのログの例とフォーマットの意味を以下に記載します。
 
 一般的なログ
 ============
@@ -42,12 +41,12 @@
      - | [USER_ID:efb59f05-6f31-47d6-b28e-0f9ee236534e]
      - |
    * - | <フリーログ>
-     - | 決まった値はなし
+     - | 決まったフォーマットはなし
      - | AppLog instance(stdAppLogger) is created
-     - | ログによって形式が異なります。
+     - | ログによってフォーマットが異なります。
 
-platform-job・platform-api
-==========================
+platform-migration・platform-api
+================================
 
 .. code-block:: 
    :caption: 形式
@@ -97,7 +96,7 @@ platform-job・platform-api
 platform-web・ita-web-server
 ============================
 
-| デフォルトのapacheログ形式になっています。
+| デフォルトのApacheログ形式になっています。
 | 設定内容は以下の通りです。
 
 .. code-block::
@@ -203,15 +202,14 @@ platform-web・ita-web-server
 platform-auth
 =============
 
-| authログは、上述のapacheログとapiログの混合されたものが出力されますが、
-| apacheログ（platform-web）とほとんど同じです。
+| platform-authログは、上述のplatform-web・ita-web-serverなどのApacheログとplatform-apiログのフォーマットが混合されたものが出力されますが、platform-webログとほとんど同じです。
 
 .. code-block::
    :caption: 例
 
    [-] - 10.244.0.1 - - [08/Feb/2023:10:22:20 +0900] "GET /auth/resources/b3h1e/common/keycloak/node_modules/patternfly/dist/fonts/OpenSans-Light-webfont.woff2 HTTP/1.1" 200 63180 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
 
-keycloak
+Keycloak
 ========
 
 .. code-block:: 
@@ -240,29 +238,29 @@ keycloak
    * - | %-5p
      - | ログレベル
      - | INFO
-     - |
+     - | DEBUG, INFO, WARN, ERROR のいずれかが出力される。
    * - | \[%c\]
      - | ログ　カテゴリ名
      - | \[org.keycloak.events\]
-     - |
+     - | 
    * - | \(%t\)
      - | スレッド名
      - | \(default task-13\)
-     - |
+     - | 
    * - | %s
      - | 簡単なメッセージ
      - | - 
-     - |
+     - | 
    * - | %e
      - | 例外
      - | -
-     - |
+     - | 
    * - | %n
      - | 改行
      - | -
      - | 
 
-| keycloakのログの詳細については以下のURLをご参照ください。
+| keycloakのログの詳細は下記URLをご参照ください。
 | https://www.keycloak.org/server/logging
 
 platform-db
@@ -302,9 +300,9 @@ ita-api-organization
    * - | %(levelname)s
      - | ログレベル
      - | INFO
-     - | ERROR, INFO, DEBUG が基本的なログレベル
+     - | ERROR, INFO, DEBUG のいずれかが出力される。
    * - | <フリーログ>
-     - | 決まった値はなし
+     - | 決まったフォーマットはなし
      - | AppLog instance(stdAppLogger) is created
      - | ログによって形式が異なります。
 
@@ -343,6 +341,6 @@ ita-api-admin
      - | [USER_ID:efb59f05-6f31-47d6-b28e-0f9ee236534e]
      - |
    * - | <フリーログ>
-     - | 決まった値はなし
+     - | 決まったフォーマットはなし
      - | [ts=2023-01-05T09:05:22.756Z][api-start]url: POST:http://ita-api-admin:8070/api/organizations/org1/ita/
      - | ログによって形式が異なります。
