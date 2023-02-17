@@ -172,32 +172,35 @@
       .. group-tab:: データベースサーバを共有
 
           .. code-block:: bash
-             :caption: Exastro 用データベースバックアップコマンド
+             :caption: アプリケーション用データベースバックアップコマンド
 
-             # アプリケーション
              kubectl exec -it exastro-maintenance -n exastro -- sh -c 'mysqldump -h ${PF_DB_HOST} -P ${PF_DB_PORT} -u ${PF_DB_ADMIN_USER} -p${PF_DB_ADMIN_PASSWORD} --all-databases --add-drop-table' | gzip > exastro_mysqldump_platform_db_`date +"%Y%m%d-%H%M%S"`.sql.gz
 
-             # ユーザ
+          .. code-block:: bash
+             :caption: ユーザ用データベースバックアップコマンド
+
              kubectl exec -it exastro-maintenance -n exastro -- sh -c 'mysqldump -h ${PF_DB_HOST} -P ${PF_DB_PORT} -u ${PF_DB_ADMIN_USER} -p${PF_DB_ADMIN_PASSWORD} --allow-keywords mysql' | gzip > exastro_mysqldump_platform_user_`date +"%Y%m%d-%H%M%S"`.sql.gz
 
       .. group-tab:: データベースサーバを分離
 
           .. code-block:: bash
-             :caption: Exastro Platform 用データベースバックアップコマンド
+             :caption: Exastro Platform アプリケーション用データベースバックアップコマンド
 
-             # アプリケーション
              kubectl exec -it exastro-maintenance -n exastro -- sh -c 'mysqldump -h ${PF_DB_HOST} -P ${PF_DB_PORT} -u ${PF_DB_ADMIN_USER} -p${PF_DB_ADMIN_PASSWORD} --all-databases --add-drop-table' | gzip > exastro_mysqldump_platform_db_`date +"%Y%m%d-%H%M%S"`.sql.gz
 
-             # ユーザ
+          .. code-block:: bash
+             :caption: Exastro Platform ユーザ用データベースバックアップコマンド
+
              kubectl exec -it exastro-maintenance -n exastro -- sh -c 'mysqldump -h ${PF_DB_HOST} -P ${PF_DB_PORT} -u ${PF_DB_ADMIN_USER} -p${PF_DB_ADMIN_PASSWORD} --allow-keywords mysql' | gzip > exastro_mysqldump_platform_user_`date +"%Y%m%d-%H%M%S"`.sql.gz
 
           .. code-block:: bash
-             :caption: Exastro IT Automation 用データベースバックアップコマンド
+             :caption: Exastro IT Automation アプリケーション用データベースバックアップコマンド
 
-             # アプリケーション
              kubectl exec -it exastro-maintenance -n exastro -- sh -c 'mysqldump -h ${ITA_DB_HOST} -P ${ITA_DB_PORT} -u ${ITA_DB_ADMIN_USER} -p${ITA_DB_ADMIN_PASSWORD} --all-databases --add-drop-table' | gzip > exastro_mysqldump_ita_db_`date +"%Y%m%d-%H%M%S"`.sql.gz
 
-             # ユーザ
+          .. code-block:: bash
+             :caption: Exastro IT Automation ユーザ用データベースバックアップコマンド
+
              kubectl exec -it exastro-maintenance -n exastro -- sh -c 'mysqldump -h ${ITA_DB_HOST} -P ${ITA_DB_PORT} -u ${ITA_DB_ADMIN_USER} -p${ITA_DB_ADMIN_PASSWORD} --allow-keywords mysql' | gzip > exastro_mysqldump_ita_user_`date +"%Y%m%d-%H%M%S"`.sql.gz
 
 #. ファイルのバックアップ取得
@@ -351,32 +354,35 @@
       .. group-tab:: データベースサーバを共有
 
           .. code-block:: bash
-             :caption: Exastro 用データベースリストアコマンド
+             :caption: ユーザ用データベースリストアコマンド
 
-             # ユーザ
              gzip -dc exastro_mysqldump_platform_user_YYYYMMDD-HHmmss.sql.gz | kubectl exec -i exastro-maintenance -n exastro -- sh -c 'mysql -h ${PF_DB_HOST} -P ${PF_DB_PORT} -u ${PF_DB_ADMIN_USER} -p${PF_DB_ADMIN_PASSWORD} mysql'
 
-             # アプリケーション
+          .. code-block:: bash
+             :caption: アプリケーション用データベースリストアコマンド
+
              gzip -dc exastro_mysqldump_platform_db_YYYYMMDD-HHmmss.sql.gz | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/'| kubectl exec -i exastro-maintenance -n exastro -- sh -c 'mysql -h ${PF_DB_HOST} -P ${PF_DB_PORT} -u ${PF_DB_ADMIN_USER} -p${PF_DB_ADMIN_PASSWORD}'
 
       .. group-tab:: データベースサーバを分離
 
           .. code-block:: bash
-             :caption: Exastro Platform 用データベースリストアコマンド
+             :caption: Exastro Platform ユーザ用データベースリストアコマンド
 
-             # ユーザ
              gzip -dc exastro_mysqldump_platform_user_YYYYMMDD-HHmmss.sql.gz | kubectl exec -i exastro-maintenance -n exastro -- sh -c 'mysql -h ${PF_DB_HOST} -P ${PF_DB_PORT} -u ${PF_DB_ADMIN_USER} -p${PF_DB_ADMIN_PASSWORD} mysql'
 
-             # アプリケーション
+          .. code-block:: bash
+             :caption: Exastro Platform アプリケーション用データベースリストアコマンド
+
              gzip -dc exastro_mysqldump_platform_db_YYYYMMDD-HHmmss.sql.gz | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/'| kubectl exec -i exastro-maintenance -n exastro -- sh -c 'mysql -h ${PF_DB_HOST} -P ${PF_DB_PORT} -u ${PF_DB_ADMIN_USER} -p${PF_DB_ADMIN_PASSWORD}'
 
           .. code-block:: bash
-             :caption: Exastro IT Automation 用データベースリストアコマンド
+             :caption: Exastro IT Automation ユーザ用データベースリストアコマンド
 
-             # ユーザ
              gzip -dc exastro_mysqldump_ita_user_YYYYMMDD-HHmmss.sql.gz | kubectl exec -i exastro-maintenance -n exastro -- sh -c 'mysql -h ${ITA_DB_HOST} -P ${ITA_DB_PORT} -u ${ITA_DB_ADMIN_USER} -p${ITA_DB_ADMIN_PASSWORD} mysql'
 
-             # アプリケーション
+          .. code-block:: bash
+             :caption: Exastro IT Automation アプリケーション用データベースリストアコマンド
+
              gzip -dc exastro_mysqldump_ita_db_YYYYMMDD-HHmmss.sql.gz | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/'| kubectl exec -i exastro-maintenance -n exastro -- sh -c 'mysql -h ${ITA_DB_HOST} -P ${ITA_DB_PORT} -u ${ITA_DB_ADMIN_USER} -p${ITA_DB_ADMIN_PASSWORD}'
 
 #. ファイルのリストア実施
@@ -401,3 +407,18 @@
 ------------
 
 .. include:: ../../include/start_service_k8s.rst
+
+
+トラブルシューティング
+======================
+
+リストア後に500エラーが発生する
+-------------------------------
+
+- 事象
+
+| リストア作業実施後に画面にて、500エラーが発生する。
+
+- 対処
+ 
+| 全リソースを一度削除した後、再度 :command:`helm install` コマンドによりインストールを実施してください。
