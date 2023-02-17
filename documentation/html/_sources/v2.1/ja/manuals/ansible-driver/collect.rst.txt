@@ -1886,21 +1886,7 @@ BackYardコンテンツ
 
 
 
-.. |image9| image:: collect/image14.png
-   :width: 6.11686in
-   :height: 2.26773in
-.. |image10| image:: collect/image15.png
-   :width: 6.09421in
-   :height: 0.32738in
-.. |image11| image:: collect/image16.png
-   :width: 6.00785in
-   :height: 0.51786in
-.. |image12| image:: collect/image17.png
-   :width: 6in
-   :height: 0.52304in
-.. |image13| image:: collect/image15.png
-   :width: 6.06086in
-   :height: 0.52834in
+
 
 
  
