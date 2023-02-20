@@ -13,9 +13,9 @@ Exastro IT Automation Documentation 2.0
 .. toctree::
    :maxdepth: 2
 
+   ja/configuration/index
    ja/installation/index
    .. ja/learn/index
-   ja/configuration/index
    ja/manuals/index
    ja/reference/index
    ja/contribute/index
