@@ -4,6 +4,8 @@
 
 .. toctree::
    :maxdepth: 2
+   :numbered: 3
 
-   kubernetes
+   helm_on_kubernetes
    upgrade
+   uninstall

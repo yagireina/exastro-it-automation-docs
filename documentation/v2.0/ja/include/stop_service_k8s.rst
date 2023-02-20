@@ -28,7 +28,6 @@
 
    .. code-block:: bash
      :caption: コマンド
-     :linenos:
 
      kubectl scale deployment ita-by-ansible-execute -n exastro --replicas=0
      kubectl scale deployment ita-by-ansible-legacy-role-vars-listup -n exastro --replicas=0

@@ -5,7 +5,6 @@
 
    .. code-block::
      :caption: コマンド
-     :linenos:
 
      kubectl scale deployment ita-by-ansible-execute -n exastro --replicas=${RS_AE}
      kubectl scale deployment ita-by-ansible-legacy-role-vars-listup -n exastro --replicas=${RS_ALRV}
