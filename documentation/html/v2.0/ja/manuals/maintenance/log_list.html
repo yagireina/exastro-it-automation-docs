@@ -152,10 +152,10 @@
   <ul>
 <li><a class="reference internal" href="#">1. ログ一覧</a><ul>
 <li><a class="reference internal" href="#id2">1.1. 一般的なログ</a></li>
-<li><a class="reference internal" href="#platform-jobplatform-api">1.2. platform-job・platform-api</a></li>
+<li><a class="reference internal" href="#platform-migrationplatform-api">1.2. platform-migration・platform-api</a></li>
 <li><a class="reference internal" href="#platform-webita-web-server">1.3. platform-web・ita-web-server</a></li>
 <li><a class="reference internal" href="#platform-auth">1.4. platform-auth</a></li>
-<li><a class="reference internal" href="#keycloak">1.5. keycloak</a></li>
+<li><a class="reference internal" href="#keycloak">1.5. Keycloak</a></li>
 <li><a class="reference internal" href="#platform-db">1.6. platform-db</a></li>
 <li><a class="reference internal" href="#ita-api-organization">1.7. ita-api-organization</a></li>
 <li><a class="reference internal" href="#ita-api-admin">1.8. ita-api-admin</a></li>
@@ -187,8 +187,7 @@
   <section id="id1">
 <h1><span class="section-number">1. </span>ログ一覧<a class="headerlink" href="#id1" title="この見出しへのパーマリンク">¶</a></h1>
 <div class="line-block">
-<div class="line">Exastro IT Automationの各コンテナの出力メッセージに関するログについて。</div>
-<div class="line">各コンテナのログの例と文字列の意味を以下に記載します。</div>
+<div class="line">Exastro IT Automation の各コンテナのログの例とフォーマットの意味を以下に記載します。</div>
 </div>
 <section id="id2">
 <h2><span class="section-number">1.1. </span>一般的なログ<a class="headerlink" href="#id2" title="この見出しへのパーマリンク">¶</a></h2>
@@ -290,7 +289,7 @@
 </div>
 </td>
 <td><div class="line-block">
-<div class="line">決まった値はなし</div>
+<div class="line">決まったフォーマットはなし</div>
 </div>
 </td>
 <td><div class="line-block">
@@ -298,15 +297,15 @@
 </div>
 </td>
 <td><div class="line-block">
-<div class="line">ログによって形式が異なります。</div>
+<div class="line">ログによってフォーマットが異なります。</div>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="platform-jobplatform-api">
-<h2><span class="section-number">1.2. </span>platform-job・platform-api<a class="headerlink" href="#platform-jobplatform-api" title="この見出しへのパーマリンク">¶</a></h2>
+<section id="platform-migrationplatform-api">
+<h2><span class="section-number">1.2. </span>platform-migration・platform-api<a class="headerlink" href="#platform-migrationplatform-api" title="この見出しへのパーマリンク">¶</a></h2>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-number">リスト 1.17 </span><span class="caption-text">形式</span><a class="headerlink" href="#id5" title="このコードへのパーマリンク">¶</a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="o">%</span><span class="p">(</span><span class="n">asctime</span><span class="p">)</span><span class="n">s</span> <span class="o">%</span><span class="p">(</span><span class="n">levelname</span><span class="p">)</span><span class="n">s</span> <span class="p">(</span><span class="o">%</span><span class="p">(</span><span class="n">userid</span><span class="p">)</span><span class="n">s</span><span class="p">)</span> <span class="o">%</span><span class="p">(</span><span class="n">pathname</span><span class="p">)</span><span class="n">s</span><span class="p">(</span><span class="o">%</span><span class="p">(</span><span class="n">lineno</span><span class="p">)</span><span class="n">d</span><span class="p">)</span> <span class="o">%</span><span class="p">(</span><span class="n">message</span><span class="p">)</span><span class="n">s</span>
@@ -370,7 +369,7 @@
 <section id="platform-webita-web-server">
 <h2><span class="section-number">1.3. </span>platform-web・ita-web-server<a class="headerlink" href="#platform-webita-web-server" title="この見出しへのパーマリンク">¶</a></h2>
 <div class="line-block">
-<div class="line">デフォルトのapacheログ形式になっています。</div>
+<div class="line">デフォルトのApacheログ形式になっています。</div>
 <div class="line">設定内容は以下の通りです。</div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id7">
@@ -683,8 +682,7 @@
 <section id="platform-auth">
 <h2><span class="section-number">1.4. </span>platform-auth<a class="headerlink" href="#platform-auth" title="この見出しへのパーマリンク">¶</a></h2>
 <div class="line-block">
-<div class="line">authログは、上述のapacheログとapiログの混合されたものが出力されますが、</div>
-<div class="line">apacheログ（platform-web）とほとんど同じです。</div>
+<div class="line">platform-authログは、上述のplatform-web・ita-web-serverなどのApacheログとplatform-apiログのフォーマットが混合されたものが出力されますが、platform-webログとほとんど同じです。</div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id12">
 <div class="code-block-caption"><span class="caption-number">リスト 1.21 </span><span class="caption-text">例</span><a class="headerlink" href="#id12" title="このコードへのパーマリンク">¶</a></div>
@@ -694,7 +692,7 @@
 </div>
 </section>
 <section id="keycloak">
-<h2><span class="section-number">1.5. </span>keycloak<a class="headerlink" href="#keycloak" title="この見出しへのパーマリンク">¶</a></h2>
+<h2><span class="section-number">1.5. </span>Keycloak<a class="headerlink" href="#keycloak" title="この見出しへのパーマリンク">¶</a></h2>
 <div class="literal-block-wrapper docutils container" id="id13">
 <div class="code-block-caption"><span class="caption-number">リスト 1.22 </span><span class="caption-text">形式</span><a class="headerlink" href="#id13" title="このコードへのパーマリンク">¶</a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">d</span><span class="p">{</span><span class="n">yyyy</span><span class="o">-</span><span class="n">MM</span><span class="o">-</span><span class="n">dd</span> <span class="n">HH</span><span class="p">:</span><span class="n">mm</span><span class="p">:</span><span class="n">ss</span><span class="p">,</span><span class="n">SSS</span><span class="p">}</span> <span class="o">%-</span><span class="mi">5</span><span class="n">p</span> <span class="p">[</span><span class="o">%</span><span class="n">c</span><span class="p">]</span> <span class="p">(</span><span class="o">%</span><span class="n">t</span><span class="p">)</span> <span class="o">%</span><span class="n">s</span><span class="o">%</span><span class="n">e</span><span class="o">%</span><span class="n">n</span>
@@ -764,7 +762,7 @@
 </div>
 </td>
 <td><div class="line-block">
-<div class="line"><br /></div>
+<div class="line">DEBUG, INFO, WARN, ERROR のいずれかが出力される。</div>
 </div>
 </td>
 </tr>
@@ -856,7 +854,7 @@
 </tbody>
 </table>
 <div class="line-block">
-<div class="line">keycloakのログの詳細については以下のURLをご参照ください。</div>
+<div class="line">keycloakのログの詳細は下記URLをご参照ください。</div>
 <div class="line"><a class="reference external" href="https://www.keycloak.org/server/logging">https://www.keycloak.org/server/logging</a></div>
 </div>
 </section>
@@ -940,7 +938,7 @@
 </div>
 </td>
 <td><div class="line-block">
-<div class="line">ERROR, INFO, DEBUG が基本的なログレベル</div>
+<div class="line">ERROR, INFO, DEBUG のいずれかが出力される。</div>
 </div>
 </td>
 </tr>
@@ -949,7 +947,7 @@
 </div>
 </td>
 <td><div class="line-block">
-<div class="line">決まった値はなし</div>
+<div class="line">決まったフォーマットはなし</div>
 </div>
 </td>
 <td><div class="line-block">
@@ -1061,7 +1059,7 @@
 </div>
 </td>
 <td><div class="line-block">
-<div class="line">決まった値はなし</div>
+<div class="line">決まったフォーマットはなし</div>
 </div>
 </td>
 <td><div class="line-block">
