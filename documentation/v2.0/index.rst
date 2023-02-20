@@ -20,16 +20,6 @@ Exastro IT Automation Documentation 2.0
    ja/reference/index
    ja/contribute/index
 
-.. English
-.. =======
-
-.. .. toctree::
-..    :maxdepth: 1
-
-   .. en/index
-   .. ja_manual_design/index
-   .. en_manual_design/index
-
 .. raw:: html
 
    </div>
