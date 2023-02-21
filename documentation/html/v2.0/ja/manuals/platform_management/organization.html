@@ -118,8 +118,8 @@
     <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Exastro IT Automation Documentation 2.0</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../../../index.html#id1">日本語</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../../installation/index.html">インストール</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../configuration/index.html">構成・構築ガイド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation/index.html">インストール</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">マニュアル</a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="index.html">システム管理</a><ul class="current">
 <li class="toctree-l5 current"><a class="current reference internal" href="#">1. Organization (オーガナイゼーション)</a></li>
@@ -128,6 +128,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../organization_management/index.html">オーガナイゼーション管理</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../it_automation_base/index.html">基本操作</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../create_param/index.html">パラメータ管理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ansible-driver/index.html">Ansible ドライバ</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../maintenance/index.html">メンテナンス</a></li>
 </ul>
 </li>
@@ -278,7 +279,7 @@
 <ol class="arabic">
 <li><p>オーガナイゼーション作成用シェルスクリプトを、リポジトリから <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">git</kbd> <kbd class="kbd docutils literal notranslate">clone</kbd></kbd> により取得します。</p>
 <div class="literal-block-wrapper docutils container" id="id10">
-<div class="code-block-caption"><span class="caption-number">リスト 1.1 </span><span class="caption-text">コマンド</span><a class="headerlink" href="#id10" title="このコードへのパーマリンク">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">リスト 1.52 </span><span class="caption-text">コマンド</span><a class="headerlink" href="#id10" title="このコードへのパーマリンク">¶</a></div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exastro Platform の資材を入手</span>
 git<span class="w"> </span>clone<span class="w"> </span>https://github.com/exastro-suite/exastro-platform.git
 </pre></div>
@@ -287,17 +288,17 @@ git<span class="w"> </span>clone<span class="w"> </span>https://github.com/exast
 </li>
 <li><p>設定ファイルの <kbd class="kbd docutils literal notranslate">CONF_BASE_URL</kbd> に Exastro Suite の管理用エンドポイント URL を設定します。</p>
 <div class="literal-block-wrapper docutils container" id="id11">
-<div class="code-block-caption"><span class="caption-number">リスト 1.2 </span><span class="caption-text">コマンド</span><a class="headerlink" href="#id11" title="このコードへのパーマリンク">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">リスト 1.53 </span><span class="caption-text">コマンド</span><a class="headerlink" href="#id11" title="このコードへのパーマリンク">¶</a></div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exastro Platform への接続のための設定情報を登録</span>
 vi<span class="w"> </span>./exastro-platform/tools/api-auth.conf
 </pre></div>
 </div>
 </div>
 <div class="line-block">
-<div class="line">例えば、<a class="reference internal" href="../../installation/kubernetes.html#service-setting"><span class="std std-ref">3. サービス公開の設定</span></a> で、Ingress を使ったサービス公開の設定をした場合は下記のようになります。</div>
+<div class="line">例えば、<a class="reference internal" href="../../installation/helm_on_kubernetes.html#service-setting"><span class="std std-ref">サービス公開の設定</span></a> で、Ingress を使ったサービス公開の設定をした場合は下記のようになります。</div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id12">
-<div class="code-block-caption"><span class="caption-number">リスト 1.3 </span><span class="caption-text">create-organization.conf</span><a class="headerlink" href="#id12" title="このコードへのパーマリンク">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">リスト 1.54 </span><span class="caption-text">create-organization.conf</span><a class="headerlink" href="#id12" title="このコードへのパーマリンク">¶</a></div>
 <div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="gd">- CONF_BASE_URL=http://platform-auth:8001</span>
 <span class="linenos">2</span><span class="gi">+ CONF_BASE_URL=http://exastro-suite-mng.example.local</span>
 <span class="linenos">3</span><span class="w"> </span> CURL_OPT=-sv
@@ -317,7 +318,7 @@ vi<span class="w"> </span>./exastro-platform/tools/api-auth.conf
 <div class="line">オーガナイゼーション作成時の初期登録情報として下記の項目を設定できます。</div>
 </div>
 <table class="docutils align-left" id="id13">
-<caption><span class="caption-number">表 1.1 </span><span class="caption-text">オーガナイゼーション作成パラメータ</span><a class="headerlink" href="#id13" title="このテーブルへのパーマリンク">¶</a></caption>
+<caption><span class="caption-number">表 1.21 </span><span class="caption-text">オーガナイゼーション作成パラメータ</span><a class="headerlink" href="#id13" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col style="width: 23%" />
 <col style="width: 27%" />
@@ -452,7 +453,7 @@ vi<span class="w"> </span>./exastro-platform/tools/api-auth.conf
 </pre></div>
 </div>
 </details><div class="literal-block-wrapper docutils container" id="id14">
-<div class="code-block-caption"><span class="caption-number">リスト 1.4 </span><span class="caption-text">コマンド</span><a class="headerlink" href="#id14" title="このコードへのパーマリンク">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">リスト 1.55 </span><span class="caption-text">コマンド</span><a class="headerlink" href="#id14" title="このコードへのパーマリンク">¶</a></div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 設定用ファイルの作成</span>
 cp<span class="w"> </span>-pi<span class="w"> </span>./exastro-platform/tools/create-organization<span class="o">{</span>.sample,<span class="o">}</span>.json
 
@@ -471,10 +472,10 @@ vi<span class="w"> </span>./exastro-platform/tools/create-organization.json
 <li><p>オーガナイゼーション作成実行</p>
 <div class="line-block">
 <div class="line">スクリプトを実行してオーガナイゼーションを作成します。</div>
-<div class="line"><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">your</kbd> <kbd class="kbd docutils literal notranslate">username</kbd></kbd> と <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">your</kbd> <kbd class="kbd docutils literal notranslate">username</kbd></kbd> は <a class="reference internal" href="../../installation/kubernetes.html#create-system-manager"><span class="std std-ref">7. Exastro システム管理者の作成</span></a> で登録した、<kbd class="kbd docutils literal notranslate">KEYCLOAK_USER</kbd> 及び <kbd class="kbd docutils literal notranslate">KEYCLOAK_PASSWORD</kbd> です。</div>
+<div class="line"><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">your</kbd> <kbd class="kbd docutils literal notranslate">username</kbd></kbd> と <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">your</kbd> <kbd class="kbd docutils literal notranslate">username</kbd></kbd> は <a class="reference internal" href="../../installation/helm_on_kubernetes.html#create-system-manager"><span class="std std-ref">Exastro システム管理者の作成</span></a> で登録した、<kbd class="kbd docutils literal notranslate">KEYCLOAK_USER</kbd> 及び <kbd class="kbd docutils literal notranslate">KEYCLOAK_PASSWORD</kbd> です。</div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id15">
-<div class="code-block-caption"><span class="caption-number">リスト 1.5 </span><span class="caption-text">コマンド</span><a class="headerlink" href="#id15" title="このコードへのパーマリンク">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">リスト 1.56 </span><span class="caption-text">コマンド</span><a class="headerlink" href="#id15" title="このコードへのパーマリンク">¶</a></div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>./exastro-platform/tools/create-organization.sh<span class="w"> </span>./exastro-platform/tools/create-organization.json
 
 <span class="w"> </span>your<span class="w"> </span>username<span class="w"> </span>:<span class="w"> </span>INPUT-YOUR-USERNAME<span class="w"> </span><span class="c1"># システム管理者のユーザ名を入力します</span>
@@ -488,7 +489,7 @@ vi<span class="w"> </span>./exastro-platform/tools/create-organization.json
 <div class="line">成功時の結果表示は、<kbd class="kbd docutils literal notranslate">result</kbd> が &quot;000-00000”となります。</div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id16">
-<div class="code-block-caption"><span class="caption-number">リスト 1.6 </span><span class="caption-text">実行結果 (成功時)</span><a class="headerlink" href="#id16" title="このコードへのパーマリンク">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">リスト 1.57 </span><span class="caption-text">実行結果 (成功時)</span><a class="headerlink" href="#id16" title="このコードへのパーマリンク">¶</a></div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>...
 &lt;<span class="w"> </span>HTTP/1.1<span class="w"> </span><span class="m">200</span><span class="w"> </span>OK
 &lt;<span class="w"> </span>Date:<span class="w"> </span>Thu,<span class="w"> </span><span class="m">18</span><span class="w"> </span>Aug<span class="w"> </span><span class="m">2022</span><span class="w"> </span><span class="m">01</span>:49:13<span class="w"> </span>GMT
@@ -510,7 +511,7 @@ vi<span class="w"> </span>./exastro-platform/tools/create-organization.json
 <div class="line">失敗時の結果表示は、<kbd class="kbd docutils literal notranslate">result</kbd> が &quot;000-00000”以外となります。</div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id17">
-<div class="code-block-caption"><span class="caption-number">リスト 1.7 </span><span class="caption-text">実行結果 (失敗時)</span><a class="headerlink" href="#id17" title="このコードへのパーマリンク">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">リスト 1.58 </span><span class="caption-text">実行結果 (失敗時)</span><a class="headerlink" href="#id17" title="このコードへのパーマリンク">¶</a></div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>...
 &lt;<span class="w"> </span>HTTP/1.1<span class="w"> </span><span class="m">400</span><span class="w"> </span>BAD<span class="w"> </span>REQUEST
 &lt;<span class="w"> </span>Date:<span class="w"> </span>Thu,<span class="w"> </span><span class="m">18</span><span class="w"> </span>Aug<span class="w"> </span><span class="m">2022</span><span class="w"> </span><span class="m">05</span>:29:35<span class="w"> </span>GMT
@@ -557,7 +558,7 @@ vi<span class="w"> </span>./exastro-platform/tools/create-organization.json
 <ol class="arabic">
 <li><p>オーガナイゼーション作成用シェルスクリプトを、リポジトリから <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">git</kbd> <kbd class="kbd docutils literal notranslate">clone</kbd></kbd> により取得します。</p>
 <div class="literal-block-wrapper docutils container" id="id18">
-<div class="code-block-caption"><span class="caption-number">リスト 1.8 </span><span class="caption-text">コマンド</span><a class="headerlink" href="#id18" title="このコードへのパーマリンク">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">リスト 1.59 </span><span class="caption-text">コマンド</span><a class="headerlink" href="#id18" title="このコードへのパーマリンク">¶</a></div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exastro Platform の資材を入手</span>
 git<span class="w"> </span>clone<span class="w"> </span>https://github.com/exastro-suite/exastro-platform.git
 </pre></div>
@@ -566,17 +567,17 @@ git<span class="w"> </span>clone<span class="w"> </span>https://github.com/exast
 </li>
 <li><p>設定ファイルの <kbd class="kbd docutils literal notranslate">CONF_BASE_URL</kbd> に Exastro Suite の管理用エンドポイント URL を設定します。</p>
 <div class="literal-block-wrapper docutils container" id="id19">
-<div class="code-block-caption"><span class="caption-number">リスト 1.9 </span><span class="caption-text">コマンド</span><a class="headerlink" href="#id19" title="このコードへのパーマリンク">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">リスト 1.60 </span><span class="caption-text">コマンド</span><a class="headerlink" href="#id19" title="このコードへのパーマリンク">¶</a></div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exastro Platform への接続のための設定情報を登録</span>
 vi<span class="w"> </span>./exastro-platform/tools/api-auth.conf
 </pre></div>
 </div>
 </div>
 <div class="line-block">
-<div class="line">例えば、<a class="reference internal" href="../../installation/kubernetes.html#service-setting"><span class="std std-ref">3. サービス公開の設定</span></a> で、Ingress を使ったサービス公開の設定をした場合は下記のようになります。</div>
+<div class="line">例えば、<a class="reference internal" href="../../installation/helm_on_kubernetes.html#service-setting"><span class="std std-ref">サービス公開の設定</span></a> で、Ingress を使ったサービス公開の設定をした場合は下記のようになります。</div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id20">
-<div class="code-block-caption"><span class="caption-number">リスト 1.10 </span><span class="caption-text">create-organization.conf</span><a class="headerlink" href="#id20" title="このコードへのパーマリンク">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">リスト 1.61 </span><span class="caption-text">create-organization.conf</span><a class="headerlink" href="#id20" title="このコードへのパーマリンク">¶</a></div>
 <div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="gd">- CONF_BASE_URL=http://platform-auth:8001</span>
 <span class="linenos">2</span><span class="gi">+ CONF_BASE_URL=http://exastro-suite-mng.example.local</span>
 <span class="linenos">3</span><span class="w"> </span> CURL_OPT=-sv
@@ -596,7 +597,7 @@ vi<span class="w"> </span>./exastro-platform/tools/api-auth.conf
 <div class="line">オーガナイゼーション作成時の初期登録情報として下記の項目を設定できます。</div>
 </div>
 <table class="docutils align-left" id="id21">
-<caption><span class="caption-number">表 1.2 </span><span class="caption-text">オーガナイゼーション作成パラメータ</span><a class="headerlink" href="#id21" title="このテーブルへのパーマリンク">¶</a></caption>
+<caption><span class="caption-number">表 1.22 </span><span class="caption-text">オーガナイゼーション作成パラメータ</span><a class="headerlink" href="#id21" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col style="width: 23%" />
 <col style="width: 27%" />
@@ -670,16 +671,16 @@ vi<span class="w"> </span>./exastro-platform/tools/api-auth.conf
 </tbody>
 </table>
 <div class="literal-block-wrapper docutils container" id="id22">
-<div class="code-block-caption"><span class="caption-number">リスト 1.11 </span><span class="caption-text">コマンド</span><a class="headerlink" href="#id22" title="このコードへのパーマリンク">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">リスト 1.62 </span><span class="caption-text">コマンド</span><a class="headerlink" href="#id22" title="このコードへのパーマリンク">¶</a></div>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>./exastro-platform/tools/create-organization.sh
 </pre></div>
 </div>
 </div>
 <div class="line-block">
-<div class="line"><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">your</kbd> <kbd class="kbd docutils literal notranslate">username</kbd></kbd> と <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">your</kbd> <kbd class="kbd docutils literal notranslate">username</kbd></kbd> は <a class="reference internal" href="../../installation/kubernetes.html#create-system-manager"><span class="std std-ref">7. Exastro システム管理者の作成</span></a> で登録した、<kbd class="kbd docutils literal notranslate">KEYCLOAK_USER</kbd> 及び <kbd class="kbd docutils literal notranslate">KEYCLOAK_PASSWORD</kbd> です。</div>
+<div class="line"><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">your</kbd> <kbd class="kbd docutils literal notranslate">username</kbd></kbd> と <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">your</kbd> <kbd class="kbd docutils literal notranslate">username</kbd></kbd> は <a class="reference internal" href="../../installation/helm_on_kubernetes.html#create-system-manager"><span class="std std-ref">Exastro システム管理者の作成</span></a> で登録した、<kbd class="kbd docutils literal notranslate">KEYCLOAK_USER</kbd> 及び <kbd class="kbd docutils literal notranslate">KEYCLOAK_PASSWORD</kbd> です。</div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id23">
-<div class="code-block-caption"><span class="caption-number">リスト 1.12 </span><span class="caption-text">コマンド (入力例)</span><a class="headerlink" href="#id23" title="このコードへのパーマリンク">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">リスト 1.63 </span><span class="caption-text">コマンド (入力例)</span><a class="headerlink" href="#id23" title="このコードへのパーマリンク">¶</a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Please enter the organization information to be created
 
 organization id : org001                             # オーガナイゼーションIDを入力します
@@ -702,7 +703,7 @@ Create an organization, are you sure? (Y/other) : Y # &quot;Y&quot;を入力す�
 <div class="line">成功時の結果表示は、<kbd class="kbd docutils literal notranslate">result</kbd> が &quot;000-00000”となります。</div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id24">
-<div class="code-block-caption"><span class="caption-number">リスト 1.13 </span><span class="caption-text">実行結果 (成功時)</span><a class="headerlink" href="#id24" title="このコードへのパーマリンク">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">リスト 1.64 </span><span class="caption-text">実行結果 (成功時)</span><a class="headerlink" href="#id24" title="このコードへのパーマリンク">¶</a></div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>...
 &lt;<span class="w"> </span>HTTP/1.1<span class="w"> </span><span class="m">200</span><span class="w"> </span>OK
 &lt;<span class="w"> </span>Date:<span class="w"> </span>Thu,<span class="w"> </span><span class="m">18</span><span class="w"> </span>Aug<span class="w"> </span><span class="m">2022</span><span class="w"> </span><span class="m">01</span>:49:13<span class="w"> </span>GMT
@@ -724,7 +725,7 @@ Create an organization, are you sure? (Y/other) : Y # &quot;Y&quot;を入力す�
 <div class="line">失敗時の結果表示は、<kbd class="kbd docutils literal notranslate">result</kbd> が &quot;000-00000”以外となります。</div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id25">
-<div class="code-block-caption"><span class="caption-number">リスト 1.14 </span><span class="caption-text">実行結果 (失敗時)</span><a class="headerlink" href="#id25" title="このコードへのパーマリンク">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">リスト 1.65 </span><span class="caption-text">実行結果 (失敗時)</span><a class="headerlink" href="#id25" title="このコードへのパーマリンク">¶</a></div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>...
 &lt;<span class="w"> </span>HTTP/1.1<span class="w"> </span><span class="m">400</span><span class="w"> </span>BAD<span class="w"> </span>REQUEST
 &lt;<span class="w"> </span>Date:<span class="w"> </span>Thu,<span class="w"> </span><span class="m">18</span><span class="w"> </span>Aug<span class="w"> </span><span class="m">2022</span><span class="w"> </span><span class="m">05</span>:29:35<span class="w"> </span>GMT
@@ -763,7 +764,7 @@ Create an organization, are you sure? (Y/other) : Y # &quot;Y&quot;を入力す�
 <div class="line">詳細は、<a class="reference internal" href="../../reference/api/system_manager/platform-api.html"><span class="doc">Exastro Platform API</span></a> を参照してください。</div>
 </div>
 <table class="docutils align-left" id="id26">
-<caption><span class="caption-number">表 1.3 </span><span class="caption-text">オーガナイゼーション作成パラメータ</span><a class="headerlink" href="#id26" title="このテーブルへのパーマリンク">¶</a></caption>
+<caption><span class="caption-number">表 1.23 </span><span class="caption-text">オーガナイゼーション作成パラメータ</span><a class="headerlink" href="#id26" title="このテーブルへのパーマリンク">¶</a></caption>
 <colgroup>
 <col style="width: 23%" />
 <col style="width: 27%" />
@@ -840,7 +841,7 @@ Create an organization, are you sure? (Y/other) : Y # &quot;Y&quot;を入力す�
 </ol>
 <div class="line-block">
 <div class="line">cURL を使って Rest API を利用する場合は、以下の様なコマンドを実行してください。</div>
-<div class="line">BASIC 認証で使用する認証情報は <a class="reference internal" href="../../installation/kubernetes.html#create-system-manager"><span class="std std-ref">7. Exastro システム管理者の作成</span></a> で登録した、<kbd class="kbd docutils literal notranslate">KEYCLOAK_USER</kbd> 及び <kbd class="kbd docutils literal notranslate">KEYCLOAK_PASSWORD</kbd> です。</div>
+<div class="line">BASIC 認証で使用する認証情報は <a class="reference internal" href="../../installation/helm_on_kubernetes.html#create-system-manager"><span class="std std-ref">Exastro システム管理者の作成</span></a> で登録した、<kbd class="kbd docutils literal notranslate">KEYCLOAK_USER</kbd> 及び <kbd class="kbd docutils literal notranslate">KEYCLOAK_PASSWORD</kbd> です。</div>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">警告</p>
@@ -850,7 +851,7 @@ Create an organization, are you sure? (Y/other) : Y # &quot;Y&quot;を入力す�
 </div>
 <div class="line-block">
 <div class="line">また、Exastro Platform の管理用 URL 情報を <kbd class="kbd docutils literal notranslate">BASE_URL</kbd> に設定する必要があります。</div>
-<div class="line">例えば、 <a class="reference internal" href="../../installation/kubernetes.html#ingress-setting"><span class="std std-ref">サービス公開の設定 (Ingress の設定)</span></a> をした場合は下記のようになります。</div>
+<div class="line">例えば、 <a class="reference internal" href="../../installation/helm_on_kubernetes.html#ingress-setting"><span class="std std-ref">サービス公開の設定 (Ingress の設定)</span></a> をした場合は下記のようになります。</div>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">BASE64_BASIC</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;KEYCLOAK_USER:KEYCLOAK_PASSWORD&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="k">)</span>
 <span class="nv">BASE_URL</span><span class="o">=</span>http://exastro-suite-mng.example.local

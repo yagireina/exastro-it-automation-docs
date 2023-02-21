@@ -1,56 +1,40 @@
-=================================================================
+===========================
 Ansible Automation Platform
-=================================================================
+===========================
 
 はじめに
-========================================================
-| Exastro IT Automation（以下、ITAとも記載する）でAnsibleオプション機能（以下、Ansible driver）として運用する為のシステム構成と環境構築について説明します。
-| 本書ではそのうちAnsible Automation Controller を実行エンジンとしたシステム構成と環境構築について説明します。
+========
+
+| Exastro IT Automation（以下、ITAとも記載する）で Ansible 連携機能 (以下、Ansible driver) として運用する為のシステム構成と環境構築について説明します。
+| 本書ではそのうち Ansible Automation Platform を実行エンジンとしたシステム構成と環境構築について説明します。
 |
-| Ansible Core による構成を行う場合は、「 :doc:`./ansible_core` 」をご覧ください。
+| Ansible Core による構成を行う場合は、:doc:`./ansible_core` を参照してください。
 | 
-| ITA Ansible driverを利用するにあたっては、ITA基本機能が構築済であることが前提です。
-| ITA基本機能の構築に関しては、「 :doc:`../../installation/kubernetes` 」をご覧ください。
+| ITA Ansible driver を利用するにあたっては、Exastro IT Automation がインストール済みであることが前提です。
+| Exastro IT Automation のインストール方法に関しては、 :doc:`../../installation/helm_on_kubernetes` を参照してください。
 
-機能
-========================================================
-| Ansible driverは以下の機能を提供します。
-
-.. table::  機能名
-   :align: left
-
-   +----+---------------------------------+--------------------------------+----------------------------------+-------------------------------------+
-   | No | 機能名                          | 用途                           | WEBコンテンツ                    | Backyardコンテンツ                  |
-   +====+=================================+================================+==================================+=====================================+
-   | 1  | Ansible driver                  | ITAからAnsible Core かAnsible\ | 〇                               | 〇                                  |
-   |    |                                 | Automation Controller\         |                                  |                                     |
-   |    |                                 | を介してサーバ、ストレージ、\  |                                  |                                     |
-   |    |                                 | ネットワーク機器の構成管理を\  |                                  |                                     |
-   |    |                                 | 行う                           |                                  |                                     |
-   +----+---------------------------------+--------------------------------+----------------------------------+-------------------------------------+
-   | 2  | Ansible driver (Agent)          | Ansible Coreを外部から操作\    | 〇                               | －                                  |
-   |    |                                 | を外部から操作するため\        |                                  |                                     |
-   |    |                                 | のRestAPIを提供するコンテンツ  |                                  |                                     |
-   |    |                                 |                                |                                  |                                     |
-   +----+---------------------------------+--------------------------------+----------------------------------+-------------------------------------+
 
 
 システム構成
-========================================================
+============
+
+| Ansible driver は Exastro IT Automation のデプロイ時に標準機能として提供されます。
+|
+| Ansible 実行サーバのスケールアウトが必要な場合は、Ansible Automation Platform による構成を推奨します。
+|
+| 以下に Ansible Automation Platform における構成パターンと構成イメージを記載します。
 
 システム構成パターン
---------------------------------------------------------
+--------------------
 
-| Ansible driver機能のシステム構成は、ITAシステムと同じです。
-|
-| Ansible driver（Agent）機能は、Apache、PHP、Ansible Core を構成する必要があります。専用サーバを用意する他、ITAシステムにコンソリデーションすることが可能です。
-|
-| Ansible Automation Controller は、Ansible実行における拡張された機能の利用や、可用性を高めた構成で運用することが可能です。ITAシステムおよびAnsible Coreとは個別の専用サーバを用意する必要があります。
-| また実行するplaybookをAnsible Vaultで暗号化するため、Ansible Core [Ansible Driver (Agent)]が必要となります。 (Backyardサーバとコンソリデーションすることも可能)
-|
-| Ansible実行の対象機器の接続台数が多く、Ansible実行サーバのスケールアウトが必要な場合、Ansible Automation Controllerによる構成を推奨します。
-| 以下に主なAnsible driver機能利用の構成パターンと構成イメージを記載します。
-| ※ITAシステムは省略した構成図を記載します。
+| Ansible Automation Controller は、Ansible 実行における拡張された機能の利用や、可用性を高めた構成で運用することが可能です。
+
+.. warning:: 
+   | ITA システムおよび Ansible Core とは個別の専用サーバを用意する必要があります。
+   | また実行する Playbook を Ansible Vault で暗号化するため、Ansible Core (Ansible driver (Agent)) が必要となります。
+
+| 以下に主な Ansible driver 機能利用の構成パターンと構成イメージを記載します。
+| ※ITA システムは省略した構成図を記載します。
 
 
 .. list-table:: システム構成パターン
@@ -64,15 +48,14 @@ Ansible Automation Platform
      - Ansibleスケールアウト可否
    * - 1
      - | Ansible Automation Platform (ハイブリッドパターン)
-     - {{#1: 説明をお願いします。}}
+     - | Ansible Control ノード自体が、実行対象となる Managed ノードに対して作業を実行する構成です。
+       | シンプルな構成の反面、各 Managed ノードに対して疎通ができる必要があります。
      - 〇
    * - 2
      - Ansible Automation Platform (実行ノード分離パターン)
-     - {{#2: 説明をお願いします。}}
+     - | Ansible Control ノードが Ansible Execution ノードと連携し、Ansible Execution ノードが、実行対象となる各 Managed ノードに対して作業を実行する構成です。
+       | 構成は複雑になりますが、Ansible Control ノードから Ansible Execution ノードに対しての疎通のみできればいいので、各 Managed ノードに対して通信設定をする必要がありません。
      - 〇
-
-
-|
 
 .. tabs::
 
@@ -80,9 +63,9 @@ Ansible Automation Platform
 
       Ansible Automation Platform (ハイブリッドパターン)を下記に記載します。
 
-      .. figure:: /images/ja/diagram/aac.png
+      .. figure:: /images/ja/diagram/aap_hybrid.png
          :alt: Ansible Automation Platform (ハイブリッドパターン)
-         :width: 1000px
+         :width: 900px
 
          Ansible Automation Platform (ハイブリッドパターン)
 
@@ -132,21 +115,16 @@ Ansible Automation Platform
       | ※1 Ansible Automation Platform (ハイブリッドパターン)の構成イメージの番号と紐づく通信番号を記載。
       | ※2 ポート番号は標準的なポート番号を記載。
       | ※3 代表的な例を記載。Ansibleモジュールにより利用プロトコルが異なる。
-      
-
-
 
    .. tab:: Ansible Automation Platform (実行ノード分離パターン)
 
       Ansible Automation Platform (実行ノード分離パターン)を下記に記載します。
 
-      .. figure:: /images/ja/diagram/aac_execution.png
+      .. figure:: /images/ja/diagram/aap_divide.png
         :alt: Ansible Automation Platform (実行ノード分離パターン)
-        :width: 1400px
+        :width: 1200px
 
         Ansible Automation Platform (実行ノード分離パターン)
-
-      |
 
       .. list-table:: システム通信要件
          :widths: 10 20 20 40 100
@@ -197,48 +175,35 @@ Ansible Automation Platform
 
 
 システム要件
-========================================================
+============
 
-| Ansible driver はITAシステムのシステム要件に準拠するため、「 :doc:`../../installation/kubernetes` 」を参照してください。
-| ここではAnsible Automation Platformの要件を記載します。
+| Ansible driver はITAシステムのシステム要件に準拠するため、 :doc:`../../installation/helm_on_kubernetes` を参照してください。
+| ここでは Ansible Automation Platform の要件を記載します。
 
-
-.. table:: Ansible Automation Platformの動作確認済みバージョン
-   :align: left
-
-   +---------------------------------------+---------------------------------------------------------------------+
-   |                                       | Ansible Automation Platform                                         |
-   +=======================================+================+================+=================+=================+                       
-   | |                                     | 2.0            | 2.1            | 2.2             | 2.3             |
-   | | Exastro IT Automation  version: 2.0 +----------------+----------------+-----------------+-----------------+
-   | |                                     |                | 〇             | 〇              |                 |
-   +---------------------------------------+----------------+----------------+-----------------+-----------------+       
-
-| 〇: 動作確認済み                   
+..  include:: ../../include/aap_versions.rst
 
 
 Playbook連携
-========================================================
+============
 
 | ITAとAnsible Automation Platform間のPlaybook連携について説明します。
 
 .. figure:: /images/ja/diagram/playbook_link_between_aap_and_container.png
    :alt: ITAとAnsible Automation Platform2.xのPlaybook連携図
-   :width: 750px
-
+   :width: 600px
 
    ITAとAnsible Automatio Platform2.x間のPlaybook連携図
 
 
 初期設定
-========================================================
+========
+
 | Ansible Automation Platformインストール後、実行エンジンに応じて各設定を行ってください。
-| 
 
 .. list-table:: Ansible Core システム要件
    :widths: 45 55
    :header-rows: 1
-   :align: left
+   :align: center
 
    * - 設定項目
      - Ansible Automation Platform 2.x
@@ -259,11 +224,11 @@ Playbook連携
 
 
 ITA作業用ディレクトリの準備
--------------------------------------------------------------
+---------------------------
 
-| Ansible Automation PlatformサーバにITA作業用ディレクトリを作成してください。
+| Ansible Automation Platform サーバに ITA 作業用ディレクトリを作成してください。
 | クラスタ構成の場合は、構成している全てのサーバにディレクトリを作成してください。
-| ただし、Ansible Automation Platformのhop nodeにはディレクトリ作成不要です。
+| ただし、Ansible Automation Platform の Hop ノードにはディレクトリ作成不要です。
 |
 
 .. list-table:: ITA作業用ディレクトリの作成情報
@@ -282,46 +247,49 @@ ITA作業用ディレクトリの準備
 
 
 ITA作業用ディレクトリの公開
--------------------------------------------------------------
+---------------------------
 
-| ブラウザよりAnsible Automation Platformにログインし、「設定」→「ジョブ」→「分離されたジョブに公開するパス」に「/var/lib/exastro/」を設定します。
-| 
+| ブラウザより Ansible Automation Platform にログインし、:menuselection:`設定 --> ジョブ --> 分離されたジョブに公開するパス` に :file:`/var/lib/exastro/` を設定します。
 
 .. figure:: /images/ja/diagram/publish_ita_operation_director.png
-   :width: 5.92014in
-   :height: 2.4375in
+   :width: 600px
 
 
 Ansible Automation Platform へのファイル転送ユーザーの準備
--------------------------------------------------------------
+----------------------------------------------------------
 
-| ITAからAnsible Automation Platformのプロジェクトを生成する際、Ansible Automation Platform の下記ディレクトリにPlaybook一式をファイル転送します。ファイル転送するLinuxユーザーを準備してください。
+| ITA から Ansible Automation Platformの プロジェクトを生成する際、Ansible Automation Platform の下記ディレクトリに Playbook 一式をファイル転送します必要があります。
+| ファイル転送するLinuxユーザーを準備してください。
 |
-| ・SCM管理ディレクトリ(/var/lib/awx/projects)
+| ・SCM 管理ディレクトリ(/var/lib/awx/projects)
 | 　※Ansible Tower3.xの場合にLinuxユーザーでPlaybook一式をファイル転送します。
 | ・ITA作業用ディレクトリ(/var/lib/exastro)
 
-| {{#11: 準備したLinuxユーザーを登録する箇所がインターフェース情報にない }}
-| Linuxユーザーは、Ansible Automation Platformインストール時に生成されるawxユーザーにパスワードを設定し使用することを強く推奨します。また、awxユーザー以外のユーザーを用意し使用する場合、SCM管理パス(/var/lib/awx/projects)のパーミッションの変更はRedhatのサポート対象外となりますのでご注意ください。
-| 準備したLinuxユーザーは、ITAシステムに登録する必要があります。「 :ref:`general_operations_ansible_automation_controlller_hosts` 」を参照し、登録を行ってください。
+| Linux ユーザーは、Ansible Automation Platform インストール時に生成される awx ユーザーにパスワードを設定し使用することを強く推奨します。
+
+.. warning:: 
+ | awx ユーザー以外のユーザーを用意し使用し、SCM 管理パス(/var/lib/awx/projects)のパーミッションの変更を行う運用は Red Hat のサポート対象外となりますのでご注意ください。
+
+| 準備した Linux ユーザーは、ITA システムに登録する必要があります。 :ref:`general_operations_ansible_automation_controlller_hosts` を参照し、登録を行ってください。
 
 
 Ansible Automation Platformと連携するGitへのユーザーの準備
---------------------------------------------------------------
+----------------------------------------------------------
 
-| ITAからAnsible Automation Platformのプロジェクトを生成する際のSCMタイプをGitにしています。
-| 連携先のGitリポジトリは、Ansible driverのバックヤード機能がインストールされているホストに作成されます。Ansible Automation Platformから、このGitリポジトリにssh鍵認証で接続するLinuxユーザーを準備してください。
+| ITA から Ansible Automation Platform のプロジェクトを生成する際の SCM タイプを Git にしています。
+| 連携先の Git リポジトリは、Ansible driverのバックヤード機能がインストールされているホストに作成されます。
+| Ansible Automation Platformから、この Git リポジトリにssh鍵認証で接続する Linux ユーザーを準備してください。
 |
-| ユーザーを作成操作可能なアクセストークンが必要となります。設定方法は「 :ref:`installation_kubernetes_gitlablinkage` 」を参照してください。
+| ユーザーを作成操作可能なアクセストークンが必要となります。設定方法は :ref:`installation_kubernetes_gitlablinkage` を参照してください。
 
 
-.. list-table:: ITAインストール時に生成されるssh鍵認証用Linuxユーザー情報
+.. list-table:: ITA インストール時に生成される SSH 鍵認証用 Linux ユーザー情報
    :widths: 35 200
    :header-rows: 1
    :align: left
 
-   * - **項目**
-     - **項目値**
+   * - 項目
+     - 値
    * - ユーザー
      - awx
    * - パスワード
@@ -334,10 +302,10 @@ Ansible Automation Platformと連携するGitへのユーザーの準備
 
 
 Proxyの設定
--------------
+-----------
 
-| Ansible Automation Platformの設定に応じて作業実行時などにRedhat社の所定のサイトより実行環境のコンテナイメージのダウンロードが行われます。
-| ブラウザよりAnsible Automation Platformにログインし、「設定」→「ジョブ」→「追加の環境変数」に下記の環境変数を設定します。
+| Ansible Automation Platform の設定に応じて作業実行時などに Red Hat 社の所定のサイトより実行環境のコンテナイメージのダウンロードが行われます。
+| ブラウザより Ansible Automation Platform にログインし、:menuselection:`設定 --> ジョブ --> 追加の環境変数` に下記の環境変数を設定します。
 
 -  https_proxy
 -  http_proxy
@@ -346,28 +314,23 @@ Proxyの設定
 -  HTTP_PROXY
 -  NO_PROXY
 
-
 .. figure:: /images/ja/diagram/proxy_settings.png
-   :width: 6.09896in
-   :height: 2.68264in
-
-
+   :width: 600px
 
 .. warning::
-  | Ansible Automation PlatformがProxy環境下にある場合、Ansible Automation PlatformにProxy設定が必要です。Proxyの設定がされていない状態で作業実行を行った場合、エラー原因が取得できない場合があります。
+  | Ansible Automation Platform が Proxy 環境下にある場合、Ansible Automation Platform に Proxy 設定が必要です。Proxy の設定がされていない状態で作業実行を行った場合、エラー原因が取得できない場合があります。
 
 
-
-organization追加時の作業
-========================================================
+Organization 追加時の作業
+=========================
 
 .. _platform_make_organization:
 
-1. 組織作成
---------------------------------------------------------------
+組織作成
+--------
 
-| organization用の組織を作成します。
-| Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
+| Organization 用の組織を作成します。
+| Ansible Automation Platform は admin(管理ユーザー) でログインしてください。
 |
 
 #. | :menuselection:`アクセス --> 組織` の :guilabel:`追加` ボタンをクリックします。
@@ -393,8 +356,8 @@ organization追加時の作業
 
 .. _make_application:
 
-2. アプリケーション登録
---------------------------------------------------------------
+アプリケーション登録
+--------------------
 
 | 接続トークン払出用のアプリケーション登録をします。
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
@@ -426,13 +389,12 @@ organization追加時の作業
      - 秘密
      - 
 
-
 .. _platform_architecture_user:
 
-3. ユーザー作成
---------------------------------------------------------------
+ユーザー作成
+------------
 
-| organization用のユーザーを作成します。
+| Organization 用のユーザーを作成します。
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
 |
 
@@ -468,10 +430,10 @@ organization追加時の作業
 
 .. _platform_organization_roles:
 
-4. ロール設定
---------------------------------------------------------------
+ロール設定
+----------
 
-| organization用ユーザーに紐づける組織に対してロールを設定します。
+| Organization 用ユーザーに紐づける組織に対してロールを設定します。
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
 |
 
@@ -488,10 +450,10 @@ organization追加時の作業
 
 .. _platform_output_token:
 
-5. 認証トークン払出
---------------------------------------------------------------
+認証トークン払出
+----------------
 
-| Ansible Automation Platform は「 :ref:`platform_architecture_user` 」で作成したユーザーでログインしてください。
+| Ansible Automation Platform は :ref:`platform_architecture_user` で作成したユーザーでログインしてください。
 |
 
 #. | :menuselection:`アクセス --> ユーザー` の :guilabel:`追加` ボタンを押下する。
@@ -514,27 +476,26 @@ organization追加時の作業
      - 書き込みを選択
      - 
 
-workspace追加時の作業
-========================================================
-
+ワークスペース追加時の作業
+==========================
 
 .. _platform_ansible_execution_environment:
 
-1. インスタンスを組み込む
---------------------------------------------------------------
+インスタンスを組み込む
+----------------------
 
 | インスタンスであるAnsible Execution Environment (以下、Ansible ee とも表記) を組み込んてください。
 
 
-2. インスタンスグループ作成
---------------------------------------------------------------
+インスタンスグループ作成
+------------------------
 
 | ※ 組み込んだ インスタンス (Ansible ee) を追加するインスタンスグループが既にある場合、次の 「 :ref:`platform_add_insetance` 」の手順に進んでください。
 
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
 |
 
-#. | :menuselection:`管理 --> インスタンスグループ` の 「 :ref:`platform_ansible_execution_environment` 」で組み込んだインスタンス( Ansible ee )を追加するインスタンスグループを選択してください。
+#. | :menuselection:`管理 --> インスタンスグループ` の :ref:`platform_ansible_execution_environment` で組み込んだインスタンス( Ansible ee )を追加するインスタンスグループを選択してください。
 #. | 該当項目を入力し、 :guilabel:`保存` ボタンを押下する。
    |
    | 必須項目及び設定値については下記の表を参照してください。
@@ -554,8 +515,8 @@ workspace追加時の作業
 
 .. _platform_add_insetance:
 
-3. インスタンスグループにインスタンスを追加
---------------------------------------------------------------
+インスタンスグループにインスタンスを追加
+----------------------------------------
 
 | インスタンスグループに「 :ref:`platform_ansible_execution_environment` 」で組み込んだインスタンス( Ansible ee )を追加します。
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
@@ -568,8 +529,8 @@ workspace追加時の作業
 
 .. _platform_connection_instance:
 
-4. 組織とインスタンスグループの紐づけ
---------------------------------------------------------------
+組織とインスタンスグループの紐づけ
+----------------------------------
 
 | 「 :ref:`platform_make_organization` 」で作成した組織と上記で使用したインスタンスグループを紐づけます。
 | Ansible Automation Platform は admin(管理ユーザー)でログインしてください。
@@ -581,10 +542,10 @@ workspace追加時の作業
    | ※複数選択可能
 
 
-5. ITA に認証トークンと組織を登録
---------------------------------------------------------------
+ITA に認証トークンと組織を登録
+------------------------------
 
-| 「 :ref:`general_operations_interface_information` 」を参照し、:menuselection:`Ansible共通 --> インターフェース情報` に「 :ref:`platform_output_token` 」で作成した認証トークンと「 :ref:`platform_make_organization` 」で作成した組織の登録を行ってください。
+| :ref:`general_operations_interface_information` を参照し、:menuselection:`Ansible共通 --> インターフェース情報` に :ref:`platform_output_token` で作成した認証トークンと :ref:`platform_make_organization` で作成した組織の登録を行ってください。
 |
 
 .. warning:: | 組織名を登録する際は、認証トークンを登録してから1分程度経過後(※)、「 :ref:`general_operations_interface_information` 」を再表示し、「 :ref:`platform_make_organization` 」で作成した組織名を選択してください。

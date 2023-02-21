@@ -4,10 +4,9 @@
 
 .. toctree::
    :maxdepth: 2
-   :numbered: 3
+   :numbered: 5
 
    workspace
    user
    role
-   aap
-   
+   organization_settings
