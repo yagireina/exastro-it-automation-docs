@@ -15,16 +15,16 @@
 .. raw:: html
 
    </div>
-   <div id="homeIndex">
+   <div id="multiColumnIndex">
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    platform_management/index
    organization_management/index
    it_automation_base/index
    create_param/index
-   .. ansible-driver/index
+   ansible-driver/index
    maintenance/index
 
 .. raw:: html

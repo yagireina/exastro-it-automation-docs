@@ -14,9 +14,9 @@
    });
    </script>
 
-===================================
-Exastro IT Automation on Kubernetes
-===================================
+=======================
+Helm chart (Kubernetes)
+=======================
 
 目的
 ====
@@ -74,8 +74,8 @@ Exastro IT Automation on Kubernetes
 インストールの準備
 ==================
 
-1. Helm リポジトリの登録
-------------------------
+Helm リポジトリの登録
+---------------------
 
 | Exastro システムは、以下の2つのアプリケーションから構成されています。
 | Exastro の全ツールは同一の Helm リポジトリ上に存在しています。
@@ -98,8 +98,8 @@ Exastro IT Automation on Kubernetes
    # リポジトリ情報の更新
    helm repo update
 
-2. デフォルト設定値の取得
--------------------------
+デフォルト設定値の取得
+----------------------
 
 | 投入するパラメータを管理しやすくするために、下記のコマンドから共通基盤 values.yaml のデフォルト値を出力します。
 
@@ -421,8 +421,8 @@ Exastro IT Automation on Kubernetes
 
 .. _service_setting:
 
-3. サービス公開の設定
----------------------
+サービス公開の設定
+------------------
 
 | Exastro サービスを公開するための代表的な3つの設定方法について紹介します。
 
@@ -596,8 +596,8 @@ Exastro IT Automation on Kubernetes
 
 .. _DATABASE_SETUP:
 
-1. データベース連携
--------------------
+データベース連携
+----------------
 
 | Exastro サービスを利用するためには、CMDB やオーガナイゼーションの管理のためのデータベースが必要となります。
 | データベース利用時の3つの設定方法について説明します。
@@ -831,8 +831,8 @@ Exastro IT Automation on Kubernetes
 
 .. _installation_kubernetes_Keycloak 設定:
 
-5. アプリケーションの DB ユーザ設定
------------------------------------
+アプリケーションの DB ユーザ設定
+--------------------------------
 
 | Exastro でアプリケーションのために作成する DB ユーザの設定をします。
 
@@ -938,8 +938,8 @@ Exastro IT Automation on Kubernetes
 
 .. _installation_kubernetes_gitlablinkage:
 
-6. GitLab 連携設定
-------------------
+GitLab 連携設定
+---------------
 
 | GitLab 連携のための接続情報を登録します。
 
@@ -974,8 +974,8 @@ Exastro IT Automation on Kubernetes
 
 .. _create_system_manager:
 
-7. Exastro システム管理者の作成
--------------------------------
+Exastro システム管理者の作成
+----------------------------
 
 | Keycloak セットアップ時に Exastro システム管理者の初期ユーザを作成するための情報を設定します。
 
@@ -1008,8 +1008,8 @@ Exastro IT Automation on Kubernetes
 
 .. _persistent_volume:
 
-8. 永続ボリュームの設定
------------------------
+永続ボリュームの設定
+--------------------
 
 | データベースのデータ永続化 (クラスタ内コンテナがある場合)、および、ファイルの永続化のために、永続ボリュームを設定する必要があります。
 | 永続ボリュームの詳細については、 `永続ボリューム - Kubernetes <https://kubernetes.io/ja/docs/concepts/storage/persistent-volumes/#%E6%B0%B8%E7%B6%9A%E3%83%9C%E3%83%AA%E3%83%A5%E3%83%BC%E3%83%A0>`_ を参照してください。
@@ -1135,8 +1135,8 @@ Exastro IT Automation on Kubernetes
 インストール
 ============
 
-1. 永続ボリュームの作成
------------------------
+永続ボリュームの作成
+--------------------
 
 | :ref:`persistent_volume` で作成したマニフェストファイルを適用し、ボリュームを作成します。
 
@@ -1159,8 +1159,12 @@ Exastro IT Automation on Kubernetes
     pv-database     20Gi       RWO            Retain           Available                                   19s
     pv-ita-common   10Gi       RWX            Retain           Available                                   9s
 
-2. インストール
----------------
+インストール
+------------
+
+| Helm バージョンとアプリケーションのバージョンについては下記を確認してください。
+
+.. include:: ../include/helm_versions.rst
 
 | インストール時にサービスの公開方法によって、アクセス方法が異なります。
 | Ingress, LoadBalancer, NodePort それぞれの方法について説明します。
@@ -1481,8 +1485,8 @@ Exastro IT Automation on Kubernetes
             * - 管理コンソール
               - http://172.16.20.xxx:30081/auth/
 
-1. 管理コンソールへのログイン
------------------------------
+管理コンソールへのログイン
+--------------------------
 
 | 以下の画面が表示された場合、:menuselection:`Administration Console` を選択して、ログイン画面を開きます。
 
