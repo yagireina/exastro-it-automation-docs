@@ -5,6 +5,7 @@
 .. toctree::
    :maxdepth: 2
 
+   general
    management_console
    basic_console
    conductor

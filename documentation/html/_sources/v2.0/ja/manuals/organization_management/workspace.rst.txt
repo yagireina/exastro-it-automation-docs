@@ -60,5 +60,6 @@ Workspase (ワークスペース)
 
    .. note::
       | ワークスペースの作成者（オーガナイゼーション管理者）は、以降のロールの設定等を行わなくても、自動的にワークスペースにアクセスできる状態となります。
-
+      | 初回ログイン方法は、以下をご確認ください。
+      | `初回ログイン <https://exastro-it-automation-docs/documentation/html/v2.0/ja/manuals/it_automation_base/general.html>`_ 
 
